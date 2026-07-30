@@ -1,0 +1,192 @@
+[
+  {
+    "id": "prod_101",
+    "name": "Doritos Sizzlin Hot Nachos 150g",
+    "category": "Snacks & Munchies",
+    "subcategory": "Chips & Nachos",
+    "price": 60,
+    "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300",
+    "tags": ["nachos", "spicy", "snack", "crunchy", "party"],
+    "life_contexts": ["Movie Night", "House Party", "Late Night Gaming", "Cricket Match Watchparty"]
+  },
+  {
+    "id": "prod_102",
+    "name": "Coca-Cola Zero Sugar Can 300ml",
+    "category": "Soft Drinks & Juices",
+    "subcategory": "Carbonated Drinks",
+    "price": 40,
+    "image": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300",
+    "tags": ["coke", "soda", "cold drink", "chilled", "party"],
+    "life_contexts": ["Movie Night", "House Party", "Late Night Gaming", "Quick Lunch"]
+  },
+  {
+    "id": "prod_103",
+    "name": "Kwality Wall's Dark Chocolate Ice Cream 500ml",
+    "category": "Ice Creams & Frozen Desserts",
+    "subcategory": "Tubs & Packs",
+    "price": 275,
+    "image": "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=300",
+    "tags": ["ice cream", "dessert", "sweet", "chocolate", "treat"],
+    "life_contexts": ["Movie Night", "Late Night Cravings", "Weekend Celebration"]
+  },
+  {
+    "id": "prod_104",
+    "name": "Amul Taaza T-Special Milk 1L",
+    "category": "Dairy, Bread & Eggs",
+    "subcategory": "Milk",
+    "price": 56,
+    "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300",
+    "tags": ["milk", "dairy", "daily essential", "tea"],
+    "life_contexts": ["Daily Morning Routine", "Chai Time", "Breakfast Meal Prep"]
+  },
+  {
+    "id": "prod_105",
+    "name": "Society Premium Masala Tea 250g",
+    "category": "Tea, Coffee & Health Drinks",
+    "subcategory": "Tea",
+    "price": 140,
+    "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=300",
+    "tags": ["tea", "chai", "masala tea", "hot beverage"],
+    "life_contexts": ["Daily Morning Routine", "Chai Time", "Monsoon Snack Break"]
+  },
+  {
+    "id": "prod_106",
+    "name": "Parle-G Gold Biscuits 1Kg Pack",
+    "category": "Snacks & Munchies",
+    "subcategory": "Biscuits & Cookies",
+    "price": 120,
+    "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300",
+    "tags": ["biscuits", "chai snack", "cookies"],
+    "life_contexts": ["Chai Time", "Monsoon Snack Break", "Daily Morning Routine"]
+  },
+  {
+    "id": "prod_107",
+    "name": "Amul Butter 500g Pack",
+    "category": "Dairy, Bread & Eggs",
+    "subcategory": "Butter & Ghee",
+    "price": 275,
+    "image": "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300",
+    "tags": ["butter", "cooking", "breakfast"],
+    "life_contexts": ["Breakfast Meal Prep", "Sunday Cooking"]
+  },
+  {
+    "id": "prod_201",
+    "name": "Borosil Glass Microwave Safe Bowl Set (3 Pcs)",
+    "category": "Home & Kitchen",
+    "subcategory": "Serveware & Storage",
+    "price": 499,
+    "image": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=300",
+    "tags": ["bowl set", "glass bowl", "dip bowl", "microwave safe", "serving"],
+    "life_contexts": ["Movie Night", "House Party", "Breakfast Meal Prep"]
+  },
+  {
+    "id": "prod_202",
+    "name": "Kimirica French Lavender Scented Candle 200g",
+    "category": "Personal Care",
+    "subcategory": "Home Fragrance & Bath",
+    "price": 349,
+    "image": "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=300",
+    "tags": ["candle", "lavender", "aroma", "relaxing", "ambience"],
+    "life_contexts": ["Movie Night", "Self Care & Relaxation", "Late Night Study Session"]
+  },
+  {
+    "id": "prod_203",
+    "name": "Nivea Soft Light Moisturizing Cream 200ml",
+    "category": "Personal Care",
+    "subcategory": "Skin Care",
+    "price": 299,
+    "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300",
+    "tags": ["moisturizer", "skincare", "daily care"],
+    "life_contexts": ["Daily Morning Routine", "Self Care & Relaxation"]
+  },
+  {
+    "id": "prod_204",
+    "name": "Pedigree Chicken & Vegetables Adult Dog Food 1.2kg",
+    "category": "Pet Care",
+    "subcategory": "Dog Food",
+    "price": 380,
+    "image": "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=300",
+    "tags": ["dog food", "pet care", "pedigree", "canine nutrition"],
+    "life_contexts": ["Pet Care Routine", "Daily Morning Routine"]
+  },
+  {
+    "id": "prod_205",
+    "name": "Whiskas Ocean Fish Kitten & Cat Food 400g",
+    "category": "Pet Care",
+    "subcategory": "Cat Food",
+    "price": 210,
+    "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300",
+    "tags": ["cat food", "whiskas", "pet care"],
+    "life_contexts": ["Pet Care Routine"]
+  },
+  {
+    "id": "prod_206",
+    "name": "Pampers All-Round Protection Diapers M-Size 42s",
+    "category": "Baby Care",
+    "subcategory": "Diapers & Wipes",
+    "price": 649,
+    "image": "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=300",
+    "tags": ["diapers", "baby care", "pampers"],
+    "life_contexts": ["Baby Care Routine", "Daily Morning Routine"]
+  },
+  {
+    "id": "prod_207",
+    "name": "Sebamed Baby Gentle Wash 200ml",
+    "category": "Baby Care",
+    "subcategory": "Baby Skincare",
+    "price": 450,
+    "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300",
+    "tags": ["baby wash", "baby care", "sebamed"],
+    "life_contexts": ["Baby Care Routine"]
+  },
+  {
+    "id": "prod_208",
+    "name": "Boat BassHeads 100 Wired Earphones with Mic",
+    "category": "Electronics & Appliances",
+    "subcategory": "Headphones & Audio",
+    "price": 399,
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300",
+    "tags": ["earphones", "audio", "boat", "gaming", "music"],
+    "life_contexts": ["Late Night Gaming", "Late Night Study Session", "Movie Night"]
+  },
+  {
+    "id": "prod_209",
+    "name": "Philips LED Desk Lamp 5W Rechargeable",
+    "category": "Electronics & Appliances",
+    "subcategory": "Lighting & Gadgets",
+    "price": 799,
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300",
+    "tags": ["desk lamp", "led light", "study lamp"],
+    "life_contexts": ["Late Night Study Session", "Work From Home"]
+  },
+  {
+    "id": "prod_210",
+    "name": "Hot Wheels 5-Car Pack Gift Set",
+    "category": "Toys & Games",
+    "subcategory": "Diecast Vehicles",
+    "price": 549,
+    "image": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=300",
+    "tags": ["toys", "hot wheels", "kids games", "gift"],
+    "life_contexts": ["Weekend Family Time", "Kids Birthday"]
+  },
+  {
+    "id": "prod_211",
+    "name": "Scotch-Brite High Capacity Lint Roller + 1 Refill",
+    "category": "Home & Kitchen",
+    "subcategory": "Cleaning Essentials",
+    "price": 299,
+    "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=300",
+    "tags": ["lint roller", "cleaning", "pet hair", "clothes care"],
+    "life_contexts": ["Pet Care Routine", "Sunday Cleaning", "Daily Prep"]
+  },
+  {
+    "id": "prod_212",
+    "name": "Vim Dishwash Liquid Lemon 750ml Bottle",
+    "category": "Household Essentials",
+    "subcategory": "Dishwashing",
+    "price": 155,
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
+    "tags": ["dishwash", "cleaning", "kitchen"],
+    "life_contexts": ["Sunday Cleaning", "Kitchen Routine"]
+  }
+]

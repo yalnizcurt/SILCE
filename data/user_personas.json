@@ -1,0 +1,60 @@
+[
+  {
+    "user_id": "user_groceries_only",
+    "name": "Priya Sharma (Habitual Grocery Buyer)",
+    "monthly_orders": 8,
+    "segment": "High-Frequency Routine Shopper",
+    "purchased_categories": [
+      "Dairy, Bread & Eggs",
+      "Snacks & Munchies",
+      "Soft Drinks & Juices"
+    ],
+    "unexplored_categories": [
+      "Home & Kitchen",
+      "Personal Care",
+      "Pet Care",
+      "Baby Care",
+      "Electronics & Appliances",
+      "Toys & Games"
+    ],
+    "archetype_note": "Buys groceries 2x/week. Never explored Home & Kitchen or Personal Care on Blinkit."
+  },
+  {
+    "user_id": "user_pet_owner_potential",
+    "name": "Rohan Mehta (Weekend Snacker & Pet Parent)",
+    "monthly_orders": 6,
+    "segment": "High-Frequency Snack Shopper",
+    "purchased_categories": [
+      "Snacks & Munchies",
+      "Soft Drinks & Juices",
+      "Ice Creams & Frozen Desserts"
+    ],
+    "unexplored_categories": [
+      "Pet Care",
+      "Home & Kitchen",
+      "Personal Care",
+      "Baby Care",
+      "Electronics & Appliances"
+    ],
+    "archetype_note": "Regularly orders late night snacks. Has a dog at home but buys pet food on external e-commerce sites."
+  },
+  {
+    "user_id": "user_work_from_home",
+    "name": "Ananya Roy (WFH Professional)",
+    "monthly_orders": 12,
+    "segment": "Power User (Low Category Diversity)",
+    "purchased_categories": [
+      "Dairy, Bread & Eggs",
+      "Tea, Coffee & Health Drinks",
+      "Snacks & Munchies"
+    ],
+    "unexplored_categories": [
+      "Electronics & Appliances",
+      "Personal Care",
+      "Home & Kitchen",
+      "Toys & Games",
+      "Pet Care"
+    ],
+    "archetype_note": "Orders morning milk, tea, and quick snacks daily. Has never explored Electronics or Desk Accessories."
+  }
+]
