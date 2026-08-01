@@ -632,13 +632,151 @@ body {
   transform: translateY(-1px);
 }
 
-.btn-dismiss-silce {
-  background: none;
+.btn-silce-add.added {
+  background: #10B981 !important;
+  color: #FFFFFF !important;
+  pointer-events: none;
+}
+
+.btn-why-silce {
+  background: #F1F5F9;
   border: none;
-  color: #94A3B8;
-  font-size: 14px;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 10px;
   cursor: pointer;
-  padding: 0 4px;
+  margin-left: auto;
+  margin-right: 6px;
+  transition: background 0.15s ease;
+}
+
+.btn-why-silce:hover {
+  background: #E2E8F0;
+  color: #0F172A;
+}
+
+.silce-card-actions {
+  display: flex;
+  align-items: center;
+}
+
+.silce-card-container.collapsing {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Bottom Sheet Modal */
+.bottom-sheet-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.bottom-sheet-content {
+  background: #FFFFFF;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+  padding: 16px;
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bottom-sheet-drag-handle {
+  width: 36px;
+  height: 4px;
+  background: #CBD5E1;
+  border-radius: 2px;
+  margin: 0 auto 12px auto;
+}
+
+.bottom-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #F1F5F9;
+  padding-bottom: 8px;
+}
+
+.bottom-sheet-header h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.btn-close-sheet {
+  background: #F1F5F9;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 12px;
+  color: #64748B;
+  cursor: pointer;
+}
+
+.trust-rule-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  background: #F8FAFC;
+  border-radius: 8px;
+}
+
+.trust-icon {
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.trust-rule-item strong {
+  font-size: 12px;
+  color: #1E293B;
+  display: block;
+}
+
+.trust-rule-item p {
+  font-size: 11px;
+  color: #64748B;
+  margin: 2px 0 0 0;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Added via Context Tag in Cart List */
+.added-via-context-tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 800;
+  background: #ECFDF5;
+  color: var(--blinkit-green-dark);
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 6px;
+  border: 1px solid #A7F3D0;
 }
 
 /* Bill Section */

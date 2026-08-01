@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "engine": "Google Antigravity Opportunity Discovery Engine",
+    "total_reviews_analyzed": 30,
+    "analysis_scope": [
+      "Explicit Complaints",
+      "Implicit Habits",
+      "Latent Cross-Category Opportunities"
+    ]
+  },
+  "explicit_complaints": {
+    "dark_store_stockout_pct": 13.3,
+    "pricing_and_fees_pct": 13.3,
+    "returns_friction_pct": 10.0,
+    "raw_counts": {
+      "dark_store_stockout": 4,
+      "pricing_and_fees": 4,
+      "returns_friction": 3
+    }
+  },
+  "implicit_habits": {
+    "speed_runs_pct": 13.3,
+    "grocery_only_mental_model_pct": 23.3,
+    "two_item_quick_orders_pct": 3.3,
+    "raw_counts": {
+      "speed_runs": 4,
+      "grocery_only_mental_model": 7,
+      "two_item_quick_orders": 1
+    }
+  },
+  "latent_opportunities": [
+    {
+      "trigger_intent": "Chai Time & Evening Snacks",
+      "example_basket": [
+        "Tea 250g",
+        "Parle-G 100g"
+      ],
+      "latent_opportunity_category": "Home & Kitchen",
+      "recommended_skus": [
+        "Stainless Steel Tea Strainer",
+        "Ceramic Tea Mug"
+      ],
+      "user_need": "Unmet cookware & kitchen accessories pairing during routine tea orders"
+    },
+    {
+      "trigger_intent": "Weekend Hosting / Party",
+      "example_basket": [
+        "Doritos Nachos 150g",
+        "Coca-Cola Zero 300ml"
+      ],
+      "latent_opportunity_category": "Toys & Games",
+      "recommended_skus": [
+        "UNO Playing Cards",
+        "Disposable Party Cups"
+      ],
+      "user_need": "Social entertainment and hosting accessories during impulse snack orders"
+    },
+    {
+      "trigger_intent": "Household Cleaning Blitz",
+      "example_basket": [
+        "Surf Excel Matic Liquid",
+        "Vim Dishwash Gel"
+      ],
+      "latent_opportunity_category": "Personal Care / Cleaning Accessories",
+      "recommended_skus": [
+        "Ergonomic Rubber Gloves",
+        "Microfiber Cleaning Cloth"
+      ],
+      "user_need": "Forgotten utility items during routine household cleaning restocking"
+    },
+    {
+      "trigger_intent": "Emergency Work / Tech Setup",
+      "example_basket": [
+        "Coffee",
+        "Energy Drink"
+      ],
+      "latent_opportunity_category": "Electronics & Accessories",
+      "recommended_skus": [
+        "Boat BassHeads Wired Earphones",
+        "AA Alkaline Battery 4-Pack"
+      ],
+      "user_need": "High-urgency electronics accessories delivered in under 10 minutes"
+    }
+  ],
+  "product_takeaway": "Blinkit users exhibit a strong 'Grocery-Only' mental model with 60-second speed-run behavior. SILCE captures 2-item cart pairings (e.g. Tea + Biscuits, Nachos + Coke) to recommend 1 relevant non-grocery item (Tea Strainer, UNO Cards) under a 40% price guardrail, breaking category inertia without introducing cart friction."
+}

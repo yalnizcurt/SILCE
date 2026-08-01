@@ -205,6 +205,38 @@
               <button id="btnResetOrder" class="btn-reset-order">
                 🛒 Start New Shopping Mission
               </button>
+            <!-- Native Bottom Sheet Modal (WhyBottomSheet) -->
+            <div id="whyBottomSheetModal" class="bottom-sheet-backdrop" style="display: none;">
+              <div class="bottom-sheet-content">
+                <div class="bottom-sheet-drag-handle"></div>
+                <div class="bottom-sheet-header">
+                  <h3>💡 Why this recommendation?</h3>
+                  <button id="btnCloseWhySheet" class="btn-close-sheet">✕</button>
+                </div>
+                <div class="bottom-sheet-body">
+                  <div class="trust-rule-item">
+                    <span class="trust-icon">🧠</span>
+                    <div>
+                      <strong>Contextual Intent Matched</strong>
+                      <p id="sheetIntentText">Inferred intent based on active 2-item basket pairing.</p>
+                    </div>
+                  </div>
+                  <div class="trust-rule-item">
+                    <span class="trust-icon">🚫</span>
+                    <div>
+                      <strong>0 Purchases in 90 Days</strong>
+                      <p id="sheetCategoryText">Item belongs to a top-level unexplored category.</p>
+                    </div>
+                  </div>
+                  <div class="trust-rule-item">
+                    <span class="trust-icon">🛡️</span>
+                    <div>
+                      <strong>40% Price Guardrail Enforced</strong>
+                      <p id="sheetPriceText">Item price is capped under 40% of active cart subtotal to prevent cart shock.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>

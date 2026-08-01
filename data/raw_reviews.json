@@ -1,0 +1,242 @@
+[
+  {
+    "review_id": "rev_001",
+    "source": "Play Store",
+    "user_segment": "Routine Shopper",
+    "rating": 5,
+    "review_text": "Ordered milk and bread at 7 AM, arrived in 8 minutes! Quick delivery for morning breakfast essentials.",
+    "date": "2026-07-15"
+  },
+  {
+    "review_id": "rev_002",
+    "source": "App Store",
+    "user_segment": "Emergency Buyer",
+    "rating": 2,
+    "review_text": "Needed an HDMI cable urgently for an online client presentation. Blinkit had snacks but tech items were completely out of stock at my local dark store. Had to delay my meeting.",
+    "date": "2026-07-16"
+  },
+  {
+    "review_id": "rev_003",
+    "source": "Reddit",
+    "user_segment": "Grocery Buyer",
+    "rating": 3,
+    "review_text": "I use Blinkit literally every day for milk, curd, and veggies. But I never buy cookware or earphones here because prices feel higher and I don't trust returns.",
+    "date": "2026-07-17"
+  },
+  {
+    "review_id": "rev_004",
+    "source": "Play Store",
+    "user_segment": "Weekend Party Host",
+    "rating": 4,
+    "review_text": "Ordered Nachos and Coke for movie night with friends. Wish Blinkit suggested playing cards or disposable cups right in the cart before I paid!",
+    "date": "2026-07-18"
+  },
+  {
+    "review_id": "rev_005",
+    "source": "App Store",
+    "user_segment": "Routine Shopper",
+    "rating": 1,
+    "review_text": "Dark store stockout again! Atta and Dal were unavailable in my neighborhood during peak Sunday evening hours.",
+    "date": "2026-07-19"
+  },
+  {
+    "review_id": "rev_006",
+    "source": "Reddit",
+    "user_segment": "WFH Professional",
+    "rating": 4,
+    "review_text": "My 60-second speed run: open app, add tea and Parle-G, checkout. I don't have time to browse through 50 sub-categories.",
+    "date": "2026-07-20"
+  },
+  {
+    "review_id": "rev_007",
+    "source": "Play Store",
+    "user_segment": "Household Cleaning",
+    "rating": 3,
+    "review_text": "Bought detergent and dishwash gel. Realized later I forgot cleaning gloves. If the app gave me a single smart suggestion before checkout, it would save me another order.",
+    "date": "2026-07-21"
+  },
+  {
+    "review_id": "rev_008",
+    "source": "App Store",
+    "user_segment": "Pet Owner",
+    "rating": 2,
+    "review_text": "I buy snacks on Blinkit but order dog food on Amazon because Blinkit doesn't highlight pet items when I buy household items.",
+    "date": "2026-07-21"
+  },
+  {
+    "review_id": "rev_009",
+    "source": "Reddit",
+    "user_segment": "Binge Watcher",
+    "rating": 5,
+    "review_text": "Late night cravings saver! Chips and ice cream delivered in 10 minutes. A bowl set suggestion would have been nice.",
+    "date": "2026-07-22"
+  },
+  {
+    "review_id": "rev_010",
+    "source": "Play Store",
+    "user_segment": "Bargin Hunter",
+    "rating": 2,
+    "review_text": "Handling fee keeps going up. High delivery partner fee when order subtotal is below ₹150.",
+    "date": "2026-07-22"
+  },
+  {
+    "review_id": "rev_011",
+    "source": "App Store",
+    "user_segment": "Routine Shopper",
+    "rating": 4,
+    "review_text": "Always buy bread and butter here. Never looked at personal care items like face wash or shampoo on quick commerce.",
+    "date": "2026-07-23"
+  },
+  {
+    "review_id": "rev_012",
+    "source": "Reddit",
+    "user_segment": "Emergency Buyer",
+    "rating": 1,
+    "review_text": "Phone charger broke at midnight. Searched on Blinkit, dark store was out of stock. Instant delivery apps need better emergency electronics inventory.",
+    "date": "2026-07-23"
+  },
+  {
+    "review_id": "rev_013",
+    "source": "Play Store",
+    "user_segment": "Routine Shopper",
+    "rating": 5,
+    "review_text": "Chai time savior! Tea bags and milk delivered before my evening meeting started.",
+    "date": "2026-07-24"
+  },
+  {
+    "review_id": "rev_014",
+    "source": "App Store",
+    "user_segment": "Home Manager",
+    "rating": 3,
+    "review_text": "Return process for damaged items takes 2-3 days of customer support chat. Needs smoother return friction resolution.",
+    "date": "2026-07-24"
+  },
+  {
+    "review_id": "rev_015",
+    "source": "Reddit",
+    "user_segment": "Power User",
+    "rating": 4,
+    "review_text": "I only use Blinkit as a digital kirana store. 95% of my orders are grocery items only.",
+    "date": "2026-07-25"
+  },
+  {
+    "review_id": "rev_016",
+    "source": "Play Store",
+    "user_segment": "Binge Watcher",
+    "rating": 4,
+    "review_text": "Popcorn and cola delivered cold. Add-on recommendations in cart would increase basket size if priced reasonably.",
+    "date": "2026-07-25"
+  },
+  {
+    "review_id": "rev_017",
+    "source": "App Store",
+    "user_segment": "WFH Professional",
+    "rating": 2,
+    "review_text": "Frequent dark store stockout for oats and almond milk in Indiranagar. Please improve inventory planning.",
+    "date": "2026-07-26"
+  },
+  {
+    "review_id": "rev_018",
+    "source": "Reddit",
+    "user_segment": "Routine Shopper",
+    "rating": 4,
+    "review_text": "I place 2-item orders 4 times a week. Very fast, but I stick strictly to my search list.",
+    "date": "2026-07-26"
+  },
+  {
+    "review_id": "rev_019",
+    "source": "Play Store",
+    "user_segment": "Party Host",
+    "rating": 5,
+    "review_text": "Ordered soda, chips, and ice. App recommended UNO cards and party cups! Exactly what we needed for the gathering.",
+    "date": "2026-07-27"
+  },
+  {
+    "review_id": "rev_020",
+    "source": "App Store",
+    "user_segment": "Home Manager",
+    "rating": 2,
+    "review_text": "App constantly shows popups and carousels for random beauty products I don't want. Give me 1 relevant recommendation or nothing.",
+    "date": "2026-07-27"
+  },
+  {
+    "review_id": "rev_021",
+    "source": "Reddit",
+    "user_segment": "Pet Owner",
+    "rating": 3,
+    "review_text": "Lint roller for cat hair was hard to find in the menu. Should be paired with cleaning supplies.",
+    "date": "2026-07-28"
+  },
+  {
+    "review_id": "rev_022",
+    "source": "Play Store",
+    "user_segment": "Routine Shopper",
+    "rating": 4,
+    "review_text": "Fast 10-minute delivery. Great experience for daily veggies.",
+    "date": "2026-07-28"
+  },
+  {
+    "review_id": "rev_023",
+    "source": "App Store",
+    "user_segment": "Emergency Buyer",
+    "rating": 1,
+    "review_text": "Batteries died during AC remote setup. Ordered on Blinkit, took 12 mins. Saved the night!",
+    "date": "2026-07-28"
+  },
+  {
+    "review_id": "rev_024",
+    "source": "Reddit",
+    "user_segment": "Bargin Hunter",
+    "rating": 2,
+    "review_text": "Why do high-margin non-grocery items feel overpriced? Needs clear price transparency.",
+    "date": "2026-07-29"
+  },
+  {
+    "review_id": "rev_025",
+    "source": "Play Store",
+    "user_segment": "WFH Professional",
+    "rating": 5,
+    "review_text": "Daily coffee and biscuits delivered before my standup call. Super convenient.",
+    "date": "2026-07-29"
+  },
+  {
+    "review_id": "rev_026",
+    "source": "App Store",
+    "user_segment": "Routine Shopper",
+    "rating": 3,
+    "review_text": "Good service, but cart recommendations are usually duplicate items I already added. Need smarter pairing.",
+    "date": "2026-07-29"
+  },
+  {
+    "review_id": "rev_027",
+    "source": "Reddit",
+    "user_segment": "Binge Watcher",
+    "rating": 4,
+    "review_text": "Ordered dips and nachos. A small microwave bowl recommendation in cart would be super useful.",
+    "date": "2026-07-29"
+  },
+  {
+    "review_id": "rev_028",
+    "source": "Play Store",
+    "user_segment": "Home Manager",
+    "rating": 2,
+    "review_text": "Return friction is high when a fruit box is damaged. Refund should be instant.",
+    "date": "2026-07-30"
+  },
+  {
+    "review_id": "rev_029",
+    "source": "App Store",
+    "user_segment": "Emergency Buyer",
+    "rating": 4,
+    "review_text": "Needed earphone replacement for emergency WFH call. Got wired earphones in 9 minutes.",
+    "date": "2026-07-30"
+  },
+  {
+    "review_id": "rev_030",
+    "source": "Reddit",
+    "user_segment": "Routine Shopper",
+    "rating": 5,
+    "review_text": "Speed run buying is great. Add to cart -> 1 tap pay -> done in 30 seconds.",
+    "date": "2026-07-30"
+  }
+]

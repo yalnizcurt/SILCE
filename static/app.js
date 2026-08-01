@@ -19,12 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
     user_work_from_home: "chai_time"
   };
 
-  // Shopping Mission Preset Mapping
+  // Shopping Mission Preset Mapping (2-Item Quick-Commerce Presets)
   const PRESET_CARTS = {
     movie_night: ["prod_101", "prod_102", "prod_103"], // Nachos + Coke + Ice Cream
-    chai_time: ["prod_104", "prod_105", "prod_106"],   // Milk + Tea + Biscuits
-    breakfast_prep: ["prod_104", "prod_107"],          // Milk + Butter
-    cleaning_day: ["prod_212"]                        // Dishwash Liquid
+    chai_time: ["prod_105", "prod_106"],               // Tea 250g + Parle-G (₹155 subtotal)
+    breakfast_prep: ["prod_104", "prod_105"],          // Milk + Tea
+    cleaning_day: ["prod_107", "prod_212"]             // Surf Excel + Vim Dishwash (₹295 subtotal)
   };
 
   // DOM Elements
@@ -41,6 +41,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const liveConfidenceVal = document.getElementById("liveConfidenceVal");
   const confidenceFill = document.getElementById("confidenceFill");
   const intentExplanationText = document.getElementById("intentExplanationText");
+
+  // WhyBottomSheet DOM Elements
+  const whyBottomSheetModal = document.getElementById("whyBottomSheetModal");
+  const btnCloseWhySheet = document.getElementById("btnCloseWhySheet");
+
+  if (btnCloseWhySheet && whyBottomSheetModal) {
+    btnCloseWhySheet.addEventListener("click", () => {
+      whyBottomSheetModal.style.display = "none";
+    });
+    whyBottomSheetModal.addEventListener("click", (e) => {
+      if (e.target === whyBottomSheetModal) {
+        whyBottomSheetModal.style.display = "none";
+      }
+    });
+  }
 
   // Navigation Tabs
   const navBtns = document.querySelectorAll(".nav-btn");
@@ -100,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       renderQuickAddCatalog();
 
       // Load Default Preset
-      loadPresetCart("movie_night");
+      loadPresetCart("chai_time");
 
       // Fetch analytics
       fetchAnalytics();
@@ -125,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load or initialize isolated cart for newly selected persona
     if (!personaCarts[newUserId]) {
-      const defaultPreset = PERSONA_DEFAULT_PRESETS[newUserId] || "movie_night";
+      const defaultPreset = PERSONA_DEFAULT_PRESETS[newUserId] || "chai_time";
       loadPresetCart(defaultPreset);
     } else {
       cartItems = [...personaCarts[newUserId]];
@@ -167,14 +182,14 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartAndTriggerSILCE();
   }
 
-  function addItemToCart(prodId) {
+  function addItemToCart(prodId, isContextAdd = false) {
     const existing = cartItems.find(i => i.id === prodId);
     if (existing) {
       existing.qty += 1;
     } else {
       const prod = catalog.find(p => p.id === prodId);
       if (prod) {
-        cartItems.push({ ...prod, qty: 1 });
+        cartItems.push({ ...prod, qty: 1, added_via_context: isContextAdd });
       }
     }
     if (activePersona) {
@@ -240,7 +255,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="cart-item-card">
         <img src="${item.image}" alt="${item.name}">
         <div class="cart-item-details">
-          <div class="cart-item-title">${item.name}</div>
+          <div class="cart-item-title">
+            ${item.name}
+            ${item.added_via_context ? '<span class="added-via-context-tag">Added via Context</span>' : ''}
+          </div>
           <div class="cart-item-sub">${item.subcategory || item.category}</div>
           <div class="cart-item-price">₹${item.price * item.qty}</div>
         </div>
@@ -334,11 +352,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const prod = data.product;
+    const isAlreadyInCart = cartItems.some(i => i.id === prod.id);
+
     silceCardContainer.innerHTML = `
       <div class="silce-card">
         <div class="silce-card-header">
           <div class="native-addon-title">Complete your cart</div>
-          <button id="btnDismissSilce" class="btn-dismiss-silce">✕</button>
+          <div class="silce-card-actions">
+            <button id="btnWhySilce" class="btn-why-silce">Why?</button>
+            <button id="btnDismissSilce" class="btn-dismiss-silce" title="Dismiss suggestion">✕</button>
+          </div>
         </div>
         <div class="silce-nudge">${data.nudge_text}</div>
         <div class="silce-prod-body">
@@ -347,13 +370,23 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="silce-prod-name">${prod.name}</div>
             <div class="silce-prod-price">₹${prod.price}</div>
           </div>
-          <button id="btnAcceptSilce" class="btn-silce-add">+ ADD</button>
+          <button id="btnAcceptSilce" class="btn-silce-add ${isAlreadyInCart ? 'added' : ''}">
+            ${isAlreadyInCart ? '✓ Added' : '+ ADD'}
+          </button>
         </div>
       </div>
     `;
 
-    document.getElementById("btnAcceptSilce").addEventListener("click", async () => {
-      addItemToCart(prod.id);
+    // Button Morphing + Single-Tap Add Action
+    const btnAccept = document.getElementById("btnAcceptSilce");
+    btnAccept.addEventListener("click", async () => {
+      if (btnAccept.classList.contains("added")) return;
+
+      btnAccept.textContent = "✓ Added";
+      btnAccept.classList.add("added");
+
+      addItemToCart(prod.id, true);
+
       await fetch("/api/action", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -365,19 +398,38 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchAnalytics();
     });
 
-    // Requirement #6: Session Dismissal Handler
+    // WhyBottomSheet Modal Handler
+    document.getElementById("btnWhySilce").addEventListener("click", () => {
+      const cartSubtotal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const maxAllowed = (0.40 * cartSubtotal).toFixed(0);
+
+      document.getElementById("sheetIntentText").innerHTML = `Inferred <strong>${data.intent_inferred}</strong> intent from active basket.`;
+      document.getElementById("sheetCategoryText").innerHTML = `Candidate SKU belongs to <strong>${data.new_category}</strong> (0 purchases in 90 days).`;
+      document.getElementById("sheetPriceText").innerHTML = `Price <strong>₹${prod.price}</strong> $\\le$ 40% of subtotal (Max limit ₹${maxAllowed} for ₹${cartSubtotal} subtotal).`;
+
+      if (whyBottomSheetModal) {
+        whyBottomSheetModal.style.display = "flex";
+      }
+    });
+
+    // Dismiss Collapse Animation Handler
     document.getElementById("btnDismissSilce").addEventListener("click", async () => {
-      dismissedThisSession = true;
-      silceCardContainer.innerHTML = "";
-      await fetch("/api/action", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          action: "dismiss",
-          data: { product_id: prod.id, user_id: activePersona.user_id }
-        })
-      });
-      fetchAnalytics();
+      silceCardContainer.classList.add("collapsing");
+      setTimeout(async () => {
+        dismissedThisSession = true;
+        silceCardContainer.innerHTML = "";
+        silceCardContainer.classList.remove("collapsing");
+
+        await fetch("/api/action", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "dismiss",
+            data: { product_id: prod.id, user_id: activePersona.user_id }
+          })
+        });
+        fetchAnalytics();
+      }, 300);
     });
   }
 
