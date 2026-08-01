@@ -161,18 +161,22 @@ body {
 /* Tab 1: Simulation Grid */
 .sim-grid {
   display: grid;
-  grid-template-columns: 310px 385px 1fr;
+  grid-template-columns: 320px 400px 320px;
   gap: 24px;
+  justify-content: center;
   align-items: start;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
 /* Panel Cards */
 .panel-card {
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
+  background: #FFFFFF;
+  border-radius: 16px;
   padding: 20px;
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
 }
 
@@ -278,7 +282,7 @@ body {
   color: #FFFFFF;
 }
 
-/* Mobile Frame UI (Target width: 390px - iPhone 15 / Pixel 9 proportion) */
+/* Mobile Frame UI Shell */
 .mobile-frame-container {
   display: flex;
   justify-content: center;
@@ -286,23 +290,23 @@ body {
 
 .mobile-frame {
   width: 390px;
-  max-width: 430px;
-  height: 800px;
-  max-height: calc(100vh - 120px);
-  background: #FFFFFF;
-  border-radius: 44px;
-  border: 9px solid #1E293B;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  height: 844px;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
+  background: #FFFFFF;
+  border-radius: 36px;
+  border: 8px solid #0F172A;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   position: relative;
+  margin: 0 auto;
 }
 
 .dynamic-island {
   width: 100px;
   height: 20px;
-  background: #1E293B;
+  background: #0F172A;
   border-radius: 12px;
   position: absolute;
   top: 8px;
@@ -312,10 +316,15 @@ body {
 }
 
 .mobile-app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   background: #F7C413;
-  padding: 30px 14px 10px 14px;
+  padding: 24px 14px 10px 14px;
   border-bottom: 1px solid #E5B50F;
   color: #121417;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header-top-bar {
@@ -410,11 +419,12 @@ body {
 .mobile-cart-body {
   flex: 1;
   background: #F4F6F8;
-  padding: 12px;
+  padding: 12px 16px 112px 16px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-sizing: border-box;
 }
 
 .mobile-cart-body::-webkit-scrollbar {
@@ -492,9 +502,9 @@ body {
 }
 
 .cart-item-card img {
-  width: 38px;
-  height: 38px;
-  border-radius: 6px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -502,20 +512,20 @@ body {
 .cart-item-details {
   flex: 1;
   min-width: 0;
+  padding: 0 8px;
 }
 
 .cart-item-title {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
-  color: var(--text-dark);
-  line-height: 1.2;
+  color: #0F172A;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .cart-item-sub {
-  font-size: 9px;
+  font-size: 10px;
   color: #64748B;
   margin: 1px 0 2px 0;
   white-space: nowrap;
@@ -824,9 +834,13 @@ body {
 
 /* Mobile Sticky Footer */
 .mobile-cart-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
   background: #FFFFFF;
   padding: 12px;
-  border-top: 1px solid var(--border-light);
+  border-top: 1px solid #F1F5F9;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -919,23 +933,45 @@ body {
   line-height: 1.4;
 }
 
-.principles-list {
-  list-style: none;
+.principles-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 2px;
+}
+
+.principle-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #F1F5F9;
   font-size: 12px;
 }
 
-.principles-list li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.principle-row:last-child {
+  border-bottom: none;
 }
 
-.principles-list .check {
-  color: var(--blinkit-green);
-  font-weight: 900;
+.principle-label {
+  width: 110px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.principle-label .check {
+  color: #10B981;
+  font-weight: 800;
+}
+
+.principle-desc {
+  flex: 1;
+  padding-left: 8px;
+  text-align: right;
+  color: #64748B;
 }
 
 /* Tab 2: Diagnostics */
