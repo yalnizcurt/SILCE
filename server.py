@@ -34,12 +34,13 @@ CATALOG, PERSONAS = load_data_files()
 
 class SILCERequestHandler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
-        if path == "/" or path == "/index.html":
+        path_clean = path.split('?')[0].split('#')[0]
+        if path_clean == "/" or path_clean == "/index.html":
             return str(BASE_DIR / "static" / "index.html")
-        elif path.startswith("/static/"):
-            rel_path = path[len("/static/"):]
+        elif path_clean.startswith("/static/"):
+            rel_path = path_clean[len("/static/"):]
             return str(BASE_DIR / "static" / rel_path)
-        return super().translate_path(path)
+        return super().translate_path(path_clean)
 
     def do_OPTIONS(self):
         self.send_response(200)
