@@ -81,8 +81,8 @@
 
   /* Layout */
   --max-width:          1320px;
-  --col-center-width:   390px;
-  --col-side-min:       270px;
+  --col-center-width:   460px;  /* wider to fit phone shell + side buttons */
+  --col-side-min:       260px;
 }
 
 /* ── 2. Reset & Base ───────────────────────────────────────── */
@@ -489,39 +489,163 @@ body {
   color: var(--color-text-inverse);
 }
 
-/* ── 10. Center Column: Mobile Frame Shell ─────────────────── */
+/* ── 10. Center Column: Phone Device Shell ────────────────── */
+/*
+   BrowserStack-style iPhone mockup
+   Outer phone body:  420px × 880px
+   Inner screen:      392px × 840px  ≈  1 : 2.14  (iPhone 14 ratio)
+   Side buttons protrude ~6px each side → container needs 460px
+*/
 .mobile-frame-container {
-  /* Strict width — never bleeds outside center column */
   width: var(--col-center-width);
   max-width: var(--col-center-width);
   justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   position: sticky;
-  top: calc(57px + 49px + 20px); /* header + nav + margin */
+  top: calc(57px + 49px + 20px);
 }
 
+/* ── Phone Body (the dark shell/bezel) ──────────────────────── */
+.phone-device {
+  position: relative;
+  width: 420px;
+  border-radius: 58px;
+  /* Titanium-like gradient body — matches modern iPhone Pro */
+  background: linear-gradient(
+    160deg,
+    #2f2f3f 0%,
+    #1c1c2a 35%,
+    #1a1a28 65%,
+    #24243a 100%
+  );
+  padding: 20px 14px;
+  /* Layered shadows for physical depth */
+  box-shadow:
+    inset 0 2px 2px rgba(255, 255, 255, 0.09),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.35),
+    inset 3px 0  3px rgba(0, 0, 0, 0.18),
+    inset -3px 0 3px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.07),
+    0 0 0 2px rgba(0, 0, 0, 0.5),
+    0 50px 90px -20px rgba(0, 0, 0, 0.7),
+    0 30px 50px -10px rgba(0, 0, 0, 0.5),
+    0  8px 16px -4px rgba(0, 0, 0, 0.35);
+}
+
+/* Thin metallic sheen along top edge */
+.phone-device::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 40px;
+  right: 40px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.18) 30%,
+    rgba(255,255,255,0.28) 50%,
+    rgba(255,255,255,0.18) 70%,
+    transparent 100%
+  );
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+/* ── Physical Side Buttons ──────────────────────────────────── */
+.phone-side-btn {
+  position: absolute;
+  background: linear-gradient(180deg, #383848 0%, #1e1e2c 50%, #2a2a38 100%);
+  border-radius: 3px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Silent/mute toggle — short stub, left side */
+.silent-btn {
+  left: -6px;
+  top: 98px;
+  width: 5px;
+  height: 22px;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Volume Up — left side */
+.vol-up-btn {
+  left: -6px;
+  top: 148px;
+  width: 5px;
+  height: 38px;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Volume Down — left side */
+.vol-down-btn {
+  left: -6px;
+  top: 202px;
+  width: 5px;
+  height: 38px;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Power / Sleep-Wake — right side */
+.power-btn {
+  right: -6px;
+  top: 185px;
+  width: 5px;
+  height: 74px;
+  border-radius: 0 3px 3px 0;
+}
+
+/* ── The Screen (inner frame) ───────────────────────────────── */
 .mobile-frame {
-  width: var(--col-center-width);
-  height: 780px;
+  width: 100%;           /* 392px (420 - 14px×2 padding) */
+  height: 840px;         /* → ratio 392:840 ≈ 1:2.14 */
   display: flex;
   flex-direction: column;
   background: var(--color-bg-card);
-  border-radius: var(--radius-xl);
-  border: 8px solid var(--color-bg-header);
-  box-shadow: var(--shadow-phone);
+  border-radius: 42px;
   overflow: hidden;
   position: relative;
+  /* Subtle inset to make screen look recessed into bezel */
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.12),
+    inset 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* ── Dynamic Island ─────────────────────────────────────────── */
 .dynamic-island {
-  width: 96px;
-  height: 18px;
-  background: var(--color-bg-header);
-  border-radius: var(--radius-full);
+  width: 122px;
+  height: 34px;
+  background: #000000;
+  border-radius: 20px;
   position: absolute;
-  top: 9px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
+  /* Camera + sensors subtle glow */
+  box-shadow:
+    0 0 0 1.5px rgba(0,0,0,0.8),
+    inset 0 1px 2px rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+
+/* ── Home Indicator Bar ─────────────────────────────────────── */
+.home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 3px;
+  z-index: 300;
   pointer-events: none;
 }
 
@@ -531,7 +655,8 @@ body {
   top: 0;
   z-index: 40;
   background: var(--color-brand-yellow);
-  padding: 32px 14px 11px;
+  /* Extra top padding clears dynamic island (34px island + 12px gap + 6px buffer = 52px) */
+  padding: 56px 14px 11px;
   border-bottom: 1px solid #E5B50F;
   flex-shrink: 0;
 }
@@ -1738,8 +1863,8 @@ body {
 
 /* ── 16. Responsive Breakpoints ────────────────────────────── */
 
-/* 1280px: collapse to 2-col, center phone on top */
-@media (max-width: 1280px) {
+/* 1300px: collapse to 2-col, phone on right stacked */
+@media (max-width: 1300px) {
   .sim-grid {
     grid-template-columns: minmax(var(--col-side-min), 1fr) var(--col-center-width);
     grid-template-rows: auto auto;
@@ -1767,8 +1892,8 @@ body {
   }
 }
 
-/* 900px: full single column */
-@media (max-width: 900px) {
+/* 960px: single column stack */
+@media (max-width: 960px) {
   .sim-grid {
     grid-template-columns: 1fr;
     max-width: var(--col-center-width);

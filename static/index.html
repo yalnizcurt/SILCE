@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=4.0">
+  <link rel="stylesheet" href="/static/style.css?v=4.1">
 </head>
 <body>
   <!-- Header Bar -->
@@ -99,8 +99,15 @@
 
         <!-- Middle Column: Blinkit Mobile App Cart Review Interface -->
         <div class="mobile-frame-container">
-          <div class="mobile-frame">
-            <div class="dynamic-island"></div>
+          <div class="phone-device">
+            <!-- Physical side buttons -->
+            <div class="phone-side-btn silent-btn" title="Silent"></div>
+            <div class="phone-side-btn vol-up-btn" title="Volume Up"></div>
+            <div class="phone-side-btn vol-down-btn" title="Volume Down"></div>
+            <div class="phone-side-btn power-btn" title="Power"></div>
+
+            <div class="mobile-frame">
+              <div class="dynamic-island"></div>
             
             <!-- Mobile App Header -->
             <div class="mobile-app-header">
@@ -256,8 +263,12 @@
               </div>
             </div>
 
-          </div>
-        </div>
+              <!-- Home Indicator -->
+              <div class="home-indicator"></div>
+
+            </div><!-- /.mobile-frame -->
+          </div><!-- /.phone-device -->
+        </div><!-- /.mobile-frame-container -->
 
         <!-- Right Column: Live Context & Intent Summary -->
         <div class="sim-summary-panel">
