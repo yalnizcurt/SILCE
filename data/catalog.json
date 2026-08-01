@@ -5,7 +5,7 @@
     "category": "Snacks & Munchies",
     "subcategory": "Chips & Nachos",
     "price": 60,
-    "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300",
+    "image": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=300",
     "tags": ["nachos", "spicy", "snack", "crunchy", "party"],
     "life_contexts": ["Movie Night", "House Party", "Late Night Gaming", "Cricket Match Watchparty"]
   },
@@ -25,7 +25,7 @@
     "category": "Ice Creams & Frozen Desserts",
     "subcategory": "Tubs & Packs",
     "price": 195,
-    "image": "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=300",
+    "image": "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=300",
     "tags": ["ice cream", "dessert", "sweet", "chocolate", "treat"],
     "life_contexts": ["Movie Night", "Late Night Cravings", "Weekend Celebration"]
   },
@@ -45,7 +45,7 @@
     "category": "Tea, Coffee & Health Drinks",
     "subcategory": "Tea",
     "price": 140,
-    "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=300",
+    "image": "https://images.unsplash.com/photo-1556909172-8c2f041fca1e?w=300",
     "tags": ["tea", "chai", "masala tea", "hot beverage"],
     "life_contexts": ["Daily Morning Routine", "Chai Time", "Monsoon Snack Break"]
   },
@@ -65,7 +65,7 @@
     "category": "Household Essentials",
     "subcategory": "Laundry",
     "price": 180,
-    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
+    "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=300",
     "tags": ["detergent", "laundry", "cleaning"],
     "life_contexts": ["Sunday Cleaning", "Household Cleaning"]
   },
@@ -75,7 +75,7 @@
     "category": "Home & Kitchen",
     "subcategory": "Cookware & Utensils",
     "price": 49,
-    "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=300",
+    "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300",
     "tags": ["tea strainer", "filter", "kitchen tool", "chai", "tea"],
     "life_contexts": ["Chai Time", "Monsoon Snack Break"]
   },
@@ -115,7 +115,7 @@
     "category": "Household Essentials",
     "subcategory": "Dishwashing",
     "price": 115,
-    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
+    "image": "https://images.unsplash.com/photo-1585842378054-ee2e52f94ba2?w=300",
     "tags": ["dishwash", "cleaning", "kitchen"],
     "life_contexts": ["Sunday Cleaning", "Household Cleaning"]
   }
