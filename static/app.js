@@ -169,6 +169,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function loadPresetCart(presetKey) {
+    // Sync active preset button highlight
+    presetBtns.forEach(btn => {
+      if (btn.getAttribute("data-preset") === presetKey) {
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+    });
+
     const prodIds = PRESET_CARTS[presetKey] || [];
     cartItems = prodIds.map(id => {
       const prod = catalog.find(p => p.id === id);
