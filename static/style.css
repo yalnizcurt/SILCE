@@ -184,10 +184,12 @@ body {
 /* Tab 1: Simulation Grid (Responsive 3-Column Grid) */
 .sim-grid {
   display: grid;
-  grid-template-columns: 1fr 390px 1fr;
-  gap: 36px;
-  justify-content: center;
+  grid-template-columns: minmax(280px, 1fr) 390px minmax(280px, 1fr);
+  gap: 24px;
   align-items: start;
+  justify-content: center;
+  max-width: 1320px;
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -213,6 +215,7 @@ body {
   font-size: 12px;
   color: var(--text-muted);
   margin-bottom: 14px;
+  white-space: normal;
 }
 
 /* Presets Section */
@@ -489,7 +492,7 @@ body {
 .mobile-cart-body {
   flex: 1;
   background: #F4F6F8;
-  padding: 12px 14px 120px 14px;
+  padding: 12px 14px 140px 14px !important;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -1084,7 +1087,7 @@ body {
 }
 
 .principle-label {
-  width: 120px;
+  width: 100px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -1104,6 +1107,8 @@ body {
   text-align: right;
   color: #64748B;
   font-weight: 500;
+  white-space: normal;
+  word-break: break-word;
 }
 
 /* Tab 2: Diagnostics */
