@@ -14,67 +14,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Preset Default Missions for Personas
   const PERSONA_DEFAULT_PRESETS = {
-    user_groceries_only: "weekly_refill",
-    user_interview_prep: "breakfast_run",
-    user_party_recovery: "produce_restock"
+    user_groceries_only: "weekly_household_refill",
+    user_interview_prep: "interview_prep",
+    user_party_recovery: "celebration_party"
   };
 
   const MISSION_PRESETS = [
     {
-      key: "weekly_refill",
+      key: "weekly_household_refill",
       icon: "🛒",
-      title: "Weekly Grocery Refill",
-      desc: "Milk, Cucumber, Rice, Atta",
-      items: ["prod_104", "prod_112", "prod_108", "prod_109"]
+      title: "Weekly Household Refill",
+      desc: "Milk, Fresh Vegetables",
+      items: ["prod_104", "prod_112"]
     },
     {
-      key: "breakfast_run",
-      icon: "🍳",
-      title: "Morning Breakfast Run",
-      desc: "Milk, Whole Wheat Bread, Eggs, Butter",
-      items: ["prod_104", "prod_213", "prod_210", "prod_214"]
+      key: "personal_care_comfort",
+      icon: "🌸",
+      title: "Personal Care & Comfort",
+      desc: "Sanitary Pads, Dustbin Bags",
+      items: ["prod_606", "prod_701"]
     },
     {
-      key: "produce_restock",
-      icon: "🥗",
-      title: "Fresh Produce Restock",
-      desc: "Tomato, Cucumber, Onion, Spinach",
-      items: ["prod_113", "prod_112", "prod_114", "prod_115"]
-    },
-    {
-      key: "house_party",
+      key: "celebration_party",
       icon: "🎉",
-      title: "House Party",
-      desc: "Soft Drinks, Chips, Ice Cream",
-      items: ["prod_301", "prod_302", "prod_303"]
+      title: "Celebration / Party",
+      desc: "Cigarettes, Soda Mixer",
+      items: ["prod_401", "prod_307"]
     },
     {
-      key: "smoke_break",
-      icon: "🚬",
-      title: "Smoke Break",
-      desc: "Cigarettes, Mint, Soft Drink",
-      items: ["prod_401", "prod_402", "prod_301"]
-    },
-    {
-      key: "office_essentials",
-      icon: "💼",
-      title: "Office Essentials",
-      desc: "Coffee, Biscuits, Instant Noodles",
-      items: ["prod_501", "prod_106", "prod_503"]
-    },
-    {
-      key: "sick_recovery",
-      icon: "🤒",
-      title: "Sick Day Recovery",
-      desc: "Crocin, ORS, Thermometer",
-      items: ["prod_601", "prod_602", "prod_603"]
-    },
-    {
-      key: "urgent_household",
-      icon: "🚨",
-      title: "Urgent Household Need",
-      desc: "Garbage Bags, Floor Cleaner, Dishwash Liquid",
-      items: ["prod_701", "prod_702", "prod_703"]
+      key: "interview_prep",
+      icon: "👔",
+      title: "Interview Preparation",
+      desc: "Shoe Polish, Deodorant",
+      items: ["prod_505", "prod_506"]
     }
   ];
 
@@ -132,17 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  let showAllPresets = false;
-
   function renderMissionPresets(activePresetKey) {
     const container = document.getElementById("missionPresetsContainer");
-    const toggleBtn = document.getElementById("btnTogglePresets");
     if (!container) return;
 
-    // Display first 4 initially, or all if showAllPresets is true
-    const visiblePresets = showAllPresets ? MISSION_PRESETS : MISSION_PRESETS.slice(0, 4);
-
-    container.innerHTML = visiblePresets.map(m => `
+    container.innerHTML = MISSION_PRESETS.map(m => `
       <button class="preset-btn ${m.key === activePresetKey ? 'active' : ''}" data-preset="${m.key}">
         <span class="preset-icon">${m.icon}</span>
         <div class="preset-text-wrap">
@@ -160,21 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const presetKey = btn.getAttribute("data-preset");
         loadPresetCart(presetKey);
       });
-    });
-
-    if (toggleBtn) {
-      toggleBtn.style.display = "block";
-      toggleBtn.textContent = showAllPresets ? "Show Less Missions ▵" : "Show More Missions ▾";
-    }
-  }
-
-  const btnTogglePresets = document.getElementById("btnTogglePresets");
-  if (btnTogglePresets) {
-    btnTogglePresets.addEventListener("click", () => {
-      showAllPresets = !showAllPresets;
-      const activeBtn = document.querySelector(".preset-btn.active");
-      const activePresetKey = activeBtn ? activeBtn.getAttribute("data-preset") : "weekly_refill";
-      renderMissionPresets(activePresetKey);
     });
   }
 
@@ -431,8 +382,8 @@ document.addEventListener("DOMContentLoaded", () => {
         liveConfidenceVal.textContent = `${confPercent}%`;
         confidenceFill.style.width = `${confPercent}%`;
         intentExplanationText.innerHTML = `
-          Detected basket context: <strong>${data.intent_inferred}</strong>.<br>
-          Surfaced 1 product from unexplored category: <strong>${data.new_category}</strong>.
+          Detected: <strong>${data.intent_inferred}</strong>&nbsp;&nbsp;→&nbsp;&nbsp;Category: <strong>${data.silce_category || ''}</strong><br>
+          <span style="font-size:11px;color:#64748B;">1 adjacent unexplored category identified.</span>
         `;
       } else {
         liveIntentName.textContent = data.intent || "Criteria Not Met";
@@ -455,86 +406,110 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const prod = data.product;
-    const isAlreadyInCart = cartItems.some(i => i.id === prod.id);
+    const recs = data.recommendations || [];
+    if (recs.length === 0) {
+      silceCardContainer.innerHTML = "";
+      return;
+    }
+
+    // SILCE selects ONE category. The product is only a representative example.
+    const rec            = recs[0];
+    const isAlreadyInCart = cartItems.some(i => i.id === rec.product.id);
+    const silceCategory   = data.silce_category || rec.silce_category || rec.new_category;
+    const catExplanation  = data.category_explanation || rec.category_explanation || rec.product_reason;
+    const ratingVal       = rec.rating ? rec.rating.replace('★', '').trim() : '4.7';
+    const intentName      = data.intent_inferred || '';
+
+    // Mission observation lookup for human companion tone
+    const MISSION_OBSERVATIONS = {
+      "Weekly Grocery Refill":  "Looks like you're restocking the house.",
+      "Morning Breakfast Run":  "Tomorrow's breakfast looks sorted.",
+      "House Party":            "Hosting friends tonight?",
+      "Office Essentials":      "Stocking up for the office?",
+      "Sick Day Recovery":      "Hope you feel better soon.",
+      "Smoke Break":            "You might need this afterwards.",
+      "Fresh Produce Restock":  "Fresh kitchen prep in progress.",
+      "Urgent Household Need":  "Taking care of home essentials."
+    };
+
+    const observationText = data.observation || rec.observation || MISSION_OBSERVATIONS[intentName] || "Noticed something for your cart.";
 
     silceCardContainer.innerHTML = `
-      <div class="silce-card">
-        <div class="silce-card-header">
-          <div class="native-addon-title">Complete your cart</div>
-          <div class="silce-card-actions">
-            <button id="btnWhySilce" class="btn-why-silce">Why?</button>
-            <button id="btnDismissSilce" class="btn-dismiss-silce" title="Dismiss suggestion">✕</button>
+      <div class="silce-premium-card">
+
+        <!-- Header: Clean section title + dismiss button -->
+        <div class="silce-pc-header">
+          <span class="silce-pc-title">🌱 Explore a New Category</span>
+          <button id="btnDismissSilce" class="btn-dismiss-silce" title="Dismiss">✕</button>
+        </div>
+
+        <!-- Observation First, Helpful Advice Second -->
+        <div class="silce-pc-category-section">
+          <div class="silce-pc-category-eyebrow">${observationText}</div>
+          <div class="silce-pc-category-name">${catExplanation}</div>
+        </div>
+
+        <!-- Product box -->
+        <div class="silce-pc-product-wrapper">
+          <div class="silce-pc-product">
+            <img src="${rec.product.image}" alt="${rec.product.name}" class="silce-pc-img">
+            <div class="silce-pc-prod-info">
+              <div class="silce-pc-brand">${rec.brand}</div>
+              <div class="silce-pc-name" title="${rec.product.name}">${rec.product.name}</div>
+              <div class="silce-pc-meta">
+                <span class="silce-pc-rating">★ ${ratingVal}</span>
+                <span class="silce-pc-trust">· Verified Brand (4,500+ ratings)</span>
+              </div>
+              <div class="silce-pc-price">₹${rec.product.price}</div>
+            </div>
+            <button class="btn-silce-add ${isAlreadyInCart ? 'added' : ''} silce-pc-add-btn" data-id="${rec.product.id}">
+              ${isAlreadyInCart ? '✓ Added' : 'Add'}
+            </button>
           </div>
         </div>
-        <div class="silce-nudge">${data.nudge_text}</div>
-        <div class="silce-prod-body">
-          <img src="${prod.image}" class="silce-prod-img" alt="${prod.name}">
-          <div class="silce-prod-info">
-            <div class="silce-prod-name">${prod.name}</div>
-            <div class="silce-prod-meta" style="font-size: 11px; color: #16A34A; margin-top: 2px; font-weight: 500;">✓ Trusted Brand &nbsp;✓ 4.6★+</div>
-            <div class="silce-prod-price" style="margin-top: 4px;">₹${prod.price}</div>
-          </div>
-          <button id="btnAcceptSilce" class="btn-silce-add ${isAlreadyInCart ? 'added' : ''}">
-            ${isAlreadyInCart ? '✓ Added' : 'Add to Basket'}
-          </button>
-        </div>
+
       </div>
     `;
 
-    // Button Morphing + Single-Tap Add Action
-    const btnAccept = document.getElementById("btnAcceptSilce");
-    btnAccept.addEventListener("click", async () => {
-      if (btnAccept.classList.contains("added")) return;
-
-      btnAccept.textContent = "✓ Added";
-      btnAccept.classList.add("added");
-
-      addItemToCart(prod.id, true);
-
-      await fetch("/api/action", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+    // ── Wire Add button ─────────────────────────────────────────────────────
+    silceCardContainer.querySelector('.silce-pc-add-btn')?.addEventListener('click', async () => {
+      const btn = silceCardContainer.querySelector('.silce-pc-add-btn');
+      if (!btn || btn.classList.contains('added')) return;
+      btn.textContent = '✓ Added';
+      btn.classList.add('added');
+      addItemToCart(rec.product.id, true);
+      await fetch('/api/action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          action: "accept",
-          data: { product_id: prod.id, category: data.new_category, user_id: activePersona.user_id }
+          action: 'accept',
+          data: { product_id: rec.product.id, category: silceCategory, user_id: activePersona.user_id }
         })
       });
       fetchAnalytics();
     });
 
-    // WhyBottomSheet Modal Handler
-    document.getElementById("btnWhySilce").addEventListener("click", () => {
-      const cartSubtotal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      const maxAllowed = Math.max(0.40 * cartSubtotal, 120).toFixed(0);
-
-      document.getElementById("sheetIntentText").innerHTML = `Inferred <strong>${data.intent_inferred}</strong> intent from active basket.`;
-      document.getElementById("sheetCategoryText").innerHTML = `Candidate SKU belongs to <strong>${data.new_category}</strong> (0 purchases in 90 days).`;
-      document.getElementById("sheetPriceText").innerHTML = `Price <strong>&#8377;${prod.price}</strong> &le; 40% of subtotal (Max limit &#8377;${maxAllowed} for &#8377;${cartSubtotal} subtotal).`;
-
-      if (whyBottomSheetModal) {
-        whyBottomSheetModal.style.display = "flex";
-      }
-    });
-
-    // Dismiss Collapse Animation Handler
-    document.getElementById("btnDismissSilce").addEventListener("click", async () => {
-      silceCardContainer.classList.add("collapsing");
+    // ── Wire Dismiss button ─────────────────────────────────────────────────
+    document.getElementById('btnDismissSilce')?.addEventListener('click', async () => {
+      dismissedThisSession = true;
+      silceCardContainer.classList.add('collapsing');
       setTimeout(async () => {
-        dismissedThisSession = true;
-        silceCardContainer.innerHTML = "";
-        silceCardContainer.classList.remove("collapsing");
-
-        await fetch("/api/action", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        silceCardContainer.innerHTML = '';
+        silceCardContainer.classList.remove('collapsing');
+        await fetch('/api/action', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            action: "dismiss",
-            data: { product_id: prod.id, user_id: activePersona.user_id }
+            action: 'dismiss',
+            data: {
+              product_id: rec.product.id,
+              category: silceCategory,
+              user_id: activePersona?.user_id || 'none'
+            }
           })
         });
         fetchAnalytics();
-      }, 300);
+      }, 350);
     });
   }
 
@@ -567,35 +542,41 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="step-num">1</div>
           <div class="step-info">
             <div class="step-title">Trigger Validation</div>
-            <div class="step-desc">Basket contains recurring grocery essentials. <span style="color: #10B981; font-weight: bold;">✓ Passed</span></div>
+            <div class="step-desc">Basket contains recurring essentials. <span style="color: #10B981; font-weight: bold;">✓ Passed</span></div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">2</div>
           <div class="step-info">
-            <div class="step-title">Shopping Mission</div>
+            <div class="step-title">Shopping Mission Intent</div>
             <div class="step-desc">${data.intent_inferred || data.intent} <span style="margin-left: 8px; color: #8B5CF6; font-weight: bold;">(Confidence: ${data.intent_confidence || 0.93})</span></div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">3</div>
           <div class="step-info">
-            <div class="step-title">Historical Category Analysis</div>
-            <div class="step-desc">Previously explored: ${activePersona?.purchased_categories?.join(", ") || "Milk, Vegetables, Fresh Produce"}. Exclude those categories.</div>
+            <div class="step-title">Candidate Generation & Filtering</div>
+            <div class="step-desc">Retrieved all candidates. Excluded items from previously explored categories: <em>${activePersona?.purchased_categories?.join(", ") || "Milk, Vegetables, Fresh Produce"}</em>. Filtered candidates based on price ratio guardrail.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">4</div>
           <div class="step-info">
             <div class="step-title">Adjacent Category Discovery</div>
-            <div class="step-desc">Evaluate relevant but under-explored grocery categories.</div>
+            <div class="step-desc">Identified eligible adjacent categories and matched contextual keywords to compute relevance scores.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">5</div>
           <div class="step-info">
-            <div class="step-title">Recommendation Selection</div>
-            <div class="step-desc">Recommend: <strong>${data.product?.name || "Eggs"}</strong>. Reason: ${data.product_reason || "Frequently complements recurring grocery purchases."}</div>
+            <div class="step-title">Recommendation Ranking</div>
+            <div class="step-desc">Ranked top 4 recommendations in descending relevance order:
+              <ul style="margin-top: 6px; padding-left: 16px; font-size: 11px; color: var(--color-text-secondary); line-height: 1.4;">
+                ${(data.recommendations || []).map((rec, idx) => `
+                  <li><strong>#${idx + 1} ${rec.brand} ${rec.product.name}</strong> (₹${rec.product.price}) - <em>${rec.product_reason}</em></li>
+                `).join("")}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -634,9 +615,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const itemTotalVal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
     const grandTotalVal = itemTotalVal + 4;
 
-    // Check if SILCE recommended item was accepted in cart
-    const silceAcceptedItem = latestSilceResult?.has_recommendation ?
-      cartItems.find(i => i.id === latestSilceResult.product.id) : null;
+    // Check if the top SILCE-recommended item was accepted into the cart
+    const topRec = latestSilceResult?.has_recommendation && latestSilceResult?.recommendations?.length > 0
+      ? latestSilceResult.recommendations[0]
+      : null;
+    const silceAcceptedItem = topRec
+      ? cartItems.find(i => i.id === topRec.product.id)
+      : null;
 
     document.getElementById("successAmount").textContent = `₹${grandTotalVal}`;
 

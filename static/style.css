@@ -2138,3 +2138,305 @@ body {
     max-width: 100%;
   }
 }
+/* Custom scrollbar for SILCE recommendation list */
+.silce-list-container::-webkit-scrollbar {
+  width: 4px;
+}
+.silce-list-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: var(--radius-full);
+}
+.silce-list-container::-webkit-scrollbar-thumb {
+  background: var(--color-ai-purple-border);
+  border-radius: var(--radius-full);
+}
+.silce-list-container::-webkit-scrollbar-thumb:hover {
+  background: #6B21A8;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SILCE Premium Single-Recommendation Card  (v4.8)
+   One product. One intent. Full reasoning visible by default.
+   ════════════════════════════════════════════════════════════════ */
+
+.silce-premium-card {
+  background: #ffffff;
+  border: 1.5px solid var(--color-ai-purple-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(124, 58, 237, 0.09),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Thin gradient accent bar along top edge */
+.silce-premium-card::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #7C3AED 0%, #6366F1 55%, #8B5CF6 100%);
+}
+
+/* ── Header row: title + dismiss ────────────────────────────── */
+.silce-pc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 12px 4px;
+}
+
+.silce-pc-title {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.55px;
+  color: #6B21A8;
+}
+
+/* ── Category discovery chip ────────────────────────────────── */
+.silce-pc-chip-row {
+  padding: 0 12px 9px;
+}
+
+.silce-discovery-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #065F46;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  line-height: 1.5;
+}
+
+/* ── Single product row ─────────────────────────────────────── */
+.silce-pc-product {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 12px;
+  background: var(--color-ai-purple-tint);
+  border-top: 1px solid var(--color-ai-purple-border);
+  border-bottom: 1px solid var(--color-ai-purple-border);
+}
+
+.silce-pc-img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+  box-shadow: var(--shadow-sm);
+}
+
+.silce-pc-prod-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.silce-pc-brand {
+  font-size: 9px;
+  font-weight: 800;
+  color: #7C3AED;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.silce-pc-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.silce-pc-meta {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 1px;
+}
+
+.silce-pc-rating {
+  font-size: 10px;
+  font-weight: 700;
+  color: #D97706;
+}
+
+.silce-pc-trust {
+  font-size: 9.5px;
+  color: var(--color-text-muted);
+}
+
+.silce-pc-price {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--color-brand-green-dark);
+  margin-top: 2px;
+}
+
+/* The Add button re-uses the existing .btn-silce-add token styles */
+.silce-pc-add-btn {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* ── Why section — expanded by default, no click needed ─────── */
+.silce-pc-why {
+  padding: 10px 12px 11px;
+  background: #F7F3FF;        /* very light lavender — signals AI reasoning */
+  border-bottom: 1px solid #EDE9FE;
+}
+
+.silce-pc-why-title {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #4C1D95;
+  margin-bottom: 8px;
+}
+
+.silce-pc-why-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+}
+
+.silce-pc-why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+.silce-why-check {
+  color: #10B981;
+  font-size: 10px;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1.5px;
+  line-height: 1;
+}
+
+/* ── AI Decision footer ─────────────────────────────────────── */
+.silce-pc-footer {
+  padding: 7px 12px;
+  font-size: 9.5px;
+  color: var(--color-text-faint);
+  text-align: center;
+  line-height: 1.5;
+  background: #FAFBFF;
+  letter-spacing: 0.1px;
+}
+
+.silce-pc-footer strong {
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+/* ── Category-First Card Elements (v4.9) ──────────────────────────────────
+   The AI decision is the CATEGORY. The product is only a representative.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* THE AI DECISION block — category is the hero, not the product */
+.silce-pc-category-section {
+  padding: 12px 12px 11px;
+  background: linear-gradient(150deg, #F5F3FF 0%, #EDE9FE 100%);
+  border-top: 1px solid var(--color-ai-purple-border);
+  border-bottom: 1px solid var(--color-ai-purple-border);
+}
+
+.silce-pc-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.silce-pc-confidence {
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #047857;
+  background: #D1FAE5;
+  border: 1px solid #A7F3D0;
+  padding: 1.5px 6px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.2px;
+}
+
+.silce-pc-category-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.silce-pc-mission-badge {
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #6D28D9;
+  background: #F3E8FF;
+  border: 1px solid #DDD6FE;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.1px;
+}
+
+.silce-pc-product-wrapper {
+  background: #FAFAFA;
+}
+
+.silce-pc-product-role {
+  font-size: 8.5px;
+  font-weight: 800;
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 6px 12px 2px;
+}
+
+.silce-pc-category-name {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  color: #3B0764;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.silce-pc-one-liner {
+  font-size: 11px;
+  color: #4C1D95;
+  line-height: 1.55;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* Attribution: makes clear the product is a representative example */
+.silce-pc-rep-label {
+  padding: 5px 12px;
+  font-size: 9px;
+  color: var(--color-text-faint);
+  text-align: center;
+  background: #FAFAFA;
+  border-top: 1px dashed var(--color-border-light);
+  letter-spacing: 0.1px;
+}
+
+.silce-pc-rep-label strong {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}

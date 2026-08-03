@@ -5,3 +5,4 @@ __pycache__/
 .env
 *.log
 .vercel
+node_modules/

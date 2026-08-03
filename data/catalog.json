@@ -5,9 +5,18 @@
     "category": "Milk",
     "subcategory": "Milk",
     "price": 56,
-    "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300",
-    "tags": ["milk", "dairy", "daily essential", "amul", "fresh"],
-    "life_contexts": ["Weekly Grocery Refill", "Morning Breakfast Run"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/71e545db-24e9-40c9-9d47-1e197b50fb28.png",
+    "tags": [
+      "milk",
+      "dairy",
+      "daily essential",
+      "amul",
+      "fresh"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill",
+      "Morning Breakfast Run"
+    ]
   },
   {
     "id": "prod_112",
@@ -15,9 +24,19 @@
     "category": "Vegetables",
     "subcategory": "Fresh Vegetables",
     "price": 40,
-    "image": "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=300",
-    "tags": ["cucumber", "vegetables", "fresh", "salad", "green"],
-    "life_contexts": ["Weekly Grocery Refill", "Daily Veggies & Dairy", "Fresh Produce Restock"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/60c2cecc-5df5-48f4-8a55-194914079d59.png",
+    "tags": [
+      "cucumber",
+      "vegetables",
+      "fresh",
+      "salad",
+      "green"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill",
+      "Daily Veggies & Dairy",
+      "Fresh Produce Restock"
+    ]
   },
   {
     "id": "prod_113",
@@ -25,9 +44,17 @@
     "category": "Fresh Produce",
     "subcategory": "Fresh Vegetables",
     "price": 45,
-    "image": "https://images.unsplash.com/photo-1595855759920-86582396756a?w=300",
-    "tags": ["tomato", "fresh produce", "vegetables", "cooking"],
-    "life_contexts": ["Daily Veggies & Dairy", "Fresh Produce Restock"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/d5673d4f-5d68-4129-9181-e96152253570.png",
+    "tags": [
+      "tomato",
+      "fresh produce",
+      "vegetables",
+      "cooking"
+    ],
+    "life_contexts": [
+      "Daily Veggies & Dairy",
+      "Fresh Produce Restock"
+    ]
   },
   {
     "id": "prod_210",
@@ -35,9 +62,17 @@
     "category": "Eggs",
     "subcategory": "Eggs",
     "price": 55,
-    "image": "https://images.unsplash.com/photo-1516448620398-c5f44bf9f441?w=300",
-    "tags": ["eggs", "farm fresh", "breakfast", "protein"],
-    "life_contexts": ["Weekly Grocery Refill", "Morning Breakfast Run"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/326a5be2-a93b-4975-b1b0-30a6d22b815c.png",
+    "tags": [
+      "eggs",
+      "farm fresh",
+      "breakfast",
+      "protein"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill",
+      "Morning Breakfast Run"
+    ]
   },
   {
     "id": "prod_211",
@@ -45,9 +80,16 @@
     "category": "Dairy Complements",
     "subcategory": "Curd & Yogurt",
     "price": 50,
-    "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=300",
-    "tags": ["curd", "yogurt", "dairy complement", "probiotic"],
-    "life_contexts": ["Daily Veggies & Dairy"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1774944833006-545.png",
+    "tags": [
+      "curd",
+      "yogurt",
+      "dairy complement",
+      "probiotic"
+    ],
+    "life_contexts": [
+      "Daily Veggies & Dairy"
+    ]
   },
   {
     "id": "prod_213",
@@ -55,9 +97,16 @@
     "category": "Bakery",
     "subcategory": "Bread",
     "price": 45,
-    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300",
-    "tags": ["bread", "whole wheat", "bakery", "breakfast"],
-    "life_contexts": ["Morning Breakfast Run"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/dd28173d-dd86-4eb2-9526-4aee5b70a7ff.png",
+    "tags": [
+      "bread",
+      "whole wheat",
+      "bakery",
+      "breakfast"
+    ],
+    "life_contexts": [
+      "Morning Breakfast Run"
+    ]
   },
   {
     "id": "prod_105",
@@ -65,9 +114,15 @@
     "category": "Tea, Coffee & Health Drinks",
     "subcategory": "Tea",
     "price": 140,
-    "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=300",
-    "tags": ["tea", "chai", "masala tea"],
-    "life_contexts": ["Morning Breakfast Run"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1770714093407-48.png",
+    "tags": [
+      "tea",
+      "chai",
+      "masala tea"
+    ],
+    "life_contexts": [
+      "Morning Breakfast Run"
+    ]
   },
   {
     "id": "prod_106",
@@ -75,9 +130,16 @@
     "category": "Snacks & Munchies",
     "subcategory": "Biscuits & Cookies",
     "price": 15,
-    "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300",
-    "tags": ["biscuits", "cookies", "snack"],
-    "life_contexts": ["Morning Breakfast Run", "Office Essentials"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/a54720d4-a6a1-4b61-90d4-d37920be1980.png?dpr_multiplier=3.00",
+    "tags": [
+      "biscuits",
+      "cookies",
+      "snack"
+    ],
+    "life_contexts": [
+      "Morning Breakfast Run",
+      "Office Essentials"
+    ]
   },
   {
     "id": "prod_107",
@@ -85,9 +147,15 @@
     "category": "Household Essentials",
     "subcategory": "Laundry",
     "price": 180,
-    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
-    "tags": ["detergent", "laundry", "cleaning"],
-    "life_contexts": ["Weekly Grocery Refill"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/2be80625-a854-4a3d-9011-adb2d27deaea.png?dpr_multiplier=3.00",
+    "tags": [
+      "detergent",
+      "laundry",
+      "cleaning"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill"
+    ]
   },
   {
     "id": "prod_212",
@@ -95,9 +163,14 @@
     "category": "Household Essentials",
     "subcategory": "Dishwashing",
     "price": 115,
-    "image": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=300",
-    "tags": ["dishwash", "cleaning"],
-    "life_contexts": ["Weekly Grocery Refill"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1783062678774-4.png?dpr_multiplier=3.00",
+    "tags": [
+      "dishwash",
+      "cleaning"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill"
+    ]
   },
   {
     "id": "prod_108",
@@ -105,9 +178,16 @@
     "category": "Groceries",
     "subcategory": "Rice",
     "price": 85,
-    "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300",
-    "tags": ["rice", "grocery", "refill", "staples"],
-    "life_contexts": ["Weekly Grocery Refill"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/381e1978-2bbf-4aa4-9251-9111fad05e9b.png",
+    "tags": [
+      "rice",
+      "grocery",
+      "refill",
+      "staples"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill"
+    ]
   },
   {
     "id": "prod_109",
@@ -115,9 +195,16 @@
     "category": "Groceries",
     "subcategory": "Atta",
     "price": 210,
-    "image": "https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?w=300",
-    "tags": ["atta", "flour", "grocery", "staples"],
-    "life_contexts": ["Weekly Grocery Refill"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1776471758958-226.png",
+    "tags": [
+      "atta",
+      "flour",
+      "grocery",
+      "staples"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill"
+    ]
   },
   {
     "id": "prod_214",
@@ -125,9 +212,16 @@
     "category": "Dairy",
     "subcategory": "Butter",
     "price": 58,
-    "image": "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300",
-    "tags": ["butter", "dairy", "breakfast", "amul"],
-    "life_contexts": ["Morning Breakfast Run"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1781155438653-138.png",
+    "tags": [
+      "butter",
+      "dairy",
+      "breakfast",
+      "amul"
+    ],
+    "life_contexts": [
+      "Morning Breakfast Run"
+    ]
   },
   {
     "id": "prod_114",
@@ -135,9 +229,16 @@
     "category": "Vegetables",
     "subcategory": "Fresh Vegetables",
     "price": 30,
-    "image": "https://images.unsplash.com/photo-1508747703725-719ae25db3e4?w=300",
-    "tags": ["onion", "vegetables", "cooking", "essential"],
-    "life_contexts": ["Fresh Produce Restock"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/1b2ccf0a-2720-4828-b3f8-0ddaa4b6ff17.png",
+    "tags": [
+      "onion",
+      "vegetables",
+      "cooking",
+      "essential"
+    ],
+    "life_contexts": [
+      "Fresh Produce Restock"
+    ]
   },
   {
     "id": "prod_115",
@@ -145,9 +246,16 @@
     "category": "Vegetables",
     "subcategory": "Fresh Vegetables",
     "price": 25,
-    "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=300",
-    "tags": ["spinach", "palak", "green veg", "healthy"],
-    "life_contexts": ["Fresh Produce Restock"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/27edc027-ff1a-45aa-a0f6-837d214bad78.png",
+    "tags": [
+      "spinach",
+      "palak",
+      "green veg",
+      "healthy"
+    ],
+    "life_contexts": [
+      "Fresh Produce Restock"
+    ]
   },
   {
     "id": "prod_301",
@@ -155,9 +263,17 @@
     "category": "Beverages",
     "subcategory": "Soft Drinks",
     "price": 70,
-    "image": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300",
-    "tags": ["coke", "soft drink", "party", "beverage"],
-    "life_contexts": ["House Party", "Smoke Break"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1778823645645-375.png",
+    "tags": [
+      "coke",
+      "soft drink",
+      "party",
+      "beverage"
+    ],
+    "life_contexts": [
+      "House Party",
+      "Smoke Break"
+    ]
   },
   {
     "id": "prod_302",
@@ -165,9 +281,16 @@
     "category": "Snacks & Munchies",
     "subcategory": "Chips",
     "price": 20,
-    "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300",
-    "tags": ["chips", "lays", "salted", "snack"],
-    "life_contexts": ["House Party"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/rc-upload-1776693405497-48.png",
+    "tags": [
+      "chips",
+      "lays",
+      "salted",
+      "snack"
+    ],
+    "life_contexts": [
+      "House Party"
+    ]
   },
   {
     "id": "prod_303",
@@ -175,9 +298,16 @@
     "category": "Frozen Foods",
     "subcategory": "Ice Cream",
     "price": 150,
-    "image": "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300",
-    "tags": ["ice cream", "dessert", "frozen", "vanilla"],
-    "life_contexts": ["House Party"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1779075684469-582.png",
+    "tags": [
+      "ice cream",
+      "dessert",
+      "frozen",
+      "vanilla"
+    ],
+    "life_contexts": [
+      "House Party"
+    ]
   },
   {
     "id": "prod_304",
@@ -185,9 +315,16 @@
     "category": "Snacks & Munchies",
     "subcategory": "Dips",
     "price": 99,
-    "image": "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=300",
-    "tags": ["salsa", "dip", "party", "snack"],
-    "life_contexts": ["House Party"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/d21437c4-d5d7-4084-8b3b-dc2918576b63.png",
+    "tags": [
+      "salsa",
+      "dip",
+      "party",
+      "snack"
+    ],
+    "life_contexts": [
+      "House Party"
+    ]
   },
   {
     "id": "prod_401",
@@ -195,9 +332,15 @@
     "category": "Paan Corner",
     "subcategory": "Cigarettes",
     "price": 180,
-    "image": "https://images.unsplash.com/photo-1527137341206-1d13f9c6d3d9?w=300",
-    "tags": ["cigarettes", "smoke", "tobacco"],
-    "life_contexts": ["Smoke Break"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/d72909ba-d715-4c9b-a679-b57187f4e736.png?dpr_multiplier=3.00",
+    "tags": [
+      "cigarettes",
+      "smoke",
+      "tobacco"
+    ],
+    "life_contexts": [
+      "Smoke Break"
+    ]
   },
   {
     "id": "prod_402",
@@ -205,9 +348,15 @@
     "category": "Paan Corner",
     "subcategory": "Mints",
     "price": 10,
-    "image": "https://images.unsplash.com/photo-1599307767316-776533dae507?w=300",
-    "tags": ["mint", "mouth freshener", "doublemint"],
-    "life_contexts": ["Smoke Break"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/rc-upload-1778231972677-119.png",
+    "tags": [
+      "mint",
+      "mouth freshener",
+      "doublemint"
+    ],
+    "life_contexts": [
+      "Smoke Break"
+    ]
   },
   {
     "id": "prod_403",
@@ -215,9 +364,15 @@
     "category": "Paan Corner",
     "subcategory": "Lighters",
     "price": 20,
-    "image": "https://images.unsplash.com/photo-1508138221679-760a23a2285b?w=300",
-    "tags": ["lighter", "accessory", "smoke"],
-    "life_contexts": ["Smoke Break"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/550d3651-d9b8-4e29-8a72-706b0757f0a4.png?dpr_multiplier=3.00",
+    "tags": [
+      "lighter",
+      "accessory",
+      "smoke"
+    ],
+    "life_contexts": [
+      "Smoke Break"
+    ]
   },
   {
     "id": "prod_501",
@@ -225,9 +380,16 @@
     "category": "Beverages",
     "subcategory": "Coffee",
     "price": 165,
-    "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300",
-    "tags": ["coffee", "nescafe", "instant coffee", "beverage"],
-    "life_contexts": ["Office Essentials"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/233e696c-a344-46bb-ad23-2d20001a24c9.png",
+    "tags": [
+      "coffee",
+      "nescafe",
+      "instant coffee",
+      "beverage"
+    ],
+    "life_contexts": [
+      "Office Essentials"
+    ]
   },
   {
     "id": "prod_503",
@@ -235,9 +397,16 @@
     "category": "Snacks & Munchies",
     "subcategory": "Noodles",
     "price": 65,
-    "image": "https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300",
-    "tags": ["maggi", "noodles", "instant noodles", "snack"],
-    "life_contexts": ["Office Essentials"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1778664014838-481.png",
+    "tags": [
+      "maggi",
+      "noodles",
+      "instant noodles",
+      "snack"
+    ],
+    "life_contexts": [
+      "Office Essentials"
+    ]
   },
   {
     "id": "prod_504",
@@ -245,9 +414,15 @@
     "category": "Household Essentials",
     "subcategory": "Disposables",
     "price": 40,
-    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
-    "tags": ["paper cups", "disposable", "office"],
-    "life_contexts": ["Office Essentials"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/9a69e9fb-de1c-4715-a3c6-1816511d2a91.png",
+    "tags": [
+      "paper cups",
+      "disposable",
+      "office"
+    ],
+    "life_contexts": [
+      "Office Essentials"
+    ]
   },
   {
     "id": "prod_601",
@@ -255,9 +430,16 @@
     "category": "Pharmacy",
     "subcategory": "Medicines",
     "price": 30,
-    "image": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=300",
-    "tags": ["crocin", "paracetamol", "pain killer", "meds"],
-    "life_contexts": ["Sick Day Recovery"]
+    "image": "https://cdn.expresspharma.in/wp-content/uploads/2019/11/04171930/Crocin-Pain-Relief-pack-shot.jpg",
+    "tags": [
+      "crocin",
+      "paracetamol",
+      "pain killer",
+      "meds"
+    ],
+    "life_contexts": [
+      "Sick Day Recovery"
+    ]
   },
   {
     "id": "prod_602",
@@ -265,9 +447,16 @@
     "category": "Pharmacy",
     "subcategory": "Health Drinks",
     "price": 35,
-    "image": "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300",
-    "tags": ["ors", "electrolyte", "hydration", "health"],
-    "life_contexts": ["Sick Day Recovery"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/61c5d426-283a-4a85-b640-f13d995101be.png",
+    "tags": [
+      "ors",
+      "electrolyte",
+      "hydration",
+      "health"
+    ],
+    "life_contexts": [
+      "Sick Day Recovery"
+    ]
   },
   {
     "id": "prod_603",
@@ -275,9 +464,15 @@
     "category": "Pharmacy",
     "subcategory": "Healthcare Devices",
     "price": 199,
-    "image": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=300",
-    "tags": ["thermometer", "fever", "device"],
-    "life_contexts": ["Sick Day Recovery"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/626a206c-ced8-4c80-9f3d-31bac8829690.png",
+    "tags": [
+      "thermometer",
+      "fever",
+      "device"
+    ],
+    "life_contexts": [
+      "Sick Day Recovery"
+    ]
   },
   {
     "id": "prod_604",
@@ -285,9 +480,34 @@
     "category": "Household Essentials",
     "subcategory": "Tissues",
     "price": 75,
-    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
-    "tags": ["tissues", "wipes", "soft paper"],
-    "life_contexts": ["Sick Day Recovery"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/0082ffb7-673e-445c-9978-ddb3b1636f67.png?dpr_multiplier=3.00",
+    "tags": [
+      "tissues",
+      "wipes",
+      "soft paper"
+    ],
+    "life_contexts": [
+      "Sick Day Recovery"
+    ]
+  },
+  {
+    "id": "prod_605",
+    "name": "Saridon Headache Relief Tablets (10s)",
+    "category": "Pharmacy",
+    "subcategory": "Pain Relief",
+    "price": 42,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/41e7c0ff-dcf2-4ce9-a6db-3ca6b1967b64.png?dpr_multiplier=3.00",
+    "tags": [
+      "saridon",
+      "pain relief",
+      "headache",
+      "medicine",
+      "pharmacy"
+    ],
+    "life_contexts": [
+      "Smoke Break",
+      "Sick Day Recovery"
+    ]
   },
   {
     "id": "prod_701",
@@ -295,19 +515,31 @@
     "category": "Household Essentials",
     "subcategory": "Cleaning Essentials",
     "price": 90,
-    "image": "https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=300",
-    "tags": ["garbage bags", "trash bags", "home utility"],
-    "life_contexts": ["Urgent Household Need"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1781582726206-6635.png",
+    "tags": [
+      "garbage bags",
+      "trash bags",
+      "home utility"
+    ],
+    "life_contexts": [
+      "Urgent Household Need"
+    ]
   },
   {
     "id": "prod_702",
     "name": "Lizol Disinfectant Floor Cleaner (500ml)",
     "category": "Household Essentials",
     "subcategory": "Cleaning Essentials",
-    "price": 120,
-    "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=300",
-    "tags": ["lizol", "floor cleaner", "disinfectant"],
-    "life_contexts": ["Urgent Household Need"]
+    "price": 45,
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1785257734573-341.png",
+    "tags": [
+      "lizol",
+      "floor cleaner",
+      "disinfectant"
+    ],
+    "life_contexts": [
+      "Urgent Household Need"
+    ]
   },
   {
     "id": "prod_703",
@@ -315,9 +547,15 @@
     "category": "Household Essentials",
     "subcategory": "Dishwashing",
     "price": 105,
-    "image": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=300",
-    "tags": ["dishwash", "pril", "cleaning"],
-    "life_contexts": ["Urgent Household Need"]
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/app/images/products/sliding_image/png/67075a.png?dpr_multiplier=3.00",
+    "tags": [
+      "dishwash",
+      "pril",
+      "cleaning"
+    ],
+    "life_contexts": [
+      "Urgent Household Need"
+    ]
   },
   {
     "id": "prod_704",
@@ -325,8 +563,337 @@
     "category": "Household Essentials",
     "subcategory": "Cleaning Essentials",
     "price": 85,
-    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
-    "tags": ["sponge wipe", "kitchen wipe", "cleaning"],
-    "life_contexts": ["Urgent Household Need"]
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/2095d685-cae1-4fa4-886d-a4f93f1ac613.png",
+    "tags": [
+      "sponge wipe",
+      "kitchen wipe",
+      "cleaning"
+    ],
+    "life_contexts": [
+      "Urgent Household Need"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_801",
+    "name": "Farmley Roasted & Salted Almonds (50g)",
+    "category": "Healthy Snacks",
+    "subcategory": "Nuts & Dry Fruits",
+    "price": 40,
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/8f1b4c5e-69b0-453e-8b4b-83d3ab4d169d.png",
+    "tags": [
+      "almonds",
+      "healthy snacks",
+      "nuts",
+      "roasted",
+      "protein"
+    ],
+    "life_contexts": [
+      "Fresh Produce Restock",
+      "Office Essentials",
+      "Sick Day Recovery"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_802",
+    "name": "Kissan Mixed Fruit Jam (200g)",
+    "category": "Spreads",
+    "subcategory": "Jam & Spreads",
+    "price": 55,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1778656176725-23.png?dpr_multiplier=3.00",
+    "tags": [
+      "jam",
+      "spreads",
+      "breakfast",
+      "fruit",
+      "kissan"
+    ],
+    "life_contexts": [
+      "Morning Breakfast Run",
+      "Weekly Grocery Refill"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_803",
+    "name": "Solo Paper Party Plates (10 pcs)",
+    "category": "Party Essentials",
+    "subcategory": "Disposable Tableware",
+    "price": 40,
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1771780767527-1521.png",
+    "tags": [
+      "paper plates",
+      "party",
+      "disposable",
+      "hosting",
+      "tableware"
+    ],
+    "life_contexts": [
+      "House Party"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_804",
+    "name": "Vicks Action 500 Extra Tablets (4s)",
+    "category": "Health Recovery",
+    "subcategory": "Cold & Flu Relief",
+    "price": 25,
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1784828396740-69.png",
+    "tags": [
+      "vicks",
+      "cold",
+      "flu",
+      "tablet",
+      "medicine",
+      "fever"
+    ],
+    "life_contexts": [
+      "Sick Day Recovery"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_805",
+    "name": "Colin Multi-Surface Cleaner Spray (250ml)",
+    "category": "Home Cleaning",
+    "subcategory": "Surface Cleaners",
+    "price": 55,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/d47ed039-5c5f-427e-a1e4-75d7da3df1e9.png?dpr_multiplier=3.00",
+    "tags": [
+      "cleaner",
+      "surface cleaner",
+      "colin",
+      "spray",
+      "home",
+      "cleaning"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill",
+      "Fresh Produce Restock",
+      "Urgent Household Need"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_806",
+    "name": "Bisleri Mineral Water (1L)",
+    "category": "Hydration",
+    "subcategory": "Packaged Water",
+    "price": 20,
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/2faf253a-7e5b-4d53-9774-350add8d50b5.png",
+    "tags": [
+      "water",
+      "bisleri",
+      "mineral water",
+      "hydration",
+      "packaged water"
+    ],
+    "life_contexts": [
+      "Office Essentials",
+      "Morning Breakfast Run",
+      "Smoke Break",
+      "House Party"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_807",
+    "name": "Rin Detergent Bar (150g)",
+    "category": "Laundry Care",
+    "subcategory": "Detergent Bars",
+    "price": 25,
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1781005834326-90.png",
+    "tags": [
+      "detergent",
+      "laundry",
+      "rin",
+      "washing",
+      "clothes"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill",
+      "Urgent Household Need"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_808",
+    "name": "Odonil Solid Air Freshener Sachet (75g)",
+    "category": "Air Fresheners",
+    "subcategory": "Solid Fresheners",
+    "price": 45,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/59f02777-6c6e-4709-8303-94b7142abee3.png?dpr_multiplier=3.00",
+    "tags": [
+      "air freshener",
+      "odonil",
+      "fragrance",
+      "room freshener",
+      "home"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill",
+      "Morning Breakfast Run",
+      "House Party"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_809",
+    "name": "Colgate Strong Teeth Toothpaste (50g)",
+    "category": "Oral Care",
+    "subcategory": "Toothpaste",
+    "price": 30,
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1782323095081-352.png",
+    "tags": [
+      "toothpaste",
+      "colgate",
+      "oral care",
+      "dental",
+      "teeth"
+    ],
+    "life_contexts": [
+      "Smoke Break",
+      "Morning Breakfast Run"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_810",
+    "name": "Limcee Vitamin C Chewable Tablets (500mg, 15s)",
+    "category": "Vitamins",
+    "subcategory": "Vitamin C",
+    "price": 30,
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/5155eb47-e1d3-430e-a0fe-7b1feb0765e1.png",
+    "tags": [
+      "vitamin c",
+      "limcee",
+      "vitamins",
+      "immunity",
+      "supplement"
+    ],
+    "life_contexts": [
+      "Sick Day Recovery",
+      "Urgent Household Need"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_811",
+    "name": "Bicycle Standard Playing Cards (1 Deck)",
+    "category": "Entertainment",
+    "subcategory": "Card Games",
+    "price": 45,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/49b28b9f-7c12-495a-9ff4-4cd10a6ce39a.png?dpr_multiplier=3.00",
+    "tags": [
+      "playing cards",
+      "card game",
+      "entertainment",
+      "party game",
+      "games"
+    ],
+    "life_contexts": [
+      "House Party",
+      "Movie Night"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_812",
+    "name": "Vim Dishwash Bar (250g)",
+    "category": "Kitchen Cleaning",
+    "subcategory": "Dishwash Bars",
+    "price": 20,
+    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/78958301-ced4-4c8a-965d-557816188552.png",
+    "tags": [
+      "vim",
+      "dishwash",
+      "kitchen",
+      "cleaning",
+      "utensils"
+    ],
+    "life_contexts": [
+      "Weekly Grocery Refill",
+      "Fresh Produce Restock"
+    ],
+    "in_stock": true
+  },
+  {
+    "id": "prod_901",
+    "name": "Pedigree Adult Dry Dog Food Pouch (100g)",
+    "category": "Pet Care",
+    "subcategory": "Dog Food",
+    "price": 45,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1777522895462-559.png?dpr_multiplier=3.00",
+    "tags": ["pedigree", "dog food", "pet supplies", "pets", "pet care"],
+    "life_contexts": ["Weekly Household Refill", "Urgent Household Need"],
+    "in_stock": true
+  },
+  {
+    "id": "prod_305",
+    "name": "Cadbury Bournville 50% Dark Chocolate (50g)",
+    "category": "Chocolates & Sweets",
+    "subcategory": "Dark Chocolate",
+    "price": 50,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1776059695367-47.png?dpr_multiplier=3.00",
+    "tags": ["bournville", "dark chocolate", "chocolate", "sweets", "comfort"],
+    "life_contexts": ["Period Care & Comfort", "Movie Night", "Late Night Craving"],
+    "in_stock": true
+  },
+  {
+    "id": "prod_606",
+    "name": "Whisper Choice Ultra Sanitary Pads (6s)",
+    "category": "Feminine Hygiene",
+    "subcategory": "Period Care",
+    "price": 48,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/c0016189-2ec6-4b88-ba26-69e1318a97d9.png?dpr_multiplier=3.00",
+    "tags": ["whisper", "sanitary pads", "period care", "feminine hygiene", "pads"],
+    "life_contexts": ["Period Care & Comfort"],
+    "in_stock": true
+  },
+  {
+    "id": "prod_307",
+    "name": "Kinley Club Soda Glass Bottle / Mixer (750ml)",
+    "category": "Beverages",
+    "subcategory": "Mixers & Soda",
+    "price": 25,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/5028e660-6ea3-424d-bd26-be8f445c852f.png",
+    "tags": ["soda", "mixer", "club soda", "beverages", "party"],
+    "life_contexts": ["House Party", "Late Night Drinking"],
+    "in_stock": true
+  },
+  {
+    "id": "prod_505",
+    "name": "Cherry Blossom Black Shoe Polish (40g)",
+    "category": "Shoe Care",
+    "subcategory": "Shoe Polish",
+    "price": 45,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/6f3c0124-42b7-4b3d-9434-67bc7f5b503c.png?dpr_multiplier=3.00",
+    "tags": ["shoe polish", "polish", "shoes", "formal", "interview"],
+    "life_contexts": ["Interview Preparation"],
+    "in_stock": true
+  },
+  {
+    "id": "prod_506",
+    "name": "Nivea Men Fresh Active Deodorant Spray (150ml)",
+    "category": "Personal Care",
+    "subcategory": "Deodorants",
+    "price": 175,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/rc-upload-1777531247458-11.png",
+    "tags": ["deodorant", "deodorant spray", "nivea", "grooming", "interview"],
+    "life_contexts": ["Interview Preparation"],
+    "in_stock": true
+  },
+  {
+    "id": "prod_507",
+    "name": "Park Avenue Premium Navy Silk Formal Tie",
+    "category": "Formal Accessories",
+    "subcategory": "Ties & Belts",
+    "price": 60,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1769663808578-24.png?dpr_multiplier=3.00",
+    "tags": ["tie", "silk tie", "formal tie", "formal accessories", "interview"],
+    "life_contexts": ["Interview Preparation"],
+    "in_stock": true
   }
 ]
