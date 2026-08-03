@@ -24,7 +24,7 @@ import ssl
 import logging
 import urllib.request
 import urllib.error
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 
 logger = logging.getLogger("SILCE.AIReasoner")
 
