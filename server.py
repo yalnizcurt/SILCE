@@ -51,10 +51,12 @@ class SILCERequestHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == "/api/personas":
-            self.send_json_response(PERSONAS)
+            _, personas = load_data_files()
+            self.send_json_response(personas)
             return
         elif self.path == "/api/catalog":
-            self.send_json_response(CATALOG)
+            catalog, _ = load_data_files()
+            self.send_json_response(catalog)
             return
         elif self.path == "/api/analytics":
             summary = get_analytics_summary()
@@ -77,11 +79,12 @@ class SILCERequestHandler(SimpleHTTPRequestHandler):
             cart_items = body.get("cart_items", [])
             user_id = body.get("user_id", "user_groceries_only")
 
+            catalog, personas = load_data_files()
             # Find matching persona
-            user_persona = next((p for p in PERSONAS if p["user_id"] == user_id), PERSONAS[0] if PERSONAS else {})
+            user_persona = next((p for p in personas if p["user_id"] == user_id), personas[0] if personas else {})
 
             # Generate SILCE single recommendation
-            result = generate_recommendation(cart_items, user_persona, CATALOG)
+            result = generate_recommendation(cart_items, user_persona, catalog)
 
             # Log impression if recommendation was generated
             if result.get("has_recommendation"):

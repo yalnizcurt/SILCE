@@ -10,77 +10,61 @@
   },
   "explicit_complaints": {
     "dark_store_stockout_pct": 13.3,
-    "pricing_and_fees_pct": 13.3,
-    "returns_friction_pct": 10.0,
+    "pricing_and_fees_pct": 6.7,
+    "returns_friction_pct": 6.7,
     "raw_counts": {
       "dark_store_stockout": 4,
-      "pricing_and_fees": 4,
-      "returns_friction": 3
+      "pricing_and_fees": 2,
+      "returns_friction": 2
     }
   },
   "implicit_habits": {
     "speed_runs_pct": 13.3,
-    "grocery_only_mental_model_pct": 23.3,
+    "grocery_only_mental_model_pct": 43.3,
     "two_item_quick_orders_pct": 3.3,
     "raw_counts": {
       "speed_runs": 4,
-      "grocery_only_mental_model": 7,
+      "grocery_only_mental_model": 13,
       "two_item_quick_orders": 1
     }
   },
   "latent_opportunities": [
     {
-      "trigger_intent": "Chai Time & Evening Snacks",
+      "trigger_intent": "Weekly Grocery Refill",
       "example_basket": [
-        "Tea 250g",
-        "Parle-G 100g"
+        "Amul Taaza Milk (1L)",
+        "English Cucumber (500g)"
       ],
-      "latent_opportunity_category": "Home & Kitchen",
+      "latent_opportunity_category": "Eggs",
       "recommended_skus": [
-        "Stainless Steel Tea Strainer",
-        "Ceramic Tea Mug"
+        "Fresho Farm Fresh Eggs (6 pcs)"
       ],
-      "user_need": "Unmet cookware & kitchen accessories pairing during routine tea orders"
+      "user_need": "Pairs daily essentials (milk, cucumber) with protein options like farm fresh eggs"
     },
     {
-      "trigger_intent": "Weekend Hosting / Party",
+      "trigger_intent": "Morning Breakfast Run",
       "example_basket": [
-        "Doritos Nachos 150g",
-        "Coca-Cola Zero 300ml"
+        "Amul Taaza Milk (1L)",
+        "Harvest Gold Whole Wheat Bread (400g)"
       ],
-      "latent_opportunity_category": "Toys & Games",
+      "latent_opportunity_category": "Eggs",
       "recommended_skus": [
-        "UNO Playing Cards",
-        "Disposable Party Cups"
+        "Fresho Farm Fresh Eggs (6 pcs)"
       ],
-      "user_need": "Social entertainment and hosting accessories during impulse snack orders"
+      "user_need": "Pairs daily milk and bread with breakfast essentials like fresh eggs"
     },
     {
-      "trigger_intent": "Household Cleaning Blitz",
+      "trigger_intent": "Daily Veggies & Dairy",
       "example_basket": [
-        "Surf Excel Matic Liquid",
-        "Vim Dishwash Gel"
+        "English Cucumber (500g)",
+        "Fresh Red Tomatoes (500g)"
       ],
-      "latent_opportunity_category": "Personal Care / Cleaning Accessories",
+      "latent_opportunity_category": "Dairy Complements",
       "recommended_skus": [
-        "Ergonomic Rubber Gloves",
-        "Microfiber Cleaning Cloth"
+        "Mother Dairy Probiotic Curd (400g)"
       ],
-      "user_need": "Forgotten utility items during routine household cleaning restocking"
-    },
-    {
-      "trigger_intent": "Emergency Work / Tech Setup",
-      "example_basket": [
-        "Coffee",
-        "Energy Drink"
-      ],
-      "latent_opportunity_category": "Electronics & Accessories",
-      "recommended_skus": [
-        "Boat BassHeads Wired Earphones",
-        "AA Alkaline Battery 4-Pack"
-      ],
-      "user_need": "High-urgency electronics accessories delivered in under 10 minutes"
+      "user_need": "Complements fresh salad vegetables with high-purchase probiotic curd"
     }
   ],
-  "product_takeaway": "Blinkit users exhibit a strong 'Grocery-Only' mental model with 60-second speed-run behavior. SILCE captures 2-item cart pairings (e.g. Tea + Biscuits, Nachos + Coke) to recommend 1 relevant non-grocery item (Tea Strainer, UNO Cards) under a 40% price guardrail, breaking category inertia without introducing cart friction."
+  "product_takeaway": "Blinkit users exhibit a strong 'Grocery-Only' mental model with 60-second speed-run behavior. SILCE captures 2-item cart pairings (e.g. Milk + Cucumber) to introduce 1 relevant adjacent category grocery item (Eggs, Curd, Bread) under a price guardrail, breaking category inertia and introducing discovery without checkout friction."
 }

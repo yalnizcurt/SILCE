@@ -1,43 +1,63 @@
 [
   {
-    "id": "prod_101",
-    "name": "Doritos Sizzlin Hot Nachos 150g",
-    "category": "Snacks & Munchies",
-    "subcategory": "Chips & Nachos",
-    "price": 60,
-    "image": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=300",
-    "tags": ["nachos", "spicy", "snack", "crunchy", "party"],
-    "life_contexts": ["Movie Night", "House Party", "Late Night Gaming", "Cricket Match Watchparty"]
-  },
-  {
-    "id": "prod_102",
-    "name": "Coca-Cola Zero Sugar Can 300ml",
-    "category": "Soft Drinks & Juices",
-    "subcategory": "Carbonated Drinks",
-    "price": 40,
-    "image": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300",
-    "tags": ["coke", "soda", "cold drink", "chilled", "party"],
-    "life_contexts": ["Movie Night", "House Party", "Late Night Gaming", "Quick Lunch"]
-  },
-  {
-    "id": "prod_103",
-    "name": "Kwality Wall's Dark Chocolate Ice Cream 500ml",
-    "category": "Ice Creams & Frozen Desserts",
-    "subcategory": "Tubs & Packs",
-    "price": 195,
-    "image": "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=300",
-    "tags": ["ice cream", "dessert", "sweet", "chocolate", "treat"],
-    "life_contexts": ["Movie Night", "Late Night Cravings", "Weekend Celebration"]
-  },
-  {
     "id": "prod_104",
-    "name": "Amul Taaza T-Special Milk 1L",
-    "category": "Dairy, Bread & Eggs",
+    "name": "Amul Taaza Milk (1L)",
+    "category": "Milk",
     "subcategory": "Milk",
     "price": 56,
     "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300",
-    "tags": ["milk", "dairy", "daily essential", "tea"],
-    "life_contexts": ["Daily Morning Routine", "Chai Time", "Breakfast Meal Prep"]
+    "tags": ["milk", "dairy", "daily essential", "amul", "fresh"],
+    "life_contexts": ["Weekly Grocery Refill", "Morning Breakfast Run"]
+  },
+  {
+    "id": "prod_112",
+    "name": "English Cucumber (500g)",
+    "category": "Vegetables",
+    "subcategory": "Fresh Vegetables",
+    "price": 40,
+    "image": "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=300",
+    "tags": ["cucumber", "vegetables", "fresh", "salad", "green"],
+    "life_contexts": ["Weekly Grocery Refill", "Daily Veggies & Dairy", "Fresh Produce Restock"]
+  },
+  {
+    "id": "prod_113",
+    "name": "Fresh Red Tomatoes (500g)",
+    "category": "Fresh Produce",
+    "subcategory": "Fresh Vegetables",
+    "price": 45,
+    "image": "https://images.unsplash.com/photo-1595855759920-86582396756a?w=300",
+    "tags": ["tomato", "fresh produce", "vegetables", "cooking"],
+    "life_contexts": ["Daily Veggies & Dairy", "Fresh Produce Restock"]
+  },
+  {
+    "id": "prod_210",
+    "name": "Fresho Farm Fresh Eggs (6 pcs)",
+    "category": "Eggs",
+    "subcategory": "Eggs",
+    "price": 55,
+    "image": "https://images.unsplash.com/photo-1516448620398-c5f44bf9f441?w=300",
+    "tags": ["eggs", "farm fresh", "breakfast", "protein"],
+    "life_contexts": ["Weekly Grocery Refill", "Morning Breakfast Run"]
+  },
+  {
+    "id": "prod_211",
+    "name": "Mother Dairy Probiotic Curd (400g)",
+    "category": "Dairy Complements",
+    "subcategory": "Curd & Yogurt",
+    "price": 50,
+    "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=300",
+    "tags": ["curd", "yogurt", "dairy complement", "probiotic"],
+    "life_contexts": ["Daily Veggies & Dairy"]
+  },
+  {
+    "id": "prod_213",
+    "name": "Harvest Gold Whole Wheat Bread (400g)",
+    "category": "Bakery",
+    "subcategory": "Bread",
+    "price": 45,
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300",
+    "tags": ["bread", "whole wheat", "bakery", "breakfast"],
+    "life_contexts": ["Morning Breakfast Run"]
   },
   {
     "id": "prod_105",
@@ -45,9 +65,9 @@
     "category": "Tea, Coffee & Health Drinks",
     "subcategory": "Tea",
     "price": 140,
-    "image": "https://images.unsplash.com/photo-1556909172-8c2f041fca1e?w=300",
-    "tags": ["tea", "chai", "masala tea", "hot beverage"],
-    "life_contexts": ["Daily Morning Routine", "Chai Time", "Monsoon Snack Break"]
+    "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=300",
+    "tags": ["tea", "chai", "masala tea"],
+    "life_contexts": ["Morning Breakfast Run"]
   },
   {
     "id": "prod_106",
@@ -56,8 +76,8 @@
     "subcategory": "Biscuits & Cookies",
     "price": 15,
     "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300",
-    "tags": ["biscuits", "chai snack", "cookies"],
-    "life_contexts": ["Chai Time", "Monsoon Snack Break", "Daily Morning Routine"]
+    "tags": ["biscuits", "cookies", "snack"],
+    "life_contexts": ["Morning Breakfast Run", "Office Essentials"]
   },
   {
     "id": "prod_107",
@@ -65,49 +85,9 @@
     "category": "Household Essentials",
     "subcategory": "Laundry",
     "price": 180,
-    "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=300",
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
     "tags": ["detergent", "laundry", "cleaning"],
-    "life_contexts": ["Sunday Cleaning", "Household Cleaning"]
-  },
-  {
-    "id": "prod_201",
-    "name": "Stainless Steel Mesh Tea Strainer",
-    "category": "Home & Kitchen",
-    "subcategory": "Cookware & Utensils",
-    "price": 49,
-    "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300",
-    "tags": ["tea strainer", "filter", "kitchen tool", "chai", "tea"],
-    "life_contexts": ["Chai Time", "Monsoon Snack Break"]
-  },
-  {
-    "id": "prod_202",
-    "name": "UNO Flip Card Game Original",
-    "category": "Toys & Games",
-    "subcategory": "Card Games",
-    "price": 99,
-    "image": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=300",
-    "tags": ["uno", "cards", "game", "party", "hosting"],
-    "life_contexts": ["Movie Night", "Hosting / Party", "Late Night Gaming"]
-  },
-  {
-    "id": "prod_203",
-    "name": "Ergonomic Rubber Household Gloves (Pair)",
-    "category": "Personal Care",
-    "subcategory": "Safety & Gloves",
-    "price": 89,
-    "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=300",
-    "tags": ["gloves", "cleaning", "rubber gloves", "household"],
-    "life_contexts": ["Sunday Cleaning", "Household Cleaning"]
-  },
-  {
-    "id": "prod_208",
-    "name": "Boat BassHeads 100 Wired Earphones with Mic",
-    "category": "Electronics & Appliances",
-    "subcategory": "Headphones & Audio",
-    "price": 299,
-    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300",
-    "tags": ["earphones", "audio", "boat", "gaming", "music"],
-    "life_contexts": ["Late Night Gaming", "Emergency Work / Tech Setup", "Movie Night"]
+    "life_contexts": ["Weekly Grocery Refill"]
   },
   {
     "id": "prod_212",
@@ -115,8 +95,238 @@
     "category": "Household Essentials",
     "subcategory": "Dishwashing",
     "price": 115,
-    "image": "https://images.unsplash.com/photo-1585842378054-ee2e52f94ba2?w=300",
-    "tags": ["dishwash", "cleaning", "kitchen"],
-    "life_contexts": ["Sunday Cleaning", "Household Cleaning"]
+    "image": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=300",
+    "tags": ["dishwash", "cleaning"],
+    "life_contexts": ["Weekly Grocery Refill"]
+  },
+  {
+    "id": "prod_108",
+    "name": "Daawat Rozana Super Basmati Rice (1kg)",
+    "category": "Groceries",
+    "subcategory": "Rice",
+    "price": 85,
+    "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300",
+    "tags": ["rice", "grocery", "refill", "staples"],
+    "life_contexts": ["Weekly Grocery Refill"]
+  },
+  {
+    "id": "prod_109",
+    "name": "Aashirvaad Shudh Chakki Atta (5kg)",
+    "category": "Groceries",
+    "subcategory": "Atta",
+    "price": 210,
+    "image": "https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?w=300",
+    "tags": ["atta", "flour", "grocery", "staples"],
+    "life_contexts": ["Weekly Grocery Refill"]
+  },
+  {
+    "id": "prod_214",
+    "name": "Amul Pasteurised Butter (100g)",
+    "category": "Dairy",
+    "subcategory": "Butter",
+    "price": 58,
+    "image": "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300",
+    "tags": ["butter", "dairy", "breakfast", "amul"],
+    "life_contexts": ["Morning Breakfast Run"]
+  },
+  {
+    "id": "prod_114",
+    "name": "Fresh Red Onion (1kg)",
+    "category": "Vegetables",
+    "subcategory": "Fresh Vegetables",
+    "price": 30,
+    "image": "https://images.unsplash.com/photo-1508747703725-719ae25db3e4?w=300",
+    "tags": ["onion", "vegetables", "cooking", "essential"],
+    "life_contexts": ["Fresh Produce Restock"]
+  },
+  {
+    "id": "prod_115",
+    "name": "Fresh Palak/Spinach (250g)",
+    "category": "Vegetables",
+    "subcategory": "Fresh Vegetables",
+    "price": 25,
+    "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=300",
+    "tags": ["spinach", "palak", "green veg", "healthy"],
+    "life_contexts": ["Fresh Produce Restock"]
+  },
+  {
+    "id": "prod_301",
+    "name": "Coca-Cola Soft Drink (1.25L)",
+    "category": "Beverages",
+    "subcategory": "Soft Drinks",
+    "price": 70,
+    "image": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300",
+    "tags": ["coke", "soft drink", "party", "beverage"],
+    "life_contexts": ["House Party", "Smoke Break"]
+  },
+  {
+    "id": "prod_302",
+    "name": "Lays Classic Salted Chips (50g)",
+    "category": "Snacks & Munchies",
+    "subcategory": "Chips",
+    "price": 20,
+    "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=300",
+    "tags": ["chips", "lays", "salted", "snack"],
+    "life_contexts": ["House Party"]
+  },
+  {
+    "id": "prod_303",
+    "name": "Kwality Walls Vanilla Ice Cream (700ml)",
+    "category": "Frozen Foods",
+    "subcategory": "Ice Cream",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300",
+    "tags": ["ice cream", "dessert", "frozen", "vanilla"],
+    "life_contexts": ["House Party"]
+  },
+  {
+    "id": "prod_304",
+    "name": "Wingreens Farms Salsa Dip (150g)",
+    "category": "Snacks & Munchies",
+    "subcategory": "Dips",
+    "price": 99,
+    "image": "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=300",
+    "tags": ["salsa", "dip", "party", "snack"],
+    "life_contexts": ["House Party"]
+  },
+  {
+    "id": "prod_401",
+    "name": "Gold Flake Kings Cigarettes (10s)",
+    "category": "Paan Corner",
+    "subcategory": "Cigarettes",
+    "price": 180,
+    "image": "https://images.unsplash.com/photo-1527137341206-1d13f9c6d3d9?w=300",
+    "tags": ["cigarettes", "smoke", "tobacco"],
+    "life_contexts": ["Smoke Break"]
+  },
+  {
+    "id": "prod_402",
+    "name": "Doublemint Peppermint Mints (15g)",
+    "category": "Paan Corner",
+    "subcategory": "Mints",
+    "price": 10,
+    "image": "https://images.unsplash.com/photo-1599307767316-776533dae507?w=300",
+    "tags": ["mint", "mouth freshener", "doublemint"],
+    "life_contexts": ["Smoke Break"]
+  },
+  {
+    "id": "prod_403",
+    "name": "Pocket Gas Lighter (1 unit)",
+    "category": "Paan Corner",
+    "subcategory": "Lighters",
+    "price": 20,
+    "image": "https://images.unsplash.com/photo-1508138221679-760a23a2285b?w=300",
+    "tags": ["lighter", "accessory", "smoke"],
+    "life_contexts": ["Smoke Break"]
+  },
+  {
+    "id": "prod_501",
+    "name": "Nescafe Classic Instant Coffee (50g)",
+    "category": "Beverages",
+    "subcategory": "Coffee",
+    "price": 165,
+    "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300",
+    "tags": ["coffee", "nescafe", "instant coffee", "beverage"],
+    "life_contexts": ["Office Essentials"]
+  },
+  {
+    "id": "prod_503",
+    "name": "Maggi Masala Noodles 4-Pack (280g)",
+    "category": "Snacks & Munchies",
+    "subcategory": "Noodles",
+    "price": 65,
+    "image": "https://images.unsplash.com/photo-1612927601601-6638404737ce?w=300",
+    "tags": ["maggi", "noodles", "instant noodles", "snack"],
+    "life_contexts": ["Office Essentials"]
+  },
+  {
+    "id": "prod_504",
+    "name": "Paper Tea & Coffee Cups (20 pcs)",
+    "category": "Household Essentials",
+    "subcategory": "Disposables",
+    "price": 40,
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
+    "tags": ["paper cups", "disposable", "office"],
+    "life_contexts": ["Office Essentials"]
+  },
+  {
+    "id": "prod_601",
+    "name": "Crocin Pain Relief Tablets (15 Tabs)",
+    "category": "Pharmacy",
+    "subcategory": "Medicines",
+    "price": 30,
+    "image": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=300",
+    "tags": ["crocin", "paracetamol", "pain killer", "meds"],
+    "life_contexts": ["Sick Day Recovery"]
+  },
+  {
+    "id": "prod_602",
+    "name": "ORS Apple Drink (200ml)",
+    "category": "Pharmacy",
+    "subcategory": "Health Drinks",
+    "price": 35,
+    "image": "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300",
+    "tags": ["ors", "electrolyte", "hydration", "health"],
+    "life_contexts": ["Sick Day Recovery"]
+  },
+  {
+    "id": "prod_603",
+    "name": "Digital Body Thermometer",
+    "category": "Pharmacy",
+    "subcategory": "Healthcare Devices",
+    "price": 199,
+    "image": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=300",
+    "tags": ["thermometer", "fever", "device"],
+    "life_contexts": ["Sick Day Recovery"]
+  },
+  {
+    "id": "prod_604",
+    "name": "Origami Face Tissues (100 Sheets)",
+    "category": "Household Essentials",
+    "subcategory": "Tissues",
+    "price": 75,
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
+    "tags": ["tissues", "wipes", "soft paper"],
+    "life_contexts": ["Sick Day Recovery"]
+  },
+  {
+    "id": "prod_701",
+    "name": "Shalimar Black Garbage Bags (30 pcs)",
+    "category": "Household Essentials",
+    "subcategory": "Cleaning Essentials",
+    "price": 90,
+    "image": "https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=300",
+    "tags": ["garbage bags", "trash bags", "home utility"],
+    "life_contexts": ["Urgent Household Need"]
+  },
+  {
+    "id": "prod_702",
+    "name": "Lizol Disinfectant Floor Cleaner (500ml)",
+    "category": "Household Essentials",
+    "subcategory": "Cleaning Essentials",
+    "price": 120,
+    "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=300",
+    "tags": ["lizol", "floor cleaner", "disinfectant"],
+    "life_contexts": ["Urgent Household Need"]
+  },
+  {
+    "id": "prod_703",
+    "name": "Pril Dishwash Liquid Gel (425ml)",
+    "category": "Household Essentials",
+    "subcategory": "Dishwashing",
+    "price": 105,
+    "image": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=300",
+    "tags": ["dishwash", "pril", "cleaning"],
+    "life_contexts": ["Urgent Household Need"]
+  },
+  {
+    "id": "prod_704",
+    "name": "Scotch-Brite Cellulose Sponge Wipes (3 pcs)",
+    "category": "Household Essentials",
+    "subcategory": "Cleaning Essentials",
+    "price": 85,
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300",
+    "tags": ["sponge wipe", "kitchen wipe", "cleaning"],
+    "life_contexts": ["Urgent Household Need"]
   }
 ]

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=4.2">
+  <link rel="stylesheet" href="/static/style.css?v=4.5">
 </head>
 <body>
   <!-- Header Bar -->
@@ -57,36 +57,12 @@
             <h3>🎯 Shopping Mission Presets</h3>
             <p class="panel-sub">Select a routine shopping scenario to test SILCE intent reasoning live:</p>
             
-            <div class="preset-buttons">
-              <button class="preset-btn active" data-preset="movie_night">
-                <span class="preset-icon">🎬</span>
-                <div class="preset-text-wrap">
-                  <span class="preset-title">Weekend Movie Night</span>
-                  <span class="preset-desc">Doritos, Coke & Ice Cream</span>
-                </div>
-              </button>
-              <button class="preset-btn" data-preset="chai_time">
-                <span class="preset-icon">☕</span>
-                <div class="preset-text-wrap">
-                  <span class="preset-title">Evening Chai & Snacks</span>
-                  <span class="preset-desc">Masala Tea & Parle-G pack</span>
-                </div>
-              </button>
-              <button class="preset-btn" data-preset="breakfast_prep">
-                <span class="preset-icon">🥛</span>
-                <div class="preset-text-wrap">
-                  <span class="preset-title">Daily Milk & Breakfast</span>
-                  <span class="preset-desc">Amul Taaza Milk & Tea</span>
-                </div>
-              </button>
-              <button class="preset-btn" data-preset="cleaning_day">
-                <span class="preset-icon">🧹</span>
-                <div class="preset-text-wrap">
-                  <span class="preset-title">Sunday Cleaning Blitz</span>
-                  <span class="preset-desc">Surf Excel & Vim Dishwash</span>
-                </div>
-              </button>
+            <div class="preset-buttons" id="missionPresetsContainer">
+              <!-- Dynamically populated -->
             </div>
+            <button class="btn-toggle-presets" id="btnTogglePresets">
+              Show More Missions ▾
+            </button>
           </div>
 
           <div class="panel-card">
@@ -112,18 +88,13 @@
             <!-- Mobile App Header -->
             <div class="mobile-app-header">
               <div class="header-top-bar">
-                <button class="back-btn" aria-label="Back">←</button>
+                <button class="back-btn" aria-label="Back">‹</button>
                 <div class="header-brand-title">Checkout</div>
                 <div class="header-right-actions">
-                  <span class="share-icon">↗</span>
-                </div>
-              </div>
-              <div class="header-address-bar">
-                <div class="eta-pill">
-                  <span class="clock-icon">⚡</span> 10 MINS
-                </div>
-                <div class="delivery-address">
-                  <span class="loc-pin">📍</span> Home - HSR Layout, Sector 3 ▾
+                  <button class="header-circle-btn" aria-label="Search">🔍</button>
+                  <button class="header-pill-btn" aria-label="Share">
+                    <span class="share-btn-icon">📤</span> Share
+                  </button>
                 </div>
               </div>
             </div>
@@ -131,6 +102,15 @@
             <!-- Mobile Cart Body -->
             <div class="mobile-cart-body">
               
+              <!-- Delivery ETA Banner -->
+              <div class="delivery-eta-card">
+                <div class="delivery-eta-icon">🌓</div>
+                <div class="delivery-eta-info">
+                  <div class="delivery-eta-title">Delivery in 10 minutes</div>
+                  <div class="delivery-eta-sub">Shipment of <span id="deliveryItemCount">0</span> items</div>
+                </div>
+              </div>
+
               <!-- Savings Offer Banner -->
               <div class="savings-banner" id="savingsBanner">
                 <span class="offer-icon">🎉</span>
@@ -182,13 +162,42 @@
 
             <!-- Mobile Sticky Footer Checkout Button -->
             <div class="mobile-cart-footer">
-              <div class="pay-method">
-                <span class="pay-icon">💳</span> UPI / Apple Pay ▾
+              <!-- Address Section -->
+              <div class="footer-address-bar">
+                <div class="address-icon-wrap">🏢</div>
+                <div class="address-details">
+                  <div class="address-title">Delivering to <strong>Work</strong></div>
+                  <div class="address-sub text-truncate">Doordarsh 6th Floor ISprout Orbit - Sector 3</div>
+                  <div class="address-dist text-danger">Selected address is 2.21 km away from your location</div>
+                </div>
+                <button class="btn-change-address">Change</button>
               </div>
-              <button id="btnPlaceOrder" class="btn-place-order">
-                <span>Click to Pay • <strong id="btnPayAmount">₹0</strong></span>
-                <span class="arrow">→</span>
-              </button>
+              
+              <div class="footer-separator"></div>
+
+              <!-- Payment Section -->
+              <div class="footer-payment-row">
+                <div class="pay-method-info">
+                  <div class="pay-using-header">
+                    <span class="pay-visa-badge">VISA</span> PAY USING ▲
+                  </div>
+                  <div class="pay-card-details">
+                    <span class="card-name">Hsbc Visa Card</span>
+                    <span class="card-number">•••• 2389 | Secured</span>
+                  </div>
+                </div>
+                
+                <button id="btnPlaceOrder" class="btn-place-order">
+                  <div class="btn-total-info">
+                    <span id="btnPayAmount">₹0</span>
+                    <span class="btn-total-label">TOTAL</span>
+                  </div>
+                  <div class="btn-action-info">
+                    <span>Place Order</span>
+                    <span class="btn-arrow">▸</span>
+                  </div>
+                </button>
+              </div>
             </div>
 
             <!-- Mobile Order Placed Success Screen -->
@@ -468,6 +477,6 @@
 
   </main>
 
-  <script src="/static/app.js?v=4.0"></script>
+  <script src="/static/app.js?v=4.5"></script>
 </body>
 </html>

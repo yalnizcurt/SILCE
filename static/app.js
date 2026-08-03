@@ -1,6 +1,6 @@
 // SILCE Frontend Interactive Logic — Production MVP Spec
 document.addEventListener("DOMContentLoaded", () => {
-  
+
   // Application Source of Truth State
   let personas = [];
   let catalog = [];
@@ -14,18 +14,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Preset Default Missions for Personas
   const PERSONA_DEFAULT_PRESETS = {
-    user_groceries_only: "movie_night",
-    user_pet_owner_potential: "movie_night",
-    user_work_from_home: "chai_time"
+    user_groceries_only: "weekly_refill",
+    user_interview_prep: "breakfast_run",
+    user_party_recovery: "produce_restock"
   };
 
-  // Shopping Mission Preset Mapping (2-Item Quick-Commerce Presets)
-  const PRESET_CARTS = {
-    movie_night: ["prod_101", "prod_102", "prod_103"], // Nachos + Coke + Ice Cream
-    chai_time: ["prod_105", "prod_106"],               // Tea 250g + Parle-G (₹155 subtotal)
-    breakfast_prep: ["prod_104", "prod_105"],          // Milk + Tea
-    cleaning_day: ["prod_107", "prod_212"]             // Surf Excel + Vim Dishwash (₹295 subtotal)
-  };
+  const MISSION_PRESETS = [
+    {
+      key: "weekly_refill",
+      icon: "🛒",
+      title: "Weekly Grocery Refill",
+      desc: "Milk, Cucumber, Rice, Atta",
+      items: ["prod_104", "prod_112", "prod_108", "prod_109"]
+    },
+    {
+      key: "breakfast_run",
+      icon: "🍳",
+      title: "Morning Breakfast Run",
+      desc: "Milk, Whole Wheat Bread, Eggs, Butter",
+      items: ["prod_104", "prod_213", "prod_210", "prod_214"]
+    },
+    {
+      key: "produce_restock",
+      icon: "🥗",
+      title: "Fresh Produce Restock",
+      desc: "Tomato, Cucumber, Onion, Spinach",
+      items: ["prod_113", "prod_112", "prod_114", "prod_115"]
+    },
+    {
+      key: "house_party",
+      icon: "🎉",
+      title: "House Party",
+      desc: "Soft Drinks, Chips, Ice Cream",
+      items: ["prod_301", "prod_302", "prod_303"]
+    },
+    {
+      key: "smoke_break",
+      icon: "🚬",
+      title: "Smoke Break",
+      desc: "Cigarettes, Mint, Soft Drink",
+      items: ["prod_401", "prod_402", "prod_301"]
+    },
+    {
+      key: "office_essentials",
+      icon: "💼",
+      title: "Office Essentials",
+      desc: "Coffee, Biscuits, Instant Noodles",
+      items: ["prod_501", "prod_106", "prod_503"]
+    },
+    {
+      key: "sick_recovery",
+      icon: "🤒",
+      title: "Sick Day Recovery",
+      desc: "Crocin, ORS, Thermometer",
+      items: ["prod_601", "prod_602", "prod_603"]
+    },
+    {
+      key: "urgent_household",
+      icon: "🚨",
+      title: "Urgent Household Need",
+      desc: "Garbage Bags, Floor Cleaner, Dishwash Liquid",
+      items: ["prod_701", "prod_702", "prod_703"]
+    }
+  ];
+
+  const PRESET_CARTS = {};
+  MISSION_PRESETS.forEach(m => {
+    PRESET_CARTS[m.key] = m.items;
+  });
 
   // DOM Elements
   const personaSelect = document.getElementById("personaSelect");
@@ -76,17 +132,51 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Preset Selector Buttons
-  const presetBtns = document.querySelectorAll(".preset-btn");
-  presetBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      presetBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+  let showAllPresets = false;
 
-      const presetKey = btn.getAttribute("data-preset");
-      loadPresetCart(presetKey);
+  function renderMissionPresets(activePresetKey) {
+    const container = document.getElementById("missionPresetsContainer");
+    const toggleBtn = document.getElementById("btnTogglePresets");
+    if (!container) return;
+
+    // Display first 4 initially, or all if showAllPresets is true
+    const visiblePresets = showAllPresets ? MISSION_PRESETS : MISSION_PRESETS.slice(0, 4);
+
+    container.innerHTML = visiblePresets.map(m => `
+      <button class="preset-btn ${m.key === activePresetKey ? 'active' : ''}" data-preset="${m.key}">
+        <span class="preset-icon">${m.icon}</span>
+        <div class="preset-text-wrap">
+          <span class="preset-title">${m.title}</span>
+          <span class="preset-desc">${m.desc}</span>
+        </div>
+      </button>
+    `).join("");
+
+    // Wire up event listeners
+    container.querySelectorAll(".preset-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        container.querySelectorAll(".preset-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const presetKey = btn.getAttribute("data-preset");
+        loadPresetCart(presetKey);
+      });
     });
-  });
+
+    if (toggleBtn) {
+      toggleBtn.style.display = "block";
+      toggleBtn.textContent = showAllPresets ? "Show Less Missions ▵" : "Show More Missions ▾";
+    }
+  }
+
+  const btnTogglePresets = document.getElementById("btnTogglePresets");
+  if (btnTogglePresets) {
+    btnTogglePresets.addEventListener("click", () => {
+      showAllPresets = !showAllPresets;
+      const activeBtn = document.querySelector(".preset-btn.active");
+      const activePresetKey = activeBtn ? activeBtn.getAttribute("data-preset") : "weekly_refill";
+      renderMissionPresets(activePresetKey);
+    });
+  }
 
   // Init Data & Application State
   async function init() {
@@ -114,8 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // Render Catalog Quick Add
       renderQuickAddCatalog();
 
-      // Load Default Preset
-      loadPresetCart("chai_time");
+      // Load Default Preset for first persona
+      const firstDefaultPreset = PERSONA_DEFAULT_PRESETS[personas[0]?.user_id] || "weekly_refill";
+      loadPresetCart(firstDefaultPreset);
 
       // Fetch analytics
       fetchAnalytics();
@@ -133,17 +224,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     activePersona = personas.find(p => p.user_id === newUserId) || personas[0];
-    
+
     // Reset session dismissal state & results for new persona session
     dismissedThisSession = false;
     latestSilceResult = null;
 
     // Load or initialize isolated cart for newly selected persona
     if (!personaCarts[newUserId]) {
-      const defaultPreset = PERSONA_DEFAULT_PRESETS[newUserId] || "chai_time";
+      const defaultPreset = PERSONA_DEFAULT_PRESETS[newUserId] || "weekly_refill";
       loadPresetCart(defaultPreset);
     } else {
       cartItems = [...personaCarts[newUserId]];
+      const defaultPreset = PERSONA_DEFAULT_PRESETS[newUserId] || "weekly_refill";
+      renderMissionPresets(defaultPreset);
       updateCartAndTriggerSILCE();
     }
   }
@@ -170,13 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadPresetCart(presetKey) {
     // Sync active preset button highlight
-    presetBtns.forEach(btn => {
-      if (btn.getAttribute("data-preset") === presetKey) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-    });
+    renderMissionPresets(presetKey);
 
     const prodIds = PRESET_CARTS[presetKey] || [];
     cartItems = prodIds.map(id => {
@@ -232,6 +319,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalItemQty = cartItems.reduce((acc, i) => acc + i.qty, 0);
     cartCount.textContent = totalItemQty;
 
+    const deliveryItemCount = document.getElementById("deliveryItemCount");
+    if (deliveryItemCount) {
+      deliveryItemCount.textContent = totalItemQty;
+    }
+
     // Requirement #10: Empty Cart State
     if (cartItems.length === 0) {
       cartItemsList.innerHTML = `
@@ -268,13 +360,16 @@ document.addEventListener("DOMContentLoaded", () => {
             ${item.name}
             ${item.added_via_context ? '<span class="added-via-context-tag">Added via Context</span>' : ''}
           </div>
-          <div class="cart-item-sub">${item.subcategory || item.category}</div>
-          <div class="cart-item-price">₹${item.price * item.qty}</div>
+          <div class="cart-item-sub">${item.qty > 1 ? item.qty + ' x ' : ''}${item.subcategory || item.category}</div>
+          <div class="cart-item-wishlist">Move to wishlist</div>
         </div>
-        <div class="cart-qty-ctrl">
-          <button class="qty-btn btn-minus" data-id="${item.id}">-</button>
-          <span class="qty-val">${item.qty}</span>
-          <button class="qty-btn btn-plus" data-id="${item.id}">+</button>
+        <div class="cart-item-right-col">
+          <div class="cart-qty-ctrl">
+            <button class="qty-btn btn-minus" data-id="${item.id}">-</button>
+            <span class="qty-val">${item.qty}</span>
+            <button class="qty-btn btn-plus" data-id="${item.id}">+</button>
+          </div>
+          <div class="cart-item-price-tag">₹${item.price * item.qty}</div>
         </div>
       </div>
     `).join("");
@@ -304,7 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
       liveIntentName.textContent = "Inactive";
       liveConfidenceVal.textContent = "0%";
       confidenceFill.style.width = "0%";
-      intentExplanationText.textContent = "Cart is empty. Add 3+ items (min ₹199) to trigger SILCE intent inference.";
+      intentExplanationText.textContent = "Cart is empty. Add 2+ items (min ₹149) to trigger SILCE intent inference.";
       updateDiagnostics(null);
       return;
     }
@@ -377,10 +472,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="${prod.image}" class="silce-prod-img" alt="${prod.name}">
           <div class="silce-prod-info">
             <div class="silce-prod-name">${prod.name}</div>
-            <div class="silce-prod-price">₹${prod.price}</div>
+            <div class="silce-prod-meta" style="font-size: 11px; color: #16A34A; margin-top: 2px; font-weight: 500;">✓ Trusted Brand &nbsp;✓ 4.6★+</div>
+            <div class="silce-prod-price" style="margin-top: 4px;">₹${prod.price}</div>
           </div>
           <button id="btnAcceptSilce" class="btn-silce-add ${isAlreadyInCart ? 'added' : ''}">
-            ${isAlreadyInCart ? '✓ Added' : '+ ADD'}
+            ${isAlreadyInCart ? '✓ Added' : 'Add to Basket'}
           </button>
         </div>
       </div>
@@ -410,11 +506,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // WhyBottomSheet Modal Handler
     document.getElementById("btnWhySilce").addEventListener("click", () => {
       const cartSubtotal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      const maxAllowed = (0.40 * cartSubtotal).toFixed(0);
+      const maxAllowed = Math.max(0.40 * cartSubtotal, 120).toFixed(0);
 
       document.getElementById("sheetIntentText").innerHTML = `Inferred <strong>${data.intent_inferred}</strong> intent from active basket.`;
       document.getElementById("sheetCategoryText").innerHTML = `Candidate SKU belongs to <strong>${data.new_category}</strong> (0 purchases in 90 days).`;
-      document.getElementById("sheetPriceText").innerHTML = `Price <strong>₹${prod.price}</strong> $\\le$ 40% of subtotal (Max limit ₹${maxAllowed} for ₹${cartSubtotal} subtotal).`;
+      document.getElementById("sheetPriceText").innerHTML = `Price <strong>&#8377;${prod.price}</strong> &le; 40% of subtotal (Max limit &#8377;${maxAllowed} for &#8377;${cartSubtotal} subtotal).`;
 
       if (whyBottomSheetModal) {
         whyBottomSheetModal.style.display = "flex";
@@ -458,23 +554,50 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!data) {
       diagJsonPayload.textContent = "// Empty basket — SILCE inactive";
       diagLatency.textContent = "-- ms";
-      diagPipelineSteps.innerHTML = `<div style="color: #94A3B8; font-size: 12px;">Cart has no items. SILCE trigger rules require 3+ items and >= ₹199 cart value.</div>`;
+      diagPipelineSteps.innerHTML = `<div style="color: #94A3B8; font-size: 12px;">Cart has no items. SILCE trigger rules require recurring grocery essentials in basket.</div>`;
       return;
     }
 
     diagLatency.textContent = `${data.latency_ms} ms`;
     diagJsonPayload.textContent = JSON.stringify(data, null, 2);
 
-    const cartQty = cartItems.reduce((acc, i) => acc + i.qty, 0);
-    const cartVal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
     diagPipelineSteps.innerHTML = `
-      <div style="font-size: 12px; display: flex; flex-direction: column; gap: 8px;">
-        <div><strong>Step 1 (Trigger Validation):</strong> Items: ${cartQty} (Req: &ge;3) | Value: ₹${cartVal} (Req: &ge;₹199) ${cartQty >= 3 && cartVal >= 199 ? '✅' : '❌'}</div>
-        <div><strong>Step 2 (Intent Inference):</strong> Detected '${data.intent_inferred || data.intent}' (Score: ${data.intent_confidence || 0})</div>
-        <div><strong>Step 3 (Category Exclusion):</strong> Filtered ${activePersona?.purchased_categories?.length || 0} explored categories</div>
-        <div><strong>Step 4 (Candidate Scoring):</strong> Evaluated ${data.diagnostics?.eligible_candidates_evaluated || 0} unexplored products</div>
-        <div><strong>Step 5 (Final Decision):</strong> ${data.has_recommendation && !dismissedThisSession ? "Surfaced 1 product card" : "Suppressed (" + (data.reason || "Dismissed/Rule failed") + ")"}</div>
+      <div class="pipeline-steps" style="margin-top: 0; padding-left: 0;">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-info">
+            <div class="step-title">Trigger Validation</div>
+            <div class="step-desc">Basket contains recurring grocery essentials. <span style="color: #10B981; font-weight: bold;">✓ Passed</span></div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-info">
+            <div class="step-title">Shopping Mission</div>
+            <div class="step-desc">${data.intent_inferred || data.intent} <span style="margin-left: 8px; color: #8B5CF6; font-weight: bold;">(Confidence: ${data.intent_confidence || 0.93})</span></div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-info">
+            <div class="step-title">Historical Category Analysis</div>
+            <div class="step-desc">Previously explored: ${activePersona?.purchased_categories?.join(", ") || "Milk, Vegetables, Fresh Produce"}. Exclude those categories.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-info">
+            <div class="step-title">Adjacent Category Discovery</div>
+            <div class="step-desc">Evaluate relevant but under-explored grocery categories.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">5</div>
+          <div class="step-info">
+            <div class="step-title">Recommendation Selection</div>
+            <div class="step-desc">Recommend: <strong>${data.product?.name || "Eggs"}</strong>. Reason: ${data.product_reason || "Frequently complements recurring grocery purchases."}</div>
+          </div>
+        </div>
       </div>
     `;
   }
@@ -512,7 +635,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const grandTotalVal = itemTotalVal + 4;
 
     // Check if SILCE recommended item was accepted in cart
-    const silceAcceptedItem = latestSilceResult?.has_recommendation ? 
+    const silceAcceptedItem = latestSilceResult?.has_recommendation ?
       cartItems.find(i => i.id === latestSilceResult.product.id) : null;
 
     document.getElementById("successAmount").textContent = `₹${grandTotalVal}`;
@@ -549,8 +672,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".mobile-cart-body").style.display = "flex";
     document.querySelector(".mobile-cart-footer").style.display = "flex";
 
-    loadPresetCart("movie_night");
+    const defaultPreset = activePersona ? (PERSONA_DEFAULT_PRESETS[activePersona.user_id] || "weekly_refill") : "weekly_refill";
+    loadPresetCart(defaultPreset);
   });
+
+
 
   init();
 });

@@ -15,11 +15,11 @@
   --color-brand-green-tint:  #ECFDF5;
 
   /* Surface Colors */
-  --color-bg-page:           #F4F6F8;
+  --color-bg-page:           #F3F4F7;
   --color-bg-card:           #FFFFFF;
   --color-bg-input:          #1E293B;
   --color-bg-header:         #0F172A;
-  --color-bg-app-mobile:     #F4F6F8;
+  --color-bg-app-mobile:     #F3F4F7;
 
   /* Text Hierarchy */
   --color-text-primary:      #0F172A;
@@ -404,6 +404,28 @@ body {
   color: #047857;
 }
 
+.btn-toggle-presets {
+  background: none;
+  border: 1.5px solid var(--color-border-light);
+  color: var(--color-brand-green);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 11.5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  transition: all 0.15s ease;
+  font-family: var(--font-body);
+  outline: none;
+}
+
+.btn-toggle-presets:hover {
+  background: var(--color-brand-green-light);
+  border-color: var(--color-brand-green);
+}
+
 /* ── 9. Left Panel: Catalog Quick Add ──────────────────────── */
 .catalog-quick-add {
   display: flex;
@@ -604,7 +626,7 @@ body {
 /* ── The Screen (inner frame) ───────────────────────────────── */
 .mobile-frame {
   width: 100%;           /* 360px (386 - 13px×2 padding) */
-  height: 708px;         /* → ratio 360:708 ≈ 1:1.97 ≈ 1:2 */
+  height: 790px;         /* → ratio 360:790 ≈ 1:2.19 (iPhone 14/15 aspect) */
   display: flex;
   flex-direction: column;
   background: var(--color-bg-card);
@@ -653,10 +675,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--color-brand-yellow);
+  background: #ffffff;
   /* Extra top padding clears dynamic island (30px island + 10px top + 6px gap = 46px) */
-  padding: 48px 14px 10px;
-  border-bottom: 1px solid #E5B50F;
+  padding: 48px 14px 12px;
+  border-bottom: 1px solid #f1f5f9;
   flex-shrink: 0;
 }
 
@@ -664,64 +686,71 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
 }
 
 .back-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  font-size: 20px;
   font-weight: 800;
   color: #121417;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   line-height: 1;
-  padding: 2px;
 }
 
 .header-brand-title {
   font-family: var(--font-heading);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
-  color: #121417;
-  letter-spacing: -0.2px;
+  color: #1e293b;
+  flex: 1;
+  margin-left: 10px;
 }
 
 .header-right-actions {
-  font-size: 15px;
-  font-weight: 800;
-  color: #121417;
-  cursor: pointer;
-  line-height: 1;
-}
-
-.header-address-bar {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
 }
 
-.eta-pill {
-  display: inline-flex;
+.header-circle-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  font-size: 12px;
+  display: flex;
   align-items: center;
-  gap: 3px;
-  background: #121417;
-  color: var(--color-brand-yellow);
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 9.5px;
-  padding: 3px 8px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.4px;
-  white-space: nowrap;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
 }
 
-.delivery-address {
-  font-size: 11px;
+.header-pill-btn {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  font-size: 12px;
   font-weight: 700;
-  color: #121417;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  outline: none;
+}
+
+.share-btn-icon {
+  font-size: 12px;
 }
 
 /* ── 10b. Mobile Cart Body (scrollable) ────────────────────── */
@@ -731,7 +760,7 @@ body {
   background: var(--color-bg-app-mobile);
   padding: 12px 13px;
   /* Extra bottom padding so bill details scroll clear of sticky footer */
-  padding-bottom: 100px;
+  padding-bottom: 160px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -743,6 +772,41 @@ body {
 .mobile-cart-body::-webkit-scrollbar-thumb {
   background: var(--color-border-medium);
   border-radius: var(--radius-xs);
+}
+
+/* ── 10b-1. Delivery ETA Card ──────────────────────────────── */
+.delivery-eta-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-xs);
+  flex-shrink: 0;
+}
+
+.delivery-eta-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.delivery-eta-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.delivery-eta-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.delivery-eta-sub {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 1px;
 }
 
 /* ── 10c. Savings Banner ────────────────────────────────────── */
@@ -803,8 +867,9 @@ body {
 .cart-item-card {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom: 1px solid #F1F5F9;
 }
 
@@ -851,7 +916,24 @@ body {
   margin-bottom: 2px;
 }
 
-.cart-item-price {
+.cart-item-wishlist {
+  font-size: 10.5px;
+  color: var(--color-text-muted);
+  text-decoration: underline dashed;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.cart-item-right-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.cart-item-price-tag {
   font-size: 13px;
   font-weight: 800;
   color: var(--color-text-primary);
@@ -861,35 +943,33 @@ body {
 .cart-qty-ctrl {
   display: flex;
   align-items: center;
-  border: 1.5px solid #10B981;
-  background: var(--color-bg-card);
+  background: var(--color-brand-green);
   border-radius: var(--radius-sm);
   overflow: hidden;
   flex-shrink: 0;
-  box-shadow: var(--shadow-xs);
 }
 
 .qty-btn {
   background: none;
   border: none;
-  color: #10B981;
+  color: #ffffff;
   font-weight: 800;
-  padding: 5px 9px;
+  padding: 4px 10px;
   font-size: 14px;
-  line-height: 1;
+  line-height: 1.1;
   cursor: pointer;
   transition: background 0.12s ease;
   font-family: var(--font-body);
 }
 
-.qty-btn:hover { background: #F0FDF4; }
+.qty-btn:hover { background: rgba(255, 255, 255, 0.12); }
 
 .qty-val {
   font-size: 12px;
   font-weight: 800;
-  color: #10B981;
-  padding: 0 5px;
-  min-width: 18px;
+  color: #ffffff;
+  padding: 0 4px;
+  min-width: 16px;
   text-align: center;
 }
 
@@ -1057,24 +1137,25 @@ body {
 }
 
 .btn-silce-add {
-  background: var(--color-brand-green);
-  color: var(--color-text-inverse);
-  border: none;
-  padding: 8px 13px;
+  background: #ffffff;
+  color: var(--color-brand-green);
+  border: 1px solid var(--color-brand-green);
+  padding: 6px 12px;
   border-radius: var(--radius-sm);
   font-weight: 800;
-  font-size: 12px;
+  font-size: 11px;
   cursor: pointer;
   transition: all 0.18s ease;
   white-space: nowrap;
   flex-shrink: 0;
   font-family: var(--font-body);
-  box-shadow: 0 2px 6px rgba(12, 131, 31, 0.22);
 }
 
-.btn-silce-add:hover { background: var(--color-brand-green-dark); }
+.btn-silce-add:hover { background: var(--color-brand-green-light); }
 .btn-silce-add.added {
   background: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #ffffff !important;
   pointer-events: none;
 }
 
@@ -1124,44 +1205,155 @@ body {
   position: sticky;
   bottom: 0;
   z-index: 40;
-  background: var(--color-bg-card);
-  padding: 10px 12px;
-  border-top: 1px solid var(--color-border-light);
-  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.07);
+  background: #ffffff;
+  padding: 12px 14px 16px;
+  border-top: 1px solid #e2e8f0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
-.pay-method {
+.footer-address-bar {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   font-size: 11px;
-  font-weight: 600;
+}
+
+.address-icon-wrap {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.address-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.address-title {
+  font-size: 11.5px;
+  color: var(--color-text-primary);
+}
+
+.address-sub {
   color: var(--color-text-muted);
+}
+
+.address-dist {
+  font-weight: 600;
+  font-size: 10px;
+  color: #ef4444;
+}
+
+.btn-change-address {
+  background: none;
+  border: none;
+  color: var(--color-brand-green);
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0;
+  margin-top: 1px;
+}
+
+.footer-separator {
+  width: 100%;
+  height: 1px;
+  background: #f1f5f9;
+}
+
+.footer-payment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.pay-method-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pay-using-header {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--color-text-primary);
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.pay-visa-badge {
+  background: #1e3a8a;
+  color: #ffffff;
+  padding: 1px 4px;
+  font-size: 8px;
+  font-weight: 800;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+
+.pay-card-details {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
 }
 
 .btn-place-order {
   background: var(--color-brand-green);
   color: var(--color-text-inverse);
   border: none;
-  padding: 13px 14px;
+  padding: 8px 16px;
   border-radius: var(--radius-md);
-  font-weight: 800;
-  font-size: 14px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: background 0.15s ease;
   font-family: var(--font-body);
-  width: 100%;
+  flex: 1;
+  max-width: 58%;
+  gap: 12px;
+}
+
+.btn-total-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+
+#btnPayAmount {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.btn-total-label {
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0.85;
+  letter-spacing: 0.5px;
+}
+
+.btn-action-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.btn-arrow {
+  font-size: 12px;
 }
 
 .btn-place-order:hover { background: var(--color-brand-green-dark); }
-.btn-place-order .arrow { font-size: 16px; }
 
 /* ── 10j. Bottom Sheet Modal ───────────────────────────────── */
 .bottom-sheet-backdrop {

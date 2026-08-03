@@ -5,56 +5,53 @@
     "monthly_orders": 8,
     "segment": "High-Frequency Routine Shopper",
     "purchased_categories": [
-      "Dairy, Bread & Eggs",
-      "Snacks & Munchies",
-      "Soft Drinks & Juices"
+      "Milk",
+      "Vegetables",
+      "Fresh Produce"
     ],
     "unexplored_categories": [
-      "Home & Kitchen",
-      "Personal Care",
-      "Pet Care",
-      "Baby Care",
-      "Electronics & Appliances",
-      "Toys & Games"
+      "Eggs",
+      "Dairy Complements",
+      "Breakfast Essentials",
+      "Bakery",
+      "Healthy Snacks"
     ],
-    "archetype_note": "Buys groceries 2x/week. Never explored Home & Kitchen or Personal Care on Blinkit."
+    "archetype_note": "Buys milk and fresh vegetables weekly. Never explored adjacent categories like Eggs or Bakery."
   },
   {
-    "user_id": "user_pet_owner_potential",
-    "name": "Rohan Mehta (Weekend Snacker & Pet Parent)",
-    "monthly_orders": 6,
-    "segment": "High-Frequency Snack Shopper",
+    "user_id": "user_interview_prep",
+    "name": "Vikram Malhotra (Daily Breakfast Shopper)",
+    "monthly_orders": 5,
+    "segment": "Daily Routine Shopper",
     "purchased_categories": [
-      "Snacks & Munchies",
-      "Soft Drinks & Juices",
-      "Ice Creams & Frozen Desserts"
+      "Milk",
+      "Bakery"
     ],
     "unexplored_categories": [
-      "Pet Care",
-      "Home & Kitchen",
-      "Personal Care",
-      "Baby Care",
-      "Electronics & Appliances"
+      "Eggs",
+      "Dairy Complements",
+      "Healthy Snacks",
+      "Fresh Produce",
+      "Vegetables"
     ],
-    "archetype_note": "Regularly orders late night snacks. Has a dog at home but buys pet food on external e-commerce sites."
+    "archetype_note": "Orders milk and bread daily for breakfast. Has never purchased eggs or fresh vegetables."
   },
   {
-    "user_id": "user_work_from_home",
-    "name": "Ananya Roy (WFH Professional)",
-    "monthly_orders": 12,
-    "segment": "Power User (Low Category Diversity)",
+    "user_id": "user_party_recovery",
+    "name": "Kabir Verma (Healthy Diet Planner)",
+    "monthly_orders": 9,
+    "segment": "Organic Grocery Shopper",
     "purchased_categories": [
-      "Dairy, Bread & Eggs",
-      "Tea, Coffee & Health Drinks",
-      "Snacks & Munchies"
+      "Vegetables",
+      "Fresh Produce",
+      "Healthy Snacks"
     ],
     "unexplored_categories": [
-      "Electronics & Appliances",
-      "Personal Care",
-      "Home & Kitchen",
-      "Toys & Games",
-      "Pet Care"
+      "Milk",
+      "Eggs",
+      "Bakery",
+      "Dairy Complements"
     ],
-    "archetype_note": "Orders morning milk, tea, and quick snacks daily. Has never explored Electronics or Desk Accessories."
+    "archetype_note": "Orders fresh vegetables and healthy snacks regularly. Has never bought dairy or eggs."
   }
 ]

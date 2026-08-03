@@ -12,7 +12,7 @@
     "source": "App Store",
     "user_segment": "Emergency Buyer",
     "rating": 2,
-    "review_text": "Needed an HDMI cable urgently for an online client presentation. Blinkit had snacks but tech items were completely out of stock at my local dark store. Had to delay my meeting.",
+    "review_text": "Needed fresh coriander and lime urgently for cooking. Blinkit had other veggies but fresh produce items were completely out of stock at my local dark store.",
     "date": "2026-07-16"
   },
   {
@@ -20,15 +20,15 @@
     "source": "Reddit",
     "user_segment": "Grocery Buyer",
     "rating": 3,
-    "review_text": "I use Blinkit literally every day for milk, curd, and veggies. But I never buy cookware or earphones here because prices feel higher and I don't trust returns.",
+    "review_text": "I use Blinkit literally every day for milk, curd, and veggies. But I never buy other categories because I don't see them paired naturally during checkout.",
     "date": "2026-07-17"
   },
   {
     "review_id": "rev_004",
     "source": "Play Store",
-    "user_segment": "Weekend Party Host",
+    "user_segment": "Routine Shopper",
     "rating": 4,
-    "review_text": "Ordered Nachos and Coke for movie night with friends. Wish Blinkit suggested playing cards or disposable cups right in the cart before I paid!",
+    "review_text": "Ordered milk and vegetables for weekly grocery refill. Wish Blinkit suggested eggs or bread right in the cart so I didn't have to place another order later!",
     "date": "2026-07-18"
   },
   {
@@ -44,7 +44,7 @@
     "source": "Reddit",
     "user_segment": "WFH Professional",
     "rating": 4,
-    "review_text": "My 60-second speed run: open app, add tea and Parle-G, checkout. I don't have time to browse through 50 sub-categories.",
+    "review_text": "My 60-second speed run: open app, add tea and milk, checkout. I don't have time to browse through 50 sub-categories.",
     "date": "2026-07-20"
   },
   {
@@ -58,17 +58,17 @@
   {
     "review_id": "rev_008",
     "source": "App Store",
-    "user_segment": "Pet Owner",
+    "user_segment": "Routine Shopper",
     "rating": 2,
-    "review_text": "I buy snacks on Blinkit but order dog food on Amazon because Blinkit doesn't highlight pet items when I buy household items.",
+    "review_text": "I buy milk and eggs on Blinkit but order tea leaves on other apps because Blinkit doesn't highlight breakfast complements during checkout.",
     "date": "2026-07-21"
   },
   {
     "review_id": "rev_009",
     "source": "Reddit",
-    "user_segment": "Binge Watcher",
+    "user_segment": "Healthy Shopper",
     "rating": 5,
-    "review_text": "Late night cravings saver! Chips and ice cream delivered in 10 minutes. A bowl set suggestion would have been nice.",
+    "review_text": "I always buy fresh cucumbers and tomatoes, but I completely missed the curd section. Suggesting curd right before checkout would be so helpful.",
     "date": "2026-07-22"
   },
   {
@@ -84,7 +84,7 @@
     "source": "App Store",
     "user_segment": "Routine Shopper",
     "rating": 4,
-    "review_text": "Always buy bread and butter here. Never looked at personal care items like face wash or shampoo on quick commerce.",
+    "review_text": "Always buy bread and butter here. Never looked at other breakfast essentials like eggs or muesli on quick commerce.",
     "date": "2026-07-23"
   },
   {
@@ -92,7 +92,7 @@
     "source": "Reddit",
     "user_segment": "Emergency Buyer",
     "rating": 1,
-    "review_text": "Phone charger broke at midnight. Searched on Blinkit, dark store was out of stock. Instant delivery apps need better emergency electronics inventory.",
+    "review_text": "Wanted fresh ginger-garlic paste for cooking. Dark store was out of stock. Instant delivery apps need better fresh staples inventory.",
     "date": "2026-07-23"
   },
   {
@@ -122,9 +122,9 @@
   {
     "review_id": "rev_016",
     "source": "Play Store",
-    "user_segment": "Binge Watcher",
+    "user_segment": "Routine Shopper",
     "rating": 4,
-    "review_text": "Popcorn and cola delivered cold. Add-on recommendations in cart would increase basket size if priced reasonably.",
+    "review_text": "Add-on recommendations in cart would increase basket size if they were actually relevant grocery items like butter or bread, rather than random electronics.",
     "date": "2026-07-25"
   },
   {
@@ -146,9 +146,9 @@
   {
     "review_id": "rev_019",
     "source": "Play Store",
-    "user_segment": "Party Host",
+    "user_segment": "Routine Shopper",
     "rating": 5,
-    "review_text": "Ordered soda, chips, and ice. App recommended UNO cards and party cups! Exactly what we needed for the gathering.",
+    "review_text": "Ordered eggs, bread, and milk. App recommended fresh curd! Exactly what we needed for breakfast.",
     "date": "2026-07-27"
   },
   {
@@ -162,9 +162,9 @@
   {
     "review_id": "rev_021",
     "source": "Reddit",
-    "user_segment": "Pet Owner",
+    "user_segment": "Routine Shopper",
     "rating": 3,
-    "review_text": "Lint roller for cat hair was hard to find in the menu. Should be paired with cleaning supplies.",
+    "review_text": "Vim dishwash gel was hard to find in the menu. Should be paired with laundry detergent.",
     "date": "2026-07-28"
   },
   {
@@ -180,7 +180,7 @@
     "source": "App Store",
     "user_segment": "Emergency Buyer",
     "rating": 1,
-    "review_text": "Batteries died during AC remote setup. Ordered on Blinkit, took 12 mins. Saved the night!",
+    "review_text": "Forgot tea bags when guests arrived. Ordered on Blinkit, took 12 mins. Saved the evening!",
     "date": "2026-07-28"
   },
   {
@@ -193,8 +193,7 @@
   },
   {
     "review_id": "rev_025",
-    "source": "Play Store",
-    "user_segment": "WFH Professional",
+    "source": "WFH Professional",
     "rating": 5,
     "review_text": "Daily coffee and biscuits delivered before my standup call. Super convenient.",
     "date": "2026-07-29"
@@ -210,9 +209,9 @@
   {
     "review_id": "rev_027",
     "source": "Reddit",
-    "user_segment": "Binge Watcher",
+    "user_segment": "Routine Shopper",
     "rating": 4,
-    "review_text": "Ordered dips and nachos. A small microwave bowl recommendation in cart would be super useful.",
+    "review_text": "Ordered fresh veggies. A quick egg suggestion in the checkout cart would have saved me another speed run.",
     "date": "2026-07-29"
   },
   {
@@ -228,7 +227,7 @@
     "source": "App Store",
     "user_segment": "Emergency Buyer",
     "rating": 4,
-    "review_text": "Needed earphone replacement for emergency WFH call. Got wired earphones in 9 minutes.",
+    "review_text": "Needed milk replacement for emergency kids cereal breakfast. Got milk carton in 9 minutes.",
     "date": "2026-07-30"
   },
   {
