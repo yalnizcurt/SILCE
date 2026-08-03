@@ -895,5 +895,38 @@
     "tags": ["tie", "silk tie", "formal tie", "formal accessories", "interview"],
     "life_contexts": ["Interview Preparation"],
     "in_stock": true
+  },
+  {
+    "id": "prod_508",
+    "name": "Park Avenue Formal Black Leather Belt",
+    "category": "Formal Belts",
+    "subcategory": "Belts",
+    "price": 99,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/c0296df8-61e0-435e-91f1-a6bf9c5582bf.png",
+    "tags": ["belt", "leather belt", "formal belt", "accessories", "interview"],
+    "life_contexts": ["Interview Preparation"],
+    "in_stock": true
+  },
+  {
+    "id": "prod_509",
+    "name": "Gillette Foamy Lemon Shaving Foam (200g)",
+    "category": "Shaving Needs",
+    "subcategory": "Shaving Care",
+    "price": 85,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1772776645620-701.png?dpr_multiplier=3.00",
+    "tags": ["shaving foam", "shaving cream", "shaving", "shaving needs", "grooming", "interview"],
+    "life_contexts": ["Interview Preparation"],
+    "in_stock": true
+  },
+  {
+    "id": "prod_510",
+    "name": "Park Avenue Classic Silver Cufflinks Set",
+    "category": "Cufflinks & Pins",
+    "subcategory": "Accessories",
+    "price": 95,
+    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/rc-upload-1769961800389-314.png",
+    "tags": ["cufflinks", "cuff links", "tie pin", "formal", "interview"],
+    "life_contexts": ["Interview Preparation"],
+    "in_stock": true
   }
 ]

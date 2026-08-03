@@ -8,7 +8,7 @@ logger = logging.getLogger("SILCE.IntentEngine")
 
 KNOWN_INTENTS = {
     "Interview Preparation": {
-        "keywords": ["polish", "shoe", "deodorant", "nivea", "grooming", "interview"],
+        "keywords": ["polish", "shoe", "deodorant", "nivea", "grooming", "interview", "belt", "shaving", "cufflinks", "cuff links", "tie"],
         "min_matches": 1,
         "priority": 4.0,
     },

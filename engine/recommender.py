@@ -122,6 +122,9 @@ for _cat in OFFICE:             _DOMAIN_MAP[_cat] = "office"
 for _cat in TOBACCO:            _DOMAIN_MAP[_cat] = "tobacco"
 _DOMAIN_MAP["Shoe Care"] = "shoe_care"
 _DOMAIN_MAP["Formal Accessories"] = "formal_accessories"
+_DOMAIN_MAP["Formal Belts"] = "formal_belts"
+_DOMAIN_MAP["Shaving Needs"] = "shaving_needs"
+_DOMAIN_MAP["Cufflinks & Pins"] = "cufflinks"
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -170,6 +173,9 @@ CATALOG_TO_TAXONOMY: Dict[str, str] = {
     # FASHION & ACCESSORIES
     "Shoe Care":                   "Shoe Care",
     "Formal Accessories":          "Formal Accessories",
+    "Formal Belts":                "Formal Belts",
+    "Shaving Needs":               "Shaving Needs",
+    "Cufflinks & Pins":            "Cufflinks & Pins",
     # PET CARE
     "Pet Care":                    "Pet Care",
     # ENTERTAINMENT
@@ -259,9 +265,12 @@ MISSION_ADJACENT_CATEGORIES: Dict[str, List[str]] = {
         "Pain Relief",
     ],
 
-    # Scenario 4: Interview Preparation → Formal Accessories (Silk Tie)
+    # Scenario 4: Interview Preparation → Formal Accessories / Belts / Shaving Needs / Cufflinks
     "Interview Preparation": [
         "Formal Accessories",
+        "Formal Belts",
+        "Shaving Needs",
+        "Cufflinks & Pins",
     ],
 }
 
@@ -272,7 +281,10 @@ CATEGORY_REPRESENTATIVE: Dict[str, List[str]] = {
     "Chocolates & Desserts":  ["prod_305"],               # Bournville 50% Dark Chocolate ₹50
     "Recovery & Wellness":    ["prod_605", "prod_601"],   # Saridon ₹42, Crocin ₹30
     "Pain Relief":            ["prod_605", "prod_601"],   # Saridon ₹42, Crocin ₹30
-    "Formal Accessories":     ["prod_507"],               # Park Avenue Formal Navy Silk Tie ₹199
+    "Formal Accessories":     ["prod_507"],               # Park Avenue Formal Navy Silk Tie ₹60
+    "Formal Belts":           ["prod_508"],               # Park Avenue Formal Black Leather Belt ₹99
+    "Shaving Needs":          ["prod_509"],               # Gillette Foamy Shaving Foam ₹85
+    "Cufflinks & Pins":       ["prod_510"],               # Park Avenue Classic Silver Cufflinks ₹95
     "Home Cleaning":          ["prod_702"],               # Lizol ₹45
     "Kitchen Cleaning":       ["prod_812"],               # Vim Bar ₹20
     "Oral Care":              ["prod_809"],               # Colgate ₹30
@@ -305,6 +317,15 @@ def get_mission_observation(intent_name: str) -> str:
     return "Noticed something for your cart."
 
 def generate_explanation(intent_name: str, silce_cat: str, cart_items: List[Dict[str, Any]]) -> str:
+    if intent_name == "Interview Preparation":
+        if silce_cat == "Formal Belts":
+            return "A sleek matching belt completes your formal interview attire."
+        elif silce_cat == "Shaving Needs":
+            return "A clean, sharp shave ensures a crisp, professional presentation."
+        elif silce_cat == "Cufflinks & Pins":
+            return "Small formal accents make a lasting impression at interviews."
+        elif silce_cat == "Formal Accessories":
+            return "A polished look is often in the little details."
     item = MISSION_COMPANION_COPY.get(intent_name)
     if item:
         return item["suggestion"]
@@ -332,7 +353,8 @@ BRANDS: Dict[str, str] = {
     "prod_810": "Limcee",      "prod_811": "Bicycle",       "prod_812": "Vim",
     "prod_605": "Saridon",     "prod_901": "Pedigree",      "prod_305": "Cadbury",
     "prod_606": "Whisper",     "prod_307": "Kinley",        "prod_505": "Cherry Blossom",
-    "prod_506": "Nivea",       "prod_507": "Park Avenue",
+    "prod_506": "Nivea",       "prod_507": "Park Avenue",   "prod_508": "Park Avenue",
+    "prod_509": "Gillette",    "prod_510": "Park Avenue",
 }
 
 RATINGS: Dict[str, str] = {
@@ -349,7 +371,7 @@ RATINGS: Dict[str, str] = {
     "prod_808": "4.6", "prod_809": "4.8", "prod_810": "4.7", "prod_811": "4.5",
     "prod_812": "4.8", "prod_605": "4.8", "prod_901": "4.8", "prod_305": "4.9",
     "prod_606": "4.9", "prod_307": "4.7", "prod_505": "4.7", "prod_506": "4.8",
-    "prod_507": "4.9",
+    "prod_507": "4.9", "prod_508": "4.8", "prod_509": "4.9", "prod_510": "4.7",
 }
 
 
