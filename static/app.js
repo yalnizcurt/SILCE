@@ -266,9 +266,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderCartItems() {
     const btnPlaceOrder = document.getElementById("btnPlaceOrder");
-    const billHandlingFee = document.getElementById("billHandlingFee");
     const totalItemQty = cartItems.reduce((acc, i) => acc + i.qty, 0);
-    cartCount.textContent = totalItemQty;
+    if (cartCount) {
+      cartCount.textContent = totalItemQty;
+    }
 
     const deliveryItemCount = document.getElementById("deliveryItemCount");
     if (deliveryItemCount) {
