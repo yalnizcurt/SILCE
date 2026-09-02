@@ -1,57 +1,184 @@
 [
   {
-    "user_id": "user_groceries_only",
-    "name": "Priya Sharma (Habitual Grocery Buyer)",
-    "monthly_orders": 8,
-    "segment": "High-Frequency Routine Shopper",
-    "purchased_categories": [
-      "Milk",
-      "Vegetables",
-      "Fresh Produce"
+    "user_id": "USER_ARJUN_01",
+    "name": "Arjun Sharma",
+    "type": "returning_high_intent",
+    "badge": "Returning Customer",
+    "summary": "3 Past Orders • High-Intent Evaluator (Dwell > 10s & Repeat Views)",
+    "body_profile": {
+      "height": "5'9\"",
+      "weight": "68kg",
+      "frame": "Athletic",
+      "benchmark_sizes": { "Zara": "M", "Levi's": "32", "H&M": "M" }
+    },
+    "past_purchases_closet": [
+      {
+        "id": "OWNED_SKU_01",
+        "title": "Levi's 511 Slim Fit Dark Indigo Jeans",
+        "brand": "Levi's",
+        "purchase_date": "2025-11-10",
+        "category": "Bottomwear - Jeans",
+        "color": "Dark Indigo",
+        "image_url": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80"
+      },
+      {
+        "id": "OWNED_SKU_02",
+        "title": "HRX Off-White Chunky Street Sneakers",
+        "brand": "HRX",
+        "purchase_date": "2026-01-15",
+        "category": "Footwear - Sneakers",
+        "color": "Off-White",
+        "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&q=80"
+      },
+      {
+        "id": "OWNED_SKU_03",
+        "title": "Highlander Solid Olive Slim Chinos",
+        "brand": "Highlander",
+        "purchase_date": "2025-08-22",
+        "category": "Bottomwear - Trousers",
+        "color": "Olive Green",
+        "image_url": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=500&q=80"
+      }
     ],
-    "unexplored_categories": [
-      "Eggs",
-      "Dairy Complements",
-      "Breakfast Essentials",
-      "Bakery",
-      "Healthy Snacks"
+    "wishlist": [
+      "WISH_SKU_101",
+      "WISH_SKU_102",
+      "WISH_SKU_103",
+      "WISH_SKU_104",
+      "WISH_SKU_105",
+      "WISH_SKU_106",
+      "WISH_SKU_107",
+      "WISH_SKU_108",
+      "WISH_SKU_109",
+      "WISH_SKU_110",
+      "WISH_SKU_111",
+      "WISH_SKU_112",
+      "WISH_SKU_113",
+      "WISH_SKU_114",
+      "WISH_SKU_115"
     ],
-    "archetype_note": "Buys milk and fresh vegetables weekly. Never explored adjacent categories like Eggs or Bakery."
+    "intent_signals": {
+      "WISH_SKU_101": { "repeat_views": 3, "dwell_seconds": 18, "explicit_intent": true },
+      "WISH_SKU_102": { "repeat_views": 2, "dwell_seconds": 14, "explicit_intent": true },
+      "WISH_SKU_103": { "repeat_views": 1, "dwell_seconds": 4, "explicit_intent": false },
+      "WISH_SKU_104": { "repeat_views": 2, "dwell_seconds": 16, "explicit_intent": true },
+      "WISH_SKU_105": { "repeat_views": 1, "dwell_seconds": 5, "explicit_intent": false },
+      "WISH_SKU_106": { "repeat_views": 3, "dwell_seconds": 22, "explicit_intent": true },
+      "WISH_SKU_107": { "repeat_views": 1, "dwell_seconds": 6, "explicit_intent": false },
+      "WISH_SKU_108": { "repeat_views": 3, "dwell_seconds": 19, "explicit_intent": true },
+      "WISH_SKU_109": { "repeat_views": 1, "dwell_seconds": 2, "explicit_intent": false },
+      "WISH_SKU_110": { "repeat_views": 2, "dwell_seconds": 12, "explicit_intent": true },
+      "WISH_SKU_111": { "repeat_views": 3, "dwell_seconds": 20, "explicit_intent": true },
+      "WISH_SKU_112": { "repeat_views": 1, "dwell_seconds": 5, "explicit_intent": false },
+      "WISH_SKU_113": { "repeat_views": 2, "dwell_seconds": 15, "explicit_intent": true },
+      "WISH_SKU_114": { "repeat_views": 1, "dwell_seconds": 4, "explicit_intent": false },
+      "WISH_SKU_115": { "repeat_views": 2, "dwell_seconds": 11, "explicit_intent": true }
+    }
   },
   {
-    "user_id": "user_interview_prep",
-    "name": "Vikram Malhotra (Daily Breakfast Shopper)",
-    "monthly_orders": 5,
-    "segment": "Daily Routine Shopper",
-    "purchased_categories": [
-      "Milk",
-      "Bakery"
+    "user_id": "USER_ROHAN_02",
+    "name": "Rohan Verma",
+    "type": "cold_start_new_user",
+    "badge": "Cold-Start User",
+    "summary": "0 Past Orders • Demonstrates Adaptive Universal Staples + FitTwin",
+    "body_profile": {
+      "height": "5'11\"",
+      "weight": "75kg",
+      "frame": "Broad / Regular",
+      "benchmark_sizes": { "Zara": "L", "Levi's": "34", "H&M": "L" }
+    },
+    "past_purchases_closet": [],
+    "wishlist": [
+      "WISH_SKU_101",
+      "WISH_SKU_102",
+      "WISH_SKU_103",
+      "WISH_SKU_104",
+      "WISH_SKU_105",
+      "WISH_SKU_106",
+      "WISH_SKU_107",
+      "WISH_SKU_108",
+      "WISH_SKU_109",
+      "WISH_SKU_110",
+      "WISH_SKU_111",
+      "WISH_SKU_112",
+      "WISH_SKU_113",
+      "WISH_SKU_114",
+      "WISH_SKU_115"
     ],
-    "unexplored_categories": [
-      "Eggs",
-      "Dairy Complements",
-      "Healthy Snacks",
-      "Fresh Produce",
-      "Vegetables"
-    ],
-    "archetype_note": "Orders milk and bread daily for breakfast. Has never purchased eggs or fresh vegetables."
+    "intent_signals": {
+      "WISH_SKU_101": { "repeat_views": 3, "dwell_seconds": 17, "explicit_intent": true },
+      "WISH_SKU_102": { "repeat_views": 2, "dwell_seconds": 15, "explicit_intent": true },
+      "WISH_SKU_103": { "repeat_views": 1, "dwell_seconds": 3, "explicit_intent": false },
+      "WISH_SKU_104": { "repeat_views": 1, "dwell_seconds": 4, "explicit_intent": false },
+      "WISH_SKU_105": { "repeat_views": 2, "dwell_seconds": 12, "explicit_intent": true },
+      "WISH_SKU_106": { "repeat_views": 1, "dwell_seconds": 3, "explicit_intent": false },
+      "WISH_SKU_107": { "repeat_views": 2, "dwell_seconds": 14, "explicit_intent": true },
+      "WISH_SKU_108": { "repeat_views": 2, "dwell_seconds": 12, "explicit_intent": true },
+      "WISH_SKU_109": { "repeat_views": 1, "dwell_seconds": 1, "explicit_intent": false },
+      "WISH_SKU_110": { "repeat_views": 1, "dwell_seconds": 5, "explicit_intent": false },
+      "WISH_SKU_111": { "repeat_views": 1, "dwell_seconds": 4, "explicit_intent": false },
+      "WISH_SKU_112": { "repeat_views": 3, "dwell_seconds": 19, "explicit_intent": true },
+      "WISH_SKU_113": { "repeat_views": 1, "dwell_seconds": 5, "explicit_intent": false },
+      "WISH_SKU_114": { "repeat_views": 2, "dwell_seconds": 16, "explicit_intent": true },
+      "WISH_SKU_115": { "repeat_views": 1, "dwell_seconds": 3, "explicit_intent": false }
+    }
   },
   {
-    "user_id": "user_party_recovery",
-    "name": "Kabir Verma (Healthy Diet Planner)",
-    "monthly_orders": 9,
-    "segment": "Organic Grocery Shopper",
-    "purchased_categories": [
-      "Vegetables",
-      "Fresh Produce",
-      "Healthy Snacks"
+    "user_id": "USER_PRIYA_03",
+    "name": "Priya Nair",
+    "type": "passive_moodboarder",
+    "badge": "Passive Moodboarder",
+    "summary": "15 Saved Items • 0 Intent Triggers (Catalog stays non-intrusive & silent)",
+    "body_profile": {
+      "height": "5'6\"",
+      "weight": "54kg",
+      "frame": "Petite / Slim",
+      "benchmark_sizes": { "Zara": "S", "Levi's": "28", "H&M": "S" }
+    },
+    "past_purchases_closet": [
+      {
+        "id": "OWNED_SKU_04",
+        "title": "Mango Solid Off-White Knit Cardigan",
+        "brand": "Mango",
+        "purchase_date": "2025-10-14",
+        "category": "Topwear - Knitwear",
+        "color": "Off-White",
+        "image_url": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&q=80"
+      }
     ],
-    "unexplored_categories": [
-      "Milk",
-      "Eggs",
-      "Bakery",
-      "Dairy Complements"
+    "wishlist": [
+      "WISH_SKU_101",
+      "WISH_SKU_102",
+      "WISH_SKU_103",
+      "WISH_SKU_104",
+      "WISH_SKU_105",
+      "WISH_SKU_106",
+      "WISH_SKU_107",
+      "WISH_SKU_108",
+      "WISH_SKU_109",
+      "WISH_SKU_110",
+      "WISH_SKU_111",
+      "WISH_SKU_112",
+      "WISH_SKU_113",
+      "WISH_SKU_114",
+      "WISH_SKU_115"
     ],
-    "archetype_note": "Orders fresh vegetables and healthy snacks regularly. Has never bought dairy or eggs."
+    "intent_signals": {
+      "WISH_SKU_101": { "repeat_views": 1, "dwell_seconds": 3, "explicit_intent": false },
+      "WISH_SKU_102": { "repeat_views": 1, "dwell_seconds": 2, "explicit_intent": false },
+      "WISH_SKU_103": { "repeat_views": 1, "dwell_seconds": 1, "explicit_intent": false },
+      "WISH_SKU_104": { "repeat_views": 1, "dwell_seconds": 4, "explicit_intent": false },
+      "WISH_SKU_105": { "repeat_views": 1, "dwell_seconds": 2, "explicit_intent": false },
+      "WISH_SKU_106": { "repeat_views": 1, "dwell_seconds": 3, "explicit_intent": false },
+      "WISH_SKU_107": { "repeat_views": 1, "dwell_seconds": 2, "explicit_intent": false },
+      "WISH_SKU_108": { "repeat_views": 1, "dwell_seconds": 1, "explicit_intent": false },
+      "WISH_SKU_109": { "repeat_views": 1, "dwell_seconds": 2, "explicit_intent": false },
+      "WISH_SKU_110": { "repeat_views": 1, "dwell_seconds": 3, "explicit_intent": false },
+      "WISH_SKU_111": { "repeat_views": 1, "dwell_seconds": 2, "explicit_intent": false },
+      "WISH_SKU_112": { "repeat_views": 1, "dwell_seconds": 3, "explicit_intent": false },
+      "WISH_SKU_113": { "repeat_views": 1, "dwell_seconds": 1, "explicit_intent": false },
+      "WISH_SKU_114": { "repeat_views": 1, "dwell_seconds": 2, "explicit_intent": false },
+      "WISH_SKU_115": { "repeat_views": 1, "dwell_seconds": 3, "explicit_intent": false }
+    }
   }
 ]

@@ -1,668 +1,635 @@
-// SILCE Frontend Interactive Logic — Production MVP Spec
+// ==========================================================================
+// MYNTRA STYLEPROOF™ FRONTEND CONTROLLER & END-TO-END CONVERSION FUNNEL
+// ==========================================================================
+
+let appState = {
+  currentView: "wishlist", // "wishlist" | "cart" | "success"
+  currentUserId: "USER_ARJUN_01",
+  personas: [],
+  user: null,
+  catalog: [],
+  wishlist: [],
+  gating: {},
+  isInspectorMode: true,
+  cartItems: [],
+  hasShownCartPopupForSession: false,
+  currentModalSku: null,
+  currentDecision: null,
+  selectedSize: "M"
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+  const inspectorToggle = document.getElementById("inspector-toggle");
+  if (inspectorToggle) {
+    appState.isInspectorMode = inspectorToggle.checked;
+  }
+  loadWishlistData(appState.currentUserId);
+});
 
-  // Application Source of Truth State
-  let personas = [];
-  let catalog = [];
-  let activePersona = null;
-  let cartItems = [];
-  let latestSilceResult = null;
-  let dismissedThisSession = false; // Tracks dismissal in active session
+// --------------------------------------------------------------------------
+// View Routing Architecture
+// --------------------------------------------------------------------------
+function navigateTo(viewName) {
+  appState.currentView = viewName;
 
-  // Per-persona isolated cart store map
-  let personaCarts = {};
-
-  // Preset Default Missions for Personas
-  const PERSONA_DEFAULT_PRESETS = {
-    user_groceries_only: "weekly_household_refill",
-    user_interview_prep: "interview_prep",
-    user_party_recovery: "celebration_party"
+  const views = {
+    wishlist: document.getElementById("wishlist-view"),
+    cart: document.getElementById("cart-view"),
+    success: document.getElementById("success-view")
   };
 
-  const MISSION_PRESETS = [
-    {
-      key: "weekly_household_refill",
-      icon: "🛒",
-      title: "Weekly Household Refill",
-      desc: "Milk, Fresh Vegetables",
-      items: ["prod_104", "prod_112"]
-    },
-    {
-      key: "personal_care_comfort",
-      icon: "🌸",
-      title: "Personal Care & Comfort",
-      desc: "Sanitary Pads, Dustbin Bags",
-      items: ["prod_606", "prod_701"]
-    },
-    {
-      key: "celebration_party",
-      icon: "🎉",
-      title: "Celebration / Party",
-      desc: "Cigarettes, Soda Mixer",
-      items: ["prod_401", "prod_307"]
-    },
-    {
-      key: "interview_prep",
-      icon: "👔",
-      title: "Interview Preparation",
-      desc: "Shoe Polish, Deodorant",
-      items: ["prod_505", "prod_506"]
-    }
-  ];
-
-  const PRESET_CARTS = {};
-  MISSION_PRESETS.forEach(m => {
-    PRESET_CARTS[m.key] = m.items;
+  Object.keys(views).forEach(v => {
+    if (views[v]) views[v].style.display = (v === viewName) ? "flex" : "none";
   });
 
-  // DOM Elements
-  const personaSelect = document.getElementById("personaSelect");
-  const cartItemsList = document.getElementById("cartItemsList");
-  const cartCount = document.getElementById("cartCount");
-  const billItemTotal = document.getElementById("billItemTotal");
-  const billGrandTotal = document.getElementById("billGrandTotal");
-  const btnPayAmount = document.getElementById("btnPayAmount");
-  const silceCardContainer = document.getElementById("silceCardContainer");
-  const catalogQuickAdd = document.getElementById("catalogQuickAdd");
+  const pageTitle = document.getElementById("header-page-title");
+  const itemCount = document.getElementById("wishlist-count-header");
+  const backBtn = document.getElementById("header-back-btn");
 
-  const liveIntentName = document.getElementById("liveIntentName");
-  const liveConfidenceVal = document.getElementById("liveConfidenceVal");
-  const confidenceFill = document.getElementById("confidenceFill");
-  const intentExplanationText = document.getElementById("intentExplanationText");
-
-  // WhyBottomSheet DOM Elements
-  const whyBottomSheetModal = document.getElementById("whyBottomSheetModal");
-  const btnCloseWhySheet = document.getElementById("btnCloseWhySheet");
-
-  if (btnCloseWhySheet && whyBottomSheetModal) {
-    btnCloseWhySheet.addEventListener("click", () => {
-      whyBottomSheetModal.style.display = "none";
-    });
-    whyBottomSheetModal.addEventListener("click", (e) => {
-      if (e.target === whyBottomSheetModal) {
-        whyBottomSheetModal.style.display = "none";
-      }
-    });
+  if (viewName === "wishlist") {
+    if (pageTitle) pageTitle.innerText = "WISHLIST";
+    if (itemCount) itemCount.style.display = "inline";
+    if (backBtn) backBtn.style.visibility = "hidden";
+  } else if (viewName === "cart") {
+    if (pageTitle) pageTitle.innerText = "SHOPPING BAG";
+    if (itemCount) itemCount.style.display = "none";
+    if (backBtn) backBtn.style.visibility = "visible";
+    renderCartView();
+  } else if (viewName === "success") {
+    if (pageTitle) pageTitle.innerText = "ORDER CONFIRMED";
+    if (itemCount) itemCount.style.display = "none";
+    if (backBtn) backBtn.style.visibility = "visible";
   }
 
-  // Navigation Tabs
-  const navBtns = document.querySelectorAll(".nav-btn");
-  const tabContents = document.querySelectorAll(".tab-content");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-  navBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      navBtns.forEach(b => b.classList.remove("active"));
-      tabContents.forEach(c => c.classList.remove("active"));
+// --------------------------------------------------------------------------
+// Data Loading & Persona Harness
+// --------------------------------------------------------------------------
+async function loadWishlistData(userId) {
+  try {
+    const res = await fetch(`/api/wishlist?user_id=${encodeURIComponent(userId)}`);
+    if (!res.ok) throw new Error("Failed to load wishlist data");
+    const data = await res.json();
+    
+    appState.currentUserId = userId;
+    appState.user = data.user;
+    appState.personas = data.personas || [];
+    appState.wishlist = data.wishlist || [];
+    appState.gating = data.gating || {};
+    appState.hasShownCartPopupForSession = false;
+    
+    updatePersonaContextUI(data.user);
+    updateInspectorStats();
+    updateHeaderCount(appState.wishlist.length);
+    renderWishlistGrid();
+  } catch (err) {
+    console.error("Error loading wishlist:", err);
+    showToast("⚠️ Could not load online data, using local fallback");
+  }
+}
 
-      btn.classList.add("active");
-      const tabId = btn.getAttribute("data-tab");
-      document.getElementById(`tab-${tabId}`).classList.add("active");
+function handlePersonaChange(newUserId) {
+  showToast(`Switching to persona: ${newUserId}...`);
+  loadWishlistData(newUserId);
+  navigateTo("wishlist");
+}
 
-      if (tabId === "analytics") {
-        fetchAnalytics();
-      }
-    });
+function toggleInspectorMode(enabled) {
+  appState.isInspectorMode = enabled;
+  const banner = document.getElementById("inspector-explainer-banner");
+  if (banner) {
+    banner.style.display = enabled ? "block" : "none";
+  }
+  renderWishlistGrid();
+  showToast(enabled ? "🔬 PM Inspector Diagnostics: ON" : "PM Inspector: OFF");
+}
+
+function updatePersonaContextUI(user) {
+  if (!user) return;
+
+  const avatar = document.getElementById("persona-avatar");
+  const nameText = document.getElementById("persona-name-text");
+  const badge = document.getElementById("persona-badge");
+  const biometrics = document.getElementById("persona-biometrics-text");
+  const closetCount = document.getElementById("persona-closet-count");
+  const dropdown = document.getElementById("persona-select");
+
+  if (dropdown && dropdown.value !== user.user_id) {
+    dropdown.value = user.user_id;
+  }
+
+  const initials = user.name.split(" ").map(n => n[0]).join("").toUpperCase();
+  if (avatar) avatar.innerText = initials;
+  if (nameText) nameText.innerText = user.name;
+  if (badge) badge.innerText = user.badge || "Active User";
+
+  const bp = user.body_profile || {};
+  const benchmarks = bp.benchmark_sizes || {};
+  const benchStr = Object.entries(benchmarks).map(([k, v]) => `${k}: ${v}`).join(" | ");
+  
+  if (biometrics) {
+    biometrics.innerHTML = `<span>📏 ${bp.height || "5'9\""}</span> • <span>⚖️ ${bp.weight || "68kg"}</span> • <span>🏷️ ${benchStr}</span>`;
+  }
+
+  const ordersCount = user.past_purchases_closet ? user.past_purchases_closet.length : 0;
+  if (closetCount) {
+    closetCount.innerText = ordersCount === 0 ? "0 Orders (Cold Start)" : `${ordersCount} Owned Orders`;
+  }
+}
+
+function updateInspectorStats() {
+  const items = appState.wishlist;
+  const gating = appState.gating;
+
+  let total = items.length;
+  let eligible = 0;
+  let silent = 0;
+  let blocked = 0;
+
+  items.forEach(item => {
+    const gate = gating[item.id];
+    if (gate) {
+      if (gate.category_gate === "BLOCKED") blocked++;
+      else if (gate.is_eligible) eligible++;
+      else silent++;
+    }
   });
 
-  function renderMissionPresets(activePresetKey) {
-    const container = document.getElementById("missionPresetsContainer");
-    if (!container) return;
+  const elTotal = document.getElementById("stat-total-items");
+  const elEligible = document.getElementById("stat-eligible-items");
+  const elSilent = document.getElementById("stat-silent-items");
+  const elBlocked = document.getElementById("stat-blocked-items");
 
-    container.innerHTML = MISSION_PRESETS.map(m => `
-      <button class="preset-btn ${m.key === activePresetKey ? 'active' : ''}" data-preset="${m.key}">
-        <span class="preset-icon">${m.icon}</span>
-        <div class="preset-text-wrap">
-          <span class="preset-title">${m.title}</span>
-          <span class="preset-desc">${m.desc}</span>
-        </div>
-      </button>
-    `).join("");
+  if (elTotal) elTotal.innerText = total;
+  if (elEligible) elEligible.innerText = eligible;
+  if (elSilent) elSilent.innerText = silent;
+  if (elBlocked) elBlocked.innerText = blocked;
+}
 
-    // Wire up event listeners
-    container.querySelectorAll(".preset-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        container.querySelectorAll(".preset-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const presetKey = btn.getAttribute("data-preset");
-        loadPresetCart(presetKey);
-      });
-    });
-  }
+function updateHeaderCount(count) {
+  const el = document.getElementById("wishlist-count-header");
+  if (el) el.innerText = `${count} ${count === 1 ? 'ITEM' : 'ITEMS'}`;
+}
 
-  // Init Data & Application State
-  async function init() {
-    try {
-      const [personasRes, catalogRes] = await Promise.all([
-        fetch("/api/personas").then(r => r.json()),
-        fetch("/api/catalog").then(r => r.json())
-      ]);
+// --------------------------------------------------------------------------
+// Wishlist Grid Rendering
+// --------------------------------------------------------------------------
+function renderWishlistGrid() {
+  const grid = document.getElementById("wishlist-grid");
+  if (!grid) return;
 
-      personas = personasRes;
-      catalog = catalogRes;
+  const items = appState.wishlist;
+  const gating = appState.gating;
 
-      // Populate Personas Select
-      personaSelect.innerHTML = personas.map(p => `
-        <option value="${p.user_id}">${p.name} (${p.segment})</option>
-      `).join("");
-
-      activePersona = personas[0];
-
-      // Handle Persona Switching (Requirement #3: Complete Application State Reset)
-      personaSelect.addEventListener("change", (e) => {
-        handlePersonaSwitch(e.target.value);
-      });
-
-      // Render Catalog Quick Add
-      renderQuickAddCatalog();
-
-      // Load Default Preset for first persona
-      const firstDefaultPreset = PERSONA_DEFAULT_PRESETS[personas[0]?.user_id] || "weekly_refill";
-      loadPresetCart(firstDefaultPreset);
-
-      // Fetch analytics
-      fetchAnalytics();
-
-    } catch (err) {
-      console.error("Initialization error:", err);
-    }
-  }
-
-  // Complete Persona Reset & Isolated Cart Handler (Requirement #3 & #6)
-  function handlePersonaSwitch(newUserId) {
-    // Save current persona's cart before switching
-    if (activePersona) {
-      personaCarts[activePersona.user_id] = [...cartItems];
-    }
-
-    activePersona = personas.find(p => p.user_id === newUserId) || personas[0];
-
-    // Reset session dismissal state & results for new persona session
-    dismissedThisSession = false;
-    latestSilceResult = null;
-
-    // Load or initialize isolated cart for newly selected persona
-    if (!personaCarts[newUserId]) {
-      const defaultPreset = PERSONA_DEFAULT_PRESETS[newUserId] || "weekly_refill";
-      loadPresetCart(defaultPreset);
-    } else {
-      cartItems = [...personaCarts[newUserId]];
-      const defaultPreset = PERSONA_DEFAULT_PRESETS[newUserId] || "weekly_refill";
-      renderMissionPresets(defaultPreset);
-      updateCartAndTriggerSILCE();
-    }
-  }
-
-  function renderQuickAddCatalog() {
-    catalogQuickAdd.innerHTML = catalog.map(p => `
-      <div class="catalog-item-row">
-        <img src="${p.image}" class="catalog-item-img" alt="${p.name}">
-        <div class="catalog-item-info">
-          <div class="catalog-item-name">${p.name}</div>
-          <div class="catalog-item-price">₹${p.price} • ${p.category}</div>
-        </div>
-        <button class="btn-add-quick" data-id="${p.id}">+ Add</button>
-      </div>
-    `).join("");
-
-    catalogQuickAdd.querySelectorAll(".btn-add-quick").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const prodId = btn.getAttribute("data-id");
-        addItemToCart(prodId);
-      });
-    });
-  }
-
-  function loadPresetCart(presetKey) {
-    // Sync active preset button highlight
-    renderMissionPresets(presetKey);
-
-    const prodIds = PRESET_CARTS[presetKey] || [];
-    cartItems = prodIds.map(id => {
-      const prod = catalog.find(p => p.id === id);
-      return prod ? { ...prod, qty: 1 } : null;
-    }).filter(Boolean);
-
-    if (activePersona) {
-      personaCarts[activePersona.user_id] = [...cartItems];
-    }
-
-    updateCartAndTriggerSILCE();
-  }
-
-  function addItemToCart(prodId, isContextAdd = false) {
-    const existing = cartItems.find(i => i.id === prodId);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      const prod = catalog.find(p => p.id === prodId);
-      if (prod) {
-        cartItems.push({ ...prod, qty: 1, added_via_context: isContextAdd });
-      }
-    }
-    if (activePersona) {
-      personaCarts[activePersona.user_id] = [...cartItems];
-    }
-    updateCartAndTriggerSILCE();
-  }
-
-  function removeItemFromCart(prodId) {
-    const existing = cartItems.find(i => i.id === prodId);
-    if (existing) {
-      existing.qty -= 1;
-      if (existing.qty <= 0) {
-        cartItems = cartItems.filter(i => i.id !== prodId);
-      }
-    }
-    if (activePersona) {
-      personaCarts[activePersona.user_id] = [...cartItems];
-    }
-    updateCartAndTriggerSILCE();
-  }
-
-  function updateCartAndTriggerSILCE() {
-    renderCartItems();
-    triggerSILCEInference();
-  }
-
-  function renderCartItems() {
-    const btnPlaceOrder = document.getElementById("btnPlaceOrder");
-    const totalItemQty = cartItems.reduce((acc, i) => acc + i.qty, 0);
-    if (cartCount) {
-      cartCount.textContent = totalItemQty;
-    }
-
-    const deliveryItemCount = document.getElementById("deliveryItemCount");
-    if (deliveryItemCount) {
-      deliveryItemCount.textContent = totalItemQty;
-    }
-
-    // Requirement #10: Empty Cart State
-    if (cartItems.length === 0) {
-      cartItemsList.innerHTML = `
-        <div class="empty-cart-state">
-          <div class="empty-cart-icon">🛒</div>
-          <div class="empty-cart-title">Your basket is empty</div>
-          <div class="empty-cart-sub">Add items from the quick-add catalog to start shopping</div>
-        </div>
-      `;
-      silceCardContainer.innerHTML = "";
-      billItemTotal.textContent = "₹0";
-      if (billHandlingFee) billHandlingFee.textContent = "₹0";
-      billGrandTotal.textContent = "₹0";
-      btnPayAmount.textContent = "₹0";
-      if (btnPlaceOrder) {
-        btnPlaceOrder.disabled = true;
-        btnPlaceOrder.style.opacity = "0.5";
-        btnPlaceOrder.style.cursor = "not-allowed";
-      }
-      return;
-    }
-
-    if (btnPlaceOrder) {
-      btnPlaceOrder.disabled = false;
-      btnPlaceOrder.style.opacity = "1";
-      btnPlaceOrder.style.cursor = "pointer";
-    }
-
-    cartItemsList.innerHTML = cartItems.map(item => `
-      <div class="cart-item-card">
-        <img src="${item.image}" alt="${item.name}">
-        <div class="cart-item-details">
-          <div class="cart-item-title">
-            ${item.name}
-            ${item.added_via_context ? '<span class="added-via-context-tag">Added via Context</span>' : ''}
-          </div>
-          <div class="cart-item-sub">${item.qty > 1 ? item.qty + ' x ' : ''}${item.subcategory || item.category}</div>
-          <div class="cart-item-wishlist">Move to wishlist</div>
-        </div>
-        <div class="cart-item-right-col">
-          <div class="cart-qty-ctrl">
-            <button class="qty-btn btn-minus" data-id="${item.id}">-</button>
-            <span class="qty-val">${item.qty}</span>
-            <button class="qty-btn btn-plus" data-id="${item.id}">+</button>
-          </div>
-          <div class="cart-item-price-tag">₹${item.price * item.qty}</div>
-        </div>
-      </div>
-    `).join("");
-
-    cartItemsList.querySelectorAll(".btn-minus").forEach(b => {
-      b.addEventListener("click", () => removeItemFromCart(b.getAttribute("data-id")));
-    });
-
-    cartItemsList.querySelectorAll(".btn-plus").forEach(b => {
-      b.addEventListener("click", () => addItemToCart(b.getAttribute("data-id")));
-    });
-
-    const itemTotalVal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
-    const grandTotalVal = itemTotalVal + 4;
-
-    billItemTotal.textContent = `₹${itemTotalVal}`;
-    if (billHandlingFee) billHandlingFee.textContent = "₹4";
-    billGrandTotal.textContent = `₹${grandTotalVal}`;
-    btnPayAmount.textContent = `₹${grandTotalVal}`;
-  }
-
-  // SILCE Inference & Trigger Validation Engine
-  async function triggerSILCEInference() {
-    // Requirement #1 & #10: Hide recommendation when cart is empty
-    if (cartItems.length === 0) {
-      silceCardContainer.innerHTML = "";
-      liveIntentName.textContent = "Inactive";
-      liveConfidenceVal.textContent = "0%";
-      confidenceFill.style.width = "0%";
-      intentExplanationText.textContent = "Cart is empty. Add 2+ items (min ₹149) to trigger SILCE intent inference.";
-      updateDiagnostics(null);
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/recommend", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          cart_items: cartItems,
-          user_id: activePersona.user_id
-        })
-      });
-
-      const data = await res.json();
-      latestSilceResult = data;
-
-      // Requirement #6 & #5: If user dismissed recommendation during current session, hide recommendation
-      if (dismissedThisSession) {
-        silceCardContainer.innerHTML = "";
-      } else {
-        renderSilceCard(data);
-      }
-
-      // Update Live Intent Panel
-      if (data.has_recommendation) {
-        liveIntentName.textContent = data.intent_inferred || data.intent || "Analyzing...";
-        const confPercent = Math.round((data.intent_confidence || 0) * 100);
-        liveConfidenceVal.textContent = `${confPercent}%`;
-        confidenceFill.style.width = `${confPercent}%`;
-        intentExplanationText.innerHTML = `
-          Detected: <strong>${data.intent_inferred}</strong>&nbsp;&nbsp;→&nbsp;&nbsp;Category: <strong>${data.silce_category || ''}</strong><br>
-          <span style="font-size:11px;color:#64748B;">1 adjacent unexplored category identified.</span>
-        `;
-      } else {
-        liveIntentName.textContent = data.intent || "Criteria Not Met";
-        liveConfidenceVal.textContent = "0%";
-        confidenceFill.style.width = "0%";
-        intentExplanationText.textContent = data.reason || "SILCE trigger conditions not met.";
-      }
-
-      // Requirement #11: Update Diagnostics live with zero stale state
-      updateDiagnostics(data);
-
-    } catch (err) {
-      console.error("SILCE API error:", err);
-    }
-  }
-
-  function renderSilceCard(data) {
-    if (!data.has_recommendation || dismissedThisSession) {
-      silceCardContainer.innerHTML = "";
-      return;
-    }
-
-    const recs = data.recommendations || [];
-    if (recs.length === 0) {
-      silceCardContainer.innerHTML = "";
-      return;
-    }
-
-    // SILCE selects ONE category. The product is only a representative example.
-    const rec            = recs[0];
-    const isAlreadyInCart = cartItems.some(i => i.id === rec.product.id);
-    const silceCategory   = data.silce_category || rec.silce_category || rec.new_category;
-    const catExplanation  = data.category_explanation || rec.category_explanation || rec.product_reason;
-    const ratingVal       = rec.rating ? rec.rating.replace('★', '').trim() : '4.7';
-    const intentName      = data.intent_inferred || '';
-
-    // Mission observation lookup for human companion tone
-    const MISSION_OBSERVATIONS = {
-      "Weekly Grocery Refill":  "Looks like you're restocking the house.",
-      "Morning Breakfast Run":  "Tomorrow's breakfast looks sorted.",
-      "House Party":            "Hosting friends tonight?",
-      "Office Essentials":      "Stocking up for the office?",
-      "Sick Day Recovery":      "Hope you feel better soon.",
-      "Smoke Break":            "You might need this afterwards.",
-      "Fresh Produce Restock":  "Fresh kitchen prep in progress.",
-      "Urgent Household Need":  "Taking care of home essentials."
+  grid.innerHTML = items.map(item => {
+    const gate = gating[item.id] || {
+      is_eligible: false,
+      category_gate: "ELIGIBLE",
+      intent_level: "LOW",
+      intent_detail: "Standard",
+      confidence_score: 0.85,
+      system_action: "SILENT_NO_INTENT",
+      pill_badge_text: ""
     };
 
-    const observationText = data.observation || rec.observation || MISSION_OBSERVATIONS[intentName] || "Noticed something for your cart.";
+    const isInCart = appState.cartItems.some(c => c.sku.id === item.id);
 
-    silceCardContainer.innerHTML = `
-      <div class="silce-premium-card">
-
-        <!-- Header: Clean section title + dismiss button -->
-        <div class="silce-pc-header">
-          <span class="silce-pc-title">🌱 Explore a New Category</span>
-          <button id="btnDismissSilce" class="btn-dismiss-silce" title="Dismiss">✕</button>
-        </div>
-
-        <!-- Observation First, Helpful Advice Second -->
-        <div class="silce-pc-category-section">
-          <div class="silce-pc-category-eyebrow">${observationText}</div>
-          <div class="silce-pc-category-name">${catExplanation}</div>
-        </div>
-
-        <!-- Product box -->
-        <div class="silce-pc-product-wrapper">
-          <div class="silce-pc-product">
-            <img src="${rec.product.image}" alt="${rec.product.name}" class="silce-pc-img">
-            <div class="silce-pc-prod-info">
-              <div class="silce-pc-brand">${rec.brand}</div>
-              <div class="silce-pc-name" title="${rec.product.name}">${rec.product.name}</div>
-              <div class="silce-pc-meta">
-                <span class="silce-pc-rating">★ ${ratingVal}</span>
-                <span class="silce-pc-trust">· Verified Brand (4,500+ ratings)</span>
-              </div>
-              <div class="silce-pc-price">₹${rec.product.price}</div>
-            </div>
-            <button class="btn-silce-add ${isAlreadyInCart ? 'added' : ''} silce-pc-add-btn" data-id="${rec.product.id}">
-              ${isAlreadyInCart ? '✓ Added' : 'Add'}
-            </button>
-          </div>
-        </div>
-
-      </div>
-    `;
-
-    // ── Wire Add button ─────────────────────────────────────────────────────
-    silceCardContainer.querySelector('.silce-pc-add-btn')?.addEventListener('click', async () => {
-      const btn = silceCardContainer.querySelector('.silce-pc-add-btn');
-      if (!btn || btn.classList.contains('added')) return;
-      btn.textContent = '✓ Added';
-      btn.classList.add('added');
-      addItemToCart(rec.product.id, true);
-      await fetch('/api/action', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'accept',
-          data: { product_id: rec.product.id, category: silceCategory, user_id: activePersona.user_id }
-        })
-      });
-      fetchAnalytics();
-    });
-
-    // ── Wire Dismiss button ─────────────────────────────────────────────────
-    document.getElementById('btnDismissSilce')?.addEventListener('click', async () => {
-      dismissedThisSession = true;
-      silceCardContainer.classList.add('collapsing');
-      setTimeout(async () => {
-        silceCardContainer.innerHTML = '';
-        silceCardContainer.classList.remove('collapsing');
-        await fetch('/api/action', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            action: 'dismiss',
-            data: {
-              product_id: rec.product.id,
-              category: silceCategory,
-              user_id: activePersona?.user_id || 'none'
-            }
-          })
-        });
-        fetchAnalytics();
-      }, 350);
-    });
-  }
-
-  // Requirement #11: Live Diagnostics Updates
-  function updateDiagnostics(data) {
-    const diagPipelineSteps = document.getElementById("diagPipelineSteps");
-    const diagPurchasedCats = document.getElementById("diagPurchasedCats");
-    const diagUnexploredCats = document.getElementById("diagUnexploredCats");
-    const diagLatency = document.getElementById("diagLatency");
-    const diagJsonPayload = document.getElementById("diagJsonPayload");
-
-    if (activePersona) {
-      diagPurchasedCats.innerHTML = activePersona.purchased_categories.map(c => `<li>🚫 ${c}</li>`).join("");
-      diagUnexploredCats.innerHTML = activePersona.unexplored_categories.map(c => `<li>✅ ${c}</li>`).join("");
-    }
-
-    if (!data) {
-      diagJsonPayload.textContent = "// Empty basket — SILCE inactive";
-      diagLatency.textContent = "-- ms";
-      diagPipelineSteps.innerHTML = `<div style="color: #94A3B8; font-size: 12px;">Cart has no items. SILCE trigger rules require recurring grocery essentials in basket.</div>`;
-      return;
-    }
-
-    diagLatency.textContent = `${data.latency_ms} ms`;
-    diagJsonPayload.textContent = JSON.stringify(data, null, 2);
-
-    diagPipelineSteps.innerHTML = `
-      <div class="pipeline-steps" style="margin-top: 0; padding-left: 0;">
-        <div class="pipeline-step">
-          <div class="step-num">1</div>
-          <div class="step-info">
-            <div class="step-title">Trigger Validation</div>
-            <div class="step-desc">Basket contains recurring essentials. <span style="color: #10B981; font-weight: bold;">✓ Passed</span></div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">2</div>
-          <div class="step-info">
-            <div class="step-title">Shopping Mission Intent</div>
-            <div class="step-desc">${data.intent_inferred || data.intent} <span style="margin-left: 8px; color: #8B5CF6; font-weight: bold;">(Confidence: ${data.intent_confidence || 0.93})</span></div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">3</div>
-          <div class="step-info">
-            <div class="step-title">Candidate Generation & Filtering</div>
-            <div class="step-desc">Retrieved all candidates. Excluded items from previously explored categories: <em>${activePersona?.purchased_categories?.join(", ") || "Milk, Vegetables, Fresh Produce"}</em>. Filtered candidates based on price ratio guardrail.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">4</div>
-          <div class="step-info">
-            <div class="step-title">Adjacent Category Discovery</div>
-            <div class="step-desc">Identified eligible adjacent categories and matched contextual keywords to compute relevance scores.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">5</div>
-          <div class="step-info">
-            <div class="step-title">Recommendation Ranking</div>
-            <div class="step-desc">Ranked top 4 recommendations in descending relevance order:
-              <ul style="margin-top: 6px; padding-left: 16px; font-size: 11px; color: var(--color-text-secondary); line-height: 1.4;">
-                ${(data.recommendations || []).map((rec, idx) => `
-                  <li><strong>#${idx + 1} ${rec.brand} ${rec.product.name}</strong> (₹${rec.product.price}) - <em>${rec.product_reason}</em></li>
-                `).join("")}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  async function fetchAnalytics() {
-    try {
-      const res = await fetch("/api/analytics");
-      const data = await res.json();
-
-      document.getElementById("metricPrimaryVal").textContent = data.primary_metric.current_value;
-      document.getElementById("metricAcceptanceVal").textContent = data.secondary_metrics.acceptance_rate;
-      document.getElementById("metricGuardrailVal").textContent = data.guardrail_metrics.checkout_completion_rate;
-      document.getElementById("metricLatencyVal").textContent = data.guardrail_metrics.avg_checkout_time;
-
-      const eventStreamList = document.getElementById("eventStreamList");
-      if (data.recent_events) {
-        eventStreamList.innerHTML = data.recent_events.map(ev => `
-          <div class="event-stream-item">
-            <div>
-              <span class="event-type-badge ${ev.event_type}">${ev.event_type}</span>
-              <strong style="margin-left: 6px;">${ev.data.category || ev.data.intent || 'Checkout'}</strong>
-            </div>
-            <div style="font-size: 11px; color: #64748B;">${ev.timestamp.split(" ")[1]}</div>
-          </div>
-        `).join("");
+    // Diagnostic Overlay HTML
+    let diagnosticHTML = "";
+    if (appState.isInspectorMode) {
+      const intentClass = gate.intent_level.toLowerCase().includes("high") ? "high" : "low";
+      const catClass = gate.category_gate.toLowerCase() === "eligible" ? "eligible" : "blocked";
+      
+      let actionClass = "silent";
+      let actionText = "Silent (Passive Save)";
+      if (gate.system_action === "FULL_FITTWIN_UNLOCKED") {
+        actionClass = "unlocked";
+        actionText = "✓ FitTwin & Closet Unlocked";
+      } else if (gate.system_action === "FALLBACK_NEUTRAL_STAPLES") {
+        actionClass = "fallback";
+        actionText = "⚡ Adaptive Staples + FitTwin";
+      } else if (gate.system_action === "CATEGORY_EXCLUDED") {
+        actionClass = "excluded";
+        actionText = "✕ Category Excluded (No FitTwin)";
       }
-    } catch (err) {
-      console.error("Analytics fetch error:", err);
-    }
-  }
 
-  // Handle Place Order Button click
-  document.getElementById("btnPlaceOrder").addEventListener("click", async () => {
-    const itemTotalVal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
-    const grandTotalVal = itemTotalVal + 4;
-
-    // Check if the top SILCE-recommended item was accepted into the cart
-    const topRec = latestSilceResult?.has_recommendation && latestSilceResult?.recommendations?.length > 0
-      ? latestSilceResult.recommendations[0]
-      : null;
-    const silceAcceptedItem = topRec
-      ? cartItems.find(i => i.id === topRec.product.id)
-      : null;
-
-    document.getElementById("successAmount").textContent = `₹${grandTotalVal}`;
-
-    const successCategoryBadge = document.getElementById("successCategoryBadge");
-    if (silceAcceptedItem) {
-      successCategoryBadge.innerHTML = `
-        <div class="new-category-success-pill">
-          🎉 Multi-Category Expansion: Tried <strong>${latestSilceResult.new_category}</strong>!
+      diagnosticHTML = `
+        <div class="pm-card-diagnostic-overlay">
+          <div class="diag-row">
+            <span class="diag-label">INTENT:</span>
+            <span class="diag-val ${intentClass}">${gate.intent_detail}</span>
+          </div>
+          <div class="diag-row">
+            <span class="diag-label">CATEGORY:</span>
+            <span class="diag-val ${catClass}">${gate.category_gate}</span>
+          </div>
+          <div class="diag-row">
+            <span class="diag-label">CONFIDENCE:</span>
+            <span class="diag-val high">${gate.confidence_score > 0 ? gate.confidence_score.toFixed(2) : '<0.80'}</span>
+          </div>
+          <div class="diag-action-chip ${actionClass}">${actionText}</div>
         </div>
       `;
-    } else {
-      successCategoryBadge.innerHTML = ``;
     }
 
-    // Transition UI to Success Screen
-    document.querySelector(".mobile-app-header").style.display = "none";
-    document.querySelector(".mobile-cart-body").style.display = "none";
-    document.querySelector(".mobile-cart-footer").style.display = "none";
-    document.getElementById("orderSuccessScreen").style.display = "flex";
+    // Interactive StyleProof Pill HTML (Surfaced ONLY when eligible)
+    let styleProofPillHTML = "";
+    if (gate.is_eligible && gate.pill_badge_text) {
+      styleProofPillHTML = `
+        <div class="styleproof-pill" onclick="openStyleProofModal('${item.id}', true)">
+          <span>${gate.pill_badge_text}</span>
+        </div>
+      `;
+    }
 
-    await fetch("/api/action", {
+    const actionBtnClass = isInCart ? "card-action-btn added-btn" : "card-action-btn";
+    const actionBtnText = isInCart ? "Added to Bag ✓" : "Move to Bag";
+
+    return `
+      <div class="wishlist-card" id="card-${item.id}">
+        <div class="card-img-container" onclick="openStyleProofModal('${item.id}', true)">
+          <img src="${item.image_url}" alt="${item.title}" class="card-img" loading="lazy">
+          <button class="card-close-btn" onclick="removeItem('${item.id}', event)">✕</button>
+          <div class="card-rating-badge">
+            <span>${item.rating || '4.3'}</span>
+            <span class="rating-star">★</span>
+            <span style="color:#94969f">| ${item.rating_count ? (item.rating_count > 999 ? (item.rating_count/1000).toFixed(1)+'k' : item.rating_count) : '1.2k'}</span>
+          </div>
+        </div>
+
+        ${diagnosticHTML}
+
+        <div class="card-content">
+          <div class="card-brand">${item.brand}</div>
+          <div class="card-title">${item.title}</div>
+          <div class="card-price-row">
+            <span class="card-price">₹${item.price}</span>
+            <span class="card-mrp">₹${item.mrp || item.price * 2}</span>
+            <span class="card-discount">${item.discount_pct || '50% OFF'}</span>
+          </div>
+
+          ${styleProofPillHTML}
+
+          <button class="${actionBtnClass}" onclick="openStyleProofModal('${item.id}', true)">
+            ${actionBtnText}
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// --------------------------------------------------------------------------
+// Interactive StyleProof Modal
+// --------------------------------------------------------------------------
+async function openStyleProofModal(skuId, explicitOverride = false) {
+  const overlay = document.getElementById("styleproof-modal-overlay");
+  const loading = document.getElementById("modal-loading");
+  const content = document.getElementById("styleproof-content");
+  const modalTitle = document.getElementById("modal-product-title");
+
+  overlay.classList.add("open");
+  loading.style.display = "flex";
+  content.style.display = "none";
+  document.body.style.overflow = "hidden";
+
+  try {
+    const res = await fetch("/api/styleproof", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "checkout", data: { items_count: cartItems.length, amount: grandTotalVal } })
+      body: JSON.stringify({
+        sku_id: skuId,
+        user_id: appState.currentUserId,
+        explicit_override: explicitOverride
+      })
     });
-    fetchAnalytics();
+
+    if (!res.ok) throw new Error("Failed to fetch StyleProof decision");
+    const data = await res.json();
+    
+    appState.currentModalSku = data.sku;
+    appState.currentDecision = data.decision;
+    appState.selectedSize = data.decision.recommended_size || "M";
+
+    modalTitle.innerText = data.sku.title || "Apparel Item";
+
+    // Populate Lookbook Canvas (Pillar 1)
+    const targetImg = document.getElementById("canvas-target-img");
+    const targetName = document.getElementById("canvas-target-name");
+    targetImg.src = data.sku.image_url;
+    targetName.innerText = data.sku.brand + " " + (data.sku.category ? data.sku.category.split("-")[0] : "");
+
+    const foundationChip = document.getElementById("lookbook-foundation-chip");
+    const lookbookSubtext = document.getElementById("lookbook-subtext");
+    
+    if (data.decision.is_cold_start_staples) {
+      if (foundationChip) {
+        foundationChip.innerText = "Paired with Neutral Basics (No past orders)";
+        foundationChip.style.background = "#fff6f0";
+        foundationChip.style.color = "#ea580c";
+      }
+      if (lookbookSubtext) {
+        lookbookSubtext.innerText = "Universal neutral wardrobe essentials tailored to this silhouette";
+      }
+    } else {
+      if (foundationChip) {
+        foundationChip.innerText = "Complete the Look from Your Closet";
+        foundationChip.style.background = "#eef2ff";
+        foundationChip.style.color = "#4f46e5";
+      }
+      if (lookbookSubtext) {
+        lookbookSubtext.innerText = "Styled directly with items from your past 12 months of orders";
+      }
+    }
+
+    const ownedContainer = document.getElementById("canvas-owned-items");
+    const pairedItems = data.decision.paired_owned_items || [];
+    ownedContainer.innerHTML = pairedItems.map(item => `
+      <div class="canvas-item">
+        <div class="canvas-img-box">
+          <img src="${item.image_url}" alt="${item.title}">
+          <span class="item-tag-badge ${item.is_staple ? 'staple-tag' : 'owned-tag'}">
+            ${item.is_staple ? 'Neutral Staple' : 'From Closet'}
+          </span>
+        </div>
+        <div class="canvas-item-name">${item.title.split(" ").slice(0, 3).join(" ")}</div>
+      </div>
+    `).join("");
+
+    // Styling Rationale
+    document.getElementById("styling-rationale-text").innerText = data.decision.styling_verdict;
+
+    // Populate FitTwin (Pillar 2)
+    const fitPct = data.decision.fit_confidence_score || 94;
+    document.getElementById("fit-confidence-chip").innerText = `${fitPct}% Fit Match`;
+    document.getElementById("fittwin-user-photo").src = data.decision.fit_twin_photo_url || data.sku.image_url;
+    
+    const userBp = appState.user?.body_profile || {};
+    const fittwinSub = document.getElementById("fittwin-subtext");
+    if (fittwinSub) {
+      fittwinSub.innerText = `Verified Drape from Buyers with Your Exact Frame (${userBp.height || "5'9\""} • ${userBp.weight || "68kg"})`;
+    }
+
+    document.getElementById("twin-height").innerText = userBp.height || "5'9\"";
+    document.getElementById("twin-weight").innerText = userBp.weight || "68kg";
+    document.getElementById("twin-size").innerText = `Size ${data.decision.recommended_size || 'M'}`;
+    document.getElementById("fittwin-quote").innerText = `"${data.decision.fit_twin_quote || 'Fits true to size.'}"`;
+    
+    const benchZara = userBp.benchmark_sizes?.Zara || "M";
+    const benchHM = userBp.benchmark_sizes?.["H&M"] || "M";
+    document.getElementById("fittwin-calibration").innerHTML = `🎯 Recommended Size: <strong>${data.decision.recommended_size || 'M'}</strong> (Calibrated against your Zara Size ${benchZara} & H&M Size ${benchHM})`;
+
+    // Size Chips with green FitTwin Pick dot
+    renderSizeChips(data.decision.recommended_size || "M", data.sku.available_sizes || ["S", "M", "L", "XL"]);
+
+    // CTA Button
+    document.getElementById("cta-button-text").innerText = `Select Size ${appState.selectedSize} & Move to Bag`;
+
+    loading.style.display = "none";
+    content.style.display = "block";
+
+  } catch (err) {
+    console.error("Error opening modal:", err);
+    loading.style.display = "none";
+    content.style.display = "block";
+  }
+}
+
+function renderSizeChips(recSize, availableSizes = ["S", "M", "L", "XL"]) {
+  const container = document.getElementById("size-chips-group");
+  container.innerHTML = availableSizes.map(s => {
+    const isRec = s === recSize;
+    const isActive = s === appState.selectedSize;
+    return `
+      <button class="size-chip ${isActive ? 'active' : ''}" onclick="selectSize('${s}', ${isRec})">
+        ${isRec ? '<span class="fittwin-pick-dot" title="FitTwin Pick"></span>' : ''}
+        <span>${s}</span>
+        ${isRec ? '<span style="font-size:9px; color:#14958f;">(FitTwin Pick)</span>' : ''}
+      </button>
+    `;
+  }).join("");
+}
+
+function selectSize(size, isRec) {
+  appState.selectedSize = size;
+  renderSizeChips(appState.currentDecision?.recommended_size || "M", appState.currentModalSku?.available_sizes || ["S", "M", "L", "XL"]);
+  document.getElementById("cta-button-text").innerText = `Select Size ${size} & Move to Bag`;
+}
+
+function closeStyleProofModal(event) {
+  if (event && event.target && !event.target.classList.contains("modal-overlay") && !event.target.classList.contains("modal-close-btn")) {
+    return;
+  }
+  const overlay = document.getElementById("styleproof-modal-overlay");
+  overlay.classList.remove("open");
+  document.body.style.overflow = "auto";
+}
+
+// --------------------------------------------------------------------------
+// Modal Action -> Cart Transition
+// --------------------------------------------------------------------------
+async function executeMoveToBagFromModal() {
+  const sku = appState.currentModalSku;
+  const decision = appState.currentDecision;
+  if (!sku) return;
+
+  // Add to cart state
+  const existingIdx = appState.cartItems.findIndex(c => c.sku.id === sku.id);
+  if (existingIdx >= 0) {
+    appState.cartItems[existingIdx].selectedSize = appState.selectedSize;
+  } else {
+    appState.cartItems.push({
+      sku: sku,
+      selectedSize: appState.selectedSize,
+      decision: decision,
+      added_by_fittwin: true,
+      added_at: new Date().toISOString()
+    });
+  }
+
+  // Animate Bag Counter Badge
+  const bagBadge = document.getElementById("bag-count");
+  bagBadge.innerText = appState.cartItems.length;
+  bagBadge.classList.add("bump");
+  setTimeout(() => bagBadge.classList.remove("bump"), 350);
+
+  // Update card state in wishlist
+  renderWishlistGrid();
+
+  // Show Toast Notification with tap-to-bag action
+  showToast(`🛍️ Moved to Bag with FitTwin verification! Tap bag to review.`);
+
+  // Post analytics action event
+  fetch("/api/action", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "move_to_bag", sku_id: sku.id, size: appState.selectedSize })
+  }).catch(e => console.log(e));
+
+  // Close modal smoothly
+  closeStyleProofModal();
+}
+
+// --------------------------------------------------------------------------
+// Cart View & Added by FitTwin Popup
+// --------------------------------------------------------------------------
+function renderCartView() {
+  const emptyState = document.getElementById("empty-cart-state");
+  const activeState = document.getElementById("active-cart-state");
+  const container = document.getElementById("cart-items-container");
+
+  if (appState.cartItems.length === 0) {
+    if (emptyState) emptyState.style.display = "flex";
+    if (activeState) activeState.style.display = "none";
+    return;
+  }
+
+  if (emptyState) emptyState.style.display = "none";
+  if (activeState) activeState.style.display = "flex";
+
+  // Render cart items
+  container.innerHTML = appState.cartItems.map((item, idx) => {
+    const sku = item.sku;
+    return `
+      <div class="cart-item-card" id="cart-item-${sku.id}">
+        <div class="cart-item-main">
+          <img src="${sku.image_url}" alt="${sku.title}" class="cart-item-img">
+          <div class="cart-item-details">
+            <div class="cart-item-brand">${sku.brand}</div>
+            <div class="cart-item-title">${sku.title}</div>
+            <div class="cart-item-size-badge">Size: <strong>${item.selectedSize}</strong> • Qty: 1</div>
+            <div class="cart-item-price-row">
+              <span class="card-price">₹${sku.price}</span>
+              <span class="card-mrp">₹${sku.mrp || sku.price * 2}</span>
+              <span class="card-discount">${sku.discount_pct || '50% OFF'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="fittwin-cart-badge">
+          ✨ Added via FitTwin Decision Engine • Size ${item.selectedSize} Verified
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  // Update Price Breakdown
+  let totalMRP = 0;
+  let totalActual = 0;
+  appState.cartItems.forEach(c => {
+    totalMRP += (c.sku.mrp || c.sku.price * 2);
+    totalActual += c.sku.price;
   });
+  const savings = totalMRP - totalActual;
 
-  // Handle Reset Order / New Mission click
-  document.getElementById("btnResetOrder").addEventListener("click", () => {
-    document.getElementById("orderSuccessScreen").style.display = "none";
-    document.querySelector(".mobile-app-header").style.display = "block";
-    document.querySelector(".mobile-cart-body").style.display = "flex";
-    document.querySelector(".mobile-cart-footer").style.display = "flex";
+  const countText = `${appState.cartItems.length} ${appState.cartItems.length === 1 ? 'Item' : 'Items'}`;
+  document.getElementById("cart-summary-item-count").innerText = countText;
+  document.getElementById("price-total-mrp").innerText = `₹${totalMRP.toLocaleString('en-IN')}`;
+  document.getElementById("price-discount").innerText = `-₹${savings.toLocaleString('en-IN')}`;
+  document.getElementById("price-final-total").innerText = `₹${totalActual.toLocaleString('en-IN')}`;
+  document.getElementById("footer-total-price").innerText = `₹${totalActual.toLocaleString('en-IN')}`;
 
-    const defaultPreset = activePersona ? (PERSONA_DEFAULT_PRESETS[activePersona.user_id] || "weekly_refill") : "weekly_refill";
-    loadPresetCart(defaultPreset);
-  });
+  // Automatically trigger the "Added by FitTwin" Confirmation Popup if not shown
+  if (!appState.hasShownCartPopupForSession && appState.cartItems.length > 0) {
+    openFitTwinCartPopup();
+    appState.hasShownCartPopupForSession = true;
+  }
+}
 
+function openFitTwinCartPopup() {
+  const overlay = document.getElementById("fittwin-cart-popup-overlay");
+  if (!overlay) return;
 
+  const user = appState.user;
+  const bp = user ? user.body_profile : { height: "5'9\"", weight: "68kg" };
+  const firstCartItem = appState.cartItems[0];
+  const size = firstCartItem ? firstCartItem.selectedSize : "M";
 
-  init();
-});
+  document.getElementById("popup-persona-subtitle").innerText = 
+    `Decision Support Verified for ${user ? user.name : 'User'} (${bp.height} • ${bp.weight})`;
+
+  document.getElementById("popup-fit-text").innerText = 
+    `Size ${size} selected based on 42 verified buyers with matching torso dimensions.`;
+
+  const isColdStart = !user.past_purchases_closet || user.past_purchases_closet.length === 0;
+  if (isColdStart) {
+    document.getElementById("popup-closet-text").innerText = 
+      "Calibrated via universal wardrobe staples (White Organic Tee & Black Denim).";
+  } else {
+    document.getElementById("popup-closet-text").innerText = 
+      "Styled with your Levi's 511 Jeans (Nov '25) & HRX Sneakers (Jan '26).";
+  }
+
+  overlay.classList.add("open");
+}
+
+function closeFitTwinCartPopup(e) {
+  if (e && e.target && !e.target.classList.contains("modal-overlay") && !e.target.classList.contains("popup-cta-btn")) {
+    return;
+  }
+  const overlay = document.getElementById("fittwin-cart-popup-overlay");
+  if (overlay) overlay.classList.remove("open");
+}
+
+// --------------------------------------------------------------------------
+// Checkout Execution & Success View
+// --------------------------------------------------------------------------
+function executePlaceOrder() {
+  showToast("Processing 1-tap checkout verification...");
+  setTimeout(() => {
+    navigateTo("success");
+    // Update metric barrier text based on active persona
+    const isColdStart = !appState.user.past_purchases_closet || appState.user.past_purchases_closet.length === 0;
+    const barrierText = document.getElementById("metric-barrier-text");
+    if (barrierText) {
+      barrierText.innerText = isColdStart ? 
+        "Cold-Start Styling Gap & Cross-Brand Sizing Uncertainty" : 
+        "Orphan SKU Styling Ambiguity & Sizing Drape Anxiety";
+    }
+  }, 300);
+}
+
+function resetPrototypeFlow() {
+  appState.cartItems = [];
+  appState.hasShownCartPopupForSession = false;
+  const bagBadge = document.getElementById("bag-count");
+  if (bagBadge) bagBadge.innerText = "0";
+  navigateTo("wishlist");
+  showToast("Ready to test another persona or catalog item!");
+}
+
+// --------------------------------------------------------------------------
+// Utility Actions
+// --------------------------------------------------------------------------
+function removeItem(skuId, e) {
+  if (e) e.stopPropagation();
+  const card = document.getElementById(`card-${skuId}`);
+  if (card) {
+    card.style.opacity = "0";
+    card.style.transform = "scale(0.8)";
+    setTimeout(() => {
+      card.remove();
+      appState.wishlist = appState.wishlist.filter(i => i.id !== skuId);
+      updateHeaderCount(appState.wishlist.length);
+      updateInspectorStats();
+      showToast("Item removed from Wishlist");
+    }, 200);
+  }
+}
+
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+  toast.innerText = msg;
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3200);
+}
+
+function handleToastClick() {
+  if (appState.cartItems.length > 0 && appState.currentView === "wishlist") {
+    navigateTo("cart");
+  }
+}

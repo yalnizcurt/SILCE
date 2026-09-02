@@ -1,488 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SILCE — Semantic Intent & Life Context Engine (Blinkit Growth)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Myntra Wishlist | StyleProof AI Decision Engine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=5.2">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
-
 <body>
-  <!-- Header Bar -->
-  <header class="app-header">
-    <div class="header-content">
-      <div class="brand">
-        <div class="brand-logo">blinkit</div>
-        <div class="brand-divider"></div>
-        <div class="engine-badge">
-          <span class="sparkle">✨</span> SILCE v1.0
+  <div class="app-container">
+
+    <!-- Sticky Top Navigation -->
+    <header class="myntra-header">
+      <div class="header-left">
+        <button class="icon-btn" id="header-back-btn" onclick="navigateTo('wishlist')" aria-label="Back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <div class="header-title-group">
+          <h1 class="header-title" id="header-page-title">WISHLIST</h1>
+          <span class="header-item-count" id="wishlist-count-header">10 ITEMS</span>
         </div>
       </div>
-      <div class="persona-selector-container">
-        <label for="personaSelect">Active Shopper Persona:</label>
-        <select id="personaSelect" class="persona-select">
-          <!-- Dynamically populated -->
+      <div class="header-right">
+        <button class="icon-btn search-btn" aria-label="Search" onclick="showToast('Search fashion catalog...')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <div class="bag-icon-wrapper" id="header-bag-btn" onclick="navigateTo('cart')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="bag-badge" id="bag-count">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- PM Inspector & Persona Harness Controller Bar (Always Visible) -->
+    <div class="pm-harness-bar">
+      <!-- Persona Switcher Dropdown -->
+      <div class="persona-selector-wrap">
+        <label for="persona-select" class="harness-label">👤 Active Persona:</label>
+        <select id="persona-select" class="persona-dropdown" onchange="handlePersonaChange(this.value)">
+          <option value="USER_ARJUN_01" selected>Arjun (Returning • 3 Orders • High-Intent)</option>
+          <option value="USER_ROHAN_02">Rohan (Cold-Start • 0 Orders • Adaptive Staples)</option>
+          <option value="USER_PRIYA_03">Priya (Moodboarder • 0 Intent Triggers)</option>
         </select>
       </div>
+
+      <!-- PM Inspector Toggle Switch -->
+      <div class="inspector-toggle-wrap">
+        <label class="toggle-switch-label" for="inspector-toggle">
+          <span class="inspector-icon">🔬</span>
+          <span class="toggle-text">PM Diagnostics</span>
+          <div class="switch-container">
+            <input type="checkbox" id="inspector-toggle" onchange="toggleInspectorMode(this.checked)" checked>
+            <span class="slider round"></span>
+          </div>
+        </label>
+      </div>
     </div>
-  </header>
 
-  <!-- Navigation Tabs -->
-  <nav class="app-nav">
-    <div class="nav-container">
-      <button class="nav-btn active" data-tab="cart-sim">
-        <span class="icon">🛒</span> Cart Review Simulation
-      </button>
-      <button class="nav-btn" data-tab="diagnostics">
-        <span class="icon">🧠</span> AI Intent Diagnostics
-      </button>
-      <button class="nav-btn" data-tab="analytics">
-        <span class="icon">📈</span> Growth Metrics & Guardrails
-      </button>
+    <!-- Active Persona Context & Biometrics Banner -->
+    <div class="persona-context-bar" id="persona-context-bar">
+      <div class="persona-avatar" id="persona-avatar">AS</div>
+      <div class="persona-info">
+        <div class="persona-name">
+          <span id="persona-name-text">Arjun Sharma</span> 
+          <span class="active-badge" id="persona-badge">Returning Customer</span>
+        </div>
+        <div class="persona-biometrics" id="persona-biometrics-text">
+          <span>📏 5'9"</span> • <span>⚖️ 68kg</span> • <span>🏷️ Zara: M | Levi's: 32</span>
+        </div>
+      </div>
+      <div class="closet-pill" id="persona-closet-pill">
+        <span class="closet-dot"></span> <span id="persona-closet-count">3 Owned Orders</span>
+      </div>
     </div>
-  </nav>
 
-  <!-- Main Container -->
-  <main class="app-main">
-
-    <!-- TAB 1: CART REVIEW SIMULATION -->
-    <section id="tab-cart-sim" class="tab-content active">
-      <div class="sim-grid">
-
-        <!-- Left Column: Basket Controls & Preset Missions -->
-        <div class="sim-control-panel">
-          <div class="panel-card">
-            <h3>🎯 Shopping Mission Presets</h3>
-            <p class="panel-sub">Select a routine shopping scenario to test SILCE intent reasoning live:</p>
-
-            <div class="preset-buttons" id="missionPresetsContainer">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-
-          <div class="panel-card">
-            <h3>➕ Add Items to Basket</h3>
-            <div id="catalogQuickAdd" class="catalog-quick-add">
-              <!-- Dynamically populated catalog items -->
-            </div>
-          </div>
+    <!-- ==================================================================== -->
+    <!-- VIEW 1: WISHLIST VIEW (Default) -->
+    <!-- ==================================================================== -->
+    <div id="wishlist-view" class="app-view active-view">
+      <!-- PM Inspector Diagnostics Banner -->
+      <div class="inspector-explainer-banner" id="inspector-explainer-banner">
+        <div class="explainer-header">
+          <span class="explainer-tag">🔬 PM INSPECTOR ACTIVE</span>
+          <span class="explainer-rule-count">3 Gates: Category • Intent (Dwell ≥10s / Views ≥2) • Conf ≥0.80</span>
         </div>
-
-        <!-- Middle Column: Blinkit Mobile App Cart Review Interface -->
-        <div class="mobile-frame-container">
-          <div class="phone-device">
-            <!-- Physical side buttons -->
-            <div class="phone-side-btn silent-btn" title="Silent"></div>
-            <div class="phone-side-btn vol-up-btn" title="Volume Up"></div>
-            <div class="phone-side-btn vol-down-btn" title="Volume Down"></div>
-            <div class="phone-side-btn power-btn" title="Power"></div>
-
-            <div class="mobile-frame">
-              <div class="dynamic-island"></div>
-
-              <!-- Mobile App Header -->
-              <div class="mobile-app-header">
-                <div class="header-top-bar">
-                  <button class="back-btn" aria-label="Back">‹</button>
-                  <div class="header-brand-title">Checkout</div>
-                  <div class="header-right-actions">
-                    <button class="header-circle-btn" aria-label="Search">🔍</button>
-                    <button class="header-pill-btn" aria-label="Share">
-                      <span class="share-btn-icon">📤</span> Share
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Mobile Cart Body -->
-              <div class="mobile-cart-body">
-
-                <!-- Delivery ETA Banner -->
-                <div class="delivery-eta-card">
-                  <div class="delivery-eta-icon">🌓</div>
-                  <div class="delivery-eta-info">
-                    <div class="delivery-eta-title">Delivery in 10 minutes</div>
-                    <div class="delivery-eta-sub">Shipment of <span id="deliveryItemCount">0</span> items</div>
-                  </div>
-                </div>
-
-                <!-- Savings Offer Banner -->
-                <div class="savings-banner" id="savingsBanner">
-                  <span class="offer-icon">🎉</span>
-                  <span class="offer-text">Free delivery unlocked on this order!</span>
-                </div>
-
-                <!-- Cart Items Section -->
-                <div class="cart-section">
-                  <div id="cartItemsList" class="cart-items-list">
-                    <!-- Dynamically populated -->
-                  </div>
-                </div>
-
-                <!-- SILCE RECOMMENDATION — placed after basket, before bill -->
-                <!-- User sees their basket first; SILCE then surfaces one category -->
-                <div id="silceCardContainer" class="silce-card-container">
-                  <!-- Dynamically populated -->
-                </div>
-
-                <!-- Bill Details Section -->
-                <div class="cart-section bill-section">
-                  <div class="section-title">Bill Details</div>
-                  <div class="bill-row">
-                    <span><span class="bill-icon">📄</span> Item Total</span>
-                    <span id="billItemTotal">₹0</span>
-                  </div>
-                  <div class="bill-row">
-                    <span><span class="bill-icon">🚚</span> Delivery Partner Fee</span>
-                    <span class="free-tag">FREE</span>
-                  </div>
-                  <div class="bill-row">
-                    <span><span class="bill-icon">⚙️</span> Handling Fee</span>
-                    <span id="billHandlingFee">₹0</span>
-                  </div>
-                  <div class="bill-row grand-total">
-                    <span>To Pay</span>
-                    <span id="billGrandTotal">₹0</span>
-                  </div>
-                </div>
-
-                <div class="cancellation-policy">
-                  🔒 Orders cannot be cancelled once packed.
-                </div>
-
-              </div>
-
-              <!-- Mobile Sticky Footer Checkout Button -->
-              <div class="mobile-cart-footer">
-                <!-- Address Section -->
-                <div class="footer-address-bar">
-                  <div class="address-icon-wrap">🏢</div>
-                  <div class="address-details">
-                    <div class="address-title">Delivering to <strong>Work</strong></div>
-                    <div class="address-sub text-truncate">HighRadius 6th Floor MindSpace - 12C</div>
-                    <div class="address-dist text-danger">Selected address is 2.21 km away from your location</div>
-                  </div>
-                  <button class="btn-change-address">Change</button>
-                </div>
-
-                <div class="footer-separator"></div>
-
-                <!-- Payment Section -->
-                <div class="footer-payment-row">
-                  <div class="pay-method-info">
-                    <div class="pay-using-header">
-                      <span class="pay-visa-badge">VISA</span> PAY USING ▲
-                    </div>
-                    <div class="pay-card-details">
-                      <span class="card-name">Hsbc Visa Card</span>
-                      <span class="card-number">•••• 2389 | Secured</span>
-                    </div>
-                  </div>
-
-                  <button id="btnPlaceOrder" class="btn-place-order">
-                    <div class="btn-total-info">
-                      <span id="btnPayAmount">₹0</span>
-                      <span class="btn-total-label">TOTAL</span>
-                    </div>
-                    <div class="btn-action-info">
-                      <span>Place Order</span>
-                      <span class="btn-arrow">▸</span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Mobile Order Placed Success Screen -->
-              <div id="orderSuccessScreen" class="mobile-success-screen" style="display: none;">
-                <div class="success-icon-wrap">
-                  <div class="success-checkmark">✓</div>
-                </div>
-                <h2 class="success-title">Order Placed!</h2>
-                <p class="success-eta">⚡ Arriving in <strong>10 mins</strong> to Home</p>
-
-                <div class="success-details-card">
-                  <div class="success-row">
-                    <span>Amount Paid</span>
-                    <strong id="successAmount">₹0</strong>
-                  </div>
-                  <div class="success-row">
-                    <span>Payment Method</span>
-                    <span>UPI / Apple Pay</span>
-                  </div>
-                  <div id="successCategoryBadge" class="success-badge-container">
-                    <!-- Dynamically populated -->
-                  </div>
-                </div>
-
-                <div class="order-status-tracker">
-                  <div class="tracker-step active">
-                    <span class="dot"></span> Received
-                  </div>
-                  <div class="tracker-step active">
-                    <span class="dot"></span> Packing
-                  </div>
-                  <div class="tracker-step">
-                    <span class="dot"></span> On the way
-                  </div>
-                </div>
-
-                <button id="btnResetOrder" class="btn-reset-order">
-                  🛒 Start New Shopping Mission
-                </button>
-              </div>
-              <!-- Native Bottom Sheet Modal (WhyBottomSheet) -->
-              <div id="whyBottomSheetModal" class="bottom-sheet-backdrop" style="display: none;">
-                <div class="bottom-sheet-content">
-                  <div class="bottom-sheet-drag-handle"></div>
-                  <div class="bottom-sheet-header">
-                    <h3>💡 Why this recommendation?</h3>
-                    <button id="btnCloseWhySheet" class="btn-close-sheet">✕</button>
-                  </div>
-                  <div class="bottom-sheet-body">
-                    <div class="trust-rule-item">
-                      <span class="trust-icon">🧠</span>
-                      <div>
-                        <strong>Contextual Intent Matched</strong>
-                        <p id="sheetIntentText">Inferred intent based on active 2-item basket pairing.</p>
-                      </div>
-                    </div>
-                    <div class="trust-rule-item">
-                      <span class="trust-icon">🚫</span>
-                      <div>
-                        <strong>0 Purchases in 90 Days</strong>
-                        <p id="sheetCategoryText">Item belongs to a top-level unexplored category.</p>
-                      </div>
-                    </div>
-                    <div class="trust-rule-item">
-                      <span class="trust-icon">🛡️</span>
-                      <div>
-                        <strong>40% Price Guardrail Enforced</strong>
-                        <p id="sheetPriceText">Item price is capped under 40% of active cart subtotal to prevent cart
-                          shock.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Home Indicator -->
-              <div class="home-indicator"></div>
-
-            </div><!-- /.mobile-frame -->
-          </div><!-- /.phone-device -->
-        </div><!-- /.mobile-frame-container -->
-
-        <!-- Right Column: Live Context & Intent Summary -->
-        <div class="sim-summary-panel">
-          <div class="panel-card highlight-card">
-            <div class="card-header-badge">LIVE AI INFERENCE</div>
-            <h3>Inferred Intent</h3>
-            <div id="liveIntentName" class="intent-title">Analyzing cart...</div>
-            <div class="confidence-meter-container">
-              <div class="confidence-label">
-                <span>Semantic Confidence</span>
-                <span id="liveConfidenceVal">0%</span>
-              </div>
-              <div class="meter-bar">
-                <div id="confidenceFill" class="meter-fill" style="width: 0%;"></div>
-              </div>
-            </div>
-
-            <div class="intent-explanation">
-              <p id="intentExplanationText">Add products to your cart to trigger SILCE intent reasoning engine.</p>
-            </div>
-          </div>
-
-          <div class="panel-card">
-            <h3>🛡️ Principles Compliance</h3>
-            <div class="principles-container">
-              <div class="principle-row">
-                <div class="principle-label">
-                  <span class="check">✓</span>
-                  <span>Context First</span>
-                </div>
-                <div class="principle-desc">Inferred from cart items</div>
-              </div>
-              <div class="principle-row">
-                <div class="principle-label">
-                  <span class="check">✓</span>
-                  <span>Ranked List</span>
-                </div>
-                <div class="principle-desc">Top 4 contextual recommendations</div>
-              </div>
-              <div class="principle-row">
-                <div class="principle-label">
-                  <span class="check">✓</span>
-                  <span>Invisible</span>
-                </div>
-                <div class="principle-desc">Seamless in-cart card</div>
-              </div>
-              <div class="principle-row">
-                <div class="principle-label">
-                  <span class="check">✓</span>
-                  <span>Low Friction</span>
-                </div>
-                <div class="principle-desc">1-Tap item addition</div>
-              </div>
-              <div class="principle-row">
-                <div class="principle-label">
-                  <span class="check">✓</span>
-                  <span>Unexplored</span>
-                </div>
-                <div class="principle-desc">Category check enforced</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- TAB 2: AI INTENT DIAGNOSTICS -->
-    <section id="tab-diagnostics" class="tab-content">
-      <div class="diagnostics-grid">
-        <div class="diag-card">
-          <h3>🔍 Semantic Reasoning Pipeline</h3>
-          <div id="diagPipelineSteps" class="pipeline-steps">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-
-        <div class="diag-card">
-          <h3>📦 Category Filtering Matrix</h3>
-          <div class="category-matrix">
-            <div class="matrix-col">
-              <h4>Historical Purchased Categories (Excluded)</h4>
-              <ul id="diagPurchasedCats" class="cat-pill-list purchased">
-                <!-- Dynamically populated -->
-              </ul>
-            </div>
-            <div class="matrix-col">
-              <h4>Unexplored Candidate Categories (Eligible)</h4>
-              <ul id="diagUnexploredCats" class="cat-pill-list unexplored">
-                <!-- Dynamically populated -->
-              </ul>
-            </div>
-            <div class="matrix-flow-explanation"
-              style="grid-column: 1 / -1; margin-top: 14px; padding-top: 10px; border-top: 1px dashed var(--color-border-light); font-size: 11px; color: var(--color-text-muted); display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;">
-              <span>Previously Explored Categories</span> ➔ <span class="text-danger"
-                style="font-weight: 600;">Excluded</span> ➔ <span>Adjacent Eligible Categories</span> ➔ <span
-                class="text-success" style="font-weight: 600;">Top 4 Recommendations Selected</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="diag-card full-width">
-          <h3>💻 Raw Engine Payloads & Latency (<span id="diagLatency">-- ms</span>)</h3>
-          <pre id="diagJsonPayload" class="json-code-block"></pre>
+        <div class="explainer-stats-row">
+          <div class="stat-box"><strong id="stat-total-items">10</strong> Total Saved</div>
+          <div class="stat-box"><strong id="stat-eligible-items" style="color:#14958f">4</strong> FitTwin Active</div>
+          <div class="stat-box"><strong id="stat-silent-items" style="color:#a0a6be">3</strong> Silent (Low Intent)</div>
+          <div class="stat-box"><strong id="stat-blocked-items" style="color:#ff6b8f">3</strong> Excluded</div>
         </div>
       </div>
-    </section>
 
-
-    <!-- TAB 3: GROWTH METRICS & GUARDRAILS -->
-    <section id="tab-analytics" class="tab-content">
-      <div class="analytics-container">
-
-        <!-- Metric Cards -->
-        <div class="metrics-grid">
-          <div class="metric-card primary">
-            <div class="metric-header">
-              <span class="metric-title">PRIMARY METRIC</span>
-              <span class="metric-tag lift">+5.3% Lift</span>
-            </div>
-            <div class="metric-value" id="metricPrimaryVal">23.8%</div>
-            <div class="metric-desc">% MACs purchasing from at least 1 new category/month (Baseline: 18.5%)</div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 78%;"></div>
-            </div>
-          </div>
-
-          <div class="metric-card">
-            <div class="metric-header">
-              <span class="metric-title">ACCEPTANCE RATE</span>
-              <span class="metric-tag">Secondary</span>
-            </div>
-            <div class="metric-value" id="metricAcceptanceVal">31.0%</div>
-            <div class="metric-desc">Single-tap recommendation additions to cart</div>
-          </div>
-
-          <div class="metric-card">
-            <div class="metric-header">
-              <span class="metric-title">CHECKOUT COMPLETION</span>
-              <span class="metric-tag guardrail">Guardrail</span>
-            </div>
-            <div class="metric-value" id="metricGuardrailVal">95.9%</div>
-            <div class="metric-desc">Zero negative impact on checkout completion rate</div>
-          </div>
-
-          <div class="metric-card">
-            <div class="metric-header">
-              <span class="metric-title">LATENCY OVERHEAD</span>
-              <span class="metric-tag guardrail">Guardrail</span>
-            </div>
-            <div class="metric-value" id="metricLatencyVal">38ms</div>
-            <div class="metric-desc">Asynchronous calculation (Target: &lt;50ms)</div>
-          </div>
+      <!-- Wishlist Grid -->
+      <main class="wishlist-main">
+        <div class="wishlist-grid" id="wishlist-grid">
+          <!-- Dynamically injected wishlist cards -->
         </div>
+      </main>
+    </div>
 
-        <!-- Detailed Analytics & Feed -->
-        <div class="analytics-detail-grid">
-          <div class="panel-card">
-            <h3>🧪 A/B Test Variant Comparison</h3>
-            <table class="analytics-table">
-              <thead>
-                <tr>
-                  <th>Variant</th>
-                  <th>New Category MAC %</th>
-                  <th>Acceptance Rate</th>
-                  <th>Abandonment %</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Control</strong> (No Recommendation)</td>
-                  <td>18.5%</td>
-                  <td>--</td>
-                  <td>4.2%</td>
-                </tr>
-                <tr>
-                  <td><strong>Variant A</strong> (Generic Collaborative)</td>
-                  <td>19.8%</td>
-                  <td>12.4%</td>
-                  <td>4.8% (⚠️ friction)</td>
-                </tr>
-                <tr class="highlight-row">
-                  <td><strong>Variant B (SILCE Intent Engine)</strong></td>
-                  <td><strong>23.8% ⭐</strong></td>
-                  <td><strong>31.0%</strong></td>
-                  <td><strong>4.1% (Safe)</strong></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="panel-card">
-            <h3>⚡ Live Interaction Event Stream</h3>
-            <div id="eventStreamList" class="event-stream-list">
-              <!-- Dynamically populated events -->
-            </div>
-          </div>
-        </div>
-
+    <!-- ==================================================================== -->
+    <!-- VIEW 2: CART / SHOPPING BAG VIEW -->
+    <!-- ==================================================================== -->
+    <div id="cart-view" class="app-view" style="display: none;">
+      <!-- Step Indicator Bar -->
+      <div class="cart-step-indicator">
+        <div class="step-item active"><span class="step-num">1</span> BAG</div>
+        <div class="step-divider"></div>
+        <div class="step-item"><span class="step-num">2</span> ADDRESS</div>
+        <div class="step-divider"></div>
+        <div class="step-item"><span class="step-num">3</span> PAYMENT</div>
       </div>
-    </section>
 
-  </main>
+      <!-- Empty Cart Placeholder (When 0 items) -->
+      <div class="empty-cart-wrap" id="empty-cart-state" style="display: none;">
+        <div class="empty-cart-icon">🛍️</div>
+        <div class="empty-cart-title">Your Shopping Bag is Empty</div>
+        <div class="empty-cart-sub">Explore your wishlist and add items verified by FitTwin.</div>
+        <button class="return-btn" onclick="navigateTo('wishlist')">← Return to Wishlist</button>
+      </div>
 
-  <script src="/static/app.js?v=5.2"></script>
+      <!-- Active Cart Content -->
+      <div class="cart-content-wrap" id="active-cart-state">
+        <!-- FitTwin Trust Banner in Cart -->
+        <div class="cart-fittwin-trust-banner">
+          <div class="trust-icon">✨</div>
+          <div class="trust-text">
+            <strong>Decision Support Active:</strong> Items moved via StyleProof have been calibrated against your body frame and wardrobe synergy.
+          </div>
+        </div>
+
+        <!-- Cart Items List Container -->
+        <div class="cart-items-container" id="cart-items-container">
+          <!-- Dynamically populated cart items -->
+        </div>
+
+        <!-- Price Breakdown Card -->
+        <div class="price-breakdown-card">
+          <div class="price-card-title">PRICE DETAILS (<span id="cart-summary-item-count">1 Item</span>)</div>
+          <div class="price-row">
+            <span>Total MRP</span>
+            <span id="price-total-mrp">₹4,999</span>
+          </div>
+          <div class="price-row">
+            <span>Catalog Savings</span>
+            <span class="discount-text" id="price-discount">-₹2,500</span>
+          </div>
+          <div class="price-row">
+            <span>Delivery Fee</span>
+            <span class="free-text">FREE</span>
+          </div>
+          <div class="price-divider"></div>
+          <div class="price-row total-row">
+            <span>Total Amount</span>
+            <span class="total-amount" id="price-final-total">₹2,499</span>
+          </div>
+        </div>
+
+        <!-- Non-Monetary Incentive Assurance Tag -->
+        <div class="non-monetary-tag">
+          🔒 Zero-Discount Organic Purchase • Verified without margin-eroding coupons.
+        </div>
+
+        <!-- Sticky Cart Place Order Footer -->
+        <div class="cart-footer-sticky">
+          <div class="footer-price-col">
+            <span class="footer-total-label">Total Payable:</span>
+            <span class="footer-total-price" id="footer-total-price">₹2,499</span>
+          </div>
+          <button class="place-order-cta" onclick="executePlaceOrder()">
+            Place Order — Complete 30-Day Conversion →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================================================================== -->
+    <!-- VIEW 3: CHECKOUT SUCCESS VIEW (PM Metric Demonstration) -->
+    <!-- ==================================================================== -->
+    <div id="success-view" class="app-view" style="display: none;">
+      <div class="success-screen-container">
+        <div class="success-confetti-badge">🎉</div>
+        <h2 class="success-title">Order Successfully Placed!</h2>
+        <p class="success-subtitle">Your wishlisted item is on its way with zero fit anxiety.</p>
+
+        <!-- PM Evaluation Metric Capture Card -->
+        <div class="pm-metric-capture-card">
+          <div class="metric-card-header">
+            <span class="pm-badge">PM GROWTH GOAL ACHIEVED</span>
+            <h3>30-Day Conversion Proof</h3>
+          </div>
+
+          <div class="metric-list">
+            <div class="metric-item">
+              <div class="metric-icon">🎯</div>
+              <div class="metric-info">
+                <strong>Wishlist → Purchase Conversion:</strong>
+                <span>SUCCESS (+1 Organic Order within 30-day window)</span>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-icon">🛡️</div>
+              <div class="metric-info">
+                <strong>Decision Barrier Removed:</strong>
+                <span id="metric-barrier-text">Orphan SKU Styling Ambiguity & Sizing Drape Anxiety</span>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-icon">💰</div>
+              <div class="metric-info">
+                <strong>Cost to Platform:</strong>
+                <span style="color:#14958f; font-weight:700;">₹0 (Non-Monetary Incentive Constraint Maintained)</span>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-icon">⚡</div>
+              <div class="metric-info">
+                <strong>Decision Engine:</strong>
+                <span>Groq LPU (openai/gpt-oss-120b) dual-pillar verification</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <button class="reset-test-btn" onclick="resetPrototypeFlow()">
+            ← Return to Wishlist to Test Another Persona
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Toast Notification -->
+    <div class="toast" id="toast" onclick="handleToastClick()"></div>
+
+    <!-- ==================================================================== -->
+    <!-- MODAL 1: "Added by FitTwin" Confirmation Pop-Up (Cart View Alert) -->
+    <!-- ==================================================================== -->
+    <div class="modal-overlay" id="fittwin-cart-popup-overlay" onclick="closeFitTwinCartPopup(event)">
+      <div class="cart-confirmation-popup" onclick="event.stopPropagation()">
+        <div class="popup-sparkle-tag">✨ STYLEPROOF™ VERIFICATION</div>
+        <h3 class="popup-title">Added by FitTwin</h3>
+        <p class="popup-subtitle" id="popup-persona-subtitle">Decision Support Verified for Arjun Sharma (5'9" • 68kg)</p>
+
+        <div class="popup-proof-list">
+          <div class="proof-row">
+            <span class="check-icon">✓</span>
+            <div class="proof-text">
+              <strong>Fit Calibration:</strong>
+              <span id="popup-fit-text">Size M selected based on verified buyers with matching torso dimensions.</span>
+            </div>
+          </div>
+
+          <div class="proof-row">
+            <span class="check-icon">✓</span>
+            <div class="proof-text">
+              <strong>Closet Pairing:</strong>
+              <span id="popup-closet-text">Styled with your Levi's 511 Jeans (Nov '25) & HRX Sneakers (Jan '26).</span>
+            </div>
+          </div>
+
+          <div class="proof-row">
+            <span class="check-icon">✓</span>
+            <div class="proof-text">
+              <strong>Non-Monetary Conversion:</strong>
+              <span>Full-price purchase confidence without waiting for sales or coupon drops.</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="popup-cta-btn" onclick="closeFitTwinCartPopup()">
+          Review Cart & Checkout →
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================================================================== -->
+    <!-- MODAL 2: Interactive StyleProof Bottom Sheet Modal -->
+    <!-- ==================================================================== -->
+    <div class="modal-overlay" id="styleproof-modal-overlay" onclick="closeStyleProofModal(event)">
+      <div class="modal-bottom-sheet" onclick="event.stopPropagation()">
+        <!-- Modal Drag Handle -->
+        <div class="modal-handle-bar">
+          <div class="drag-handle"></div>
+        </div>
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <div class="modal-sparkle-pill">✨ STYLEPROOF™ AI DECISION ENGINE</div>
+            <h2 class="modal-product-title" id="modal-product-title">Roadster Men Brown Suede Biker Jacket</h2>
+          </div>
+          <button class="modal-close-btn" onclick="closeStyleProofModal()">✕</button>
+        </div>
+
+        <!-- Modal Scrollable Body -->
+        <div class="modal-body" id="modal-body-content">
+          <!-- Loading Skeleton -->
+          <div class="modal-loading-skeleton" id="modal-loading">
+            <div class="skeleton-shimmer skeleton-box" style="height: 180px;"></div>
+            <div class="skeleton-shimmer skeleton-box" style="height: 140px;"></div>
+            <div class="skeleton-shimmer skeleton-box" style="height: 60px;"></div>
+          </div>
+
+          <!-- Real Content Populated by Controller -->
+          <div class="styleproof-content" id="styleproof-content" style="display: none;">
+            
+            <!-- Pillar 1: Wardrobe Lookbook Canvas -->
+            <section class="lookbook-section">
+              <div class="section-badge-header">
+                <span class="pillar-num">PILLAR 1</span>
+                <span class="section-title">WARDROBE LOOKBOOK CANVAS</span>
+                <span class="foundation-chip" id="lookbook-foundation-chip">From Your Past Orders</span>
+              </div>
+              <p class="section-subtext" id="lookbook-subtext">Complete the look with items from your closet</p>
+
+              <div class="outfit-canvas-container">
+                <!-- Wishlisted Target Item -->
+                <div class="canvas-item target-item">
+                  <div class="canvas-img-box">
+                    <img id="canvas-target-img" src="" alt="Wishlist item">
+                    <span class="item-tag-badge new-tag">Wishlisted</span>
+                  </div>
+                  <div class="canvas-item-name" id="canvas-target-name">Roadster Suede Jacket</div>
+                </div>
+
+                <div class="outfit-link-indicator">
+                  <span class="plus-symbol">+</span>
+                  <div class="pairing-pulse"></div>
+                </div>
+
+                <!-- Paired Owned Closet Items / Neutral Staples -->
+                <div class="canvas-owned-items" id="canvas-owned-items">
+                  <!-- Dynamically populated items -->
+                </div>
+              </div>
+
+              <!-- Styling Verdict Quote -->
+              <div class="styling-rationale-box">
+                <div class="rationale-icon">💡</div>
+                <div class="rationale-text" id="styling-rationale-text">
+                  The caramel brown suede creates a rich texture contrast with your Levi's dark indigo jeans.
+                </div>
+              </div>
+            </section>
+
+            <!-- Pillar 2: FitTwin Verified UGC Review -->
+            <section class="fittwin-section">
+              <div class="section-badge-header">
+                <span class="pillar-num">PILLAR 2</span>
+                <span class="section-title">FITTWIN™ VERIFIED REVIEW</span>
+                <span class="confidence-chip" id="fit-confidence-chip">94% Fit Match</span>
+              </div>
+              <p class="section-subtext" id="fittwin-subtext">Verified drape from buyers with your exact frame</p>
+
+              <div class="fittwin-card">
+                <div class="fittwin-photo-wrapper">
+                  <img id="fittwin-user-photo" src="" alt="FitTwin User Photo">
+                  <div class="verified-fittwin-tag">✓ Verified FitTwin</div>
+                </div>
+                <div class="fittwin-meta">
+                  <div class="fittwin-biometrics">
+                    <span class="twin-stat">Height: <strong id="twin-height">5'9"</strong></span>
+                    <span class="twin-stat">Weight: <strong id="twin-weight">68kg</strong></span>
+                    <span class="twin-stat">Bought: <strong id="twin-size">Size M</strong></span>
+                  </div>
+                  <blockquote class="fittwin-quote" id="fittwin-quote">
+                    "Fits tailored on shoulders; sleeves hit right at the wrist."
+                  </blockquote>
+                  <div class="fittwin-calibration-note" id="fittwin-calibration">
+                    🎯 Calibrated to your <strong>Zara Size M</strong> & <strong>H&M Size M</strong> profile.
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Action Bar CTA (1-Tap Size Select & Move to Bag) -->
+            <div class="modal-cta-sticky">
+              <div class="size-selection-row">
+                <span class="size-label">Selected Size:</span>
+                <div class="size-chips-group" id="size-chips-group">
+                  <!-- Dynamic size chips with green FitTwin Pick dot -->
+                </div>
+              </div>
+              <button class="move-to-bag-cta" id="modal-move-to-bag-btn" onclick="executeMoveToBagFromModal()">
+                <span class="btn-icon">🛍️</span>
+                <span id="cta-button-text">Select Size M & Move to Bag</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/static/app.js"></script>
 </body>
-
 </html>

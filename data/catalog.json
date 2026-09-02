@@ -1,932 +1,460 @@
 [
   {
-    "id": "prod_104",
-    "name": "Amul Taaza Milk (1L)",
-    "category": "Milk",
-    "subcategory": "Milk",
-    "price": 56,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/71e545db-24e9-40c9-9d47-1e197b50fb28.png",
-    "tags": [
-      "milk",
-      "dairy",
-      "daily essential",
-      "amul",
-      "fresh"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill",
-      "Morning Breakfast Run"
+    "id": "WISH_SKU_101",
+    "title": "Roadster Men Brown Suede Biker Jacket",
+    "brand": "Roadster",
+    "category": "Topwear - Outerwear",
+    "main_category": "topwear",
+    "price": 2499,
+    "mrp": 4999,
+    "discount_pct": "50% OFF",
+    "image_url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80",
+    "fit_type": "Slim Fit",
+    "fabric": "Faux Suede",
+    "rating": 4.3,
+    "rating_count": 1284,
+    "color": "Caramel Brown",
+    "available_sizes": ["S", "M", "L", "XL"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Rishi Kapoor",
+        "size_bought": "M",
+        "verified_fit_verdict": "Fits perfectly on shoulders; length hits exactly at the belt line.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&q=80",
+        "calibrated_advice": "Size M recommended for a tailored shoulder fit without sleeve bunching."
+      },
+      {
+        "reviewer_height": "5'11\"",
+        "reviewer_weight": "75kg",
+        "reviewer_name": "Vikram Sethi",
+        "size_bought": "L",
+        "verified_fit_verdict": "Size up to L if you want to layer a hoodie underneath.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1520975916090-3105956dac38?w=500&q=80",
+        "calibrated_advice": "Size L recommended for a relaxed chest drape and layering ease."
+      },
+      {
+        "reviewer_height": "5'6\"",
+        "reviewer_weight": "54kg",
+        "reviewer_name": "Pooja Hegde",
+        "size_bought": "S",
+        "verified_fit_verdict": "Slightly relaxed boxy biker drape on a petite frame.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&q=80",
+        "calibrated_advice": "Size S gives a chic boxy drape without swallowing shoulders."
+      }
     ]
   },
   {
-    "id": "prod_112",
-    "name": "English Cucumber (500g)",
-    "category": "Vegetables",
-    "subcategory": "Fresh Vegetables",
-    "price": 40,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/60c2cecc-5df5-48f4-8a55-194914079d59.png",
-    "tags": [
-      "cucumber",
-      "vegetables",
-      "fresh",
-      "salad",
-      "green"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill",
-      "Daily Veggies & Dairy",
-      "Fresh Produce Restock"
+    "id": "WISH_SKU_102",
+    "title": "Mast & Harbour Relaxed Fit Camp Collar Linen Shirt",
+    "brand": "Mast & Harbour",
+    "category": "Topwear - Casual Shirts",
+    "main_category": "topwear",
+    "price": 1299,
+    "mrp": 2599,
+    "discount_pct": "50% OFF",
+    "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80",
+    "fit_type": "Relaxed Fit",
+    "fabric": "100% Linen",
+    "rating": 4.2,
+    "rating_count": 942,
+    "color": "Earthy Sand",
+    "available_sizes": ["S", "M", "L", "XL"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Aman Verma",
+        "size_bought": "M",
+        "verified_fit_verdict": "Airy and boxy fit. True to size for a relaxed summer drape.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&q=80",
+        "calibrated_advice": "Size M provides a breezy resort-collar silhouette."
+      },
+      {
+        "reviewer_height": "5'11\"",
+        "reviewer_weight": "75kg",
+        "reviewer_name": "Karan Johar",
+        "size_bought": "L",
+        "verified_fit_verdict": "Great sleeve drop and breathable linen texture.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&q=80",
+        "calibrated_advice": "Size L ensures chest buttons sit flat without pulling."
+      }
     ]
   },
   {
-    "id": "prod_113",
-    "name": "Fresh Red Tomatoes (500g)",
-    "category": "Fresh Produce",
-    "subcategory": "Fresh Vegetables",
-    "price": 45,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/d5673d4f-5d68-4129-9181-e96152253570.png",
-    "tags": [
-      "tomato",
-      "fresh produce",
-      "vegetables",
-      "cooking"
-    ],
-    "life_contexts": [
-      "Daily Veggies & Dairy",
-      "Fresh Produce Restock"
+    "id": "WISH_SKU_103",
+    "title": "Kook N Keech Men Black Graphic Oversized T-Shirt",
+    "brand": "Kook N Keech",
+    "category": "Topwear - T-Shirts",
+    "main_category": "topwear",
+    "price": 799,
+    "mrp": 1599,
+    "discount_pct": "50% OFF",
+    "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&q=80",
+    "fit_type": "Oversized Fit",
+    "fabric": "240 GSM Heavy Cotton",
+    "rating": 4.4,
+    "rating_count": 2150,
+    "color": "Washed Charcoal Black",
+    "available_sizes": ["S", "M", "L", "XL"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Siddharth Roy",
+        "size_bought": "M",
+        "verified_fit_verdict": "Proper streetwear drop-shoulder fit. Heavyweight fabric stays structured.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=500&q=80",
+        "calibrated_advice": "Stick to Size M for the intended oversized look."
+      }
     ]
   },
   {
-    "id": "prod_210",
-    "name": "Fresho Farm Fresh Eggs (6 pcs)",
-    "category": "Eggs",
-    "subcategory": "Eggs",
-    "price": 55,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/326a5be2-a93b-4975-b1b0-30a6d22b815c.png",
-    "tags": [
-      "eggs",
-      "farm fresh",
-      "breakfast",
-      "protein"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill",
-      "Morning Breakfast Run"
+    "id": "WISH_SKU_104",
+    "title": "Highlander Solid Olive Slim Fit Cargo Trousers",
+    "brand": "Highlander",
+    "category": "Bottomwear - Cargo Pants",
+    "main_category": "bottomwear",
+    "price": 1499,
+    "mrp": 2999,
+    "discount_pct": "50% OFF",
+    "image_url": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&q=80",
+    "fit_type": "Slim Tapered",
+    "fabric": "98% Cotton, 2% Elastane",
+    "rating": 4.1,
+    "rating_count": 870,
+    "color": "Military Olive",
+    "available_sizes": ["30", "32", "34", "36"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Tarun Gupta",
+        "size_bought": "32",
+        "verified_fit_verdict": "Waist is spot on; tapered ankle hits cleanly without pooling over sneakers.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=500&q=80",
+        "calibrated_advice": "Size 32 matches standard Levi's waist calibration."
+      },
+      {
+        "reviewer_height": "5'11\"",
+        "reviewer_weight": "75kg",
+        "reviewer_name": "Sameer Rao",
+        "size_bought": "34",
+        "verified_fit_verdict": "Comfortable thigh room with functional utility pockets.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=500&q=80",
+        "calibrated_advice": "Size 34 offers optimal inseam length for 5'11\"+ height."
+      }
     ]
   },
   {
-    "id": "prod_211",
-    "name": "Mother Dairy Probiotic Curd (400g)",
-    "category": "Dairy Complements",
-    "subcategory": "Curd & Yogurt",
-    "price": 50,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1774944833006-545.png",
-    "tags": [
-      "curd",
-      "yogurt",
-      "dairy complement",
-      "probiotic"
-    ],
-    "life_contexts": [
-      "Daily Veggies & Dairy"
+    "id": "WISH_SKU_105",
+    "title": "Wrogn Men Dark Indigo Slim Tapered Clean Jeans",
+    "brand": "Wrogn",
+    "category": "Bottomwear - Jeans",
+    "main_category": "bottomwear",
+    "price": 1999,
+    "mrp": 3999,
+    "discount_pct": "50% OFF",
+    "image_url": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80",
+    "fit_type": "Slim Fit",
+    "fabric": "Stretch Denim",
+    "rating": 4.3,
+    "rating_count": 1420,
+    "color": "Dark Indigo Wash",
+    "available_sizes": ["30", "32", "34", "36"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Aditya Roy",
+        "size_bought": "32",
+        "verified_fit_verdict": "Snug on calves with ample flex at the waist. Retains shape after washing.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80",
+        "calibrated_advice": "Size 32 is true to size for an athletic slim taper."
+      }
     ]
   },
   {
-    "id": "prod_213",
-    "name": "Harvest Gold Whole Wheat Bread (400g)",
-    "category": "Bakery",
-    "subcategory": "Bread",
-    "price": 45,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/dd28173d-dd86-4eb2-9526-4aee5b70a7ff.png",
-    "tags": [
-      "bread",
-      "whole wheat",
-      "bakery",
-      "breakfast"
-    ],
-    "life_contexts": [
-      "Morning Breakfast Run"
+    "id": "WISH_SKU_106",
+    "title": "HRX Chunky Street Style Leather Sneakers",
+    "brand": "HRX by Hrithik Roshan",
+    "category": "Footwear - Sneakers",
+    "main_category": "footwear",
+    "price": 1899,
+    "mrp": 3799,
+    "discount_pct": "50% OFF",
+    "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600&q=80",
+    "fit_type": "Regular",
+    "fabric": "Synthetic Leather & Mesh",
+    "rating": 4.5,
+    "rating_count": 3120,
+    "color": "Off-White & Slate Grey",
+    "available_sizes": ["UK 7", "UK 8", "UK 9", "UK 10"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Nikhil Bose",
+        "size_bought": "UK 8",
+        "verified_fit_verdict": "Wide toe box; doesn't pinch on daily walking. Thick sole adds 1.5 inches.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&q=80",
+        "calibrated_advice": "UK 8 fits true to Nike/Puma sizing."
+      }
     ]
   },
   {
-    "id": "prod_105",
-    "name": "Society Premium Masala Tea 250g",
-    "category": "Tea, Coffee & Health Drinks",
-    "subcategory": "Tea",
-    "price": 140,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1770714093407-48.png",
-    "tags": [
-      "tea",
-      "chai",
-      "masala tea"
-    ],
-    "life_contexts": [
-      "Morning Breakfast Run"
+    "id": "WISH_SKU_107",
+    "title": "Red Tape Men Classic Tan Leather Chelsea Boots",
+    "brand": "Red Tape",
+    "category": "Footwear - Boots",
+    "main_category": "footwear",
+    "price": 2799,
+    "mrp": 6999,
+    "discount_pct": "60% OFF",
+    "image_url": "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?w=600&q=80",
+    "fit_type": "Comfort Fit",
+    "fabric": "Genuine Leather",
+    "rating": 4.4,
+    "rating_count": 780,
+    "color": "Cognac Tan",
+    "available_sizes": ["UK 7", "UK 8", "UK 9", "UK 10"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'11\"",
+        "reviewer_weight": "75kg",
+        "reviewer_name": "Devendra Sharma",
+        "size_bought": "UK 9",
+        "verified_fit_verdict": "Elastic side gusset makes it easy to slip in. Pairs great with raw denim.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?w=500&q=80",
+        "calibrated_advice": "UK 9 provides comfortable instep height for Indian feet."
+      }
     ]
   },
   {
-    "id": "prod_106",
-    "name": "Parle-G Gold Biscuits 100g Pack",
-    "category": "Snacks & Munchies",
-    "subcategory": "Biscuits & Cookies",
-    "price": 15,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/a54720d4-a6a1-4b61-90d4-d37920be1980.png?dpr_multiplier=3.00",
-    "tags": [
-      "biscuits",
-      "cookies",
-      "snack"
-    ],
-    "life_contexts": [
-      "Morning Breakfast Run",
-      "Office Essentials"
+    "id": "WISH_SKU_108",
+    "title": "Damensch All-Day MicroModal Boxer Briefs (Pack of 2)",
+    "brand": "Damensch",
+    "category": "Innerwear - Briefs",
+    "main_category": "innerwear",
+    "price": 899,
+    "mrp": 1199,
+    "discount_pct": "25% OFF",
+    "image_url": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80",
+    "fit_type": "Snug Fit",
+    "fabric": "MicroModal Elastane",
+    "rating": 4.6,
+    "rating_count": 4820,
+    "color": "Navy & Charcoal",
+    "available_sizes": ["S", "M", "L", "XL"],
+    "is_category_eligible": false,
+    "ugc_reviews": []
+  },
+  {
+    "id": "WISH_SKU_109",
+    "title": "Nike Everyday Cushioned Cotton Ankle Socks (Pack of 3)",
+    "brand": "Nike",
+    "category": "Accessories - Socks",
+    "main_category": "accessories",
+    "price": 599,
+    "mrp": 795,
+    "discount_pct": "24% OFF",
+    "image_url": "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=600&q=80",
+    "fit_type": "Free Size",
+    "fabric": "Dri-FIT Cotton Blend",
+    "rating": 4.7,
+    "rating_count": 6390,
+    "color": "White / Black",
+    "available_sizes": ["Free Size"],
+    "is_category_eligible": false,
+    "ugc_reviews": []
+  },
+  {
+    "id": "WISH_SKU_110",
+    "title": "Fastrack Polarized Round Geometric Sunglasses",
+    "brand": "Fastrack",
+    "category": "Accessories - Eyewear",
+    "main_category": "accessories",
+    "price": 1199,
+    "mrp": 1999,
+    "discount_pct": "40% OFF",
+    "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&q=80",
+    "fit_type": "Medium Frame",
+    "fabric": "Polycarbonate Lens",
+    "rating": 4.2,
+    "rating_count": 510,
+    "color": "Matte Black",
+    "available_sizes": ["Standard"],
+    "is_category_eligible": false,
+    "ugc_reviews": []
+  },
+  {
+    "id": "WISH_SKU_111",
+    "title": "Snitch Men Cuban Collar Textured Knit Polo Shirt",
+    "brand": "Snitch",
+    "category": "Topwear - Polos",
+    "main_category": "topwear",
+    "price": 1399,
+    "mrp": 2799,
+    "discount_pct": "50% OFF",
+    "image_url": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80",
+    "fit_type": "Relaxed Fit",
+    "fabric": "100% Textured Cotton Knit",
+    "rating": 4.4,
+    "rating_count": 1640,
+    "color": "Sage Green",
+    "available_sizes": ["S", "M", "L", "XL"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Manish Paul",
+        "size_bought": "M",
+        "verified_fit_verdict": "Open weave knit drapes nicely without clinging to the chest. Ribbed hem stays flat.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&q=80",
+        "calibrated_advice": "Size M provides an effortless resort look with tailored shoulder seams."
+      },
+      {
+        "reviewer_height": "5'11\"",
+        "reviewer_weight": "75kg",
+        "reviewer_name": "Arunabh Kumar",
+        "size_bought": "L",
+        "verified_fit_verdict": "Chest sits comfortably flat without pull lines across the buttons.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&q=80",
+        "calibrated_advice": "Size L ensures relaxed sleeve drop and breathable room."
+      }
     ]
   },
   {
-    "id": "prod_107",
-    "name": "Surf Excel Matic Liquid Detergent 1L",
-    "category": "Household Essentials",
-    "subcategory": "Laundry",
-    "price": 180,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/2be80625-a854-4a3d-9011-adb2d27deaea.png?dpr_multiplier=3.00",
-    "tags": [
-      "detergent",
-      "laundry",
-      "cleaning"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill"
+    "id": "WISH_SKU_112",
+    "title": "Rare Rabbit Men Tailored Pleated Smart Chinos",
+    "brand": "Rare Rabbit",
+    "category": "Bottomwear - Chinos",
+    "main_category": "bottomwear",
+    "price": 2999,
+    "mrp": 5999,
+    "discount_pct": "50% OFF",
+    "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
+    "fit_type": "Relaxed Tapered Pleated",
+    "fabric": "97% Cotton, 3% Spandex Twill",
+    "rating": 4.6,
+    "rating_count": 620,
+    "color": "Warm Taupe",
+    "available_sizes": ["30", "32", "34", "36"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Gaurav Kapur",
+        "size_bought": "32",
+        "verified_fit_verdict": "Double pleats give great drape; length sits right at the ankle without break.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&q=80",
+        "calibrated_advice": "Size 32 gives a sharp sartorial silhouette paired with sneakers or loafers."
+      },
+      {
+        "reviewer_height": "5'11\"",
+        "reviewer_weight": "75kg",
+        "reviewer_name": "Rohan Mehra",
+        "size_bought": "34",
+        "verified_fit_verdict": "Waist fits cleanly and room in hips feels premium.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=500&q=80",
+        "calibrated_advice": "Size 34 is ideal for 34-inch waist with generous thigh ease."
+      }
     ]
   },
   {
-    "id": "prod_212",
-    "name": "Vim Dishwash Gel Lemon 500ml",
-    "category": "Household Essentials",
-    "subcategory": "Dishwashing",
-    "price": 115,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1783062678774-4.png?dpr_multiplier=3.00",
-    "tags": [
-      "dishwash",
-      "cleaning"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill"
+    "id": "WISH_SKU_113",
+    "title": "H&M Men Relaxed Fit Denim Overshirt Trucker",
+    "brand": "H&M",
+    "category": "Topwear - Jackets & Shackets",
+    "main_category": "topwear",
+    "price": 2299,
+    "mrp": 3999,
+    "discount_pct": "42% OFF",
+    "image_url": "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=600&q=80",
+    "fit_type": "Relaxed Boxy Fit",
+    "fabric": "100% Heavy Twill Cotton",
+    "rating": 4.5,
+    "rating_count": 1890,
+    "color": "Washed Ecru",
+    "available_sizes": ["S", "M", "L", "XL"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Kabir Bedi",
+        "size_bought": "M",
+        "verified_fit_verdict": "Perfect structured layer over a basic crew tee. Chest pockets add clean utility.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=500&q=80",
+        "calibrated_advice": "Size M provides a contemporary boxy drape."
+      }
     ]
   },
   {
-    "id": "prod_108",
-    "name": "Daawat Rozana Super Basmati Rice (1kg)",
-    "category": "Groceries",
-    "subcategory": "Rice",
-    "price": 85,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/381e1978-2bbf-4aa4-9251-9111fad05e9b.png",
-    "tags": [
-      "rice",
-      "grocery",
-      "refill",
-      "staples"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill"
+    "id": "WISH_SKU_114",
+    "title": "Woodland Men Camel Suede Low-Top Skate Sneakers",
+    "brand": "Woodland",
+    "category": "Footwear - Casual Shoes",
+    "main_category": "footwear",
+    "price": 2695,
+    "mrp": 4495,
+    "discount_pct": "40% OFF",
+    "image_url": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&q=80",
+    "fit_type": "Standard Fit",
+    "fabric": "Genuine Suede Leather & Gum Sole",
+    "rating": 4.3,
+    "rating_count": 1110,
+    "color": "Camel Suede",
+    "available_sizes": ["UK 7", "UK 8", "UK 9", "UK 10"],
+    "is_category_eligible": true,
+    "ugc_reviews": [
+      {
+        "reviewer_height": "5'9\"",
+        "reviewer_weight": "68kg",
+        "reviewer_name": "Jaspreet Singh",
+        "size_bought": "UK 8",
+        "verified_fit_verdict": "Cushioned insole with grippy gum sole. Premium suede texture.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500&q=80",
+        "calibrated_advice": "UK 8 runs true to standard Indian sizing."
+      },
+      {
+        "reviewer_height": "5'11\"",
+        "reviewer_weight": "75kg",
+        "reviewer_name": "Abhishek Roy",
+        "size_bought": "UK 9",
+        "verified_fit_verdict": "Great arch support and looks amazing with rolled-up chinos.",
+        "ugc_photo_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&q=80",
+        "calibrated_advice": "UK 9 accommodates wider feet without pinching."
+      }
     ]
   },
   {
-    "id": "prod_109",
-    "name": "Aashirvaad Shudh Chakki Atta (5kg)",
-    "category": "Groceries",
-    "subcategory": "Atta",
-    "price": 210,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1776471758958-226.png",
-    "tags": [
-      "atta",
-      "flour",
-      "grocery",
-      "staples"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill"
-    ]
-  },
-  {
-    "id": "prod_214",
-    "name": "Amul Pasteurised Butter (100g)",
-    "category": "Dairy",
-    "subcategory": "Butter",
-    "price": 58,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1781155438653-138.png",
-    "tags": [
-      "butter",
-      "dairy",
-      "breakfast",
-      "amul"
-    ],
-    "life_contexts": [
-      "Morning Breakfast Run"
-    ]
-  },
-  {
-    "id": "prod_114",
-    "name": "Fresh Red Onion (1kg)",
-    "category": "Vegetables",
-    "subcategory": "Fresh Vegetables",
-    "price": 30,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/1b2ccf0a-2720-4828-b3f8-0ddaa4b6ff17.png",
-    "tags": [
-      "onion",
-      "vegetables",
-      "cooking",
-      "essential"
-    ],
-    "life_contexts": [
-      "Fresh Produce Restock"
-    ]
-  },
-  {
-    "id": "prod_115",
-    "name": "Fresh Palak/Spinach (250g)",
-    "category": "Vegetables",
-    "subcategory": "Fresh Vegetables",
-    "price": 25,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/27edc027-ff1a-45aa-a0f6-837d214bad78.png",
-    "tags": [
-      "spinach",
-      "palak",
-      "green veg",
-      "healthy"
-    ],
-    "life_contexts": [
-      "Fresh Produce Restock"
-    ]
-  },
-  {
-    "id": "prod_301",
-    "name": "Coca-Cola Soft Drink (1.25L)",
-    "category": "Beverages",
-    "subcategory": "Soft Drinks",
-    "price": 70,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1778823645645-375.png",
-    "tags": [
-      "coke",
-      "soft drink",
-      "party",
-      "beverage"
-    ],
-    "life_contexts": [
-      "House Party",
-      "Smoke Break"
-    ]
-  },
-  {
-    "id": "prod_302",
-    "name": "Lays Classic Salted Chips (50g)",
-    "category": "Snacks & Munchies",
-    "subcategory": "Chips",
-    "price": 20,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/rc-upload-1776693405497-48.png",
-    "tags": [
-      "chips",
-      "lays",
-      "salted",
-      "snack"
-    ],
-    "life_contexts": [
-      "House Party"
-    ]
-  },
-  {
-    "id": "prod_303",
-    "name": "Kwality Walls Vanilla Ice Cream (700ml)",
-    "category": "Frozen Foods",
-    "subcategory": "Ice Cream",
-    "price": 150,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1779075684469-582.png",
-    "tags": [
-      "ice cream",
-      "dessert",
-      "frozen",
-      "vanilla"
-    ],
-    "life_contexts": [
-      "House Party"
-    ]
-  },
-  {
-    "id": "prod_304",
-    "name": "Wingreens Farms Salsa Dip (150g)",
-    "category": "Snacks & Munchies",
-    "subcategory": "Dips",
-    "price": 99,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/d21437c4-d5d7-4084-8b3b-dc2918576b63.png",
-    "tags": [
-      "salsa",
-      "dip",
-      "party",
-      "snack"
-    ],
-    "life_contexts": [
-      "House Party"
-    ]
-  },
-  {
-    "id": "prod_401",
-    "name": "Gold Flake Kings Cigarettes (10s)",
-    "category": "Paan Corner",
-    "subcategory": "Cigarettes",
-    "price": 180,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/d72909ba-d715-4c9b-a679-b57187f4e736.png?dpr_multiplier=3.00",
-    "tags": [
-      "cigarettes",
-      "smoke",
-      "tobacco"
-    ],
-    "life_contexts": [
-      "Smoke Break"
-    ]
-  },
-  {
-    "id": "prod_402",
-    "name": "Doublemint Peppermint Mints (15g)",
-    "category": "Paan Corner",
-    "subcategory": "Mints",
-    "price": 10,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/rc-upload-1778231972677-119.png",
-    "tags": [
-      "mint",
-      "mouth freshener",
-      "doublemint"
-    ],
-    "life_contexts": [
-      "Smoke Break"
-    ]
-  },
-  {
-    "id": "prod_403",
-    "name": "Pocket Gas Lighter (1 unit)",
-    "category": "Paan Corner",
-    "subcategory": "Lighters",
-    "price": 20,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/550d3651-d9b8-4e29-8a72-706b0757f0a4.png?dpr_multiplier=3.00",
-    "tags": [
-      "lighter",
-      "accessory",
-      "smoke"
-    ],
-    "life_contexts": [
-      "Smoke Break"
-    ]
-  },
-  {
-    "id": "prod_501",
-    "name": "Nescafe Classic Instant Coffee (50g)",
-    "category": "Beverages",
-    "subcategory": "Coffee",
-    "price": 165,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/233e696c-a344-46bb-ad23-2d20001a24c9.png",
-    "tags": [
-      "coffee",
-      "nescafe",
-      "instant coffee",
-      "beverage"
-    ],
-    "life_contexts": [
-      "Office Essentials"
-    ]
-  },
-  {
-    "id": "prod_503",
-    "name": "Maggi Masala Noodles 4-Pack (280g)",
-    "category": "Snacks & Munchies",
-    "subcategory": "Noodles",
-    "price": 65,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1778664014838-481.png",
-    "tags": [
-      "maggi",
-      "noodles",
-      "instant noodles",
-      "snack"
-    ],
-    "life_contexts": [
-      "Office Essentials"
-    ]
-  },
-  {
-    "id": "prod_504",
-    "name": "Paper Tea & Coffee Cups (20 pcs)",
-    "category": "Household Essentials",
-    "subcategory": "Disposables",
-    "price": 40,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/9a69e9fb-de1c-4715-a3c6-1816511d2a91.png",
-    "tags": [
-      "paper cups",
-      "disposable",
-      "office"
-    ],
-    "life_contexts": [
-      "Office Essentials"
-    ]
-  },
-  {
-    "id": "prod_601",
-    "name": "Crocin Pain Relief Tablets (15 Tabs)",
-    "category": "Pharmacy",
-    "subcategory": "Medicines",
-    "price": 30,
-    "image": "https://cdn.expresspharma.in/wp-content/uploads/2019/11/04171930/Crocin-Pain-Relief-pack-shot.jpg",
-    "tags": [
-      "crocin",
-      "paracetamol",
-      "pain killer",
-      "meds"
-    ],
-    "life_contexts": [
-      "Sick Day Recovery"
-    ]
-  },
-  {
-    "id": "prod_602",
-    "name": "ORS Apple Drink (200ml)",
-    "category": "Pharmacy",
-    "subcategory": "Health Drinks",
-    "price": 35,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/61c5d426-283a-4a85-b640-f13d995101be.png",
-    "tags": [
-      "ors",
-      "electrolyte",
-      "hydration",
-      "health"
-    ],
-    "life_contexts": [
-      "Sick Day Recovery"
-    ]
-  },
-  {
-    "id": "prod_603",
-    "name": "Digital Body Thermometer",
-    "category": "Pharmacy",
-    "subcategory": "Healthcare Devices",
-    "price": 199,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/626a206c-ced8-4c80-9f3d-31bac8829690.png",
-    "tags": [
-      "thermometer",
-      "fever",
-      "device"
-    ],
-    "life_contexts": [
-      "Sick Day Recovery"
-    ]
-  },
-  {
-    "id": "prod_604",
-    "name": "Origami Face Tissues (100 Sheets)",
-    "category": "Household Essentials",
-    "subcategory": "Tissues",
-    "price": 75,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/0082ffb7-673e-445c-9978-ddb3b1636f67.png?dpr_multiplier=3.00",
-    "tags": [
-      "tissues",
-      "wipes",
-      "soft paper"
-    ],
-    "life_contexts": [
-      "Sick Day Recovery"
-    ]
-  },
-  {
-    "id": "prod_605",
-    "name": "Saridon Headache Relief Tablets (10s)",
-    "category": "Pharmacy",
-    "subcategory": "Pain Relief",
-    "price": 42,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/41e7c0ff-dcf2-4ce9-a6db-3ca6b1967b64.png?dpr_multiplier=3.00",
-    "tags": [
-      "saridon",
-      "pain relief",
-      "headache",
-      "medicine",
-      "pharmacy"
-    ],
-    "life_contexts": [
-      "Smoke Break",
-      "Sick Day Recovery"
-    ]
-  },
-  {
-    "id": "prod_701",
-    "name": "Shalimar Black Garbage Bags (30 pcs)",
-    "category": "Household Essentials",
-    "subcategory": "Cleaning Essentials",
-    "price": 90,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1781582726206-6635.png",
-    "tags": [
-      "garbage bags",
-      "trash bags",
-      "home utility"
-    ],
-    "life_contexts": [
-      "Urgent Household Need"
-    ]
-  },
-  {
-    "id": "prod_702",
-    "name": "Lizol Disinfectant Floor Cleaner (500ml)",
-    "category": "Household Essentials",
-    "subcategory": "Cleaning Essentials",
-    "price": 45,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1785257734573-341.png",
-    "tags": [
-      "lizol",
-      "floor cleaner",
-      "disinfectant"
-    ],
-    "life_contexts": [
-      "Urgent Household Need"
-    ]
-  },
-  {
-    "id": "prod_703",
-    "name": "Pril Dishwash Liquid Gel (425ml)",
-    "category": "Household Essentials",
-    "subcategory": "Dishwashing",
-    "price": 105,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/app/images/products/sliding_image/png/67075a.png?dpr_multiplier=3.00",
-    "tags": [
-      "dishwash",
-      "pril",
-      "cleaning"
-    ],
-    "life_contexts": [
-      "Urgent Household Need"
-    ]
-  },
-  {
-    "id": "prod_704",
-    "name": "Scotch-Brite Cellulose Sponge Wipes (3 pcs)",
-    "category": "Household Essentials",
-    "subcategory": "Cleaning Essentials",
-    "price": 85,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/2095d685-cae1-4fa4-886d-a4f93f1ac613.png",
-    "tags": [
-      "sponge wipe",
-      "kitchen wipe",
-      "cleaning"
-    ],
-    "life_contexts": [
-      "Urgent Household Need"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_801",
-    "name": "Farmley Roasted & Salted Almonds (50g)",
-    "category": "Healthy Snacks",
-    "subcategory": "Nuts & Dry Fruits",
-    "price": 40,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/8f1b4c5e-69b0-453e-8b4b-83d3ab4d169d.png",
-    "tags": [
-      "almonds",
-      "healthy snacks",
-      "nuts",
-      "roasted",
-      "protein"
-    ],
-    "life_contexts": [
-      "Fresh Produce Restock",
-      "Office Essentials",
-      "Sick Day Recovery"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_802",
-    "name": "Kissan Mixed Fruit Jam (200g)",
-    "category": "Spreads",
-    "subcategory": "Jam & Spreads",
-    "price": 55,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1778656176725-23.png?dpr_multiplier=3.00",
-    "tags": [
-      "jam",
-      "spreads",
-      "breakfast",
-      "fruit",
-      "kissan"
-    ],
-    "life_contexts": [
-      "Morning Breakfast Run",
-      "Weekly Grocery Refill"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_803",
-    "name": "Solo Paper Party Plates (10 pcs)",
-    "category": "Party Essentials",
-    "subcategory": "Disposable Tableware",
-    "price": 40,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1771780767527-1521.png",
-    "tags": [
-      "paper plates",
-      "party",
-      "disposable",
-      "hosting",
-      "tableware"
-    ],
-    "life_contexts": [
-      "House Party"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_804",
-    "name": "Vicks Action 500 Extra Tablets (4s)",
-    "category": "Health Recovery",
-    "subcategory": "Cold & Flu Relief",
-    "price": 25,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1784828396740-69.png",
-    "tags": [
-      "vicks",
-      "cold",
-      "flu",
-      "tablet",
-      "medicine",
-      "fever"
-    ],
-    "life_contexts": [
-      "Sick Day Recovery"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_805",
-    "name": "Colin Multi-Surface Cleaner Spray (250ml)",
-    "category": "Home Cleaning",
-    "subcategory": "Surface Cleaners",
-    "price": 55,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/d47ed039-5c5f-427e-a1e4-75d7da3df1e9.png?dpr_multiplier=3.00",
-    "tags": [
-      "cleaner",
-      "surface cleaner",
-      "colin",
-      "spray",
-      "home",
-      "cleaning"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill",
-      "Fresh Produce Restock",
-      "Urgent Household Need"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_806",
-    "name": "Bisleri Mineral Water (1L)",
-    "category": "Hydration",
-    "subcategory": "Packaged Water",
-    "price": 20,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/2faf253a-7e5b-4d53-9774-350add8d50b5.png",
-    "tags": [
-      "water",
-      "bisleri",
-      "mineral water",
-      "hydration",
-      "packaged water"
-    ],
-    "life_contexts": [
-      "Office Essentials",
-      "Morning Breakfast Run",
-      "Smoke Break",
-      "House Party"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_807",
-    "name": "Rin Detergent Bar (150g)",
-    "category": "Laundry Care",
-    "subcategory": "Detergent Bars",
-    "price": 25,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1781005834326-90.png",
-    "tags": [
-      "detergent",
-      "laundry",
-      "rin",
-      "washing",
-      "clothes"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill",
-      "Urgent Household Need"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_808",
-    "name": "Odonil Solid Air Freshener Sachet (75g)",
-    "category": "Air Fresheners",
-    "subcategory": "Solid Fresheners",
-    "price": 45,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/59f02777-6c6e-4709-8303-94b7142abee3.png?dpr_multiplier=3.00",
-    "tags": [
-      "air freshener",
-      "odonil",
-      "fragrance",
-      "room freshener",
-      "home"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill",
-      "Morning Breakfast Run",
-      "House Party"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_809",
-    "name": "Colgate Strong Teeth Toothpaste (50g)",
-    "category": "Oral Care",
-    "subcategory": "Toothpaste",
-    "price": 30,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1782323095081-352.png",
-    "tags": [
-      "toothpaste",
-      "colgate",
-      "oral care",
-      "dental",
-      "teeth"
-    ],
-    "life_contexts": [
-      "Smoke Break",
-      "Morning Breakfast Run"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_810",
-    "name": "Limcee Vitamin C Chewable Tablets (500mg, 15s)",
-    "category": "Vitamins",
-    "subcategory": "Vitamin C",
-    "price": 30,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/5155eb47-e1d3-430e-a0fe-7b1feb0765e1.png",
-    "tags": [
-      "vitamin c",
-      "limcee",
-      "vitamins",
-      "immunity",
-      "supplement"
-    ],
-    "life_contexts": [
-      "Sick Day Recovery",
-      "Urgent Household Need"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_811",
-    "name": "Bicycle Standard Playing Cards (1 Deck)",
-    "category": "Entertainment",
-    "subcategory": "Card Games",
-    "price": 45,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/49b28b9f-7c12-495a-9ff4-4cd10a6ce39a.png?dpr_multiplier=3.00",
-    "tags": [
-      "playing cards",
-      "card game",
-      "entertainment",
-      "party game",
-      "games"
-    ],
-    "life_contexts": [
-      "House Party",
-      "Movie Night"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_812",
-    "name": "Vim Dishwash Bar (250g)",
-    "category": "Kitchen Cleaning",
-    "subcategory": "Dishwash Bars",
-    "price": 20,
-    "image": "https://cdn.grofers.com/da/cms-assets/cms/product/78958301-ced4-4c8a-965d-557816188552.png",
-    "tags": [
-      "vim",
-      "dishwash",
-      "kitchen",
-      "cleaning",
-      "utensils"
-    ],
-    "life_contexts": [
-      "Weekly Grocery Refill",
-      "Fresh Produce Restock"
-    ],
-    "in_stock": true
-  },
-  {
-    "id": "prod_901",
-    "name": "Pedigree Adult Dry Dog Food Pouch (100g)",
-    "category": "Pet Care",
-    "subcategory": "Dog Food",
-    "price": 45,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1777522895462-559.png?dpr_multiplier=3.00",
-    "tags": ["pedigree", "dog food", "pet supplies", "pets", "pet care"],
-    "life_contexts": ["Weekly Household Refill", "Urgent Household Need"],
-    "in_stock": true
-  },
-  {
-    "id": "prod_305",
-    "name": "Cadbury Bournville 50% Dark Chocolate (50g)",
-    "category": "Chocolates & Sweets",
-    "subcategory": "Dark Chocolate",
-    "price": 50,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1776059695367-47.png?dpr_multiplier=3.00",
-    "tags": ["bournville", "dark chocolate", "chocolate", "sweets", "comfort"],
-    "life_contexts": ["Period Care & Comfort", "Movie Night", "Late Night Craving"],
-    "in_stock": true
-  },
-  {
-    "id": "prod_606",
-    "name": "Whisper Choice Ultra Sanitary Pads (6s)",
-    "category": "Feminine Hygiene",
-    "subcategory": "Period Care",
-    "price": 48,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/c0016189-2ec6-4b88-ba26-69e1318a97d9.png?dpr_multiplier=3.00",
-    "tags": ["whisper", "sanitary pads", "period care", "feminine hygiene", "pads"],
-    "life_contexts": ["Period Care & Comfort"],
-    "in_stock": true
-  },
-  {
-    "id": "prod_307",
-    "name": "Kinley Club Soda Glass Bottle / Mixer (750ml)",
-    "category": "Beverages",
-    "subcategory": "Mixers & Soda",
-    "price": 25,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/5028e660-6ea3-424d-bd26-be8f445c852f.png",
-    "tags": ["soda", "mixer", "club soda", "beverages", "party"],
-    "life_contexts": ["House Party", "Late Night Drinking"],
-    "in_stock": true
-  },
-  {
-    "id": "prod_505",
-    "name": "Cherry Blossom Black Shoe Polish (40g)",
-    "category": "Shoe Care",
-    "subcategory": "Shoe Polish",
-    "price": 45,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/6f3c0124-42b7-4b3d-9434-67bc7f5b503c.png?dpr_multiplier=3.00",
-    "tags": ["shoe polish", "polish", "shoes", "formal", "interview"],
-    "life_contexts": ["Interview Preparation"],
-    "in_stock": true
-  },
-  {
-    "id": "prod_506",
-    "name": "Nivea Men Fresh Active Deodorant Spray (150ml)",
-    "category": "Personal Care",
-    "subcategory": "Deodorants",
-    "price": 175,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/rc-upload-1777531247458-11.png",
-    "tags": ["deodorant", "deodorant spray", "nivea", "grooming", "interview"],
-    "life_contexts": ["Interview Preparation"],
-    "in_stock": true
-  },
-  {
-    "id": "prod_507",
-    "name": "Park Avenue Premium Navy Silk Formal Tie",
-    "category": "Formal Accessories",
-    "subcategory": "Ties & Belts",
-    "price": 60,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1769663808578-24.png?dpr_multiplier=3.00",
-    "tags": ["tie", "silk tie", "formal tie", "formal accessories", "interview"],
-    "life_contexts": ["Interview Preparation"],
-    "in_stock": true
-  },
-  {
-    "id": "prod_508",
-    "name": "Park Avenue Formal Black Leather Belt",
-    "category": "Formal Belts",
-    "subcategory": "Belts",
-    "price": 99,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/c0296df8-61e0-435e-91f1-a6bf9c5582bf.png",
-    "tags": ["belt", "leather belt", "formal belt", "accessories", "interview"],
-    "life_contexts": ["Interview Preparation"],
-    "in_stock": true
-  },
-  {
-    "id": "prod_509",
-    "name": "Gillette Foamy Lemon Shaving Foam (200g)",
-    "category": "Shaving Needs",
-    "subcategory": "Shaving Care",
-    "price": 85,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/da/cms-assets/cms/product/rc-upload-1772776645620-701.png?dpr_multiplier=3.00",
-    "tags": ["shaving foam", "shaving cream", "shaving", "shaving needs", "grooming", "interview"],
-    "life_contexts": ["Interview Preparation"],
-    "in_stock": true
-  },
-  {
-    "id": "prod_510",
-    "name": "Park Avenue Classic Silver Cufflinks Set",
-    "category": "Cufflinks & Pins",
-    "subcategory": "Accessories",
-    "price": 95,
-    "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/rc-upload-1769961800389-314.png",
-    "tags": ["cufflinks", "cuff links", "tie pin", "formal", "interview"],
-    "life_contexts": ["Interview Preparation"],
-    "in_stock": true
+    "id": "WISH_SKU_115",
+    "title": "Tommy Hilfiger Textured Full-Grain Leather Reversible Belt",
+    "brand": "Tommy Hilfiger",
+    "category": "Accessories - Belts",
+    "main_category": "accessories",
+    "price": 1499,
+    "mrp": 2999,
+    "discount_pct": "50% OFF",
+    "image_url": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80",
+    "fit_type": "Adjustable",
+    "fabric": "100% Full-Grain Leather",
+    "rating": 4.6,
+    "rating_count": 2420,
+    "color": "Black / Dark Tan",
+    "available_sizes": ["Free Size"],
+    "is_category_eligible": false,
+    "ugc_reviews": []
   }
 ]

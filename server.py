@@ -3,12 +3,14 @@ import json
 import logging
 from pathlib import Path
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+from urllib.parse import urlparse, parse_qs
+from typing import Dict, Any
 
-from engine.recommender import generate_recommendation
-from engine.feedback_logger import log_event, get_analytics_summary
+from engine.gemini_reasoner import generate_styleproof_decision
+from engine.eligibility_gate import evaluate_item_eligibility, batch_evaluate_catalog_for_persona
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
-logger = logging.getLogger("SILCE.Server")
+logger = logging.getLogger("MyntraStyleProof.Server")
 
 PORT = int(os.getenv("PORT", 8080))
 BASE_DIR = Path(__file__).parent.resolve()
@@ -32,7 +34,15 @@ def load_data_files():
 
 CATALOG, PERSONAS = load_data_files()
 
-class SILCERequestHandler(SimpleHTTPRequestHandler):
+# In-memory analytics store
+ANALYTICS = {
+    "impressions": 0,
+    "modal_opens": 0,
+    "moved_to_bag": 0,
+    "fit_confidence_average": 93.2
+}
+
+class StyleProofRequestHandler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
         path_clean = path.split('?')[0].split('#')[0]
         if path_clean == "/" or path_clean == "/index.html":
@@ -50,17 +60,42 @@ class SILCERequestHandler(SimpleHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        if self.path == "/api/personas":
-            _, personas = load_data_files()
+        parsed = urlparse(self.path)
+        url_path = parsed.path
+        query_params = parse_qs(parsed.query)
+        catalog, personas = load_data_files()
+
+        if url_path == "/api/personas":
             self.send_json_response(personas)
             return
-        elif self.path == "/api/catalog":
-            catalog, _ = load_data_files()
+
+        elif url_path == "/api/catalog":
             self.send_json_response(catalog)
             return
-        elif self.path == "/api/analytics":
-            summary = get_analytics_summary()
-            self.send_json_response(summary)
+
+        elif url_path == "/api/wishlist":
+            user_id = query_params.get("user_id", ["USER_ARJUN_01"])[0]
+            persona = next((p for p in personas if p["user_id"] == user_id), personas[0] if personas else {})
+            
+            wishlist_ids = persona.get("wishlist", [item["id"] for item in catalog])
+            wishlisted_items = [item for item in catalog if item["id"] in wishlist_ids]
+            
+            # Evaluate gating for all wishlist items for this persona
+            gating_results = {}
+            for item in wishlisted_items:
+                gating_results[item["id"]] = evaluate_item_eligibility(item, persona)
+
+            self.send_json_response({
+                "user": persona,
+                "personas": personas,
+                "wishlist": wishlisted_items,
+                "gating": gating_results,
+                "analytics": ANALYTICS
+            })
+            return
+
+        elif url_path == "/api/analytics":
+            self.send_json_response(ANALYTICS)
             return
 
         return super().do_GET()
@@ -75,34 +110,43 @@ class SILCERequestHandler(SimpleHTTPRequestHandler):
             except Exception as e:
                 logger.warning(f"Error parsing POST payload: {e}")
 
-        if self.path == "/api/recommend":
-            cart_items = body.get("cart_items", [])
-            user_id = body.get("user_id", "user_groceries_only")
+        parsed = urlparse(self.path)
+        url_path = parsed.path
+        catalog, personas = load_data_files()
 
-            catalog, personas = load_data_files()
-            # Find matching persona
-            user_persona = next((p for p in personas if p["user_id"] == user_id), personas[0] if personas else {})
+        if url_path in ["/api/styleproof", "/api/styleproof_decision", "/api/recommend"]:
+            sku_id = body.get("sku_id", "WISH_SKU_101")
+            user_id = body.get("user_id", "USER_ARJUN_01")
+            explicit_override = body.get("explicit_override", True)
 
-            # Generate SILCE single recommendation
-            result = generate_recommendation(cart_items, user_persona, catalog)
+            persona = next((p for p in personas if p["user_id"] == user_id), personas[0] if personas else {})
+            wishlisted_item = next((item for item in catalog if item["id"] == sku_id), catalog[0] if catalog else {})
 
-            # Log impression if recommendation was generated
-            if result.get("has_recommendation"):
-                log_event("impression", {
-                    "user_id": user_id,
-                    "product_id": result["product"]["id"],
-                    "category": result["new_category"],
-                    "intent": result["intent_inferred"]
-                })
+            decision = generate_styleproof_decision(wishlisted_item, persona)
+            gating = evaluate_item_eligibility(wishlisted_item, persona, explicit_override=explicit_override)
 
-            self.send_json_response(result)
+            ANALYTICS["modal_opens"] += 1
+
+            self.send_json_response({
+                "sku": wishlisted_item,
+                "user": persona,
+                "decision": decision,
+                "gating": gating
+            })
             return
 
-        elif self.path == "/api/action":
-            action_type = body.get("action", "accept") # accept / dismiss / checkout
-            data = body.get("data", {})
-            updated_analytics = log_event(action_type, data)
-            self.send_json_response({"status": "success", "analytics": updated_analytics})
+        elif url_path == "/api/action":
+            action_type = body.get("action", "move_to_bag")
+            if action_type == "move_to_bag":
+                ANALYTICS["moved_to_bag"] += 1
+            elif action_type == "modal_open":
+                ANALYTICS["modal_opens"] += 1
+
+            self.send_json_response({
+                "status": "success",
+                "action": action_type,
+                "analytics": ANALYTICS
+            })
             return
 
         self.send_error(404, "Endpoint not found")
@@ -116,13 +160,13 @@ class SILCERequestHandler(SimpleHTTPRequestHandler):
 
 def run_server():
     global PORT
-    for try_port in [8080, 8085, 8088, 8090, 8099]:
+    for try_port in [8080, 5000, 8085, 8088, 8090, 8099]:
         try:
             server_address = ('', try_port)
             HTTPServer.allow_reuse_address = True
-            httpd = HTTPServer(server_address, SILCERequestHandler)
+            httpd = HTTPServer(server_address, StyleProofRequestHandler)
             PORT = try_port
-            logger.info(f"⚡ SILCE (Semantic Intent & Life Context Engine) running on http://localhost:{PORT}")
+            logger.info(f"✨ Myntra StyleProof (AI Decision Engine) running on http://localhost:{PORT}")
             httpd.serve_forever()
             break
         except OSError as e:

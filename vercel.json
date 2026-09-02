@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "myntra-style-proof",
   "builds": [
     {
       "src": "api/index.py",

@@ -3,17 +3,17 @@ import json
 import logging
 from pathlib import Path
 from http.server import BaseHTTPRequestHandler
-
-# Import SILCE engine modules
+from urllib.parse import urlparse, parse_qs
 import sys
+
 BASE_DIR = Path(__file__).parent.parent.resolve()
 sys.path.append(str(BASE_DIR))
 
-from engine.recommender import generate_recommendation
-from engine.feedback_logger import log_event, get_analytics_summary
+from engine.gemini_reasoner import generate_styleproof_decision
+from engine.eligibility_gate import evaluate_item_eligibility
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("SILCE.VercelAPI")
+logger = logging.getLogger("MyntraStyleProof.VercelAPI")
 
 def load_data_files():
     catalog_path = BASE_DIR / "data" / "catalog.json"
@@ -43,17 +43,33 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        url_path = self.path.split("?")[0]
+        parsed = urlparse(self.path)
+        url_path = parsed.path
+        query_params = parse_qs(parsed.query)
+        catalog, personas = load_data_files()
 
         if url_path == "/api/personas":
-            self.send_json_response(PERSONAS)
+            self.send_json_response(personas)
             return
         elif url_path == "/api/catalog":
-            self.send_json_response(CATALOG)
+            self.send_json_response(catalog)
             return
-        elif url_path == "/api/analytics":
-            summary = get_analytics_summary()
-            self.send_json_response(summary)
+        elif url_path == "/api/wishlist":
+            user_id = query_params.get("user_id", ["USER_ARJUN_01"])[0]
+            persona = next((p for p in personas if p["user_id"] == user_id), personas[0] if personas else {})
+            wishlist_ids = persona.get("wishlist", [item["id"] for item in catalog])
+            wishlisted_items = [item for item in catalog if item["id"] in wishlist_ids]
+            
+            gating_results = {}
+            for item in wishlisted_items:
+                gating_results[item["id"]] = evaluate_item_eligibility(item, persona)
+
+            self.send_json_response({
+                "user": persona,
+                "personas": personas,
+                "wishlist": wishlisted_items,
+                "gating": gating_results
+            })
             return
 
         self.send_json_response({"error": "Not Found"}, status_code=404)
@@ -68,31 +84,31 @@ class handler(BaseHTTPRequestHandler):
             except Exception as e:
                 logger.warning(f"Error parsing POST payload: {e}")
 
-        url_path = self.path.split("?")[0]
+        parsed = urlparse(self.path)
+        url_path = parsed.path
+        catalog, personas = load_data_files()
 
-        if url_path == "/api/recommend":
-            cart_items = body.get("cart_items", [])
-            user_id = body.get("user_id", "user_groceries_only")
+        if url_path in ["/api/styleproof", "/api/styleproof_decision", "/api/recommend"]:
+            sku_id = body.get("sku_id", "WISH_SKU_101")
+            user_id = body.get("user_id", "USER_ARJUN_01")
+            explicit_override = body.get("explicit_override", True)
 
-            user_persona = next((p for p in PERSONAS if p["user_id"] == user_id), PERSONAS[0] if PERSONAS else {})
-            result = generate_recommendation(cart_items, user_persona, CATALOG)
+            persona = next((p for p in personas if p["user_id"] == user_id), personas[0] if personas else {})
+            wishlisted_item = next((item for item in catalog if item["id"] == sku_id), catalog[0] if catalog else {})
 
-            if result.get("has_recommendation"):
-                log_event("impression", {
-                    "user_id": user_id,
-                    "product_id": result["product"]["id"],
-                    "category": result["new_category"],
-                    "intent": result["intent_inferred"]
-                })
+            decision = generate_styleproof_decision(wishlisted_item, persona)
+            gating = evaluate_item_eligibility(wishlisted_item, persona, explicit_override=explicit_override)
 
-            self.send_json_response(result)
+            self.send_json_response({
+                "sku": wishlisted_item,
+                "user": persona,
+                "decision": decision,
+                "gating": gating
+            })
             return
 
         elif url_path == "/api/action":
-            action_type = body.get("action", "accept")
-            data = body.get("data", {})
-            updated_analytics = log_event(action_type, data)
-            self.send_json_response({"status": "success", "analytics": updated_analytics})
+            self.send_json_response({"status": "success"})
             return
 
         self.send_json_response({"error": "Endpoint not found"}, status_code=404)
