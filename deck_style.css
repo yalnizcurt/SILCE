@@ -1,26 +1,31 @@
-/* Custom Presentation CSS for Myntra StyleProof 10-Slide Deck (1920x1080 Widescreen) */
+/* Myntra StyleProof Presentation Design System (1920x1080 Widescreen) */
 
 :root {
-    --color-bg: #FFFFFF;
-    --color-primary: #111827;
-    --color-secondary: #4B5563;
-    --color-muted: #6B7280;
-    --color-myntra-pink: #FF3F6C;
-    --color-green: #00B14F;
-    --color-green-dark: #15803D;
-    --color-yellow: #FEF08A;
-    --color-yellow-dark: #713F12;
-    --color-yellow-border: #FDE047;
-    --color-blue: #2563EB;
-    --color-red: #EF4444;
-    --color-border: #E5E7EB;
+    --myntra-pink: #FF3F6C;
+    --myntra-pink-light: #FFF0F3;
+    --myntra-pink-border: #FFD1DC;
+    --text-dark: #282C3F;
+    --text-muted: #535766;
+    --text-light: #7E818C;
+    --bg-page: #1A1C1E;
+    --bg-slide: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --card-border: #E2E5EA;
+    --success-green: #03A685;
+    --success-bg: #E8F7F3;
+    --success-border: #A7F3D0;
+    --warning-orange: #FF905A;
+    --warning-bg: #FFF1EA;
+    --warning-border: #FED7AA;
+    --navy-dark: #1E2238;
+    --navy-card: #282C3F;
 
-    --font-title: 38px;
-    --font-subtitle: 24px;
-    --font-card-title: 20px;
-    --font-body: 16px;
-    --font-label: 14px;
-    --font-stat: 44px;
+    --font-title: 34px;
+    --font-subtitle: 18px;
+    --font-card-title: 17px;
+    --font-body: 14.5px;
+    --font-label: 12.5px;
+    --font-stat: 32px;
 }
 
 * {
@@ -33,21 +38,21 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #1A1C1E;
-    color: var(--color-primary);
-    overflow-x: hidden;
+    background-color: var(--bg-page);
+    color: var(--text-dark);
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
-/* Base Slide Canvas */
+/* Base 16:9 Canvas Wrapper */
 .slide-wrapper {
     position: relative;
     width: 1920px;
     height: 1080px;
-    background-color: var(--color-bg);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-    margin: 40px auto;
+    background-color: var(--bg-slide);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    margin: 30px auto;
     overflow: hidden;
     page-break-after: always;
     break-after: page;
@@ -59,7 +64,7 @@ body {
         margin: 0;
     }
     body {
-        background-color: var(--color-bg);
+        background-color: var(--bg-slide);
         margin: 0;
         padding: 0;
     }
@@ -77,7 +82,7 @@ body {
 .slide-content-container {
     width: 100%;
     height: 100%;
-    padding: 36px 52px 28px 52px;
+    padding: 34px 50px 24px 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -91,70 +96,91 @@ body {
     align-items: center;
     margin-bottom: 8px;
 }
+.slide-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.slide-tag {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--myntra-pink);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
 .slide-title {
     font-size: var(--font-title);
     font-weight: 800;
-    color: var(--color-primary);
+    color: var(--text-dark);
     letter-spacing: -0.5px;
     line-height: 1.15;
 }
 .brand-logo {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 900;
-    color: var(--color-myntra-pink);
+    color: var(--myntra-pink);
     letter-spacing: -0.5px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 .brand-logo .sub {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
-    color: var(--color-secondary);
-    background: #F3F4F6;
+    color: var(--text-muted);
+    background: #F4F4F6;
     padding: 4px 10px;
     border-radius: 6px;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--card-border);
 }
 
-/* Yellow Subtitle Banner */
-.yellow-callout-bar {
-    background: var(--color-yellow);
-    border: 1.5px solid var(--color-yellow-border);
+/* Subtitle Callout Banner (Pink Tint / Neutral) */
+.callout-banner-pink {
+    background: var(--myntra-pink-light);
+    border: 1.5px solid var(--myntra-pink-border);
     border-radius: 8px;
     padding: 10px 18px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    color: var(--color-yellow-dark);
+    color: var(--text-dark);
     margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.dark-green-pill {
-    background: #14532D;
+.badge-pink {
+    background: var(--myntra-pink);
     color: #FFFFFF;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 14px;
     font-weight: 700;
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 6px;
     letter-spacing: 0.3px;
 }
-
-/* Green Section Bar */
-.section-bar-green {
-    background: var(--color-green-dark);
+.badge-green {
+    background: var(--success-green);
     color: #FFFFFF;
-    font-size: 15px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    padding: 8px 16px;
-    border-radius: 6px;
-    margin: 8px 0;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
 }
 
-/* Grid & Content Area */
+/* Section Header Bar */
+.section-bar-coral {
+    background: #FFF0F3;
+    border-left: 4px solid var(--myntra-pink);
+    color: var(--myntra-pink);
+    font-size: 13.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 6px 12px;
+    border-radius: 0 6px 6px 0;
+    margin: 6px 0;
+}
+
+/* Content Area */
 .content-area {
     flex: 1;
     display: flex;
@@ -164,20 +190,44 @@ body {
 }
 .layout-row {
     display: flex;
-    gap: 18px;
+    gap: 16px;
     align-items: stretch;
 }
 
-/* Stat Columns */
-.stat-columns-5 {
+/* Cards */
+.card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    box-shadow: 0 4px 12px rgba(40, 44, 63, 0.03);
+    display: flex;
+    flex-direction: column;
+}
+.card.highlight {
+    border-color: var(--myntra-pink);
+    background: #FFFDFE;
+}
+.card-header {
+    font-size: var(--font-card-title);
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 4-5 Stat Grid */
+.stat-grid-4 {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     text-align: center;
 }
-.stat-col-box {
-    background: #F9FAFB;
-    border: 1.5px solid var(--color-border);
+.stat-card {
+    background: #FAFAFB;
+    border: 1.5px solid var(--card-border);
     border-radius: 8px;
     padding: 12px 10px;
     display: flex;
@@ -185,161 +235,201 @@ body {
     align-items: center;
     justify-content: center;
 }
-.stat-icon {
-    font-size: 32px;
-    margin-bottom: 4px;
-}
-.stat-number {
+.stat-card .icon {
     font-size: 26px;
-    font-weight: 800;
-    color: var(--color-primary);
+    margin-bottom: 3px;
+}
+.stat-card .number {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--text-dark);
     line-height: 1.1;
 }
-.stat-title {
-    font-size: 14px;
+.stat-card .label {
+    font-size: 13.5px;
     font-weight: 700;
-    color: var(--color-green-dark);
+    color: var(--myntra-pink);
     margin: 2px 0;
 }
-.stat-subtitle {
-    font-size: 13px;
-    color: var(--color-secondary);
-    line-height: 1.25;
+.stat-card .desc {
+    font-size: 12px;
+    color: var(--text-muted);
 }
 
-/* Process Step Chain */
-.process-chain-5 {
+/* Horizontal KPI Cascade */
+.kpi-cascade-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #F8FAFC;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+.cascade-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.cascade-step .val {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+.cascade-step .tag {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+.cascade-arrow {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--myntra-pink);
+}
+
+/* Process Step Flow */
+.process-flow-5 {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    gap: 8px;
     text-align: center;
 }
-.process-step-box {
+.process-step {
     background: #FFFFFF;
-    border: 1.5px solid var(--color-border);
-    border-radius: 8px;
-    padding: 10px 8px;
+    border: 1.5px solid var(--card-border);
+    border-radius: 6px;
+    padding: 8px 6px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.process-step .icon {
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+/* Friction Progress Bar Row */
+.progress-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+.progress-meta {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     font-size: 13.5px;
-    font-weight: 600;
-    color: var(--color-primary);
+    font-weight: 700;
 }
-.process-step-box .icon {
-    font-size: 24px;
-    margin-bottom: 4px;
+.progress-meta .theme-name {
+    color: var(--text-dark);
 }
-
-/* KPI Tree Hierarchy */
-.kpi-hierarchy-card {
-    background: #F8FAFC;
-    border: 1.5px solid #CBD5E1;
-    border-radius: 8px;
-    padding: 12px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    font-size: 13px;
+.progress-meta .theme-stat {
+    color: var(--myntra-pink);
 }
-.kpi-tree-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    border-radius: 6px;
-    padding: 6px 10px;
+.progress-bar-track {
+    width: 100%;
+    height: 8px;
+    background: #EEF0F3;
+    border-radius: 4px;
+    overflow: hidden;
 }
-.level-tag {
-    font-size: 11px;
-    font-weight: 800;
-    background: #E2E8F0;
-    color: #334155;
-    padding: 2px 6px;
+.progress-bar-fill {
+    height: 100%;
+    background: var(--myntra-pink);
     border-radius: 4px;
 }
-.kpi-name {
-    font-weight: 700;
-    color: #0F172A;
-}
-.kpi-val {
-    font-weight: 800;
-    color: var(--color-green-dark);
-}
 
-/* Tables */
-.table-custom {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    text-align: left;
+/* Testimonial Quote Cards (2x2) */
+.testimonial-grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
-.table-custom th {
-    background: var(--color-green-dark);
-    color: #FFFFFF;
-    font-weight: 700;
-    padding: 10px 14px;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-}
-.table-custom td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--color-border);
-    color: var(--color-primary);
-    vertical-align: middle;
-    line-height: 1.35;
-}
-.table-custom tr:nth-child(even) {
-    background: #F9FAFB;
-}
-.table-custom tr.highlight-row {
-    background: #FEFCE8;
-    font-weight: 700;
-}
-
-/* Yellow Box */
-.yellow-box {
-    background: var(--color-yellow);
-    border: 1.5px solid var(--color-yellow-border);
+.testimonial-card {
+    background: #FAFAFB;
+    border: 1.5px solid var(--card-border);
     border-radius: 8px;
-    padding: 14px;
-}
-
-/* Cards */
-.card {
-    background: #FFFFFF;
-    border: 1.5px solid var(--color-border);
-    border-radius: 10px;
-    padding: 16px 18px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    padding: 12px 14px;
     display: flex;
     flex-direction: column;
-}
-.card-header {
-    font-size: var(--font-card-title);
-    font-weight: 800;
-    color: var(--color-primary);
-    margin-bottom: 10px;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
+}
+.testimonial-quote {
+    font-size: 13.5px;
+    color: var(--text-dark);
+    line-height: 1.35;
+    margin-bottom: 6px;
+}
+.testimonial-quote strong {
+    color: var(--myntra-pink);
+}
+.testimonial-author {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-muted);
 }
 
-/* RICE Score Bar */
-.rice-bar {
-    background: var(--color-green-dark);
+/* Dark JTBD Card */
+.jtbd-card-dark {
+    background: var(--navy-card);
     color: #FFFFFF;
+    border-radius: 10px;
+    padding: 16px 20px;
+}
+.jtbd-card-dark .title {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--myntra-pink);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+.jtbd-card-dark .statement {
+    font-size: 14.5px;
+    line-height: 1.4;
+    color: #F3F4F6;
+}
+
+/* Problem Canvas 2x3 Grid */
+.canvas-grid-2x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 12px;
+}
+.canvas-card {
+    background: #FFFFFF;
+    border: 1.5px solid var(--card-border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.canvas-card .num-tag {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--myntra-pink);
+    text-transform: uppercase;
+}
+.canvas-card .title {
     font-size: 14px;
     font-weight: 800;
-    text-align: center;
-    padding: 8px;
-    border-radius: 6px;
-    margin-top: 8px;
+    color: var(--text-dark);
+}
+.canvas-card .desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.35;
 }
 
-/* Mobile Devices */
+/* Mobile Device Frame for Screenshots */
 .device-card-container {
     display: flex;
     gap: 14px;
@@ -349,23 +439,23 @@ body {
 .device-box {
     flex: 1;
     background: #FFFFFF;
-    border: 1.5px solid var(--color-border);
+    border: 1.5px solid var(--card-border);
     border-radius: 10px;
-    padding: 12px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 .device-screen {
-    width: 220px;
-    height: 400px;
-    border: 4px solid #111827;
-    border-radius: 20px;
+    width: 215px;
+    height: 380px;
+    border: 3.5px solid #1E2238;
+    border-radius: 18px;
     overflow: hidden;
     background: #FFFFFF;
-    margin: 8px 0;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    margin: 6px 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 .device-screen img {
     width: 100%;
@@ -379,16 +469,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1.5px solid var(--color-border);
-    padding-top: 10px;
-    font-size: 14px;
+    border-top: 1.5px solid var(--card-border);
+    padding-top: 8px;
+    font-size: 13px;
 }
 .footer-links {
     display: flex;
-    gap: 18px;
+    gap: 16px;
 }
 .footer-links a {
-    color: var(--color-blue);
+    color: #2563EB;
     text-decoration: underline;
     font-weight: 700;
 }
@@ -397,5 +487,5 @@ body {
 }
 .footer-page {
     font-weight: 800;
-    color: var(--color-muted);
+    color: var(--text-light);
 }
