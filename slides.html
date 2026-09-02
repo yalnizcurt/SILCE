@@ -2,1394 +2,1071 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Myntra StyleProof — NextLeap PM Graduation Project Deck</title>
-    <style>
-        @page {
-            size: 1920px 1080px;
-            margin: 0;
-        }
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            background: #eef0f3;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            color: #141721;
-        }
-        .slide {
-            width: 1920px;
-            height: 1080px;
-            max-width: 1920px;
-            max-height: 1080px;
-            page-break-after: always;
-            page-break-inside: avoid;
-            padding: 32px 48px 24px 48px;
-            background: #ffffff;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        /* Top Slide Header */
-        .slide-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .slide-title {
-            font-size: 27px;
-            font-weight: 800;
-            color: #111827;
-            letter-spacing: -0.4px;
-        }
-        .brand-logo {
-            font-size: 26px;
-            font-weight: 900;
-            color: #ff3f6c;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .brand-logo .sub {
-            font-size: 13px;
-            font-weight: 700;
-            color: #535766;
-            background: #f4f4f6;
-            padding: 3px 8px;
-            border-radius: 4px;
-            border: 1px solid #e2e5ea;
-        }
-
-        /* Yellow Context / Subtitle Callout Bar */
-        .yellow-callout-bar {
-            background: #fef08a;
-            border: 1px solid #fde047;
-            border-radius: 6px;
-            padding: 8px 16px;
-            font-size: 13.5px;
-            font-weight: 600;
-            color: #713f12;
-            margin-bottom: 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .dark-green-pill {
-            background: #14532d;
-            color: #ffffff;
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-size: 12.5px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-        }
-
-        /* Green Section Header Bar */
-        .section-bar-green {
-            background: #15803d;
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 6px 14px;
-            border-radius: 4px;
-            margin: 8px 0;
-        }
-
-        /* Core Layout Grid & Bento Structures */
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            justify-content: space-between;
-        }
-        .layout-row {
-            display: flex;
-            gap: 16px;
-            align-items: stretch;
-        }
-
-        /* Stat Columns with Icons */
-        .stat-columns-5 {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            text-align: center;
-        }
-        .stat-col-box {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 12px 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .stat-icon {
-            font-size: 28px;
-            margin-bottom: 4px;
-        }
-        .stat-number {
-            font-size: 22px;
-            font-weight: 800;
-            color: #111827;
-            line-height: 1.1;
-        }
-        .stat-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: #15803d;
-            margin: 2px 0;
-        }
-        .stat-subtitle {
-            font-size: 11px;
-            color: #4b5563;
-            line-height: 1.25;
-        }
-
-        /* Flow Process Step Chain */
-        .process-chain-5 {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-            text-align: center;
-        }
-        .process-step-box {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            padding: 8px 6px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 11.5px;
-            font-weight: 600;
-            color: #1f2937;
-        }
-        .process-step-box .icon {
-            font-size: 20px;
-            margin-bottom: 2px;
-        }
-
-        /* Level 1-7 Tree / Hierarchy Box */
-        .kpi-hierarchy-card {
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            padding: 10px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            font-size: 11px;
-        }
-        .kpi-tree-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 4px;
-            padding: 5px 8px;
-        }
-        .level-tag {
-            font-size: 9.5px;
-            font-weight: 800;
-            background: #e2e8f0;
-            color: #334155;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        .kpi-name {
-            font-weight: 700;
-            color: #0f172a;
-        }
-        .kpi-val {
-            font-weight: 800;
-            color: #15803d;
-        }
-
-        /* Clean High-Contrast Tables */
-        .table-custom {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            text-align: left;
-        }
-        .table-custom th {
-            background: #15803d;
-            color: #ffffff;
-            font-weight: 700;
-            padding: 8px 10px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-        .table-custom td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #e5e7eb;
-            color: #1f2937;
-            vertical-align: middle;
-        }
-        .table-custom tr:nth-child(even) {
-            background: #f9fafb;
-        }
-        .table-custom tr.highlight-row {
-            background: #fefce8;
-            font-weight: 700;
-        }
-
-        /* Yellow Left Box / Multi-source box */
-        .yellow-box {
-            background: #fef08a;
-            border: 1px solid #fde047;
-            border-radius: 6px;
-            padding: 12px;
-        }
-
-        /* Cards & Bento Units */
-        .card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 14px 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-            display: flex;
-            flex-direction: column;
-        }
-        .card-header {
-            font-size: 14px;
-            font-weight: 800;
-            color: #111827;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* RICE Score Bar */
-        .rice-bar {
-            background: #15803d;
-            color: #ffffff;
-            font-size: 12px;
-            font-weight: 800;
-            text-align: center;
-            padding: 6px;
-            border-radius: 4px;
-            margin-top: 6px;
-        }
-
-        /* Mobile Device Frame for Screenshots */
-        .device-card-container {
-            display: flex;
-            gap: 12px;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .device-box {
-            flex: 1;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .device-screen {
-            width: 210px;
-            height: 380px;
-            border: 3px solid #111827;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #ffffff;
-            margin: 6px 0;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-        }
-        .device-screen img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-        }
-
-        /* Footer Links (Blue Underline from reference) */
-        .slide-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #e5e7eb;
-            padding-top: 8px;
-            font-size: 12px;
-        }
-        .footer-links {
-            display: flex;
-            gap: 14px;
-        }
-        .footer-links a {
-            color: #2563eb;
-            text-decoration: underline;
-            font-weight: 600;
-        }
-        .footer-links a:hover {
-            color: #1d4ed8;
-        }
-        .footer-page {
-            font-weight: 700;
-            color: #6b7280;
-        }
-    </style>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="deck_style.css">
+    <script src="scale.js"></script>
 </head>
 <body>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 01: BUSINESS CONTEXT & OPPORTUNITY DECOMPOSITION                     -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">Myntra's next growth lever isn't discounting, it's decision certainty</h1>
-            <div class="brand-logo">myntra <span class="sub">Growth Capstone</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-1">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">Myntra's next growth lever isn't discounting, it's decision certainty</h1>
+                <div class="brand-logo">myntra <span class="sub">Growth Capstone</span></div>
+            </header>
 
-        <!-- Subtitle Yellow Banner -->
-        <div class="yellow-callout-bar">
-            <span>Wishlist additions got us high-intent demand, but evaluation hesitation stalls checkout. 30-day conversion must be driven by certainty, not margin-diluting flash sales.</span>
-            <span class="dark-green-pill">&ldquo;30-Day Wishlist-to-Purchase Conversion&rdquo; is North Star Metric</span>
-        </div>
+            <!-- Yellow Subtitle Banner -->
+            <div class="yellow-callout-bar">
+                <span>Wishlist additions got us high-intent demand, but evaluation hesitation stalls checkout. 30-day conversion must be driven by certainty, not margin-diluting flash sales.</span>
+                <span class="dark-green-pill">&ldquo;30-Day Wishlist-to-Purchase Conversion&rdquo; is North Star Metric</span>
+            </div>
 
-        <div class="content-area">
-            <div class="layout-row">
-                <!-- Left 70% Area -->
-                <div style="flex: 1.8; display: flex; flex-direction: column; gap: 10px;">
-                    <!-- 5 Stat Columns with Icons -->
-                    <div class="stat-columns-5">
-                        <div class="stat-col-box">
-                            <div class="stat-icon">👑</div>
-                            <div class="stat-number">16.8 M+</div>
-                            <div class="stat-title">Active Wishlist MAUs</div>
-                            <div class="stat-subtitle">Shoppers with &ge;3 saved high-intent items</div>
+            <div class="content-area">
+                <div class="layout-row">
+                    <!-- Left 68% Area -->
+                    <div style="flex: 1.8; display: flex; flex-direction: column; gap: 10px;">
+                        <!-- 5 Stat Columns with Icons -->
+                        <div class="stat-columns-5">
+                            <div class="stat-col-box">
+                                <div class="stat-icon">👑</div>
+                                <div class="stat-number">16.8 M+</div>
+                                <div class="stat-title">Active Wishlist MAUs</div>
+                                <div class="stat-subtitle">Shoppers with &ge;3 saved items</div>
+                            </div>
+                            <div class="stat-col-box">
+                                <div class="stat-icon">🛍️</div>
+                                <div class="stat-number">8.5%</div>
+                                <div class="stat-title">Baseline Conversion</div>
+                                <div class="stat-subtitle">Current 30-day purchase rate</div>
+                            </div>
+                            <div class="stat-col-box">
+                                <div class="stat-icon">🎯</div>
+                                <div class="stat-number">11.2%</div>
+                                <div class="stat-title">Target Conversion</div>
+                                <div class="stat-subtitle">+2.7pp lift (+31.7% relative)</div>
+                            </div>
+                            <div class="stat-col-box">
+                                <div class="stat-icon">₹</div>
+                                <div class="stat-number">&#8377; 83.8 cr</div>
+                                <div class="stat-title">Incremental / Mo</div>
+                                <div class="stat-subtitle">+453k buyers &times; &#8377;1,850 AOV</div>
+                            </div>
+                            <div class="stat-col-box">
+                                <div class="stat-icon">🛡️</div>
+                                <div class="stat-number">&#8377; 0</div>
+                                <div class="stat-title">Discount Cost</div>
+                                <div class="stat-subtitle">100% gross margin preserved</div>
+                            </div>
                         </div>
-                        <div class="stat-col-box">
-                            <div class="stat-icon">🛍️</div>
-                            <div class="stat-number">8.5%</div>
-                            <div class="stat-title">Baseline Conversion</div>
-                            <div class="stat-subtitle">Current 30-day wishlist purchase rate</div>
+
+                        <!-- Green Section Bar -->
+                        <div class="section-bar-green">WARDROBE DECISION CERTAINTY = STRONGER UNIT ECONOMICS</div>
+
+                        <!-- 5 Process Step Chain with Icons -->
+                        <div class="process-chain-5">
+                            <div class="process-step-box">
+                                <div class="icon">👕</div>
+                                <span>Item Saved to Wishlist</span>
+                            </div>
+                            <div class="process-step-box">
+                                <div class="icon">✨</div>
+                                <span>Wardrobe Match with Owned Closet</span>
+                            </div>
+                            <div class="process-step-box">
+                                <div class="icon">👥</div>
+                                <span>FitTwin Biometric Photo Verified</span>
+                            </div>
+                            <div class="process-step-box">
+                                <div class="icon">🛒</div>
+                                <span>1-Tap Bag Move with Calibrated Size</span>
+                            </div>
+                            <div class="process-step-box">
+                                <div class="icon">📈</div>
+                                <span>Full Margin Checkout Conversion</span>
+                            </div>
                         </div>
-                        <div class="stat-col-box">
-                            <div class="stat-icon">🎯</div>
-                            <div class="stat-number">11.2%</div>
-                            <div class="stat-title">Target Conversion</div>
-                            <div class="stat-subtitle">+2.7pp conversion lift target (+31.7% relative)</div>
-                        </div>
-                        <div class="stat-col-box">
-                            <div class="stat-icon">₹</div>
-                            <div class="stat-number">&#8377; 83.8 cr</div>
-                            <div class="stat-title">Incremental / Mo</div>
-                            <div class="stat-subtitle">+453k buyers &times; &#8377;1,850 blended fashion AOV</div>
-                        </div>
-                        <div class="stat-col-box">
-                            <div class="stat-icon">🛡️</div>
-                            <div class="stat-number">&#8377; 0</div>
-                            <div class="stat-title">Discount Cost</div>
-                            <div class="stat-subtitle">100% gross catalog margin preserved</div>
+
+                        <!-- Highlight Quote -->
+                        <div style="background: #fdf2f8; border-left: 4px solid var(--color-myntra-pink); padding: 10px 16px; font-size: 15px; font-style: italic; color: var(--color-primary); font-weight: 600; border-radius: 0 6px 6px 0;">
+                            &ldquo;Discounting subsidizes purchase intent; it does not resolve fit anxiety or outfit coordination doubt. Decision certainty converts at full price.&rdquo;
                         </div>
                     </div>
 
-                    <!-- Green Section Bar -->
-                    <div class="section-bar-green">WARDROBE DECISION CERTAINTY = STRONGER UNIT ECONOMICS</div>
-
-                    <!-- 5 Process Step Chain with Icons -->
-                    <div class="process-chain-5">
-                        <div class="process-step-box">
-                            <div class="icon">👕</div>
-                            <span>Item Saved to Wishlist</span>
-                        </div>
-                        <div class="process-step-box">
-                            <div class="icon">✨</div>
-                            <span>Wardrobe Match with Owned Closet</span>
-                        </div>
-                        <div class="process-step-box">
-                            <div class="icon">👥</div>
-                            <span>FitTwin Biometric Photo Verified</span>
-                        </div>
-                        <div class="process-step-box">
-                            <div class="icon">🛒</div>
-                            <span>1-Tap Bag Move with Calibrated Size</span>
-                        </div>
-                        <div class="process-step-box">
-                            <div class="icon">📈</div>
-                            <span>Full Margin Checkout Conversion</span>
-                        </div>
-                    </div>
-
-                    <!-- Highlight Quote -->
-                    <div style="background: #fdf2f8; border-left: 4px solid #ff3f6c; padding: 8px 14px; font-size: 12.5px; font-style: italic; color: #111827; font-weight: 600;">
-                        &ldquo;Discounting subsidizes purchase intent; it does not resolve fit anxiety or outfit coordination doubt. Decision certainty converts at full price.&rdquo;
-                    </div>
-                </div>
-
-                <!-- Right 30% Area: KPI Hierarchy Cascade -->
-                <div style="flex: 1.1;">
-                    <div class="kpi-hierarchy-card">
-                        <div style="font-weight: 800; font-size: 11.5px; color: #0f172a; text-align: center; margin-bottom: 2px;">
-                            MYNTRA GROWTH KPI CASCADE
-                        </div>
-                        <div class="kpi-tree-row">
-                            <span class="level-tag">LEVEL 1</span>
-                            <span class="kpi-name">Annualized Incremental GMV</span>
-                            <span class="kpi-val">&#8377;1,005 Cr</span>
-                        </div>
-                        <div class="kpi-tree-row">
-                            <span class="level-tag">LEVEL 2</span>
-                            <span class="kpi-name">Monthly Incremental GMV</span>
-                            <span class="kpi-val">&#8377;83.8 Cr / mo</span>
-                        </div>
-                        <div class="kpi-tree-row">
-                            <span class="level-tag">LEVEL 3</span>
-                            <span class="kpi-name">Incremental Converting Buyers</span>
-                            <span class="kpi-val">453,000 / mo</span>
-                        </div>
-                        <div class="kpi-tree-row">
-                            <span class="level-tag">LEVEL 4</span>
-                            <span class="kpi-name">Active Wishlist MAUs (&ge;3 items)</span>
-                            <span class="kpi-val">16.8 Million</span>
-                        </div>
-                        <div class="kpi-tree-row">
-                            <span class="level-tag">LEVEL 5</span>
-                            <span class="kpi-name">Blended Fashion AOV</span>
-                            <span class="kpi-val">&#8377;1,850</span>
-                        </div>
-                        <div class="kpi-tree-row" style="background: #ecfdf5; border-color: #10b981;">
-                            <span class="level-tag" style="background: #10b981; color: #fff;">NORTH STAR</span>
-                            <span class="kpi-name">30-Day Wishlist Conversion</span>
-                            <span class="kpi-val">8.5% &rarr; 11.2%</span>
+                    <!-- Right 32% Area: KPI Hierarchy Cascade -->
+                    <div style="flex: 1.1;">
+                        <div class="kpi-hierarchy-card">
+                            <div style="font-weight: 800; font-size: 14px; color: #0F172A; text-align: center; margin-bottom: 4px;">
+                                MYNTRA GROWTH KPI CASCADE
+                            </div>
+                            <div class="kpi-tree-row">
+                                <span class="level-tag">LEVEL 1</span>
+                                <span class="kpi-name">Annualized Incremental GMV</span>
+                                <span class="kpi-val">&#8377;1,005 Cr</span>
+                            </div>
+                            <div class="kpi-tree-row">
+                                <span class="level-tag">LEVEL 2</span>
+                                <span class="kpi-name">Monthly Incremental GMV</span>
+                                <span class="kpi-val">&#8377;83.8 Cr / mo</span>
+                            </div>
+                            <div class="kpi-tree-row">
+                                <span class="level-tag">LEVEL 3</span>
+                                <span class="kpi-name">Incremental Converting Buyers</span>
+                                <span class="kpi-val">453,000 / mo</span>
+                            </div>
+                            <div class="kpi-tree-row">
+                                <span class="level-tag">LEVEL 4</span>
+                                <span class="kpi-name">Active Wishlist MAUs (&ge;3 items)</span>
+                                <span class="kpi-val">16.8 Million</span>
+                            </div>
+                            <div class="kpi-tree-row">
+                                <span class="level-tag">LEVEL 5</span>
+                                <span class="kpi-name">Blended Fashion AOV</span>
+                                <span class="kpi-val">&#8377;1,850</span>
+                            </div>
+                            <div class="kpi-tree-row" style="background: #ECFDF5; border-color: #10B981;">
+                                <span class="level-tag" style="background: #10B981; color: #fff;">NORTH STAR</span>
+                                <span class="kpi-name">30-Day Wishlist Conversion</span>
+                                <span class="kpi-val">8.5% &rarr; 11.2%</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://myntra-style-proof.vercel.app" target="_blank">Research and KPI Details</a>
-                <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repository</a>
-            </div>
-            <div class="footer-page">Slide 01 / 10</div>
-        </footer>
-    </section>
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://myntra-style-proof.vercel.app" target="_blank">Research and KPI Details</a>
+                    <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repository</a>
+                </div>
+                <div class="footer-page">Slide 01 / 10</div>
+            </footer>
+        </div>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 02: OPPORTUNITY DISCOVERY VIA UNSTRUCTURED REVIEW MINING            -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">We mined real customer reviews at scale to find actionable friction using AI</h1>
-            <div class="brand-logo">myntra <span class="sub">Evidence Engine</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-2">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">We mined real customer reviews at scale to find actionable friction using AI</h1>
+                <div class="brand-logo">myntra <span class="sub">Evidence Engine</span></div>
+            </header>
 
-        <div class="content-area">
-            <!-- Top Ingestion Flow -->
-            <div style="display: flex; gap: 8px; justify-content: space-between; align-items: center; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px;">
-                <div style="font-size: 11.5px; font-weight: 700; color: #0f172a;">AI EXTRACTION PIPELINE:</div>
-                <div style="display: flex; gap: 10px; font-size: 11px; align-items: center; color: #334155;">
-                    <span>📥 <strong>Collect</strong> (Play Store, App Store, Reddit)</span> &rarr;
-                    <span>🧹 <strong>Clean</strong> (Dedupe &amp; Noise Filter)</span> &rarr;
-                    <span>🏷️ <strong>AI-Tagging</strong> (Groq LPU 120B)</span> &rarr;
-                    <span>📊 <strong>Synthesize</strong> (6-Pillar Clustering)</span> &rarr;
-                    <span>🚀 <strong>Dashboard</strong> (Interactive ReviewLens)</span>
-                </div>
-            </div>
-
-            <div class="layout-row" style="flex: 1;">
-                <!-- Left Source Table (Yellow block from reference) -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
-                    <table class="table-custom" style="border: 1px solid #fde047;">
-                        <thead>
-                            <tr style="background: #fde047; color: #713f12;">
-                                <th>Source</th>
-                                <th>How it Scraped / Mined</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Google Play</strong></td>
-                                <td>google-play-scraper library (~2,600 reviews)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>App Store</strong></td>
-                                <td>Apple RSS feeds (~450 reviews)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Reddit</strong></td>
-                                <td>r/IndianFashionAddicts, r/Myntra (PRAW)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="yellow-box" style="font-size: 11.5px; flex: 1;">
-                        <strong style="color: #713f12;">AI Mitigations &amp; Pipeline Rigor:</strong>
-                        <ul style="padding-left: 14px; margin-top: 4px; display: flex; flex-direction: column; gap: 3px; color: #854d0e;">
-                            <li>Emoji &amp; spam syntax cleaning</li>
-                            <li>TF-IDF &amp; semantic cluster purity split</li>
-                            <li>Grounded Groq RAG citation verification</li>
-                        </ul>
+            <div class="content-area">
+                <!-- Top Ingestion Flow -->
+                <div style="display: flex; gap: 8px; justify-content: space-between; align-items: center; background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 8px; padding: 10px 16px;">
+                    <div style="font-size: 14px; font-weight: 800; color: #0F172A;">AI EXTRACTION PIPELINE:</div>
+                    <div style="display: flex; gap: 12px; font-size: 13.5px; align-items: center; color: #334155; font-weight: 600;">
+                        <span>📥 <strong>Collect</strong> (Play Store, App Store, Reddit)</span> &rarr;
+                        <span>🧹 <strong>Clean</strong> (Dedupe &amp; Noise Filter)</span> &rarr;
+                        <span>🏷️ <strong>AI-Tagging</strong> (Groq LPU 120B)</span> &rarr;
+                        <span>📊 <strong>Synthesize</strong> (6-Pillar Clustering)</span> &rarr;
+                        <span>🚀 <strong>Dashboard</strong> (Interactive ReviewLens)</span>
                     </div>
                 </div>
 
-                <!-- Right Problem Landscape Table -->
-                <div style="flex: 2;">
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>Insight Theme</th>
-                                <th>Volume &amp; Share</th>
-                                <th>Sentiment</th>
-                                <th>Key Takeaway</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="highlight-row">
-                                <td>👗 <strong>Fit &amp; Drape Ambiguity</strong></td>
-                                <td><strong>957 (60.8%)</strong></td>
-                                <td>Predominantly Negative</td>
-                                <td>Brand-to-brand sizing variance; 6-ft studio models distort silhouette on real bodies</td>
-                            </tr>
-                            <tr class="highlight-row">
-                                <td>🔍 <strong>Fabric Drape &amp; Quality</strong></td>
-                                <td><strong>223 (14.2%)</strong></td>
-                                <td>Negative / Skeptical</td>
-                                <td>Studio lighting masks synthetic textures &amp; sheerness; users seek daylight customer photos</td>
-                            </tr>
-                            <tr>
-                                <td>🏷️ <strong>Price &amp; Payday Waiting</strong></td>
-                                <td>97 (6.2%)</td>
-                                <td>Neutral / Timing</td>
-                                <td>Monthly salary liquidity timing; holding items until month-end or sale event</td>
-                            </tr>
-                            <tr class="highlight-row">
-                                <td>👔 <strong>Wardrobe Coordination</strong></td>
-                                <td><strong>56 (3.6%)</strong></td>
-                                <td>Hesitant / Doubt</td>
-                                <td>Standalone pieces saved in isolation; users freeze on what owned pants/shoes to wear with it</td>
-                            </tr>
-                            <tr>
-                                <td>📦 <strong>Exchange &amp; Delivery Friction</strong></td>
-                                <td>226 (14.3%)</td>
-                                <td>Negative</td>
-                                <td>Post-purchase operational return turnaround delays; routed to logistics scope</td>
-                            </tr>
-                            <tr>
-                                <td>🎨 <strong>Casual Moodboarding</strong></td>
-                                <td>16 (1.0%)</td>
-                                <td>Passive</td>
-                                <td>Top-of-funnel aspiration bookmarking without short-term conversion intent</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="layout-row" style="flex: 1;">
+                    <!-- Left Source Table -->
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                        <table class="table-custom" style="border: 1.5px solid var(--color-yellow-border);">
+                            <thead>
+                                <tr style="background: var(--color-yellow-border); color: var(--color-yellow-dark);">
+                                    <th>Source</th>
+                                    <th>How it Scraped / Mined</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Google Play</strong></td>
+                                    <td>google-play-scraper (~2,600 reviews)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>App Store</strong></td>
+                                    <td>Apple RSS feeds (~450 reviews)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Reddit</strong></td>
+                                    <td>r/IndianFashionAddicts, r/Myntra (PRAW)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="yellow-box" style="font-size: 13.5px; flex: 1;">
+                            <strong style="color: var(--color-yellow-dark);">AI Mitigations &amp; Pipeline Rigor:</strong>
+                            <ul style="padding-left: 16px; margin-top: 6px; display: flex; flex-direction: column; gap: 4px; color: #854D0E;">
+                                <li>Emoji &amp; spam syntax cleaning</li>
+                                <li>TF-IDF &amp; semantic cluster purity split</li>
+                                <li>Grounded Groq RAG citation verification</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right Problem Landscape Table -->
+                    <div style="flex: 2;">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Insight Theme</th>
+                                    <th>Volume &amp; Share</th>
+                                    <th>Sentiment</th>
+                                    <th>Key Takeaway</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlight-row">
+                                    <td>👗 <strong>Fit &amp; Drape Ambiguity</strong></td>
+                                    <td><strong>957 (60.8%)</strong></td>
+                                    <td>Predominantly Negative</td>
+                                    <td>Brand-to-brand sizing variance; 6-ft studio models distort silhouette on real bodies</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td>🔍 <strong>Fabric Drape &amp; Quality</strong></td>
+                                    <td><strong>223 (14.2%)</strong></td>
+                                    <td>Negative / Skeptical</td>
+                                    <td>Studio lighting masks synthetic textures &amp; sheerness; users seek daylight customer photos</td>
+                                </tr>
+                                <tr>
+                                    <td>🏷️ <strong>Price &amp; Payday Waiting</strong></td>
+                                    <td>97 (6.2%)</td>
+                                    <td>Neutral / Timing</td>
+                                    <td>Monthly salary liquidity timing; holding items until month-end or sale event</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td>👔 <strong>Wardrobe Coordination</strong></td>
+                                    <td><strong>56 (3.6%)</strong></td>
+                                    <td>Hesitant / Doubt</td>
+                                    <td>Standalone pieces saved in isolation; users freeze on what owned pants/shoes to wear with it</td>
+                                </tr>
+                                <tr>
+                                    <td>📦 <strong>Exchange &amp; Delivery Friction</strong></td>
+                                    <td>226 (14.3%)</td>
+                                    <td>Negative</td>
+                                    <td>Post-purchase operational return turnaround delays; routed to logistics scope</td>
+                                </tr>
+                                <tr>
+                                    <td>🎨 <strong>Casual Moodboarding</strong></td>
+                                    <td>16 (1.0%)</td>
+                                    <td>Passive</td>
+                                    <td>Top-of-funnel aspiration bookmarking without short-term conversion intent</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://myntra-opportunity-engine.vercel.app" target="_blank">Working Link - Live Engine Dashboard</a>
-                <a href="https://github.com/yalnizcurt/blinkitgrowthengine.git" target="_blank">Repo</a>
-                <a href="https://myntra-style-proof.vercel.app" target="_blank">Demo Prototype</a>
-            </div>
-            <div class="footer-page">Slide 02 / 10</div>
-        </footer>
-    </section>
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://myntra-opportunity-engine.vercel.app" target="_blank">Working Link - Live Engine Dashboard</a>
+                    <a href="https://github.com/yalnizcurt/blinkitgrowthengine.git" target="_blank">Repo</a>
+                    <a href="https://myntra-style-proof.vercel.app" target="_blank">Demo Prototype</a>
+                </div>
+                <div class="footer-page">Slide 02 / 10</div>
+            </footer>
+        </div>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 03: COMPETITION & USER JOURNEY MAP                                  -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">For Wishlist Conversion: Offline fitting rooms are the true competitor</h1>
-            <div class="brand-logo">myntra <span class="sub">Journey &amp; Persona</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-3">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">For Wishlist Conversion: Offline fitting rooms are the true competitor</h1>
+                <div class="brand-logo">myntra <span class="sub">Journey &amp; Persona</span></div>
+            </header>
 
-        <div class="content-area">
-            <div class="layout-row">
-                <!-- Left Competition Matrix -->
-                <div style="flex: 1.5; display: flex; flex-direction: column; gap: 8px;">
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>Competition</th>
-                                <th>Competitors</th>
-                                <th>Why it Matters for Myntra?</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Offline Retail Malls</strong></td>
-                                <td>Zara, H&amp;M, Lifestyle</td>
-                                <td>Instant physical try-on mirror eliminates all sizing doubt; zero return friction.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Specialty Fashion Apps</strong></td>
-                                <td>AJIO, Tata CLiQ, Nykaa</td>
-                                <td>Category curation, brand exclusives, and localized fashion community lookbooks.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Social Validation</strong></td>
-                                <td>WhatsApp, Instagram, Reddit</td>
-                                <td>Users screenshot wishlists to ask friends: <em>&ldquo;Will this match my black jeans?&rdquo;</em></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="content-area">
+                <div class="layout-row">
+                    <!-- Left Competition Matrix -->
+                    <div style="flex: 1.5; display: flex; flex-direction: column; gap: 10px;">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Competition</th>
+                                    <th>Competitors</th>
+                                    <th>Why it Matters for Myntra?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Offline Retail Malls</strong></td>
+                                    <td>Zara, H&amp;M, Lifestyle</td>
+                                    <td>Instant physical try-on mirror eliminates all sizing doubt; zero return friction.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Specialty Fashion Apps</strong></td>
+                                    <td>AJIO, Tata CLiQ, Nykaa</td>
+                                    <td>Category curation, brand exclusives, and localized fashion community lookbooks.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Social Validation</strong></td>
+                                    <td>WhatsApp, Instagram, Reddit</td>
+                                    <td>Users screenshot wishlists to ask friends: <em>&ldquo;Will this match my black jeans?&rdquo;</em></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <!-- User Journey Map (Current vs Desired from reference) -->
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px; margin-top: 4px;">
-                        <div style="font-size: 11px; font-weight: 800; color: #d9534f; margin-bottom: 4px;">CURRENT USER JOURNEY (LEAKAGE):</div>
-                        <div style="display: flex; gap: 6px; font-size: 10.5px; align-items: center; color: #4b5563;">
-                            <span>👀 Saves to Wishlist</span> &rarr;
-                            <span>❓ Hesitates on Sizing/Pairing</span> &rarr;
-                            <span>📲 Exits to WhatsApp/Reddit</span> &rarr;
-                            <span style="color: #d9534f; font-weight: 700;">❌ Session Drops (No Purchase)</span>
-                        </div>
-                        <div style="font-size: 11px; font-weight: 800; color: #15803d; margin: 6px 0 4px 0;">DESIRED USER JOURNEY (STYLEPROOF OPPORTUNITY):</div>
-                        <div style="display: flex; gap: 6px; font-size: 10.5px; align-items: center; color: #15803d; font-weight: 600;">
-                            <span>👀 Saves to Wishlist</span> &rarr;
-                            <span>✨ Sees Wardrobe Match + FitTwin UGC</span> &rarr;
-                            <span>🛒 1-Tap &lsquo;Move to Bag&rsquo; with Calibrated Size</span> &rarr;
-                            <span>🎉 Instant Full-Price Checkout</span>
+                        <!-- User Journey Map -->
+                        <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 8px; padding: 10px 14px;">
+                            <div style="font-size: 12.5px; font-weight: 800; color: #DC2626; margin-bottom: 4px;">CURRENT USER JOURNEY (LEAKAGE):</div>
+                            <div style="display: flex; gap: 8px; font-size: 13px; align-items: center; color: #4B5563;">
+                                <span>👀 Saves to Wishlist</span> &rarr;
+                                <span>❓ Hesitates on Sizing/Pairing</span> &rarr;
+                                <span>📲 Exits to WhatsApp/Reddit</span> &rarr;
+                                <span style="color: #DC2626; font-weight: 700;">❌ Session Drops (No Purchase)</span>
+                            </div>
+                            <div style="font-size: 12.5px; font-weight: 800; color: var(--color-green-dark); margin: 8px 0 4px 0;">DESIRED USER JOURNEY (STYLEPROOF OPPORTUNITY):</div>
+                            <div style="display: flex; gap: 8px; font-size: 13px; align-items: center; color: var(--color-green-dark); font-weight: 700;">
+                                <span>👀 Saves to Wishlist</span> &rarr;
+                                <span>✨ Sees Wardrobe Match + FitTwin UGC</span> &rarr;
+                                <span>🛒 1-Tap &lsquo;Move to Bag&rsquo; with Calibrated Size</span> &rarr;
+                                <span>🎉 Instant Full-Price Checkout</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Right User Persona Box (Matching Reference Style) -->
-                <div style="flex: 1; background: #fefce8; border: 1px solid #fef08a; border-radius: 8px; padding: 12px;">
-                    <div style="font-size: 11px; font-weight: 800; color: #854d0e; text-transform: uppercase;">USER SEGMENTATION SELECTION</div>
-                    <div style="font-size: 14px; font-weight: 800; color: #111827; margin: 4px 0;">Arjun, The High-Intent Wardrobe Builder</div>
-                    <ul style="padding-left: 14px; font-size: 11.5px; color: #4b5563; display: flex; flex-direction: column; gap: 4px; margin-top: 6px;">
-                        <li><strong>Profile:</strong> 27 yrs, Product Designer, Bengaluru &bull; 5'9", 68kg</li>
-                        <li><strong>Shopping Habit:</strong> Buys quarterly, owns 3 Myntra pieces (Levi's 511s, HRX Sneakers)</li>
-                        <li><strong>Behavior:</strong> Saves statement jackets and textured knit polos; hesitates because he cannot picture them with clothes at home.</li>
-                        <li><strong>Trigger:</strong> Willing to pay full price without waiting for sales if he has visual proof of fit and pairing.</li>
-                    </ul>
+                    <!-- Right User Persona Box -->
+                    <div style="flex: 1; background: #FEFCE8; border: 1.5px solid #FEF08A; border-radius: 10px; padding: 16px;">
+                        <div style="font-size: 13px; font-weight: 800; color: #854D0E; text-transform: uppercase;">USER SEGMENTATION SELECTION</div>
+                        <div style="font-size: 18px; font-weight: 800; color: var(--color-primary); margin: 6px 0;">Arjun, The High-Intent Wardrobe Builder</div>
+                        <ul style="padding-left: 18px; font-size: 14px; color: var(--color-secondary); display: flex; flex-direction: column; gap: 6px; margin-top: 8px; line-height: 1.4;">
+                            <li><strong>Profile:</strong> 27 yrs, Product Designer, Bengaluru &bull; 5'9", 68kg</li>
+                            <li><strong>Shopping Habit:</strong> Buys quarterly, owns 3 Myntra pieces (Levi's 511s, HRX Sneakers)</li>
+                            <li><strong>Behavior:</strong> Saves statement jackets and textured knit polos; hesitates because he cannot picture them with clothes at home.</li>
+                            <li><strong>Trigger:</strong> Willing to pay full price without waiting for sales if he has visual proof of fit and pairing.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://myntra-style-proof.vercel.app" target="_blank">User Segmentation Details</a>
+                    <a href="https://github.com/yalnizcurt/silce.git" target="_blank">Prototype Repo</a>
+                </div>
+                <div class="footer-page">Slide 03 / 10</div>
+            </footer>
         </div>
-
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://myntra-style-proof.vercel.app" target="_blank">User Segmentation Details</a>
-                <a href="https://github.com/yalnizcurt/silce.git" target="_blank">Prototype Repo</a>
-            </div>
-            <div class="footer-page">Slide 03 / 10</div>
-        </footer>
-    </section>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 04: SIZING AN OPPORTUNITY IN MILLIONS & SURVEY INSIGHTS              -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">We talked to real users and sized an opportunity in millions</h1>
-            <div class="brand-logo">myntra <span class="sub">TAM / SAM / SOM</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-4">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">We talked to real users and sized an opportunity in millions</h1>
+                <div class="brand-logo">myntra <span class="sub">TAM / SAM / SOM</span></div>
+            </header>
 
-        <div class="content-area">
-            <!-- Top 3 Green Takeaway Cards -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
-                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 8px 12px;">
-                    <strong style="color: #166534; font-size: 12px;">STRUCTURAL FLOOR</strong>
-                    <p style="font-size: 11px; color: #374151; margin-top: 2px;">16.8M MAUs with &ge;3 saved items represent the active high-intent consideration pool.</p>
+            <div class="content-area">
+                <!-- Top 3 Green Takeaway Cards -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+                    <div style="background: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: 8px; padding: 10px 14px;">
+                        <strong style="color: #166534; font-size: 14px;">STRUCTURAL FLOOR</strong>
+                        <p style="font-size: 13px; color: #374151; margin-top: 3px;">16.8M MAUs with &ge;3 saved items represent the active high-intent consideration pool.</p>
+                    </div>
+                    <div style="background: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: 8px; padding: 10px 14px;">
+                        <strong style="color: #166534; font-size: 14px;">MEASURABLE UPLIFT</strong>
+                        <p style="font-size: 13px; color: #374151; margin-top: 3px;">+2.7pp lift (8.5% &rarr; 11.2%) converts 453k additional buyers per month.</p>
+                    </div>
+                    <div style="background: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: 8px; padding: 10px 14px;">
+                        <strong style="color: #166534; font-size: 14px;">OPPORTUNITY, NOT PRICE</strong>
+                        <p style="font-size: 13px; color: #374151; margin-top: 3px;">68% of unbought items are within historical budget; blocked by styling doubt, not price.</p>
+                    </div>
                 </div>
-                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 8px 12px;">
-                    <strong style="color: #166534; font-size: 12px;">MEASURABLE UPLIFT</strong>
-                    <p style="font-size: 11px; color: #374151; margin-top: 2px;">+2.7pp lift (8.5% &rarr; 11.2%) converts 453k additional buyers per month.</p>
-                </div>
-                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 8px 12px;">
-                    <strong style="color: #166534; font-size: 12px;">OPPORTUNITY, NOT PRICE</strong>
-                    <p style="font-size: 11px; color: #374151; margin-top: 2px;">68% of unbought items are within historical budget; blocked by styling doubt, not price.</p>
+
+                <div class="layout-row" style="flex: 1;">
+                    <!-- Left TAM/SAM/SOM Green Funnel Cards -->
+                    <div style="flex: 1.1; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="background: #14532D; color: #FFFFFF; border-radius: 8px; padding: 12px 16px; text-align: center;">
+                            <span style="font-size: 13px; font-weight: 700; opacity: 0.9;">TAM (Total Addressable Market)</span>
+                            <div style="font-size: 26px; font-weight: 800;">28.5 MILLION</div>
+                            <span style="font-size: 12px; opacity: 0.8;">Total Myntra Monthly Transacting Users</span>
+                        </div>
+                        <div style="background: #16A34A; color: #FFFFFF; border-radius: 8px; padding: 12px 16px; text-align: center;">
+                            <span style="font-size: 13px; font-weight: 700; opacity: 0.9;">SAM (Serviceable Addressable Market)</span>
+                            <div style="font-size: 26px; font-weight: 800;">16.8 MILLION</div>
+                            <span style="font-size: 12px; opacity: 0.8;">Active Wishlist Shoppers (&ge;3 saved items)</span>
+                        </div>
+                        <div style="background: #22C55E; color: #FFFFFF; border-radius: 8px; padding: 12px 16px; text-align: center;">
+                            <span style="font-size: 13px; font-weight: 700; opacity: 0.9;">SOM (Serviceable Obtainable Market)</span>
+                            <div style="font-size: 26px; font-weight: 800;">4.7 MILLION (28%)</div>
+                            <span style="font-size: 12px; opacity: 0.8;">High-Intent Wardrobe Builders Cohort</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Survey Insights Table (N=35) -->
+                    <div style="flex: 1.9;">
+                        <div style="font-size: 13px; font-weight: 800; color: var(--color-green-dark); margin-bottom: 6px;">PRIMARY SURVEY FINDINGS (N=35)</div>
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>% of Respondents</th>
+                                    <th>Finding</th>
+                                    <th>Strategic Signal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>34% (12 of 35)</strong></td>
+                                    <td>Cite fear of ill-fitting shoulder/waist drape on non-model body</td>
+                                    <td>Need authentic biometric customer proof over flat size charts</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>29% (10 of 35)</strong></td>
+                                    <td>Hesitate because they don't know what owned clothes to pair with SKU</td>
+                                    <td>Need instant closet lookbook pairing</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>23% (8 of 35)</strong></td>
+                                    <td>Cite waiting for month-end payday or seasonal sale drop</td>
+                                    <td>Secondary lever; timing delay rather than disinterest</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>43% (15 of 35)</strong></td>
+                                    <td>State unedited customer daylight photos give 2x more trust than studio renders</td>
+                                    <td>UGC daylight try-on photo is decisive conversion asset</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            <div class="layout-row" style="flex: 1;">
-                <!-- Left TAM/SAM/SOM Green Funnel Cards (Matching Reference Slide 4) -->
-                <div style="flex: 1.1; display: flex; flex-direction: column; gap: 6px;">
-                    <div style="background: #14532d; color: #ffffff; border-radius: 6px; padding: 8px 12px; text-align: center;">
-                        <span style="font-size: 11px; font-weight: 700; opacity: 0.9;">TAM (Total Addressable Market)</span>
-                        <div style="font-size: 20px; font-weight: 800;">28.5 MILLION</div>
-                        <span style="font-size: 9.5px; opacity: 0.8;">Total Myntra Monthly Transacting Users</span>
-                    </div>
-                    <div style="background: #16a34a; color: #ffffff; border-radius: 6px; padding: 8px 12px; text-align: center;">
-                        <span style="font-size: 11px; font-weight: 700; opacity: 0.9;">SAM (Serviceable Addressable Market)</span>
-                        <div style="font-size: 20px; font-weight: 800;">16.8 MILLION</div>
-                        <span style="font-size: 9.5px; opacity: 0.8;">Active Wishlist Shoppers (&ge;3 saved items)</span>
-                    </div>
-                    <div style="background: #22c55e; color: #ffffff; border-radius: 6px; padding: 8px 12px; text-align: center;">
-                        <span style="font-size: 11px; font-weight: 700; opacity: 0.9;">SOM (Serviceable Obtainable Market)</span>
-                        <div style="font-size: 20px; font-weight: 800;">4.7 MILLION (28%)</div>
-                        <span style="font-size: 9.5px; opacity: 0.8;">High-Intent Wardrobe Builders Cohort</span>
-                    </div>
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://forms.gle/MyntraStyleProofSurvey" target="_blank">Survey Responses Form</a>
+                    <a href="https://docs.google.com/spreadsheets/d/MyntraSurveyResponses" target="_blank">Raw Sheet</a>
                 </div>
-
-                <!-- Right Survey Insights Table (N=35) -->
-                <div style="flex: 1.9;">
-                    <div style="font-size: 11px; font-weight: 800; color: #15803d; margin-bottom: 4px;">PRIMARY SURVEY FINDINGS (N=35)</div>
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>% of Respondents</th>
-                                <th>Finding</th>
-                                <th>Strategic Signal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>34% (12 of 35)</strong></td>
-                                <td>Cite fear of ill-fitting shoulder/waist drape on non-model body</td>
-                                <td>Need authentic biometric customer proof over flat size charts</td>
-                            </tr>
-                            <tr>
-                                <td><strong>29% (10 of 35)</strong></td>
-                                <td>Hesitate because they don't know what owned clothes to pair with SKU</td>
-                                <td>Need instant closet lookbook pairing</td>
-                            </tr>
-                            <tr>
-                                <td><strong>23% (8 of 35)</strong></td>
-                                <td>Cite waiting for month-end payday or seasonal sale drop</td>
-                                <td>Secondary lever; timing delay rather than disinterest</td>
-                            </tr>
-                            <tr>
-                                <td><strong>43% (15 of 35)</strong></td>
-                                <td>State unedited customer daylight photos give 2x more trust than studio renders</td>
-                                <td>UGC daylight try-on photo is decisive conversion asset</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <div class="footer-page">Slide 04 / 10</div>
+            </footer>
         </div>
-
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://forms.gle/MyntraStyleProofSurvey" target="_blank">Survey Responses Form</a>
-                <a href="https://docs.google.com/spreadsheets/d/MyntraSurveyResponses" target="_blank">Raw Sheet</a>
-            </div>
-            <div class="footer-page">Slide 04 / 10</div>
-        </footer>
-    </section>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 05: INTERVIEWS & PROBLEM TRIANGULATION                              -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">Real conversations: three converging sources point to one problem</h1>
-            <div class="brand-logo">myntra <span class="sub">Problem Triangulation</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-5">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">Real conversations: three converging sources point to one problem</h1>
+                <div class="brand-logo">myntra <span class="sub">Problem Triangulation</span></div>
+            </header>
 
-        <div class="content-area">
-            <div class="layout-row">
-                <!-- Left User Quotes & Meanings Table (Matching Reference Slide 5) -->
-                <div style="flex: 1.7;">
-                    <div style="font-size: 11px; font-weight: 800; color: #15803d; margin-bottom: 4px;">WHAT USERS SAY AND MEAN (n=4 In-Depth Interviews)</div>
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>% of Interviews</th>
-                                <th>Finding</th>
-                                <th>What They Said</th>
-                                <th>Signal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>75% (3 of 4)</strong></td>
-                                <td>Distrust 2D sizing tables across fast-fashion brands</td>
-                                <td><em>&ldquo;Zara M fits me well, but in Roadster it drapes like an L.&rdquo;</em> &mdash; Arjun</td>
-                                <td>Requires cross-brand size translation anchor.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>75% (3 of 4)</strong></td>
-                                <td>Cannot visualize pairing with owned clothes</td>
-                                <td><em>&ldquo;I loved the suede jacket, but had no idea if it matched my jeans.&rdquo;</em> &mdash; Priya</td>
-                                <td>Standalone SKUs lack utility without outfit context.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>50% (2 of 4)</strong></td>
-                                <td>Ignore generic discount popups</td>
-                                <td><em>&ldquo;A &#8377;200 coupon doesn't help if the jacket looks bad on me.&rdquo;</em> &mdash; Rohan</td>
-                                <td>Confidence beats price in high-intent apparel.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>50% (2 of 4)</strong></td>
-                                <td>Look for customer photos in reviews</td>
-                                <td><em>&ldquo;I scroll past studio photos straight to review photos.&rdquo;</em> &mdash; Sneha</td>
-                                <td>Biometric UGC photos are the trust catalyst.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Right Problem Definition & JTBD Box -->
-                <div style="flex: 1.1; display: flex; flex-direction: column; gap: 8px;">
-                    <div class="yellow-box" style="font-size: 11.5px;">
-                        <strong style="color: #713f12;">Defining the &ldquo;Job-to-be-done&rdquo; (JTBD):</strong>
-                        <p style="color: #854d0e; margin-top: 4px; line-height: 1.35;">
-                            When I'm evaluating an item I saved in my Myntra wishlist, give me instant proof of how it fits my exact body frame and pairs with clothes I already own, so that I can buy with complete confidence without waiting for sales.
-                        </p>
+            <div class="content-area">
+                <div class="layout-row">
+                    <!-- Left User Quotes & Meanings Table -->
+                    <div style="flex: 1.7;">
+                        <div style="font-size: 13px; font-weight: 800; color: var(--color-green-dark); margin-bottom: 6px;">WHAT USERS SAY AND MEAN (n=4 In-Depth Interviews)</div>
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>% of Interviews</th>
+                                    <th>Finding</th>
+                                    <th>What They Said</th>
+                                    <th>Signal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>75% (3 of 4)</strong></td>
+                                    <td>Distrust 2D sizing tables across fast-fashion brands</td>
+                                    <td><em>&ldquo;Zara M fits me well, but in Roadster it drapes like an L.&rdquo;</em> &mdash; Arjun</td>
+                                    <td>Requires cross-brand size translation anchor.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>75% (3 of 4)</strong></td>
+                                    <td>Cannot visualize pairing with owned clothes</td>
+                                    <td><em>&ldquo;I loved the suede jacket, but had no idea if it matched my jeans.&rdquo;</em> &mdash; Priya</td>
+                                    <td>Standalone SKUs lack utility without outfit context.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>50% (2 of 4)</strong></td>
+                                    <td>Ignore generic discount popups</td>
+                                    <td><em>&ldquo;A &#8377;200 coupon doesn't help if the jacket looks bad on me.&rdquo;</em> &mdash; Rohan</td>
+                                    <td>Confidence beats price in high-intent apparel.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>50% (2 of 4)</strong></td>
+                                    <td>Look for customer photos in reviews</td>
+                                    <td><em>&ldquo;I scroll past studio photos straight to review photos.&rdquo;</em> &mdash; Sneha</td>
+                                    <td>Biometric UGC photos are the trust catalyst.</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
-                        <div style="font-size: 11px; font-weight: 800; color: #15803d; margin-bottom: 6px;">HYPOTHESES VALIDATED</div>
-                        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 11px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 4px 6px; border: 1px solid #e2e8f0; border-radius: 4px;">
-                                <span>H1: Cross-brand sizing variance creates evaluation freeze</span>
-                                <span style="color: #15803d; font-weight: 800;">VALIDATED ✅</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 4px 6px; border: 1px solid #e2e8f0; border-radius: 4px;">
-                                <span>H2: Wardrobe pairing uncertainty stops standalone checkout</span>
-                                <span style="color: #15803d; font-weight: 800;">VALIDATED ✅</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 4px 6px; border: 1px solid #e2e8f0; border-radius: 4px;">
-                                <span>H3: Price barrier is secondary to confidence in high-intent saves</span>
-                                <span style="color: #15803d; font-weight: 800;">VALIDATED ✅</span>
+                    <!-- Right Problem Definition & JTBD Box -->
+                    <div style="flex: 1.1; display: flex; flex-direction: column; gap: 10px;">
+                        <div class="yellow-box" style="font-size: 13.5px;">
+                            <strong style="color: var(--color-yellow-dark);">Defining the &ldquo;Job-to-be-done&rdquo; (JTBD):</strong>
+                            <p style="color: #854D0E; margin-top: 6px; line-height: 1.4;">
+                                When I'm evaluating an item I saved in my Myntra wishlist, give me instant proof of how it fits my exact body frame and pairs with clothes I already own, so that I can buy with complete confidence without waiting for sales.
+                            </p>
+                        </div>
+
+                        <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 8px; padding: 12px;">
+                            <div style="font-size: 13px; font-weight: 800; color: var(--color-green-dark); margin-bottom: 8px;">HYPOTHESES VALIDATED</div>
+                            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 6px 8px; border: 1px solid #E2E8F0; border-radius: 6px;">
+                                    <span>H1: Cross-brand sizing variance creates evaluation freeze</span>
+                                    <span style="color: var(--color-green-dark); font-weight: 800;">VALIDATED ✅</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 6px 8px; border: 1px solid #E2E8F0; border-radius: 6px;">
+                                    <span>H2: Wardrobe pairing uncertainty stops standalone checkout</span>
+                                    <span style="color: var(--color-green-dark); font-weight: 800;">VALIDATED ✅</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 6px 8px; border: 1px solid #E2E8F0; border-radius: 6px;">
+                                    <span>H3: Price barrier is secondary to confidence in high-intent saves</span>
+                                    <span style="color: var(--color-green-dark); font-weight: 800;">VALIDATED ✅</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://myntra-style-proof.vercel.app" target="_blank">Interview Transcripts &amp; Triangulation</a>
-                <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repo</a>
-            </div>
-            <div class="footer-page">Slide 05 / 10</div>
-        </footer>
-    </section>
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://myntra-style-proof.vercel.app" target="_blank">Interview Transcripts &amp; Triangulation</a>
+                    <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repo</a>
+                </div>
+                <div class="footer-page">Slide 05 / 10</div>
+            </footer>
+        </div>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 06: PROBLEM SOLVING CANVAS & ROOT CAUSE                             -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">Wishlists aren't converting &mdash; they're leaking to offline fitting rooms</h1>
-            <div class="brand-logo">myntra <span class="sub">Problem Canvas</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-6">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">Wishlists aren't converting &mdash; they're leaking to offline fitting rooms</h1>
+                <div class="brand-logo">myntra <span class="sub">Problem Canvas</span></div>
+            </header>
 
-        <div class="content-area">
-            <div class="layout-row">
-                <!-- Left Problem Solving Canvas Table (Matching Reference Slide 6) -->
-                <div style="flex: 2;">
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th style="width: 20%;">Element</th>
-                                <th style="width: 45%;">Key Answer</th>
-                                <th style="width: 35%;">What it Means</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>1. True Problem</strong></td>
-                                <td>Garments saved as isolated SKUs; users cannot visualize fit on real body or pairing with owned closet.</td>
-                                <td>Purchase consideration is interrupted at the evaluation threshold.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>2. Who Faces It</strong></td>
-                                <td>High-Intent Wardrobe Builders (28% of wishlist MAUs, 4.7M users).</td>
-                                <td>High-LTV shoppers with disposable income ready to buy at full price.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>3. Evidence</strong></td>
-                                <td>Convergent evidence across 3,056 reviews, 35-person survey, and 4 user interviews.</td>
-                                <td>Three independent data sources validating the same root cause.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>4a. User Value</strong></td>
-                                <td>Instant outfit versatility proof + biometric size calibration without leaving app.</td>
-                                <td>Eliminates sizing doubt and exchange anxiety.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>4b. Business Value</strong></td>
-                                <td>+2.7pp conversion lift = &#8377;83.8 Cr incremental monthly GMV with &#8377;0 discount spend.</td>
-                                <td>High-margin monetization of existing organic demand.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>5. Why Now</strong></td>
-                                <td>Myntra's fast-fashion and D2C catalog grew 40% YoY; cross-brand sizing variance is at all-time high.</td>
-                                <td>Solving decision certainty is essential to maintain market leadership.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="content-area">
+                <div class="layout-row">
+                    <!-- Left Problem Solving Canvas Table -->
+                    <div style="flex: 2;">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%;">Element</th>
+                                    <th style="width: 45%;">Key Answer</th>
+                                    <th style="width: 35%;">What it Means</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. True Problem</strong></td>
+                                    <td>Garments saved as isolated SKUs; users cannot visualize fit on real body or pairing with owned closet.</td>
+                                    <td>Purchase consideration is interrupted at the evaluation threshold.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Who Faces It</strong></td>
+                                    <td>High-Intent Wardrobe Builders (28% of wishlist MAUs, 4.7M users).</td>
+                                    <td>High-LTV shoppers with disposable income ready to buy at full price.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Evidence</strong></td>
+                                    <td>Convergent evidence across 3,056 reviews, 35-person survey, and 4 user interviews.</td>
+                                    <td>Three independent data sources validating the same root cause.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4a. User Value</strong></td>
+                                    <td>Instant outfit versatility proof + biometric size calibration without leaving app.</td>
+                                    <td>Eliminates sizing doubt and exchange anxiety.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4b. Business Value</strong></td>
+                                    <td>+2.7pp conversion lift = &#8377;83.8 Cr incremental monthly GMV with &#8377;0 discount spend.</td>
+                                    <td>High-margin monetization of existing organic demand.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Why Now</strong></td>
+                                    <td>Myntra's fast-fashion and D2C catalog grew 40% YoY; cross-brand sizing variance is at all-time high.</td>
+                                    <td>Solving decision certainty is essential to maintain market leadership.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <!-- Right Root Cause Stack (Matching Reference Slide 6) -->
-                <div style="flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
-                    <div style="font-weight: 800; font-size: 11.5px; color: #0f172a;">ROOT CAUSE BREAKDOWN</div>
-                    <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px;">
-                        <strong style="color: #15803d;">👤 USER:</strong> Fit anxiety &bull; Fear of return hassle &bull; Outfit coordination doubt
-                    </div>
-                    <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px;">
-                        <strong style="color: #2563eb;">📱 PLATFORM:</strong> Flat 2D size charts &bull; Standalone product isolation
-                    </div>
-                    <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px;">
-                        <strong style="color: #d97706;">🎨 EXPERIENCE:</strong> Mannequin studio renders hide real drape on regular frames
-                    </div>
-                    <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px;">
-                        <strong style="color: #dc2626;">🛡️ TRUST:</strong> Skepticism regarding synthetic fabric and true colors
+                    <!-- Right Root Cause Stack -->
+                    <div style="flex: 1; background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 10px; padding: 14px; font-size: 13px; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="font-weight: 800; font-size: 14px; color: #0F172A;">ROOT CAUSE BREAKDOWN</div>
+                        <div style="background: #fff; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px;">
+                            <strong style="color: var(--color-green-dark);">👤 USER:</strong> Fit anxiety &bull; Fear of return hassle &bull; Outfit coordination doubt
+                        </div>
+                        <div style="background: #fff; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px;">
+                            <strong style="color: var(--color-blue);">📱 PLATFORM:</strong> Flat 2D size charts &bull; Standalone product isolation
+                        </div>
+                        <div style="background: #fff; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px;">
+                            <strong style="color: #D97706;">🎨 EXPERIENCE:</strong> Mannequin studio renders hide real drape on regular frames
+                        </div>
+                        <div style="background: #fff; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px;">
+                            <strong style="color: #DC2626;">🛡️ TRUST:</strong> Skepticism regarding synthetic fabric and true colors
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://myntra-style-proof.vercel.app" target="_blank">Root Cause Analysis</a>
+                    <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repo</a>
+                </div>
+                <div class="footer-page">Slide 06 / 10</div>
+            </footer>
         </div>
-
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://myntra-style-proof.vercel.app" target="_blank">Root Cause Analysis</a>
-                <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repo</a>
-            </div>
-            <div class="footer-page">Slide 06 / 10</div>
-        </footer>
-    </section>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 07: SOLUTION BRAINSTORMING & RICE SCORING                           -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">Multiple Solutions brainstormed, &ldquo;StyleProof&rdquo; outscores all</h1>
-            <div class="brand-logo">myntra <span class="sub">RICE Framework</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-7">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">Multiple Solutions brainstormed, &ldquo;StyleProof&rdquo; outscores all</h1>
+                <div class="brand-logo">myntra <span class="sub">RICE Framework</span></div>
+            </header>
 
-        <div class="content-area">
-            <div class="layout-row">
-                <!-- Solution 1: StyleProof (WINNER) -->
-                <div class="card highlight" style="flex: 1; border: 2px solid #15803d; background: #f0fdf4;">
-                    <div class="card-header" style="color: #166534;">
-                        <span>⭐ StyleProof (Lookbook + FitTwin)</span>
-                    </div>
-                    <div style="font-size: 11.5px; color: #1f2937; display: flex; flex-direction: column; gap: 6px; flex: 1;">
-                        <p>&bull; Ambient pink pill on wishlist card triggering Wardrobe Match Canvas + Verified FitTwin UGC review.</p>
-                        <p>&bull; Ingests past 12-month orders to pair with owned jeans/shoes + 5'9" biometric photo.</p>
-                        <p>&bull; 1-Tap &lsquo;Move to Bag&rsquo; with calibrated size selector.</p>
-                        <div style="background: #dcfce7; border-left: 3px solid #15803d; padding: 4px 6px; font-size: 11px; margin-top: auto;">
-                            <strong>Why chosen:</strong> Zero user prompt friction. Renders directly on existing wishlist surface; attacks both sizing &amp; styling frictions simultaneously.
+            <div class="content-area">
+                <div class="layout-row">
+                    <!-- Solution 1: StyleProof (WINNER) -->
+                    <div class="card highlight" style="flex: 1; border: 2.5px solid var(--color-green-dark); background: #F0FDF4;">
+                        <div class="card-header" style="color: #166534;">
+                            <span>⭐ StyleProof (Lookbook + FitTwin)</span>
                         </div>
+                        <div style="font-size: 13.5px; color: var(--color-primary); display: flex; flex-direction: column; gap: 8px; flex: 1;">
+                            <p>&bull; Ambient pink pill on wishlist card triggering Wardrobe Match Canvas + Verified FitTwin UGC review.</p>
+                            <p>&bull; Ingests past 12-month orders to pair with owned jeans/shoes + 5'9" biometric photo.</p>
+                            <p>&bull; 1-Tap &lsquo;Move to Bag&rsquo; with calibrated size selector.</p>
+                            <div style="background: #DCFCE7; border-left: 3.5px solid var(--color-green-dark); padding: 8px 10px; font-size: 12.5px; margin-top: auto; border-radius: 0 4px 4px 0;">
+                                <strong>Why chosen:</strong> Zero user prompt friction. Renders directly on existing wishlist surface; attacks both sizing &amp; styling frictions simultaneously.
+                            </div>
+                        </div>
+                        <div class="rice-bar">RICE Score: 8 &times; 9 &times; 8 / 6 = 96.0</div>
                     </div>
-                    <div class="rice-bar">RICE Score: 8 &times; 9 &times; 8 / 6 = 96.0</div>
-                </div>
 
-                <!-- Solution 2: Conversational AI Stylist -->
-                <div class="card" style="flex: 1;">
-                    <div class="card-header">
-                        <span>💬 Conversational AI Stylist</span>
-                    </div>
-                    <div style="font-size: 11.5px; color: #4b5563; display: flex; flex-direction: column; gap: 6px; flex: 1;">
-                        <p>&bull; Chatbot interface where users type prompts like <em>&ldquo;How to style this suede jacket?&rdquo;</em></p>
-                        <p>&bull; AI replies with styling suggestions and accessory links.</p>
-                        <div style="background: #fee2e2; border-left: 3px solid #ef4444; padding: 4px 6px; font-size: 11px; margin-top: auto;">
-                            <strong>Why discarded:</strong> High interaction friction (&lt;8% open rate in retail). Fashion browsing is visual, not text-driven.
+                    <!-- Solution 2: Conversational AI Stylist -->
+                    <div class="card" style="flex: 1;">
+                        <div class="card-header">
+                            <span>💬 Conversational AI Stylist</span>
                         </div>
+                        <div style="font-size: 13.5px; color: var(--color-secondary); display: flex; flex-direction: column; gap: 8px; flex: 1;">
+                            <p>&bull; Chatbot interface where users type prompts like <em>&ldquo;How to style this suede jacket?&rdquo;</em></p>
+                            <p>&bull; AI replies with styling suggestions and accessory links.</p>
+                            <div style="background: #FEE2E2; border-left: 3.5px solid #EF4444; padding: 8px 10px; font-size: 12.5px; margin-top: auto; border-radius: 0 4px 4px 0;">
+                                <strong>Why discarded:</strong> High interaction friction (&lt;8% open rate in retail). Fashion browsing is visual, not text-driven.
+                            </div>
+                        </div>
+                        <div class="rice-bar" style="background: #9CA3AF;">RICE Score: 4 &times; 6 &times; 5 / 7 = 17.1</div>
                     </div>
-                    <div class="rice-bar" style="background: #9ca3af;">RICE Score: 4 &times; 6 &times; 5 / 7 = 17.1</div>
-                </div>
 
-                <!-- Solution 3: Gamified Spin-to-Reveal -->
-                <div class="card" style="flex: 1;">
-                    <div class="card-header">
-                        <span>🎰 Gamified Outfit Spinner</span>
-                    </div>
-                    <div style="font-size: 11.5px; color: #4b5563; display: flex; flex-direction: column; gap: 6px; flex: 1;">
-                        <p>&bull; Interactive spin-the-wheel to unlock outfit combinations.</p>
-                        <div style="background: #fee2e2; border-left: 3px solid #ef4444; padding: 4px 6px; font-size: 11px; margin-top: auto;">
-                            <strong>Why discarded:</strong> Gamification feels like a discount coupon gimmick in India and randomizes deliberate purchase intent.
+                    <!-- Solution 3: Gamified Spin-to-Reveal -->
+                    <div class="card" style="flex: 1;">
+                        <div class="card-header">
+                            <span>🎰 Gamified Outfit Spinner</span>
                         </div>
+                        <div style="font-size: 13.5px; color: var(--color-secondary); display: flex; flex-direction: column; gap: 8px; flex: 1;">
+                            <p>&bull; Interactive spin-the-wheel to unlock outfit combinations.</p>
+                            <div style="background: #FEE2E2; border-left: 3.5px solid #EF4444; padding: 8px 10px; font-size: 12.5px; margin-top: auto; border-radius: 0 4px 4px 0;">
+                                <strong>Why discarded:</strong> Gamification feels like a discount coupon gimmick in India and randomizes deliberate purchase intent.
+                            </div>
+                        </div>
+                        <div class="rice-bar" style="background: #9CA3AF;">RICE Score: 5 &times; 5 &times; 6 / 5 = 30.0</div>
                     </div>
-                    <div class="rice-bar" style="background: #9ca3af;">RICE Score: 5 &times; 5 &times; 6 / 5 = 30.0</div>
                 </div>
             </div>
+
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://myntra-style-proof.vercel.app" target="_blank">Score Reasoning &amp; Trade-offs</a>
+                    <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repo</a>
+                </div>
+                <div class="footer-page">Slide 07 / 10</div>
+            </footer>
         </div>
-
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://myntra-style-proof.vercel.app" target="_blank">Score Reasoning &amp; Trade-offs</a>
-                <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repo</a>
-            </div>
-            <div class="footer-page">Slide 07 / 10</div>
-        </footer>
-    </section>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 08: LOGIC, MECHANISM & REAL MOBILE SCREENSHOTS                      -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">StyleProof: How it works &mdash; Logic, Mechanism &amp; Live Prototype</h1>
-            <div class="brand-logo">myntra <span class="sub">Mechanism &amp; UI</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-8">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">StyleProof: How it works &mdash; Logic, Mechanism &amp; Live Prototype</h1>
+                <div class="brand-logo">myntra <span class="sub">Mechanism &amp; UI</span></div>
+            </header>
 
-        <div class="content-area">
-            <div class="layout-row" style="flex: 1;">
-                <!-- Left Logic & Rules Table (Matching Reference Slide 8) -->
-                <div style="flex: 1.2; display: flex; flex-direction: column; gap: 8px;">
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>Stage</th>
-                                <th>What Happens (System Logic)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Where it Runs</strong></td>
-                                <td>Client-side wishlist evaluation before card render (&lt;120ms P95).</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Data Read</strong></td>
-                                <td>Past 12-month order history, biometric user profile, verified UGC photo tags.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Intent Check</strong></td>
-                                <td>Dwell time &ge;10s OR repeat views &ge;2 triggers evaluation.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Purity Gate</strong></td>
-                                <td>Apparel/footwear only; requires confidence score &ge;0.80.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Graceful Fallback</strong></td>
-                                <td>Cold-start users (0 past orders) receive Universal Neutral Basics lookbook.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="content-area">
+                <div class="layout-row" style="flex: 1;">
+                    <!-- Left Logic & Rules Table -->
+                    <div style="flex: 1.2; display: flex; flex-direction: column; gap: 8px;">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Stage</th>
+                                    <th>What Happens (System Logic)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Where it Runs</strong></td>
+                                    <td>Client-side wishlist evaluation before card render (&lt;120ms P95).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Data Read</strong></td>
+                                    <td>Past 12-month order history, biometric user profile, verified UGC photo tags.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Intent Check</strong></td>
+                                    <td>Dwell time &ge;10s OR repeat views &ge;2 triggers evaluation.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Purity Gate</strong></td>
+                                    <td>Apparel/footwear only; requires confidence score &ge;0.80.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Graceful Fallback</strong></td>
+                                    <td>Cold-start users (0 past orders) receive Universal Neutral Basics lookbook.</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <!-- Outcome / Condition Table -->
-                    <table class="table-custom" style="margin-top: 4px;">
-                        <thead>
-                            <tr>
-                                <th>Outcome</th>
-                                <th>Condition</th>
-                                <th>StyleProof Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="highlight-row">
-                                <td><strong>Full Unlocked</strong></td>
-                                <td>Eligible SKU + Dwell &gt; 10s + &ge;1 order</td>
-                                <td>Displays Lookbook Canvas + FitTwin Review</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Neutral Fallback</strong></td>
-                                <td>Eligible SKU + Dwell &gt; 10s + 0 orders</td>
-                                <td>Pairs with Universal Neutral Staples</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Silent (Rule A)</strong></td>
-                                <td>Innerwear, socks, accessories OR low dwell</td>
-                                <td>Stays silent; clean standard Myntra card</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <!-- Outcome / Condition Table -->
+                        <table class="table-custom" style="margin-top: 4px;">
+                            <thead>
+                                <tr>
+                                    <th>Outcome</th>
+                                    <th>Condition</th>
+                                    <th>StyleProof Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlight-row">
+                                    <td><strong>Full Unlocked</strong></td>
+                                    <td>Eligible SKU + Dwell &gt; 10s + &ge;1 order</td>
+                                    <td>Displays Lookbook Canvas + FitTwin Review</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Neutral Fallback</strong></td>
+                                    <td>Eligible SKU + Dwell &gt; 10s + 0 orders</td>
+                                    <td>Pairs with Universal Neutral Staples</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Silent (Rule A)</strong></td>
+                                    <td>Innerwear, socks, accessories OR low dwell</td>
+                                    <td>Stays silent; clean standard Myntra card</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <!-- Right Real Mobile Screenshots (As-Is vs To-Be Trigger vs To-Be Tray) -->
-                <div style="flex: 1.8;">
-                    <div class="device-card-container">
-                        <!-- Screen 1: As-Is Baseline -->
-                        <div class="device-box">
-                            <span style="font-size: 11px; font-weight: 700; color: #6b7280;">1. AS-IS BASELINE</span>
-                            <div class="device-screen">
-                                <img src="static/screenshots/as_is_wishlist.png" alt="As-Is Wishlist Baseline">
+                    <!-- Right Real Mobile Screenshots -->
+                    <div style="flex: 1.8;">
+                        <div class="device-card-container">
+                            <!-- Screen 1: As-Is Baseline -->
+                            <div class="device-box">
+                                <span style="font-size: 12px; font-weight: 700; color: #6B7280;">1. AS-IS BASELINE</span>
+                                <div class="device-screen">
+                                    <img src="static/screenshots/as_is_wishlist.png" alt="As-Is Wishlist Baseline">
+                                </div>
+                                <span style="font-size: 11px; color: #4B5563;">Current Wishlist: Isolated card, flat size dropdown</span>
                             </div>
-                            <span style="font-size: 10px; color: #4b5563;">Current Wishlist: Isolated card, flat size dropdown</span>
-                        </div>
 
-                        <!-- Screen 2: To-Be Pill Trigger -->
-                        <div class="device-box" style="border: 1.5px solid #ff3f6c;">
-                            <span style="font-size: 11px; font-weight: 700; color: #ff3f6c;">2. TO-BE TRIGGER</span>
-                            <div class="device-screen">
-                                <img src="static/screenshots/to_be_pill_trigger.png" alt="To-Be Wishlist with Pill Trigger">
+                            <!-- Screen 2: To-Be Pill Trigger -->
+                            <div class="device-box" style="border: 1.5px solid var(--color-myntra-pink);">
+                                <span style="font-size: 12px; font-weight: 700; color: var(--color-myntra-pink);">2. TO-BE TRIGGER</span>
+                                <div class="device-screen">
+                                    <img src="static/screenshots/to_be_pill_trigger.png" alt="To-Be Wishlist with Pill Trigger">
+                                </div>
+                                <span style="font-size: 11px; color: #111827; font-weight: 600;">Ambient Pill: &ldquo;✨ Pairs with 2 closet items&rdquo;</span>
                             </div>
-                            <span style="font-size: 10px; color: #111827; font-weight: 600;">Ambient Pill: &ldquo;✨ Pairs with 2 closet items&rdquo;</span>
-                        </div>
 
-                        <!-- Screen 3: To-Be Action Tray -->
-                        <div class="device-box" style="border: 1.5px solid #15803d;">
-                            <span style="font-size: 11px; font-weight: 700; color: #15803d;">3. TO-BE ACTION TRAY</span>
-                            <div class="device-screen">
-                                <img src="static/screenshots/to_be_bottom_sheet.png" alt="To-Be StyleProof Bottom Sheet">
+                            <!-- Screen 3: To-Be Action Tray -->
+                            <div class="device-box" style="border: 1.5px solid var(--color-green-dark);">
+                                <span style="font-size: 12px; font-weight: 700; color: var(--color-green-dark);">3. TO-BE ACTION TRAY</span>
+                                <div class="device-screen">
+                                    <img src="static/screenshots/to_be_bottom_sheet.png" alt="To-Be StyleProof Bottom Sheet">
+                                </div>
+                                <span style="font-size: 11px; color: var(--color-green-dark); font-weight: 600;">Outfit Canvas + 5'9" UGC Customer Photo</span>
                             </div>
-                            <span style="font-size: 10px; color: #15803d; font-weight: 600;">Outfit Canvas + 5'9" UGC Customer Photo</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://myntra-style-proof.vercel.app" target="_blank">MVP Link - Live Prototype</a>
-                <a href="https://github.com/yalnizcurt/silce.git" target="_blank">Repo</a>
-                <a href="https://myntra-opportunity-engine.vercel.app" target="_blank">Engine Dashboard</a>
-            </div>
-            <div class="footer-page">Slide 08 / 10</div>
-        </footer>
-    </section>
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://myntra-style-proof.vercel.app" target="_blank">MVP Link - Live Prototype</a>
+                    <a href="https://github.com/yalnizcurt/silce.git" target="_blank">Repo</a>
+                    <a href="https://myntra-opportunity-engine.vercel.app" target="_blank">Engine Dashboard</a>
+                </div>
+                <div class="footer-page">Slide 08 / 10</div>
+            </footer>
+        </div>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 09: SUCCESS METRICS TREE & EVALUATION HIERARCHY                     -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">Success Metrics: How we'll know it's working &mdash; Metric Tree</h1>
-            <div class="brand-logo">myntra <span class="sub">Telemetry &amp; Guardrails</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-9">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">Success Metrics: How we'll know it's working &mdash; Metric Tree</h1>
+                <div class="brand-logo">myntra <span class="sub">Telemetry &amp; Guardrails</span></div>
+            </header>
 
-        <div class="content-area">
-            <!-- North Star Full-Width Top Bar -->
-            <table class="table-custom">
-                <thead>
-                    <tr>
-                        <th style="width: 30%;">North Star Metric</th>
-                        <th style="width: 70%;">Formula &amp; Target</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="highlight-row">
-                        <td><strong>30-Day Wishlist Conversion (WTC %)</strong></td>
-                        <td><code>(Monthly Active Customers purchasing &ge;1 wishlisted item within 30 days &divide; Active Wishlist MAUs) &times; 100</code> &bull; <strong>Baseline: 8.5% &rarr; Target: 11.2% (+2.7pp)</strong></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="content-area">
+                <!-- North Star Full-Width Top Bar -->
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">North Star Metric</th>
+                            <th style="width: 70%;">Formula &amp; Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight-row">
+                            <td><strong>30-Day Wishlist Conversion (WTC %)</strong></td>
+                            <td><code>(Monthly Active Customers purchasing &ge;1 wishlisted item within 30 days &divide; Active Wishlist MAUs) &times; 100</code> &bull; <strong>Baseline: 8.5% &rarr; Target: 11.2% (+2.7pp)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div class="layout-row" style="flex: 1; margin-top: 4px;">
-                <!-- Left 50%: Leading & Lagging Metrics -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>Leading Metrics</th>
-                                <th>Formula</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>StyleProof Tray Open Rate</strong></td>
-                                <td>Pills expanded &divide; Eligible wishlist impressions &times; 100 (&ge;28%)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>FitTwin UGC Dwell Time</strong></td>
-                                <td>Median seconds spent inspecting customer try-on photo (&gt;15s)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>1-Tap Move to Bag Rate</strong></td>
-                                <td>Trays resulting in 'Move to Bag' tap &divide; Total tray opens &times; 100 (&ge;14%)</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="layout-row" style="flex: 1; margin-top: 4px;">
+                    <!-- Left 50%: Leading & Lagging Metrics -->
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Leading Metrics</th>
+                                    <th>Formula</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>StyleProof Tray Open Rate</strong></td>
+                                    <td>Pills expanded &divide; Eligible wishlist impressions &times; 100 (&ge;28%)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>FitTwin UGC Dwell Time</strong></td>
+                                    <td>Median seconds spent inspecting customer try-on photo (&gt;15s)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>1-Tap Move to Bag Rate</strong></td>
+                                    <td>Trays resulting in 'Move to Bag' tap &divide; Total tray opens &times; 100 (&ge;14%)</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>Lagging Metrics</th>
-                                <th>Formula</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Repeat Wardrobe Purchase</strong></td>
-                                <td>Users purchasing another apparel SKU in 60 days &divide; StyleProof converts</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Full-Price GMV Mix</strong></td>
-                                <td>Wishlist GMV transacted at full catalog price &divide; Total Wishlist GMV</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Lagging Metrics</th>
+                                    <th>Formula</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Repeat Wardrobe Purchase</strong></td>
+                                    <td>Users purchasing another apparel SKU in 60 days &divide; StyleProof converts</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Full-Price GMV Mix</strong></td>
+                                    <td>Wishlist GMV transacted at full catalog price &divide; Total Wishlist GMV</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <!-- Right 50%: AI Evals & Guardrails -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>AI Evals &amp; Quality</th>
-                                <th>Formula / Standard</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Outfit Silhouette Precision</strong></td>
-                                <td>Stylist-audited compatible pairings &divide; Sample tested &times; 100 (&ge;92%)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Biometric UGC Match Accuracy</strong></td>
-                                <td>UGC reviews matching user's exact height/weight &plusmn;1 inch &times; 100 (&ge;90%)</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- Right 50%: AI Evals & Guardrails -->
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>AI Evals &amp; Quality</th>
+                                    <th>Formula / Standard</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Outfit Silhouette Precision</strong></td>
+                                    <td>Stylist-audited compatible pairings &divide; Sample tested &times; 100 (&ge;92%)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Biometric UGC Match Accuracy</strong></td>
+                                    <td>UGC reviews matching user's exact height/weight &plusmn;1 inch &times; 100 (&ge;90%)</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>Strict Guardrails</th>
-                                <th>Tolerance Limit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="highlight-row" style="background: #fee2e2;">
-                                <td><strong>Apparel Return Rate</strong></td>
-                                <td>Must NOT exceed baseline <strong>&le;24.5%</strong> (Size returns must stay flat or fall)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>P95 Render Latency</strong></td>
-                                <td>Must remain <strong>&lt;120ms</strong> on mobile client edge</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Wishlist Deletion Rate</strong></td>
-                                <td>No increase &gt;0.5% over holdout control baseline</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Strict Guardrails</th>
+                                    <th>Tolerance Limit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlight-row" style="background: #FEE2E2;">
+                                    <td><strong>Apparel Return Rate</strong></td>
+                                    <td>Must NOT exceed baseline <strong>&le;24.5%</strong> (Size returns must stay flat or fall)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>P95 Render Latency</strong></td>
+                                    <td>Must remain <strong>&lt;120ms</strong> on mobile client edge</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wishlist Deletion Rate</strong></td>
+                                    <td>No increase &gt;0.5% over holdout control baseline</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://myntra-style-proof.vercel.app" target="_blank">Why these metrics</a>
+                    <a href="https://github.com/yalnizcurt/silce.git" target="_blank">Amplitude Telemetry Spec</a>
+                </div>
+                <div class="footer-page">Slide 09 / 10</div>
+            </footer>
         </div>
-
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://myntra-style-proof.vercel.app" target="_blank">Why these metrics</a>
-                <a href="https://github.com/yalnizcurt/silce.git" target="_blank">Amplitude Telemetry Spec</a>
-            </div>
-            <div class="footer-page">Slide 09 / 10</div>
-        </footer>
-    </section>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- SLIDE 10: ROADMAP, GTM STRATEGY, RISKS & MONETIZATION                     -->
     <!-- ========================================================================= -->
-    <section class="slide">
-        <header class="slide-header">
-            <h1 class="slide-title">AI Risks, Rollout Roadmap, GTM Strategy &amp; Compounding Moat</h1>
-            <div class="brand-logo">myntra <span class="sub">Roadmap &amp; GTM</span></div>
-        </header>
+    <div class="slide-wrapper" id="slide-10">
+        <div class="slide-content-container">
+            <header class="slide-header">
+                <h1 class="slide-title">AI Risks, Rollout Roadmap, GTM Strategy &amp; Compounding Moat</h1>
+                <div class="brand-logo">myntra <span class="sub">Roadmap &amp; GTM</span></div>
+            </header>
 
-        <div class="content-area">
-            <!-- Top Roadmap 4 Phases (Matching Reference Slide 10) -->
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 10px; text-align: center;">
-                    <div style="font-size: 11px; font-weight: 800; color: #15803d;">Phase 1: Shadow (W1&ndash;W2)</div>
-                    <span style="font-size: 10px; color: #4b5563;">Runs silently in backend, logging pairing confidence scores across 50k saves</span>
-                </div>
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 10px; text-align: center;">
-                    <div style="font-size: 11px; font-weight: 800; color: #15803d;">Phase 2: Pilot (W3&ndash;W4)</div>
-                    <span style="font-size: 10px; color: #4b5563;">Go live in Tier-1 Metro (Bengaluru/Delhi), top 5 apparel categories</span>
-                </div>
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 10px; text-align: center;">
-                    <div style="font-size: 11px; font-weight: 800; color: #15803d;">Phase 3: A/B Test (W5&ndash;W8)</div>
-                    <span style="font-size: 10px; color: #4b5563;">100k MAU randomized controlled trial; prove +2.7pp lift with return rate &le; baseline</span>
-                </div>
-                <div style="background: #f0fdf4; border: 1.5px solid #15803d; border-radius: 6px; padding: 8px 10px; text-align: center;">
-                    <div style="font-size: 11px; font-weight: 800; color: #15803d;">Phase 4: Launch (W9+)</div>
-                    <span style="font-size: 10px; color: #166534; font-weight: 700;">Scale nationally across all 16.8M wishlist MAUs (~₹1,005 Cr GMV)</span>
-                </div>
-            </div>
-
-            <div class="layout-row" style="flex: 1; margin-top: 4px;">
-                <!-- Left 50%: AI Risks & GTM Strategy -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>AI Risk</th>
-                                <th>Mitigation</th>
-                                <th>Detected By</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Mismatched styling</strong></td>
-                                <td>Stylist-audited distance threshold + neutral fallback</td>
-                                <td>Silhouette Precision</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Size return spike</strong></td>
-                                <td>Requires &ge;3 verified biometric photo matches</td>
-                                <td>Return Rate Telemetry</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Cold-start misfire</strong></td>
-                                <td>Universal Neutral Staples lookbook for 0-order users</td>
-                                <td>Cold-Start Decline Rate</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <!-- GTM 4 Pillars -->
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-size: 10.5px;">
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px;">
-                            <strong>Zero Reach Cost:</strong> Embedded natively inside existing wishlist surface; reaches 100% TG.
-                        </div>
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px;">
-                            <strong>Non-Intrusive Trigger:</strong> Surfaces only on high dwell (&gt;10s); zero push notification spam.
-                        </div>
+            <div class="content-area">
+                <!-- Top Roadmap 4 Phases -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                    <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 8px; padding: 10px 12px; text-align: center;">
+                        <div style="font-size: 13px; font-weight: 800; color: var(--color-green-dark);">Phase 1: Shadow (W1&ndash;W2)</div>
+                        <span style="font-size: 12px; color: #4B5563;">Runs silently in backend, logging pairing confidence scores across 50k saves</span>
+                    </div>
+                    <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 8px; padding: 10px 12px; text-align: center;">
+                        <div style="font-size: 13px; font-weight: 800; color: var(--color-green-dark);">Phase 2: Pilot (W3&ndash;W4)</div>
+                        <span style="font-size: 12px; color: #4B5563;">Go live in Tier-1 Metro (Bengaluru/Delhi), top 5 apparel categories</span>
+                    </div>
+                    <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 8px; padding: 10px 12px; text-align: center;">
+                        <div style="font-size: 13px; font-weight: 800; color: var(--color-green-dark);">Phase 3: A/B Test (W5&ndash;W8)</div>
+                        <span style="font-size: 12px; color: #4B5563;">100k MAU randomized controlled trial; prove +2.7pp lift with return rate &le; baseline</span>
+                    </div>
+                    <div style="background: #F0FDF4; border: 2px solid var(--color-green-dark); border-radius: 8px; padding: 10px 12px; text-align: center;">
+                        <div style="font-size: 13px; font-weight: 800; color: var(--color-green-dark);">Phase 4: Launch (W9+)</div>
+                        <span style="font-size: 12px; color: #166534; font-weight: 700;">Scale nationally across all 16.8M wishlist MAUs (~&#8377;1,005 Cr GMV)</span>
                     </div>
                 </div>
 
-                <!-- Right 50%: Compounding Moat & Unit Economics -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
-                    <div class="yellow-box" style="font-size: 11.5px;">
-                        <strong style="color: #713f12;">THE OWNED CLOSET DATA FLYWHEEL (DEFENSIBLE MOAT):</strong>
-                        <p style="color: #854d0e; margin-top: 4px; line-height: 1.35;">
-                            Every order on Myntra enriches the user's Owned Closet Graph. A richer closet produces more accurate outfit contextualizations on future wishlisted items, creating insurmountable switching costs against Amazon Fashion &amp; AJIO.
-                        </p>
+                <div class="layout-row" style="flex: 1; margin-top: 4px;">
+                    <!-- Left 50%: AI Risks & GTM Strategy -->
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>AI Risk</th>
+                                    <th>Mitigation</th>
+                                    <th>Detected By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Mismatched styling</strong></td>
+                                    <td>Stylist-audited distance threshold + neutral fallback</td>
+                                    <td>Silhouette Precision</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Size return spike</strong></td>
+                                    <td>Requires &ge;3 verified biometric photo matches</td>
+                                    <td>Return Rate Telemetry</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cold-start misfire</strong></td>
+                                    <td>Universal Neutral Staples lookbook for 0-order users</td>
+                                    <td>Cold-Start Decline Rate</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- GTM 4 Pillars -->
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 12px;">
+                            <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 6px; padding: 8px;">
+                                <strong>Zero Reach Cost:</strong> Embedded natively inside existing wishlist surface; reaches 100% TG.
+                            </div>
+                            <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 6px; padding: 8px;">
+                                <strong>Non-Intrusive Trigger:</strong> Surfaces only on high dwell (&gt;10s); zero push notification spam.
+                            </div>
+                        </div>
                     </div>
 
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th>Stage</th>
-                                <th>Who Pays</th>
-                                <th>Value / Unit Economics</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="highlight-row">
-                                <td><strong>Launch</strong></td>
-                                <td>Myntra (Core)</td>
-                                <td>&#8377;0 discount cost. +2.7pp conversion lift = &#8377;83.8 Cr/mo GMV at full catalog margin.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Scale</strong></td>
-                                <td>Brand Partners</td>
-                                <td>D2C brands sponsor verified FitTwin UGC placement for new seasonal drops.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- Right 50%: Compounding Moat & Unit Economics -->
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                        <div class="yellow-box" style="font-size: 13px;">
+                            <strong style="color: var(--color-yellow-dark);">THE OWNED CLOSET DATA FLYWHEEL (DEFENSIBLE MOAT):</strong>
+                            <p style="color: #854D0E; margin-top: 4px; line-height: 1.4;">
+                                Every order on Myntra enriches the user's Owned Closet Graph. A richer closet produces more accurate outfit contextualizations on future wishlisted items, creating insurmountable switching costs against Amazon Fashion &amp; AJIO.
+                            </p>
+                        </div>
+
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Stage</th>
+                                    <th>Who Pays</th>
+                                    <th>Value / Unit Economics</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlight-row">
+                                    <td><strong>Launch</strong></td>
+                                    <td>Myntra (Core)</td>
+                                    <td>&#8377;0 discount cost. +2.7pp conversion lift = &#8377;83.8 Cr/mo GMV at full catalog margin.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scale</strong></td>
+                                    <td>Brand Partners</td>
+                                    <td>D2C brands sponsor verified FitTwin UGC placement for new seasonal drops.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+            <footer class="slide-footer">
+                <div class="footer-links">
+                    <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repository</a>
+                    <a href="https://myntra-style-proof.vercel.app" target="_blank">Live Prototype App</a>
+                    <a href="https://myntra-opportunity-engine.vercel.app" target="_blank">Opportunity Discovery Dashboard</a>
+                </div>
+                <div class="footer-page">Slide 10 / 10</div>
+            </footer>
         </div>
-
-        <footer class="slide-footer">
-            <div class="footer-links">
-                <a href="https://github.com/yalnizcurt/silce.git" target="_blank">GitHub Repository</a>
-                <a href="https://myntra-style-proof.vercel.app" target="_blank">Live Prototype App</a>
-                <a href="https://myntra-opportunity-engine.vercel.app" target="_blank">Opportunity Discovery Dashboard</a>
-            </div>
-            <div class="footer-page">Slide 10 / 10</div>
-        </footer>
-    </section>
+    </div>
 
 </body>
 </html>
