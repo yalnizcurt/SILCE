@@ -10,7 +10,17 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <div class="app-container">
+  <div class="studio-wrapper">
+    <!-- Interactive Mobile Device Frame -->
+    <div class="phone-mockup-frame">
+      <div class="phone-speaker-notch">
+        <div class="dynamic-island">
+          <span class="island-dot"></span>
+          <span class="island-pill">StyleProof™ Active</span>
+        </div>
+      </div>
+      
+      <div class="app-container">
 
     <!-- Sticky Top Navigation -->
     <header class="myntra-header">
@@ -405,12 +415,132 @@
               </button>
             </div>
 
+          </div> <!-- /.styleproof-content -->
+        </div> <!-- /.modal-body -->
+      </div> <!-- /.modal-bottom-sheet -->
+    </div> <!-- /#styleproof-modal-overlay -->
+  </div> <!-- /.app-container -->
+</div> <!-- /.phone-mockup-frame -->
+
+    <!-- Desktop PM Executive HUD Sidebar -->
+    <aside class="pm-hud-sidebar" id="pm-hud-sidebar">
+      <!-- HUD Header -->
+      <div class="hud-card hud-header-card">
+        <div class="hud-badge-row">
+          <span class="hud-pill-tag pink">MYNTRA STYLEPROOF™</span>
+          <span class="hud-live-badge"><span class="live-dot"></span> LIVE PROTOTYPE</span>
+        </div>
+        <h2 class="hud-title">PM Decision Engine &amp; Conversion Funnel</h2>
+        <p class="hud-sub">NextLeap PM Fellowship Capstone • Dual-Pillar Biometric Fit &amp; Wardrobe Synergy Prototype</p>
+        <div class="hud-meta-row">
+          <span>🧠 Groq LPU 120B</span>
+          <span>⚡ Client Edge P95 &lt;120ms</span>
+          <span>🔒 0% Discount Rule</span>
+        </div>
+      </div>
+
+      <!-- Evaluator Persona Quick-Switch Panel -->
+      <div class="hud-card">
+        <div class="hud-card-label">👤 EVALUATOR PERSONA SWITCHER (TEST HARNESS)</div>
+        <div class="hud-personas-list">
+          <div class="hud-persona-item active" id="hud-persona-USER_ARJUN_01" onclick="handlePersonaChange('USER_ARJUN_01')">
+            <div class="hud-persona-avatar">AS</div>
+            <div class="hud-persona-details">
+              <div class="hud-p-name">Arjun Sharma <span class="hud-p-tag green">Returning Customer</span></div>
+              <div class="hud-p-sub">5'9" • 68kg • 3 Owned Orders (Levi's, HRX, Chinos)</div>
+              <div class="hud-p-status">✓ Full FitTwin &amp; Closet Lookbook Unlocked (High Intent)</div>
+            </div>
+          </div>
+
+          <div class="hud-persona-item" id="hud-persona-USER_ROHAN_02" onclick="handlePersonaChange('USER_ROHAN_02')">
+            <div class="hud-persona-avatar rohan">RV</div>
+            <div class="hud-persona-details">
+              <div class="hud-p-name">Rohan Verma <span class="hud-p-tag orange">Cold-Start New User</span></div>
+              <div class="hud-p-sub">5'11" • 75kg • 0 Orders • No Closet History</div>
+              <div class="hud-p-status">⚡ Adaptive Neutral Staples Lookbook Fallback</div>
+            </div>
+          </div>
+
+          <div class="hud-persona-item" id="hud-persona-USER_PRIYA_03" onclick="handlePersonaChange('USER_PRIYA_03')">
+            <div class="hud-persona-avatar priya">PN</div>
+            <div class="hud-persona-details">
+              <div class="hud-p-name">Priya Nair <span class="hud-p-tag muted">Passive Moodboarder</span></div>
+              <div class="hud-p-sub">5'6" • 54kg • Low Dwell (&lt;5s) • 0 Intent Triggers</div>
+              <div class="hud-p-status">✕ Catalog Remains Non-Intrusive &amp; Silent</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-  </div>
+      <!-- 3-Tier Intent & Category Gating State Machine -->
+      <div class="hud-card">
+        <div class="hud-card-label">🔬 3-TIER GATING STATE MACHINE (ACTIVE STATUS)</div>
+        <div class="hud-gating-grid">
+          <div class="gating-step-box">
+            <div class="step-badge">GATE 1</div>
+            <div class="step-title">Category Gate</div>
+            <div class="step-val" id="hud-gate-category">11 Apparel / 4 Blocked</div>
+            <div class="step-sub">Innerwear &amp; accessories excluded</div>
+          </div>
+          <div class="gating-step-box">
+            <div class="step-badge">GATE 2</div>
+            <div class="step-title">Intent Gate</div>
+            <div class="step-val" id="hud-gate-intent">Dwell ≥10s / Views ≥2</div>
+            <div class="step-sub">Filters passive bookmarkers</div>
+          </div>
+          <div class="gating-step-box">
+            <div class="step-badge">GATE 3</div>
+            <div class="step-title">Confidence Gate</div>
+            <div class="step-val" id="hud-gate-confidence">Match ≥ 0.80</div>
+            <div class="step-sub">Biometric UGC calibration</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Telemetry Terminal Stream -->
+      <div class="hud-card terminal-card">
+        <div class="hud-card-header-flex">
+          <div class="hud-card-label">📡 LIVE TELEMETRY &amp; EVENT STREAM</div>
+          <span class="hud-sla-badge">Edge SLA: &lt;120ms P95</span>
+        </div>
+        <div class="hud-terminal-stream" id="hud-telemetry-stream">
+          <!-- Real-time logs will stream here dynamically -->
+        </div>
+      </div>
+
+      <!-- Real-time Funnel KPI Tracker -->
+      <div class="hud-card metrics-card">
+        <div class="hud-card-label">📊 REAL-TIME NORTH STAR IMPACT TRACKER</div>
+        <div class="hud-kpi-grid">
+          <div class="hud-kpi-box">
+            <div class="kpi-num green" id="hud-conv-lift">+2.7pp</div>
+            <div class="kpi-label">30-Day WTC Lift (8.5% → 11.2%)</div>
+          </div>
+          <div class="hud-kpi-box">
+            <div class="kpi-num" id="hud-gmv-added">₹0</div>
+            <div class="kpi-label">Incremental GMV Added</div>
+          </div>
+          <div class="hud-kpi-box">
+            <div class="kpi-num purple" id="hud-cost-saved">₹0 Cost</div>
+            <div class="kpi-label">Zero Discount Compliance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="hud-actions-row">
+        <button class="hud-action-btn" onclick="toggleInspectorMode(!appState.isInspectorMode)">
+          🔬 Toggle PM Diagnostics
+        </button>
+        <button class="hud-action-btn" onclick="resetPrototypeFlow()">
+          🔄 Reset Funnel
+        </button>
+        <a href="/slides.html" target="_blank" class="hud-action-btn link-btn">
+          📊 Fellowship Slides ↗
+        </a>
+      </div>
+    </aside>
+  </div> <!-- /.studio-wrapper -->
 
   <script src="/static/app.js"></script>
 </body>

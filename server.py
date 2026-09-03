@@ -15,6 +15,18 @@ logger = logging.getLogger("MyntraStyleProof.Server")
 PORT = int(os.getenv("PORT", 8080))
 BASE_DIR = Path(__file__).parent.resolve()
 
+# Auto-load .env without third-party dependencies
+env_file = BASE_DIR / ".env"
+if env_file.exists():
+    with open(env_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip())
+
+DECISIONS_CACHE: Dict[str, Any] = {}
+
 def load_data_files():
     catalog_path = BASE_DIR / "data" / "catalog.json"
     personas_path = BASE_DIR / "data" / "user_personas.json"
@@ -82,14 +94,26 @@ class StyleProofRequestHandler(SimpleHTTPRequestHandler):
             
             # Evaluate gating for all wishlist items for this persona
             gating_results = {}
+            precomputed_decisions = {}
             for item in wishlisted_items:
-                gating_results[item["id"]] = evaluate_item_eligibility(item, persona)
+                gate = evaluate_item_eligibility(item, persona)
+                gating_results[item["id"]] = gate
+                # Pre-warm decision for eligible items into memory cache
+                cache_key = f"{user_id}_{item['id']}"
+                if gate.get("is_eligible", False):
+                    if cache_key in DECISIONS_CACHE:
+                        precomputed_decisions[item["id"]] = DECISIONS_CACHE[cache_key]
+                    else:
+                        decision = generate_styleproof_decision(item, persona)
+                        DECISIONS_CACHE[cache_key] = decision
+                        precomputed_decisions[item["id"]] = decision
 
             self.send_json_response({
                 "user": persona,
                 "personas": personas,
                 "wishlist": wishlisted_items,
                 "gating": gating_results,
+                "decisions": precomputed_decisions,
                 "analytics": ANALYTICS
             })
             return
@@ -122,7 +146,13 @@ class StyleProofRequestHandler(SimpleHTTPRequestHandler):
             persona = next((p for p in personas if p["user_id"] == user_id), personas[0] if personas else {})
             wishlisted_item = next((item for item in catalog if item["id"] == sku_id), catalog[0] if catalog else {})
 
-            decision = generate_styleproof_decision(wishlisted_item, persona)
+            cache_key = f"{user_id}_{sku_id}"
+            if cache_key in DECISIONS_CACHE:
+                decision = DECISIONS_CACHE[cache_key]
+            else:
+                decision = generate_styleproof_decision(wishlisted_item, persona)
+                DECISIONS_CACHE[cache_key] = decision
+
             gating = evaluate_item_eligibility(wishlisted_item, persona, explicit_override=explicit_override)
 
             ANALYTICS["modal_opens"] += 1
@@ -131,7 +161,8 @@ class StyleProofRequestHandler(SimpleHTTPRequestHandler):
                 "sku": wishlisted_item,
                 "user": persona,
                 "decision": decision,
-                "gating": gating
+                "gating": gating,
+                "cached": cache_key in DECISIONS_CACHE
             })
             return
 
