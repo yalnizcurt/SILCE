@@ -208,9 +208,14 @@ function updatePersonaContextUI(user) {
     biometrics.innerHTML = `<span>📏 ${bp.height || "5'9\""}</span> • <span>⚖️ ${bp.weight || "68kg"}</span> • <span>🏷️ ${benchStr}</span>`;
   }
 
-  const ordersCount = user.past_purchases_closet ? user.past_purchases_closet.length : 0;
+  const owned = user.owned_closet || user.past_purchases_closet || [];
+  const ordersCount = owned.length;
   if (closetCount) {
-    closetCount.innerText = ordersCount === 0 ? "0 Orders (Cold Start)" : `${ordersCount} Owned Orders`;
+    if (user.user_id === "USER_POWER_01" || user.user_id === "USER_ARJUN_01" || (user.name && user.name.includes("Arjun"))) {
+      closetCount.innerText = "Returning Customer (3 Orders/Quarter)";
+    } else {
+      closetCount.innerText = ordersCount === 0 ? "0 Orders (Cold Start)" : `${ordersCount} Owned Orders`;
+    }
   }
 }
 
@@ -309,12 +314,15 @@ function renderWishlistGrid() {
       `;
     }
 
-    // Interactive StyleProof Pill HTML (Surfaced ONLY when eligible)
-    let styleProofPillHTML = "";
-    if (gate.is_eligible && gate.pill_badge_text) {
-      styleProofPillHTML = `
-        <div class="styleproof-pill" onclick="openStyleProofModal('${item.id}', true)">
-          <span>${gate.pill_badge_text}</span>
+    // Interactive StyleProof 2.0 Badge Trigger (Surfaced under item)
+    let styleProofBadgeHTML = "";
+    const recSize = item.recommended_size || (item.brand === "Roadster" ? "S" : "M");
+    const closetCount = item.pairs_with_owned_ids ? item.pairs_with_owned_ids.length : 2;
+    
+    if (gate.is_eligible || item.brand_calibration_delta) {
+      styleProofBadgeHTML = `
+        <div class="styleproof-badge" onclick="openLookbook('${item.id}')">
+          <span>✨ Pairs with ${closetCount} closet items • Brand Size Delta: Size ${recSize}</span>
         </div>
       `;
     }
@@ -324,13 +332,13 @@ function renderWishlistGrid() {
 
     return `
       <div class="wishlist-card" id="card-${item.id}">
-        <div class="card-img-container" onclick="openStyleProofModal('${item.id}', true)">
+        <div class="card-img-container" onclick="openLookbook('${item.id}')">
           <img src="${item.image_url}" alt="${item.title}" class="card-img" loading="lazy">
           <button class="card-close-btn" onclick="removeItem('${item.id}', event)">✕</button>
           <div class="card-rating-badge">
             <span>${item.rating || '4.3'}</span>
             <span class="rating-star">★</span>
-            <span style="color:#94969f">| ${item.rating_count ? (item.rating_count > 999 ? (item.rating_count/1000).toFixed(1)+'k' : item.rating_count) : '1.2k'}</span>
+            <span style="color:#94969f">| ${item.rating_count ? (item.rating_count > 999 ? (item.rating_count/1000).toFixed(1)+'k' : item.rating_count) : '1.3k'}</span>
           </div>
         </div>
 
@@ -341,13 +349,12 @@ function renderWishlistGrid() {
           <div class="card-title">${item.title}</div>
           <div class="card-price-row">
             <span class="card-price">₹${item.price}</span>
-            <span class="card-mrp">₹${item.mrp || item.price * 2}</span>
-            <span class="card-discount">${item.discount_pct || '50% OFF'}</span>
+            <span class="card-price-badge" style="font-size:10px; color:#0f766e; font-weight:700; background:#f0fdfa; border:1px solid #ccfbf1; padding:2px 5px; border-radius:3px;">Full Catalog Price • ₹0 Discount Spend</span>
           </div>
 
-          ${styleProofPillHTML}
+          ${styleProofBadgeHTML}
 
-          <button class="${actionBtnClass}" onclick="openStyleProofModal('${item.id}', true)">
+          <button class="${actionBtnClass}" onclick="openLookbook('${item.id}')">
             ${actionBtnText}
           </button>
         </div>
@@ -357,45 +364,21 @@ function renderWishlistGrid() {
 }
 
 // --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// Interactive StyleProof Modal & Instant Pre-Warmed Cache (<120ms P95 SLA)
+// Interactive Lookbook Tray & Instant Pre-Warmed Cache (<120ms P95 SLA)
 // --------------------------------------------------------------------------
 function populateModalWithDecision(sku, decision) {
   appState.currentModalSku = sku;
   appState.currentDecision = decision;
-  appState.selectedSize = decision.recommended_size || "M";
+  appState.selectedSize = decision.recommended_size || "S";
 
   const modalTitle = document.getElementById("modal-product-title");
   if (modalTitle) modalTitle.innerText = sku.title || "Apparel Item";
 
-  // Populate Lookbook Canvas (Pillar 1)
+  // 1. Lookbook Canvas
   const targetImg = document.getElementById("canvas-target-img");
   const targetName = document.getElementById("canvas-target-name");
   if (targetImg) targetImg.src = sku.image_url;
   if (targetName) targetName.innerText = sku.brand + " " + (sku.category ? sku.category.split("-")[0] : "");
-
-  const foundationChip = document.getElementById("lookbook-foundation-chip");
-  const lookbookSubtext = document.getElementById("lookbook-subtext");
-  
-  if (decision.is_cold_start_staples) {
-    if (foundationChip) {
-      foundationChip.innerText = "Paired with Neutral Basics (No past orders)";
-      foundationChip.style.background = "#fff6f0";
-      foundationChip.style.color = "#ea580c";
-    }
-    if (lookbookSubtext) {
-      lookbookSubtext.innerText = "Universal neutral wardrobe essentials tailored to this silhouette";
-    }
-  } else {
-    if (foundationChip) {
-      foundationChip.innerText = "Complete the Look from Your Closet";
-      foundationChip.style.background = "#eef2ff";
-      foundationChip.style.color = "#4f46e5";
-    }
-    if (lookbookSubtext) {
-      lookbookSubtext.innerText = "Styled directly with items from your past 12 months of orders";
-    }
-  }
 
   const ownedContainer = document.getElementById("canvas-owned-items");
   const pairedItems = decision.paired_owned_items || [];
@@ -404,53 +387,70 @@ function populateModalWithDecision(sku, decision) {
       <div class="canvas-item">
         <div class="canvas-img-box">
           <img src="${item.image_url}" alt="${item.title}">
-          <span class="item-tag-badge ${item.is_staple ? 'staple-tag' : 'owned-tag'}">
-            ${item.is_staple ? 'Neutral Staple' : 'From Closet'}
-          </span>
+          <span class="item-tag-badge owned-tag">From Closet</span>
         </div>
         <div class="canvas-item-name">${item.title.split(" ").slice(0, 3).join(" ")}</div>
       </div>
     `).join("");
   }
 
-  // Styling Rationale
   const rationale = document.getElementById("styling-rationale-text");
-  if (rationale) rationale.innerText = decision.styling_verdict;
+  if (rationale) rationale.innerText = decision.styling_verdict || "The caramel brown suede creates a rich texture contrast with your Levi's dark indigo jeans, grounded by HRX off-white sneakers for a crisp smart-casual silhouette.";
 
-  // Populate FitTwin (Pillar 2)
-  const fitPct = decision.fit_confidence_score || 94;
-  const chip = document.getElementById("fit-confidence-chip");
-  if (chip) chip.innerText = `${fitPct}% Fit Match`;
+  // 2. Brand Size Calibration Delta
+  const userRefSize = appState.user?.reference_sizes?.Zara || "M";
+  const refSizeEl = document.getElementById("user-ref-size-text");
+  if (refSizeEl) refSizeEl.innerText = `Zara Size ${userRefSize}`;
 
-  const photo = document.getElementById("fittwin-user-photo");
-  if (photo) photo.src = decision.fit_twin_photo_url || sku.image_url;
-  
-  const userBp = appState.user?.body_profile || {};
-  const fittwinSub = document.getElementById("fittwin-subtext");
-  if (fittwinSub) {
-    fittwinSub.innerText = `Verified Drape from Buyers with Your Exact Frame (${userBp.height || "5'9\""} • ${userBp.weight || "68kg"})`;
+  const deltaSizeEl = document.getElementById("delta-recommended-size");
+  if (deltaSizeEl) deltaSizeEl.innerText = `Calibrated Size ${decision.recommended_size || 'S'}`;
+
+  const deltaExplEl = document.getElementById("calibration-explanation-text");
+  if (deltaExplEl) deltaExplEl.innerHTML = decision.brand_calibration_delta || `Roadster cuts run 1.2" broader in the shoulders than Zara ${userRefSize}. We calibrated <strong>Size S</strong> for your athletic frame to guarantee zero return risk.`;
+
+  const statTextEl = document.getElementById("calibration-stat-text");
+  if (statTextEl) statTextEl.innerText = decision.return_exchange_stat || `74% of buyers with Zara ${userRefSize} kept Size S in this jacket.`;
+
+  // 3. Wishlist Deduplication Helper
+  const dedupSection = document.getElementById("deduplication-section");
+  const dedupGrid = document.getElementById("dedup-comparison-grid");
+  if (decision.comparison_item && dedupGrid) {
+    if (dedupSection) dedupSection.style.display = "block";
+    const comp = decision.comparison_item;
+    dedupGrid.innerHTML = `
+      <div class="dedup-card active-target">
+        <div class="dedup-tag target-tag">Target Item</div>
+        <div class="dedup-item-title">${sku.title}</div>
+        <div class="dedup-item-price">₹${sku.price} <span style="font-size:10px; color:#0f766e; font-weight:700; background:#f0fdfa; padding:1px 6px; border-radius:3px; border:1px solid #ccfbf1;">Full Catalog Price • ₹0 Discount Spend</span></div>
+        <div class="dedup-metric-row">
+          <span>Fabric: <strong>${sku.fabric_weight || 'Heavy Faux Suede (420 GSM)'}</strong></span>
+          <span>Cut: <strong>${sku.fit_cut || 'Structured Biker Cut'}</strong></span>
+          <span>Versatility: <strong>${sku.versatility_score || '9.2/10'}</strong></span>
+          <span>Size: <strong style="color:#0d9488;">Calibrated Size ${decision.recommended_size || 'S'}</strong></span>
+        </div>
+      </div>
+      <div class="dedup-card">
+        <div class="dedup-tag alt-tag">Saved ${comp.saved_days_ago || 12}d ago</div>
+        <div class="dedup-item-title">${comp.title}</div>
+        <div class="dedup-item-price">₹${comp.price} <span style="font-size:10px; color:#0f766e; font-weight:700; background:#f0fdfa; padding:1px 6px; border-radius:3px; border:1px solid #ccfbf1;">Full Catalog Price • ₹0 Discount Spend</span></div>
+        <div class="dedup-metric-row">
+          <span>Fabric: <strong>${comp.fabric_weight || 'Lightweight Faux Suede (280 GSM)'}</strong></span>
+          <span>Cut: <strong>${comp.fit_cut || 'Relaxed Bomber Silhouette'}</strong></span>
+          <span>Versatility: <strong>${comp.versatility_score || '8.5/10'}</strong></span>
+          <span>Size: <strong>Standard Size ${comp.recommended_size || 'M'}</strong></span>
+        </div>
+      </div>
+    `;
+  } else if (dedupSection) {
+    dedupSection.style.display = "none";
   }
 
-  const tHeight = document.getElementById("twin-height");
-  const tWeight = document.getElementById("twin-weight");
-  const tSize = document.getElementById("twin-size");
-  const tQuote = document.getElementById("fittwin-quote");
-  if (tHeight) tHeight.innerText = userBp.height || "5'9\"";
-  if (tWeight) tWeight.innerText = userBp.weight || "68kg";
-  if (tSize) tSize.innerText = `Size ${decision.recommended_size || 'M'}`;
-  if (tQuote) tQuote.innerText = `"${decision.fit_twin_quote || 'Fits true to size.'}"`;
-  
-  const benchZara = userBp.benchmark_sizes?.Zara || "M";
-  const benchHM = userBp.benchmark_sizes?.["H&M"] || "M";
-  const calib = document.getElementById("fittwin-calibration");
-  if (calib) calib.innerHTML = `🎯 Recommended Size: <strong>${decision.recommended_size || 'M'}</strong> (Calibrated against your Zara Size ${benchZara} & H&M Size ${benchHM})`;
+  // 4. Render Size Chips
+  renderSizeChips(decision.recommended_size || "S", sku.available_sizes || ["S", "M", "L", "XL"]);
 
-  // Size Chips with green FitTwin Pick dot
-  renderSizeChips(decision.recommended_size || "M", sku.available_sizes || ["S", "M", "L", "XL"]);
-
-  // CTA Button
+  // 5. Update CTA Button text
   const cta = document.getElementById("cta-button-text");
-  if (cta) cta.innerText = `Select Size ${appState.selectedSize} & Move to Bag`;
+  if (cta) cta.innerText = `Select Calibrated Size ${appState.selectedSize} & Move to Bag`;
 }
 
 async function openStyleProofModal(skuId, explicitOverride = false) {
@@ -473,7 +473,6 @@ async function openStyleProofModal(skuId, explicitOverride = false) {
     return;
   }
 
-  // Fallback to fetch if not yet in cache
   loading.style.display = "flex";
   content.style.display = "none";
 
@@ -498,7 +497,7 @@ async function openStyleProofModal(skuId, explicitOverride = false) {
 
     loading.style.display = "none";
     content.style.display = "block";
-    logTelemetry("GROQ_LPU", `Inferred Lookbook & FitTwin in ${elapsed}ms (Groq 120B • SKU: ${skuId})`, "info");
+    logTelemetry("LOOKBOOK_LOAD", `Inferred Lookbook & Calibration in ${elapsed}ms (SKU: ${skuId})`, "info");
 
   } catch (err) {
     console.error("Error opening modal:", err);
@@ -508,6 +507,9 @@ async function openStyleProofModal(skuId, explicitOverride = false) {
   }
 }
 
+// Global Alias
+window.openLookbook = openStyleProofModal;
+
 function renderSizeChips(recSize, availableSizes = ["S", "M", "L", "XL"]) {
   const container = document.getElementById("size-chips-group");
   container.innerHTML = availableSizes.map(s => {
@@ -515,9 +517,9 @@ function renderSizeChips(recSize, availableSizes = ["S", "M", "L", "XL"]) {
     const isActive = s === appState.selectedSize;
     return `
       <button class="size-chip ${isActive ? 'active' : ''}" onclick="selectSize('${s}', ${isRec})">
-        ${isRec ? '<span class="fittwin-pick-dot" title="FitTwin Pick"></span>' : ''}
+        ${isRec ? '<span class="fittwin-pick-dot" title="Calibrated Pick" style="background:#0d9488;"></span>' : ''}
         <span>${s}</span>
-        ${isRec ? '<span style="font-size:9px; color:#14958f;">(FitTwin Pick)</span>' : ''}
+        ${isRec ? '<span style="font-size:9px; color:#0d9488; font-weight:700;">(Calibrated Pick)</span>' : ''}
       </button>
     `;
   }).join("");
@@ -525,10 +527,10 @@ function renderSizeChips(recSize, availableSizes = ["S", "M", "L", "XL"]) {
 
 function selectSize(size, isRec) {
   appState.selectedSize = size;
-  renderSizeChips(appState.currentDecision?.recommended_size || "M", appState.currentModalSku?.available_sizes || ["S", "M", "L", "XL"]);
+  renderSizeChips(appState.currentDecision?.recommended_size || "S", appState.currentModalSku?.available_sizes || ["S", "M", "L", "XL"]);
   const cta = document.getElementById("cta-button-text");
-  if (cta) cta.innerText = `Select Size ${size} & Move to Bag`;
-  logTelemetry("SIZE_SELECT", `Selected Size ${size} ${isRec ? "(FitTwin Calibrated Pick)" : "(Manual Override)"}`, "action");
+  if (cta) cta.innerText = `Select Calibrated Size ${size} & Move to Bag`;
+  logTelemetry("SIZE_SELECT", `Selected Size ${size} ${isRec ? "(Calibrated Pick)" : "(Manual Override)"}`, "action");
 }
 
 function closeStyleProofModal(event) {
@@ -623,8 +625,7 @@ function renderCartView() {
             <div class="cart-item-size-badge">Size: <strong>${item.selectedSize}</strong> • Qty: 1</div>
             <div class="cart-item-price-row">
               <span class="card-price">₹${sku.price}</span>
-              <span class="card-mrp">₹${sku.mrp || sku.price * 2}</span>
-              <span class="card-discount">${sku.discount_pct || '50% OFF'}</span>
+              <span class="card-price-badge" style="font-size:10px; color:#0f766e; font-weight:700; background:#f0fdfa; padding:2px 5px; border-radius:3px; border:1px solid #ccfbf1;">Full Catalog Price • ₹0 Discount Spend</span>
             </div>
           </div>
         </div>
@@ -636,18 +637,15 @@ function renderCartView() {
   }).join("");
 
   // Update Price Breakdown
-  let totalMRP = 0;
   let totalActual = 0;
   appState.cartItems.forEach(c => {
-    totalMRP += (c.sku.mrp || c.sku.price * 2);
     totalActual += c.sku.price;
   });
-  const savings = totalMRP - totalActual;
 
   const countText = `${appState.cartItems.length} ${appState.cartItems.length === 1 ? 'Item' : 'Items'}`;
   document.getElementById("cart-summary-item-count").innerText = countText;
-  document.getElementById("price-total-mrp").innerText = `₹${totalMRP.toLocaleString('en-IN')}`;
-  document.getElementById("price-discount").innerText = `-₹${savings.toLocaleString('en-IN')}`;
+  document.getElementById("price-total-mrp").innerText = `₹${totalActual.toLocaleString('en-IN')}`;
+  document.getElementById("price-discount").innerText = `₹0 (Zero Platform Subsidy)`;
   document.getElementById("price-final-total").innerText = `₹${totalActual.toLocaleString('en-IN')}`;
   document.getElementById("footer-total-price").innerText = `₹${totalActual.toLocaleString('en-IN')}`;
 

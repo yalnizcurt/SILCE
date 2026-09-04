@@ -58,7 +58,7 @@
     <div class="pm-harness-bar">
       <!-- Persona Switcher Dropdown -->
       <div class="persona-selector-wrap">
-        <label for="persona-select" class="harness-label">👤 Active Persona:</label>
+        <label for="persona-select" class="harness-label">👤 PERSONA HARNESS:</label>
         <select id="persona-select" class="persona-dropdown" onchange="handlePersonaChange(this.value)">
           <option value="USER_ARJUN_01" selected>Arjun (Returning • 3 Orders • High-Intent)</option>
           <option value="USER_ROHAN_02">Rohan (Cold-Start • 0 Orders • Adaptive Staples)</option>
@@ -162,12 +162,12 @@
         <div class="price-breakdown-card">
           <div class="price-card-title">PRICE DETAILS (<span id="cart-summary-item-count">1 Item</span>)</div>
           <div class="price-row">
-            <span>Total MRP</span>
-            <span id="price-total-mrp">₹4,999</span>
+            <span>Total Catalog MRP</span>
+            <span id="price-total-mrp">₹2,499</span>
           </div>
           <div class="price-row">
-            <span>Catalog Savings</span>
-            <span class="discount-text" id="price-discount">-₹2,500</span>
+            <span>Platform Discount</span>
+            <span class="discount-text" id="price-discount" style="color:#0f766e; font-weight:700;">₹0 (Zero Platform Subsidy)</span>
           </div>
           <div class="price-row">
             <span>Delivery Fee</span>
@@ -314,7 +314,7 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <div class="modal-title-wrap">
-            <div class="modal-sparkle-pill">✨ STYLEPROOF™ AI DECISION ENGINE</div>
+            <div class="modal-sparkle-pill">✨ MYNTRA STYLEPROOF DECISION ENGINE</div>
             <h2 class="modal-product-title" id="modal-product-title">Roadster Men Brown Suede Biker Jacket</h2>
           </div>
           <button class="modal-close-btn" onclick="closeStyleProofModal()">✕</button>
@@ -332,14 +332,14 @@
           <!-- Real Content Populated by Controller -->
           <div class="styleproof-content" id="styleproof-content" style="display: none;">
             
-            <!-- Pillar 1: Wardrobe Lookbook Canvas -->
+            <!-- Pillar 1: Flat-Lay Wardrobe Lookbook Canvas -->
             <section class="lookbook-section">
               <div class="section-badge-header">
                 <span class="pillar-num">PILLAR 1</span>
-                <span class="section-title">WARDROBE LOOKBOOK CANVAS</span>
-                <span class="foundation-chip" id="lookbook-foundation-chip">From Your Past Orders</span>
+                <span class="section-title">FLAT-LAY WARDROBE LOOKBOOK</span>
+                <span class="foundation-chip" id="lookbook-foundation-chip">Outfit Harmony: 94% Match</span>
               </div>
-              <p class="section-subtext" id="lookbook-subtext">Complete the look with items from your closet</p>
+              <p class="section-subtext" id="lookbook-subtext">Styled with verified pieces from your past 12 months of Myntra orders (₹0 additional spend)</p>
 
               <div class="outfit-canvas-container">
                 <!-- Wishlisted Target Item -->
@@ -366,38 +366,53 @@
               <div class="styling-rationale-box">
                 <div class="rationale-icon">💡</div>
                 <div class="rationale-text" id="styling-rationale-text">
-                  The caramel brown suede creates a rich texture contrast with your Levi's dark indigo jeans.
+                  The caramel brown suede creates a rich texture contrast with your Levi's dark indigo jeans, grounded by HRX off-white sneakers for a crisp smart-casual silhouette.
                 </div>
               </div>
             </section>
 
-            <!-- Pillar 2: FitTwin Verified UGC Review -->
-            <section class="fittwin-section">
+            <!-- Pillar 2: Brand Size Calibration Delta (Aggregated Return & Exchange Telemetry) -->
+            <section class="brand-calibration-section">
               <div class="section-badge-header">
                 <span class="pillar-num">PILLAR 2</span>
-                <span class="section-title">FITTWIN™ VERIFIED REVIEW</span>
-                <span class="confidence-chip" id="fit-confidence-chip">94% Fit Match</span>
+                <span class="section-title">BRAND SIZE CALIBRATION DELTA</span>
+                <span class="confidence-chip" id="calibration-confidence-chip">100% SKU Coverage</span>
               </div>
-              <p class="section-subtext" id="fittwin-subtext">Verified drape from buyers with your exact frame</p>
+              <p class="section-subtext">Sizing intelligence derived from 1,400+ verified Myntra exchanges & returns</p>
 
-              <div class="fittwin-card">
-                <div class="fittwin-photo-wrapper">
-                  <img id="fittwin-user-photo" src="" alt="FitTwin User Photo">
-                  <div class="verified-fittwin-tag">✓ Verified FitTwin</div>
-                </div>
-                <div class="fittwin-meta">
-                  <div class="fittwin-biometrics">
-                    <span class="twin-stat">Height: <strong id="twin-height">5'9"</strong></span>
-                    <span class="twin-stat">Weight: <strong id="twin-weight">68kg</strong></span>
-                    <span class="twin-stat">Bought: <strong id="twin-size">Size M</strong></span>
-                  </div>
-                  <blockquote class="fittwin-quote" id="fittwin-quote">
-                    "Fits tailored on shoulders; sleeves hit right at the wrist."
-                  </blockquote>
-                  <div class="fittwin-calibration-note" id="fittwin-calibration">
-                    🎯 Calibrated to your <strong>Zara Size M</strong> & <strong>H&M Size M</strong> profile.
+              <div class="calibration-card">
+                <div class="calibration-header-row">
+                  <span class="calibration-shield-icon">🛡️</span>
+                  <div class="calibration-title-group">
+                    <div class="calibration-card-title">Proprietary Exchange & Return Telemetry</div>
+                    <div class="calibration-sub">Calibrated against your reference size: <strong id="user-ref-size-text">Zara Size M</strong></div>
                   </div>
                 </div>
+                <div class="calibration-delta-banner">
+                  <div class="delta-badge">RECOMMENDED FIT</div>
+                  <div class="delta-size" id="delta-recommended-size">Calibrated Size S</div>
+                </div>
+                <p class="calibration-explanation" id="calibration-explanation-text">
+                  Roadster cuts run 1.2" broader in the shoulders than Zara M. We calibrated <strong>Size S</strong> for your athletic frame to guarantee zero return risk.
+                </p>
+                <div class="calibration-stat-pill" id="calibration-stat-pill">
+                  <span class="check-icon">✓</span>
+                  <span id="calibration-stat-text">74% of buyers with Zara M kept Size S in this jacket.</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Pillar 3: Wishlist Deduplication & Decision Matrix -->
+            <section class="deduplication-section" id="deduplication-section">
+              <div class="section-badge-header">
+                <span class="pillar-num">PILLAR 3</span>
+                <span class="section-title">WISHLIST DEDUPLICATION HELPER</span>
+                <span class="foundation-chip" style="background:#fef3c7; color:#b45309;">2 Saved in Group</span>
+              </div>
+              <p class="section-subtext">Side-by-side trade-off matrix to resolve duplicate comparison paralysis</p>
+
+              <div class="dedup-comparison-grid" id="dedup-comparison-grid">
+                <!-- Dynamically Populated Comparison Matrix -->
               </div>
             </section>
 
@@ -406,12 +421,12 @@
               <div class="size-selection-row">
                 <span class="size-label">Selected Size:</span>
                 <div class="size-chips-group" id="size-chips-group">
-                  <!-- Dynamic size chips with green FitTwin Pick dot -->
+                  <!-- Dynamic size chips with green Calibrated Pick dot -->
                 </div>
               </div>
               <button class="move-to-bag-cta" id="modal-move-to-bag-btn" onclick="executeMoveToBagFromModal()">
                 <span class="btn-icon">🛍️</span>
-                <span id="cta-button-text">Select Size M & Move to Bag</span>
+                <span id="cta-button-text">Select Calibrated Size S & Move to Bag</span>
               </button>
             </div>
 
