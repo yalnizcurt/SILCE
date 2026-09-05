@@ -54,8 +54,8 @@
       </div>
     </header>
 
-    <!-- PM Inspector & Persona Harness Controller Bar (Always Visible) -->
-    <div class="pm-harness-bar">
+    <!-- PM Inspector & Persona Harness Controller Bar (Only Visible when PM Diagnostics Active) -->
+    <div class="pm-harness-bar" id="pm-harness-bar" style="display: none;">
       <!-- Persona Switcher Dropdown -->
       <div class="persona-selector-wrap">
         <label for="persona-select" class="harness-label">👤 PERSONA HARNESS:</label>
@@ -323,10 +323,10 @@
         <!-- Modal View Tabs (Lookbook Canvas vs Calibration & Dedup Tray vs All Insights) -->
         <div class="modal-view-tabs" id="modal-view-tabs">
           <button class="modal-tab-btn active" id="tab-btn-lookbook" onclick="switchModalView('lookbook')">
-            🎨 1. Lookbook Canvas (Slide 8.2)
+            🎨 1. Lookbook Canvas
           </button>
           <button class="modal-tab-btn" id="tab-btn-calibration" onclick="switchModalView('calibration')">
-            🛡️ 2. Sizing &amp; Dedup Tray (Slide 8.3)
+            🛡️ 2. Sizing &amp; Dedup Tray
           </button>
           <button class="modal-tab-btn" id="tab-btn-all" onclick="switchModalView('all')">
             ✨ All Insights

@@ -182,6 +182,12 @@ function toggleInspectorMode(enabled) {
   if (banner) {
     banner.style.display = enabled ? "block" : "none";
   }
+  const harnessBar = document.getElementById("pm-harness-bar");
+  if (harnessBar) {
+    harnessBar.style.display = enabled ? "flex" : "none";
+  }
+  const checkbox = document.getElementById("inspector-toggle");
+  if (checkbox) checkbox.checked = enabled;
   renderWishlistGrid();
   showToast(enabled ? "🔬 PM Inspector Diagnostics: ON" : "PM Inspector: OFF (Consumer Clean Mode)");
   logTelemetry("INSPECTOR", `PM Diagnostics toggled: ${enabled ? "ON" : "OFF"}`, "gate");
