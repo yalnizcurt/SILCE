@@ -41,12 +41,12 @@
     --color-orange-border: #FED7AA;
 
     /* Typographic Scale */
-    --font-title: 30px;
-    --font-card-title: 19px;
+    --font-title: 28px;
+    --font-card-title: 18px;
     --font-body: 14.5px;
-    --font-small: 13.5px;
-    --font-label: 12.5px;
-    --font-stat: 42px;
+    --font-small: 13px;
+    --font-label: 12px;
+    --font-stat: 40px;
 }
 
 * {
@@ -112,11 +112,12 @@ body {
 .slide-content-container {
     width: 100%;
     height: 100%;
-    padding: 42px 56px 26px 56px;
+    padding: 42px 56px 28px 56px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* ==========================================================================
@@ -126,31 +127,31 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     flex-shrink: 0;
 }
 
 .slide-badge, .slide-tracker {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 800;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--myntra-coral);
+    color: #FF3F6C;
     margin-bottom: 4px;
     display: block;
 }
 
 .slide-title {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 800;
     line-height: 1.25;
-    color: var(--myntra-charcoal);
+    color: #1E2233;
     margin: 0;
     letter-spacing: -0.5px;
 }
 
 .brand-logo {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 900;
     color: var(--myntra-coral);
     letter-spacing: -0.5px;
@@ -161,17 +162,17 @@ body {
 }
 
 .brand-logo .sub {
-    font-size: 16.5px;
+    font-size: 15px;
     font-weight: 700;
     color: var(--myntra-slate-dark);
     background: #FFFFFF;
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 6px;
     border: 1.5px solid var(--myntra-border);
 }
 
 .supporting-statement {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--myntra-slate-muted);
     margin-bottom: 8px;
@@ -185,16 +186,16 @@ body {
     display: flex;
     gap: 20px;
     width: 100%;
-    height: calc(1080px - 180px);
-    max-height: calc(1080px - 180px);
+    height: calc(1080px - 175px);
+    max-height: calc(1080px - 175px);
     min-height: 0;
 }
 
 .deck-card, .exec-card {
     background: #FFFFFF;
-    border-radius: 14px;
-    border: 1.5px solid var(--myntra-border);
-    padding: 22px 26px;
+    border-radius: 12px;
+    border: 1px solid #E2E6EC;
+    padding: 22px 24px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     display: flex;
     flex-direction: column;
@@ -204,32 +205,32 @@ body {
 }
 
 .stat-hero, .stat-display {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 800;
-    color: var(--myntra-charcoal);
-    line-height: 1.05;
+    color: #1E2233;
+    line-height: 1.0;
     margin-bottom: 6px;
     letter-spacing: -1px;
 }
 
 .stat-subtext, .stat-label {
-    font-size: 15.5px;
+    font-size: 14.5px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     color: var(--myntra-slate-muted);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 p, li, .card-text, .exec-card-body, .body-text {
-    font-size: 17.5px;
-    line-height: 1.55;
-    color: var(--myntra-slate-dark);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #3E4152;
 }
 
 .card-box {
     background: #FFFFFF;
-    border: 1.5px solid var(--myntra-border);
+    border: 1px solid #E2E6EC;
     border-radius: 12px;
     padding: 18px 22px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
@@ -352,6 +353,52 @@ p, li, .card-text, .exec-card-body, .body-text {
     font-size: 20px;
     font-weight: 800;
     color: var(--myntra-slate-muted);
+}
+
+.pipeline-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+.pipeline-step {
+    background: #FFFFFF;
+    border: 1.5px solid var(--myntra-border);
+    border-radius: 8px;
+    padding: 9px 10px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.pipeline-step .step-num {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--myntra-charcoal);
+    line-height: 1.2;
+    display: block;
+}
+
+.pipeline-step .step-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--myntra-slate-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-top: 3px;
+    display: block;
+}
+
+.pipeline-arrow {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--myntra-slate-muted);
+    flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -527,33 +574,36 @@ p, li, .card-text, .exec-card-body, .body-text {
     justify-content: space-between;
     align-items: center;
     border-top: 1.5px solid var(--myntra-border);
-    padding-top: 12px;
-    margin-top: 10px;
-    font-size: 16px;
+    padding-top: 10px;
+    margin-top: 8px;
+    font-size: 14.5px;
     font-weight: 600;
     color: var(--myntra-slate-muted);
     flex-shrink: 0;
-    height: 38px;
+    height: 36px;
 }
 
+.footer-left,
 .footer-attribution {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 16.5px;
+    font-size: 14.5px;
     font-weight: 700;
     white-space: nowrap;
+    color: var(--myntra-slate-muted);
 }
 
-.footer-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.footer-left span:first-child,
+.footer-attribution span:first-child {
+    color: var(--myntra-pink);
+    font-weight: 800;
 }
 
 .footer-links {
     display: flex;
-    gap: 18px;
+    align-items: center;
+    gap: 8px;
     white-space: nowrap;
 }
 
@@ -561,14 +611,34 @@ p, li, .card-text, .exec-card-body, .body-text {
     color: #2563EB;
     text-decoration: underline;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     white-space: nowrap;
 }
 
+.footer-links a:hover {
+    color: #1D4ED8;
+}
+
+.separator,
+.footer-sep {
+    color: #94A3B8;
+    font-weight: 400;
+    font-size: 13px;
+    user-select: none;
+    margin: 0 1px;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.slide-number,
 .footer-page {
     font-weight: 800;
     color: var(--myntra-slate-muted);
-    font-size: 16px;
+    font-size: 14.5px;
     white-space: nowrap;
 }
 
@@ -611,5 +681,5 @@ p, li, .card-text, .exec-card-body, .body-text {
 
 /* line-height for denser reading */
 p, li, .card-text, .exec-card-body, .body-text {
-    line-height: 1.65;
+    line-height: 1.5;
 }

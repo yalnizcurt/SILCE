@@ -2,7 +2,7 @@ import os
 import json
 import logging
 from pathlib import Path
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import HTTPServer, SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 from typing import Dict, Any
 
@@ -270,8 +270,8 @@ def run_server():
     for try_port in [8080, 5000, 8085, 8088, 8090, 8099]:
         try:
             server_address = ('', try_port)
-            HTTPServer.allow_reuse_address = True
-            httpd = HTTPServer(server_address, StyleProofRequestHandler)
+            ThreadingHTTPServer.allow_reuse_address = True
+            httpd = ThreadingHTTPServer(server_address, StyleProofRequestHandler)
             PORT = try_port
             logger.info(f"✨ Myntra StyleProof (AI Decision Engine) running on http://localhost:{PORT}")
             httpd.serve_forever()

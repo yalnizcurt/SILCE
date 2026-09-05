@@ -1193,15 +1193,16 @@ input:checked + .slider:before {
 /* --------------------------------------------------------------------------
    Interactive Bottom Sheet Modal
    -------------------------------------------------------------------------- */
+/* Overlay / Backdrop behind the drawer */
+.drawer-backdrop,
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: absolute !important; /* Change from 'fixed' */
+  inset: 0 !important;           /* Covers exactly 100% of the phone screen */
+  width: 100% !important;
+  height: 100% !important;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
-  z-index: 1000;
+  z-index: 40 !important;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -1215,17 +1216,29 @@ input:checked + .slider:before {
   pointer-events: auto;
 }
 
+#fittwin-cart-popup-overlay {
+  align-items: center !important;
+}
+
+/* The white drawer card itself */
+.drawer-content,
+.bottom-sheet,
 .modal-bottom-sheet {
-  width: 100%;
-  max-width: 480px;
+  position: absolute !important; /* Change from 'fixed' */
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
   background: var(--myntra-white);
   border-radius: 20px 20px 0 0;
-  max-height: 88vh;
+  max-height: 85% !important;    /* Keeps it within the phone frame */
   display: flex;
   flex-direction: column;
   transform: translateY(100%);
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+  z-index: 50 !important;
 }
 
 .modal-overlay.open .modal-bottom-sheet {
@@ -1797,7 +1810,11 @@ input:checked + .slider:before {
     radial-gradient(at 100% 100%, rgba(20, 149, 143, 0.08) 0px, transparent 50%);
 }
 
-.phone-mockup-frame {
+/* The container holding the mobile screen */
+.phone-mockup-frame,
+.phone-screen, 
+.phone-frame,
+.mobile-wrapper {
   width: 425px;
   height: 890px;
   max-height: calc(100vh - 64px);
@@ -1808,9 +1825,8 @@ input:checked + .slider:before {
     0 25px 70px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(255, 255, 255, 0.1),
     inset 0 0 0 2px rgba(0, 0, 0, 0.2);
-  position: sticky;
-  top: 32px;
-  overflow: hidden;
+  position: relative !important;
+  overflow: hidden !important; /* Clips the drawer to the phone's rounded corners */
   display: flex;
   flex-direction: column;
 }
@@ -2212,6 +2228,25 @@ input:checked + .slider:before {
     max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
+  }
+  .drawer-backdrop,
+  .modal-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1000 !important;
+  }
+  .drawer-content,
+  .bottom-sheet,
+  .modal-bottom-sheet {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-height: 85% !important;
+    z-index: 1010 !important;
   }
 }
 

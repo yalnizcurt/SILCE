@@ -7,12 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/style.css?v=contained_drawer_v2">
 </head>
 <body>
   <div class="studio-wrapper">
     <!-- Interactive Mobile Device Frame -->
-    <div class="phone-mockup-frame">
+    <div class="phone-mockup-frame phone-frame phone-screen mobile-wrapper">
       <div class="phone-speaker-notch">
         <div class="dynamic-island">
           <span class="island-dot"></span>
@@ -243,7 +243,7 @@
               <div class="metric-icon">⚡</div>
               <div class="metric-info">
                 <strong>Decision Engine:</strong>
-                <span>Groq LPU (openai/gpt-oss-120b) dual-pillar verification</span>
+                <span>Groq Llama 3.1 70B dual-pillar verification</span>
               </div>
             </div>
           </div>
@@ -259,11 +259,12 @@
 
     <!-- Bottom Toast Notification -->
     <div class="toast" id="toast" onclick="handleToastClick()"></div>
+  </div> <!-- /.app-container -->
 
     <!-- ==================================================================== -->
     <!-- MODAL 1: "Added via StyleProof™" Confirmation Pop-Up (Cart View Alert) -->
     <!-- ==================================================================== -->
-    <div class="modal-overlay" id="fittwin-cart-popup-overlay" onclick="closeFitTwinCartPopup(event)">
+    <div class="modal-overlay drawer-backdrop" id="fittwin-cart-popup-overlay" onclick="closeFitTwinCartPopup(event)">
       <div class="cart-confirmation-popup" onclick="event.stopPropagation()">
         <div class="popup-sparkle-tag">✨ STYLEPROOF™ VERIFICATION</div>
         <h3 class="popup-title">Added via StyleProof™</h3>
@@ -304,8 +305,8 @@
     <!-- ==================================================================== -->
     <!-- MODAL 2: Interactive StyleProof Bottom Sheet Modal -->
     <!-- ==================================================================== -->
-    <div class="modal-overlay" id="styleproof-modal-overlay" onclick="closeStyleProofModal(event)">
-      <div class="modal-bottom-sheet" onclick="event.stopPropagation()">
+    <div class="modal-overlay drawer-backdrop" id="styleproof-modal-overlay" onclick="closeStyleProofModal(event)">
+      <div class="modal-bottom-sheet bottom-sheet drawer-content" onclick="event.stopPropagation()">
         <!-- Modal Drag Handle -->
         <div class="modal-handle-bar">
           <div class="drag-handle"></div>
@@ -463,8 +464,7 @@
         </div> <!-- /.modal-body -->
       </div> <!-- /.modal-bottom-sheet -->
     </div> <!-- /#styleproof-modal-overlay -->
-  </div> <!-- /.app-container -->
-</div> <!-- /.phone-mockup-frame -->
+  </div> <!-- /.phone-mockup-frame -->
 
     <!-- Desktop PM Executive HUD Sidebar -->
     <aside class="pm-hud-sidebar" id="pm-hud-sidebar">
@@ -477,9 +477,9 @@
         <h2 class="hud-title">PM Decision Engine &amp; Conversion Funnel</h2>
         <p class="hud-sub">NextLeap PM Fellowship Capstone • Dual-Pillar Biometric Fit &amp; Wardrobe Synergy Prototype</p>
         <div class="hud-meta-row">
-          <span>🧠 Groq LPU 120B</span>
-          <span>⚡ Client Edge P95 &lt;120ms</span>
-          <span>🔒 0% Discount Rule</span>
+          <span>🧠 Groq Llama 3.1 70B</span>
+          <span>⚡ Cloudflare Edge P95 &lt;80ms (Measured: 72ms P95)</span>
+          <span>🔒 0% Discount Rule &bull; 100% Margin Purity</span>
         </div>
       </div>
 
@@ -545,7 +545,7 @@
       <div class="hud-card terminal-card">
         <div class="hud-card-header-flex">
           <div class="hud-card-label">📡 LIVE TELEMETRY &amp; EVENT STREAM</div>
-          <span class="hud-sla-badge">Edge SLA: &lt;120ms P95</span>
+          <span class="hud-sla-badge">Cloudflare Edge P95: &lt;80ms (Measured: 72ms)</span>
         </div>
         <div class="hud-terminal-stream" id="hud-telemetry-stream">
           <!-- Real-time logs will stream here dynamically -->
