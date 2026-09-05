@@ -2,8 +2,14 @@
   {
     "user_id": "USER_POWER_01",
     "name": "Arjun Sharma",
-    "badge": "Returning Customer (3 Orders/Quarter)",
+    "badge": "Returning Customer",
     "demographics": "27, Product Designer, Bengaluru | 5'9\", 68kg | Athletic Frame",
+    "body_profile": {
+      "height": "5'9\"",
+      "weight": "68kg",
+      "frame": "Athletic",
+      "benchmark_sizes": { "Zara": "M", "Levi's": "32", "H&M": "M" }
+    },
     "reference_sizes": { "Zara": "M", "Levi's": "32", "H&M": "M" },
     "owned_closet": [
       {
@@ -19,6 +25,26 @@
         "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&q=80"
       }
     ],
+    "past_purchases_closet": [
+      {
+        "id": "OWNED_101",
+        "title": "Levi's 511 Slim Dark Jeans",
+        "category": "Bottomwear",
+        "image_url": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80"
+      },
+      {
+        "id": "OWNED_102",
+        "title": "HRX Off-White Street Sneakers",
+        "category": "Footwear",
+        "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&q=80"
+      }
+    ],
+    "intent_signals": {
+      "SKU_ROADSTER_JACKET": { "repeat_views": 4, "dwell_seconds": 24, "explicit_intent": true },
+      "SKU_HIGHLANDER_JACKET": { "repeat_views": 3, "dwell_seconds": 18, "explicit_intent": true },
+      "SKU_LEVIS_SLIM_DENIM": { "repeat_views": 2, "dwell_seconds": 15, "explicit_intent": true },
+      "SKU_HRX_STREET_SNEAKERS": { "repeat_views": 3, "dwell_seconds": 12, "explicit_intent": true }
+    },
     "wishlist_items": [
       {
         "id": "SKU_ROADSTER_JACKET",
@@ -29,7 +55,8 @@
         "rating_count": 1340,
         "saved_days_ago": 18,
         "brand": "Roadster",
-        "category": "Topwear - Jackets",
+        "category": "Topwear - Outerwear",
+        "main_category": "topwear",
         "available_sizes": ["S", "M", "L", "XL"],
         "image_url": "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?w=500&q=80",
         "brand_calibration_delta": "Roadster runs 1.2\" broader in shoulders than Zara M. Recommended: Size S.",
@@ -39,7 +66,10 @@
         "comparison_group_id": "GROUP_SUEDE_JACKETS",
         "fabric_weight": "Heavy Faux Suede (420 GSM)",
         "fit_cut": "Structured Biker Cut",
-        "versatility_score": "9.2/10"
+        "versatility_score": "9.2/10",
+        "ugc_reviews": [
+          { "reviewer_height": "5'9\"", "reviewer_weight": "68kg", "fit_rating": "True to calibrated size S" }
+        ]
       },
       {
         "id": "SKU_HIGHLANDER_JACKET",
@@ -50,7 +80,8 @@
         "rating_count": 870,
         "saved_days_ago": 12,
         "brand": "Highlander",
-        "category": "Topwear - Jackets",
+        "category": "Topwear - Outerwear",
+        "main_category": "topwear",
         "available_sizes": ["S", "M", "L", "XL"],
         "image_url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&q=80",
         "brand_calibration_delta": "Highlander runs true to size. Recommended: Size M.",
@@ -60,11 +91,14 @@
         "comparison_group_id": "GROUP_SUEDE_JACKETS",
         "fabric_weight": "Lightweight Faux Suede (280 GSM)",
         "fit_cut": "Relaxed Bomber Silhouette",
-        "versatility_score": "8.5/10"
+        "versatility_score": "8.5/10",
+        "ugc_reviews": [
+          { "reviewer_height": "5'9\"", "reviewer_weight": "68kg", "fit_rating": "True to size M" }
+        ]
       },
       {
         "id": "SKU_LEVIS_SLIM_DENIM",
-        "title": "Levi's 511 Slim Fit Washed Blue Jeans",
+        "title": "Levi's 511 Slim Fit Dark Jeans",
         "price": 2899,
         "price_label": "Full Catalog Price • ₹0 Discount Spend",
         "rating": 4.5,
@@ -72,6 +106,7 @@
         "saved_days_ago": 24,
         "brand": "Levi's",
         "category": "Bottomwear - Jeans",
+        "main_category": "bottomwear",
         "available_sizes": ["30", "32", "34", "36"],
         "image_url": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80",
         "brand_calibration_delta": "Levi's runs true to your benchmark waist 32.",
@@ -81,11 +116,14 @@
         "comparison_group_id": "",
         "fabric_weight": "12.5 oz Denim",
         "fit_cut": "Slim Fit",
-        "versatility_score": "9.5/10"
+        "versatility_score": "9.5/10",
+        "ugc_reviews": [
+          { "reviewer_height": "5'9\"", "reviewer_weight": "68kg", "fit_rating": "True to waist 32" }
+        ]
       },
       {
         "id": "SKU_HRX_STREET_SNEAKERS",
-        "title": "HRX Off-White Low Top Canvas Sneakers",
+        "title": "HRX Off-White Street Sneakers",
         "price": 2199,
         "price_label": "Full Catalog Price • ₹0 Discount Spend",
         "rating": 4.4,
@@ -93,6 +131,7 @@
         "saved_days_ago": 8,
         "brand": "HRX",
         "category": "Footwear - Sneakers",
+        "main_category": "footwear",
         "available_sizes": ["7", "8", "9", "10"],
         "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&q=80",
         "brand_calibration_delta": "HRX sneakers run true to UK 9.",
@@ -102,17 +141,30 @@
         "comparison_group_id": "",
         "fabric_weight": "Canvas & Rubber Sole",
         "fit_cut": "Low Top",
-        "versatility_score": "9.0/10"
+        "versatility_score": "9.0/10",
+        "ugc_reviews": [
+          { "reviewer_height": "5'9\"", "reviewer_weight": "68kg", "fit_rating": "True to UK 9" }
+        ]
       }
     ]
   },
   {
     "user_id": "USER_COLD_02",
-    "name": "Rohan (Cold-Start New User)",
+    "name": "RK Verma",
     "badge": "Cold-Start User (0 Past Orders)",
-    "demographics": "24, Analyst, Pune | 0 Past Orders (Cold Start) | Standard Frame",
+    "demographics": "24, Software Engineer, Pune | 5'11\", 74kg | Standard Frame",
+    "body_profile": {
+      "height": "5'11\"",
+      "weight": "74kg",
+      "frame": "Standard",
+      "benchmark_sizes": { "Zara": "L", "H&M": "L" }
+    },
     "reference_sizes": { "Zara": "L", "H&M": "L" },
     "owned_closet": [],
+    "past_purchases_closet": [],
+    "intent_signals": {
+      "SKU_ROADSTER_JACKET": { "repeat_views": 3, "dwell_seconds": 16, "explicit_intent": true }
+    },
     "wishlist_items": [
       {
         "id": "SKU_ROADSTER_JACKET",
@@ -122,7 +174,8 @@
         "rating": 4.3,
         "rating_count": 1340,
         "brand": "Roadster",
-        "category": "Topwear - Jackets",
+        "category": "Topwear - Outerwear",
+        "main_category": "topwear",
         "available_sizes": ["S", "M", "L", "XL"],
         "image_url": "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?w=500&q=80",
         "brand_calibration_delta": "Roadster runs relaxed. If you wear Zara L, Size M is recommended for a regular fit.",
@@ -132,7 +185,75 @@
         "comparison_group_id": "GROUP_SUEDE_JACKETS",
         "fabric_weight": "Heavy Faux Suede (420 GSM)",
         "fit_cut": "Structured Biker Cut",
-        "versatility_score": "9.2/10"
+        "versatility_score": "9.2/10",
+        "ugc_reviews": [
+          { "reviewer_height": "5'11\"", "reviewer_weight": "74kg", "fit_rating": "Size M fits regular" }
+        ]
+      }
+    ]
+  },
+  {
+    "user_id": "USER_SUPPRESSED_03",
+    "name": "Keerthi Reddy",
+    "badge": "Passive Moodboarder (0 Intent)",
+    "demographics": "25, Marketing Specialist, Hyderabad | 5'5\", 54kg | Petite Frame",
+    "body_profile": {
+      "height": "5'5\"",
+      "weight": "54kg",
+      "frame": "Petite",
+      "benchmark_sizes": { "Zara": "S", "H&M": "S" }
+    },
+    "reference_sizes": { "Zara": "S", "H&M": "S" },
+    "owned_closet": [],
+    "past_purchases_closet": [],
+    "intent_signals": {
+      "SKU_ROADSTER_JACKET": { "repeat_views": 1, "dwell_seconds": 2, "explicit_intent": false },
+      "SKU_INNERWEAR_01": { "repeat_views": 1, "dwell_seconds": 1, "explicit_intent": false }
+    },
+    "wishlist_items": [
+      {
+        "id": "SKU_ROADSTER_JACKET",
+        "title": "Roadster Men Brown Suede Biker Jacket",
+        "price": 2499,
+        "price_label": "Full Catalog Price • ₹0 Discount Spend",
+        "rating": 4.3,
+        "rating_count": 1340,
+        "brand": "Roadster",
+        "category": "Topwear - Outerwear",
+        "main_category": "topwear",
+        "available_sizes": ["S", "M", "L", "XL"],
+        "image_url": "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?w=500&q=80",
+        "brand_calibration_delta": "Low intent passive save.",
+        "return_exchange_stat": "Engine silent.",
+        "recommended_size": "S",
+        "pairs_with_owned_ids": [],
+        "comparison_group_id": "",
+        "fabric_weight": "Heavy Faux Suede (420 GSM)",
+        "fit_cut": "Structured Biker Cut",
+        "versatility_score": "9.2/10",
+        "ugc_reviews": []
+      },
+      {
+        "id": "SKU_INNERWEAR_01",
+        "title": "Calvin Klein Cotton Stretch Trunks (Pack of 2)",
+        "price": 1499,
+        "price_label": "Full Catalog Price • ₹0 Discount Spend",
+        "rating": 4.6,
+        "rating_count": 3400,
+        "brand": "Calvin Klein",
+        "category": "Innerwear - Briefs & Trunks",
+        "main_category": "innerwear",
+        "available_sizes": ["M", "L", "XL"],
+        "image_url": "https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?w=500&q=80",
+        "brand_calibration_delta": "Category excluded from StyleProof.",
+        "return_exchange_stat": "N/A",
+        "recommended_size": "M",
+        "pairs_with_owned_ids": [],
+        "comparison_group_id": "",
+        "fabric_weight": "Cotton Stretch",
+        "fit_cut": "Trunk",
+        "versatility_score": "N/A",
+        "ugc_reviews": []
       }
     ]
   }

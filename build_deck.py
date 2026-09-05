@@ -62,6 +62,32 @@ def build_pdf():
             """)
             print(f"[*] Fonts ready: {fonts_loaded}")
 
+            # Inject local image assets as base64 to bypass file:// cross-origin restrictions
+            import base64
+            asset_dir = os.path.dirname(html_path)
+            asset_map = {
+                "review_engine_dashboard.png": os.path.join(asset_dir, "review_engine_dashboard.png"),
+                "review_engine_cross_brand.png": os.path.join(asset_dir, "review_engine_cross_brand.png"),
+            }
+            for asset_name, asset_path in asset_map.items():
+                if os.path.exists(asset_path):
+                    with open(asset_path, "rb") as af:
+                        b64 = base64.b64encode(af.read()).decode()
+                    mime = "image/png"
+                    data_uri = f"data:{mime};base64,{b64}"
+                    page.evaluate(f"""
+                        (function() {{
+                            var imgs = document.querySelectorAll('img');
+                            imgs.forEach(function(img) {{
+                                if (img.src && img.src.includes('{asset_name}')) {{
+                                    img.src = '{data_uri}';
+                                }}
+                            }});
+                        }})();
+                    """)
+                    print(f"    [✓] Injected asset: {asset_name} ({len(b64)//1024}KB b64)")
+            page.wait_for_timeout(500)  # brief settle after injection
+
             # Capture each slide at full resolution
             slides = page.query_selector_all(".slide-wrapper")
             print(f"[*] Capturing {len(slides)} slides at 3840×2160 (2× DPR)...")
@@ -121,10 +147,27 @@ def build_pdf():
     )
     print(f"[✓] PDF generated: {pdf_final}")
 
-    # Copy to submission filename
+    # Copy to submission filename and Final_11 filename
     import shutil
     shutil.copy2(pdf_final, pdf_copy)
     print(f"[✓] Submission copy:  {pdf_copy}")
+
+    pdf_final_11 = os.path.abspath("Myntra_StyleProof_Graduation_Project_Final_11.pdf")
+    shutil.copy2(pdf_final, pdf_final_11)
+    print(f"[✓] Final_11 copy:    {pdf_final_11}")
+
+    # Synchronize to MyntraStyleProof subfolder
+    sub_dir = os.path.join(os.path.dirname(html_path), "MyntraStyleProof")
+    if os.path.isdir(sub_dir):
+        print(f"[*] Synchronizing artifacts to {sub_dir}...")
+        shutil.copy2(pdf_final, os.path.join(sub_dir, "Myntra_StyleProof_Graduation_Project_Final.pdf"))
+        shutil.copy2(pdf_final, os.path.join(sub_dir, "Myntra_StyleProof_Graduation_Project.pdf"))
+        shutil.copy2(pdf_final, os.path.join(sub_dir, "Myntra_StyleProof_Graduation_Project_Final_11.pdf"))
+        shutil.copy2(html_path, os.path.join(sub_dir, "slides.html"))
+        css_src = os.path.join(os.path.dirname(html_path), "deck_style.css")
+        if os.path.exists(css_src):
+            shutil.copy2(css_src, os.path.join(sub_dir, "deck_style.css"))
+        print(f"    [✓] Synced PDFs and slides.html to MyntraStyleProof/")
 
     # Report
     size_mb = os.path.getsize(pdf_final) / (1024 * 1024)
@@ -135,6 +178,7 @@ def build_pdf():
     print(f"  Format  : 1920×1080 px @ {DPI} DPI (16:9 Widescreen)")
     print(f"  Glyphs  : ₹ ≤ ≥ × → all render via browser screen engine")
     print(f"  Images  : Full-resolution PNG (zero compression artifacts)")
+    print(f"  Sync    : Strict parity across ENGINE/ and MyntraStyleProof/")
     print(f"{'='*60}\n")
 
 

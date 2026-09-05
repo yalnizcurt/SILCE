@@ -110,7 +110,8 @@ def evaluate_item_eligibility(
     confidence_passed = confidence_score >= 0.80
 
     # --- 4. SYSTEM ACTION DETERMINATION ---
-    closet_count = len(persona.get("past_purchases_closet", []))
+    closet_items = persona.get("past_purchases_closet") or persona.get("owned_closet") or []
+    closet_count = len(closet_items)
     is_cold_start = closet_count == 0
 
     if not is_high_intent:
@@ -147,12 +148,12 @@ def evaluate_item_eligibility(
     if is_cold_start:
         system_action = "FALLBACK_NEUTRAL_STAPLES"
         pill_text = f"✨ Neutral Staples Lookbook • {int(confidence_score * 100)}% Fit Match"
-        diagnostic_text = f"[ACTION: FALLBACK] High Intent + 0 Orders -> Adaptive Neutral Staples + {int(confidence_score * 100)}% FitTwin."
+        diagnostic_text = f"[ACTION: FALLBACK] High Intent + 0 Orders -> Adaptive Neutral Staples + {int(confidence_score * 100)}% StyleProof™."
     else:
         system_action = "FULL_FITTWIN_UNLOCKED"
         paired_count = min(2, closet_count)
         pill_text = f"✨ Pairs with {paired_count} closet items • {int(confidence_score * 100)}% Fit Match"
-        diagnostic_text = f"[ACTION: UNLOCKED] High Intent + {closet_count} Owned Orders -> Full Lookbook & {int(confidence_score * 100)}% FitTwin."
+        diagnostic_text = f"[ACTION: UNLOCKED] High Intent + {closet_count} Owned Orders -> Full Lookbook & {int(confidence_score * 100)}% StyleProof™."
 
     return {
         "sku_id": sku_id,

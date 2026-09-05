@@ -87,10 +87,12 @@ class StyleProofRequestHandler(SimpleHTTPRequestHandler):
 
         elif url_path == "/api/wishlist":
             user_id = query_params.get("user_id", ["USER_POWER_01"])[0]
-            if user_id == "USER_ARJUN_01":
+            if user_id in ["USER_ARJUN_01", "USER_POWER_01"]:
                 user_id = "USER_POWER_01"
-            elif user_id == "USER_ROHAN_02":
+            elif user_id in ["USER_ROHAN_02", "USER_COLD_02"]:
                 user_id = "USER_COLD_02"
+            elif user_id in ["USER_PRIYA_03", "USER_SUPPRESSED_03", "USER_KEERTHI_03"]:
+                user_id = "USER_SUPPRESSED_03"
 
             persona = next((p for p in personas if p["user_id"] == user_id), personas[0] if personas else {})
             
@@ -134,7 +136,13 @@ class StyleProofRequestHandler(SimpleHTTPRequestHandler):
                     "outfit_harmony_pct": 94,
                     "paired_owned_items": paired_items,
                     "comparison_item": comparison_item,
-                    "is_cold_start_staples": len(owned_closet) == 0
+                    "is_cold_start_staples": len(owned_closet) == 0,
+                    "palette_swatches": [
+                        {"name": "Caramel Suede", "bg": "#8B5A2B", "color": "#ffffff"},
+                        {"name": "Dark Indigo", "bg": "#1C2333", "color": "#ffffff"},
+                        {"name": "Off-White Lows", "bg": "#F4F4F5", "color": "#18181b", "border": "#d4d4d8"}
+                    ],
+                    "occasion_versatility": "Smart Casual • Evening Dinners • Weekend Travel (₹0 Added Cart Spend)"
                 }
                 precomputed_decisions[item["id"]] = decision
                 cache_key = f"{user_id}_{item['id']}"
@@ -173,10 +181,12 @@ class StyleProofRequestHandler(SimpleHTTPRequestHandler):
         if url_path in ["/api/styleproof", "/api/styleproof_decision", "/api/recommend", "/api/lookbook"]:
             sku_id = body.get("sku_id", "SKU_ROADSTER_JACKET")
             user_id = body.get("user_id", "USER_POWER_01")
-            if user_id == "USER_ARJUN_01":
+            if user_id in ["USER_ARJUN_01", "USER_POWER_01"]:
                 user_id = "USER_POWER_01"
-            elif user_id == "USER_ROHAN_02":
+            elif user_id in ["USER_ROHAN_02", "USER_COLD_02"]:
                 user_id = "USER_COLD_02"
+            elif user_id in ["USER_PRIYA_03", "USER_SUPPRESSED_03", "USER_KEERTHI_03"]:
+                user_id = "USER_SUPPRESSED_03"
 
             explicit_override = body.get("explicit_override", True)
 

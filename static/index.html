@@ -60,9 +60,9 @@
       <div class="persona-selector-wrap">
         <label for="persona-select" class="harness-label">👤 PERSONA HARNESS:</label>
         <select id="persona-select" class="persona-dropdown" onchange="handlePersonaChange(this.value)">
-          <option value="USER_ARJUN_01" selected>Arjun (Returning • 3 Orders • High-Intent)</option>
-          <option value="USER_ROHAN_02">Rohan (Cold-Start • 0 Orders • Adaptive Staples)</option>
-          <option value="USER_PRIYA_03">Priya (Moodboarder • 0 Intent Triggers)</option>
+          <option value="USER_POWER_01" selected>Cohort 1: Arjun &amp; Krishna (Power Users • 3 Orders)</option>
+          <option value="USER_COLD_02">Cohort 2: RK &amp; Jhansi (Cold Start • 0 Orders • Staples)</option>
+          <option value="USER_SUPPRESSED_03">Cohort 3: Keerthi &amp; Chiru (Suppressed • Silence Engine)</option>
         </select>
       </div>
 
@@ -72,14 +72,14 @@
           <span class="inspector-icon">🔬</span>
           <span class="toggle-text">PM Diagnostics</span>
           <div class="switch-container">
-            <input type="checkbox" id="inspector-toggle" onchange="toggleInspectorMode(this.checked)" checked>
+            <input type="checkbox" id="inspector-toggle" onchange="toggleInspectorMode(this.checked)">
             <span class="slider round"></span>
           </div>
         </label>
       </div>
     </div>
 
-    <!-- Active Persona Context & Biometrics Banner -->
+    <!-- Active Persona Context & Biometrics Banner (Matches Slide 8.1 Exactly) -->
     <div class="persona-context-bar" id="persona-context-bar">
       <div class="persona-avatar" id="persona-avatar">AS</div>
       <div class="persona-info">
@@ -92,7 +92,7 @@
         </div>
       </div>
       <div class="closet-pill" id="persona-closet-pill">
-        <span class="closet-dot"></span> <span id="persona-closet-count">3 Owned Orders</span>
+        <span id="persona-closet-count">3 Orders/Quarter</span>
       </div>
     </div>
 
@@ -261,12 +261,12 @@
     <div class="toast" id="toast" onclick="handleToastClick()"></div>
 
     <!-- ==================================================================== -->
-    <!-- MODAL 1: "Added by FitTwin" Confirmation Pop-Up (Cart View Alert) -->
+    <!-- MODAL 1: "Added via StyleProof™" Confirmation Pop-Up (Cart View Alert) -->
     <!-- ==================================================================== -->
     <div class="modal-overlay" id="fittwin-cart-popup-overlay" onclick="closeFitTwinCartPopup(event)">
       <div class="cart-confirmation-popup" onclick="event.stopPropagation()">
         <div class="popup-sparkle-tag">✨ STYLEPROOF™ VERIFICATION</div>
-        <h3 class="popup-title">Added by FitTwin</h3>
+        <h3 class="popup-title">Added via StyleProof™</h3>
         <p class="popup-subtitle" id="popup-persona-subtitle">Decision Support Verified for Arjun Sharma (5'9" • 68kg)</p>
 
         <div class="popup-proof-list">
@@ -274,7 +274,7 @@
             <span class="check-icon">✓</span>
             <div class="proof-text">
               <strong>Fit Calibration:</strong>
-              <span id="popup-fit-text">Size M selected based on verified buyers with matching torso dimensions.</span>
+              <span id="popup-fit-text">Size S selected based on verified buyers with matching torso dimensions.</span>
             </div>
           </div>
 
@@ -282,7 +282,7 @@
             <span class="check-icon">✓</span>
             <div class="proof-text">
               <strong>Closet Pairing:</strong>
-              <span id="popup-closet-text">Styled with your Levi's 511 Jeans (Nov '25) & HRX Sneakers (Jan '26).</span>
+              <span id="popup-closet-text">Styled with your Levi's 511 Jeans &amp; HRX Off-White Sneakers.</span>
             </div>
           </div>
 
@@ -296,7 +296,7 @@
         </div>
 
         <button class="popup-cta-btn" onclick="closeFitTwinCartPopup()">
-          Review Cart & Checkout →
+          Review Cart &amp; Checkout →
         </button>
       </div>
     </div>
@@ -320,6 +320,19 @@
           <button class="modal-close-btn" onclick="closeStyleProofModal()">✕</button>
         </div>
 
+        <!-- Modal View Tabs (Lookbook Canvas vs Calibration & Dedup Tray vs All Insights) -->
+        <div class="modal-view-tabs" id="modal-view-tabs">
+          <button class="modal-tab-btn active" id="tab-btn-lookbook" onclick="switchModalView('lookbook')">
+            🎨 1. Lookbook Canvas (Slide 8.2)
+          </button>
+          <button class="modal-tab-btn" id="tab-btn-calibration" onclick="switchModalView('calibration')">
+            🛡️ 2. Sizing &amp; Dedup Tray (Slide 8.3)
+          </button>
+          <button class="modal-tab-btn" id="tab-btn-all" onclick="switchModalView('all')">
+            ✨ All Insights
+          </button>
+        </div>
+
         <!-- Modal Scrollable Body -->
         <div class="modal-body" id="modal-body-content">
           <!-- Loading Skeleton -->
@@ -332,7 +345,7 @@
           <!-- Real Content Populated by Controller -->
           <div class="styleproof-content" id="styleproof-content" style="display: none;">
             
-            <!-- Pillar 1: Flat-Lay Wardrobe Lookbook Canvas -->
+            <!-- Pillar 1: Flat-Lay Wardrobe Lookbook Canvas (Exact Slide 8.2 Match) -->
             <section class="lookbook-section">
               <div class="section-badge-header">
                 <span class="pillar-num">PILLAR 1</span>
@@ -348,7 +361,7 @@
                     <img id="canvas-target-img" src="" alt="Wishlist item">
                     <span class="item-tag-badge new-tag">Wishlisted</span>
                   </div>
-                  <div class="canvas-item-name" id="canvas-target-name">Roadster Suede Jacket</div>
+                  <div class="canvas-item-name" id="canvas-target-name">Roadster Topwear</div>
                 </div>
 
                 <div class="outfit-link-indicator">
@@ -367,6 +380,22 @@
                 <div class="rationale-icon">💡</div>
                 <div class="rationale-text" id="styling-rationale-text">
                   The caramel brown suede creates a rich texture contrast with your Levi's dark indigo jeans, grounded by HRX off-white sneakers for a crisp smart-casual silhouette.
+                </div>
+              </div>
+
+              <!-- Wardrobe Color Palette Harmony (Exact Slide 8.2 match) -->
+              <div class="palette-harmony-card" id="palette-harmony-row">
+                <div class="palette-harmony-header">
+                  <span class="palette-title">🎨 WARDROBE COLOR PALETTE HARMONY</span>
+                  <span class="palette-badge" id="palette-affinity-badge">High Affinity (0.94)</span>
+                </div>
+                <div class="palette-swatches-grid" id="palette-swatches-grid">
+                  <div class="palette-swatch swatch-caramel">Caramel Suede</div>
+                  <div class="palette-swatch swatch-indigo">Dark Indigo</div>
+                  <div class="palette-swatch swatch-offwhite">Off-White Lows</div>
+                </div>
+                <div class="palette-occasion-subtext" id="palette-occasion-subtext">
+                  <strong>Occasion Versatility:</strong> Smart Casual • Evening Dinners • Weekend Travel (₹0 Added Cart Spend)
                 </div>
               </div>
             </section>
@@ -458,30 +487,30 @@
       <div class="hud-card">
         <div class="hud-card-label">👤 EVALUATOR PERSONA SWITCHER (TEST HARNESS)</div>
         <div class="hud-personas-list">
-          <div class="hud-persona-item active" id="hud-persona-USER_ARJUN_01" onclick="handlePersonaChange('USER_ARJUN_01')">
+          <div class="hud-persona-item active" id="hud-persona-USER_POWER_01" onclick="handlePersonaChange('USER_POWER_01')">
             <div class="hud-persona-avatar">AS</div>
             <div class="hud-persona-details">
-              <div class="hud-p-name">Arjun Sharma <span class="hud-p-tag green">Returning Customer</span></div>
-              <div class="hud-p-sub">5'9" • 68kg • 3 Owned Orders (Levi's, HRX, Chinos)</div>
-              <div class="hud-p-status">✓ Full FitTwin &amp; Closet Lookbook Unlocked (High Intent)</div>
+              <div class="hud-p-name">Arjun Sharma <span class="hud-p-tag green">Cohort 1: Power User</span></div>
+              <div class="hud-p-sub">5'9" • 68kg • 3 Orders/Qtr • Zara M / Levi's 32</div>
+              <div class="hud-p-status">✓ Full StyleProof™ &amp; Closet Lookbook Unlocked (P95 18ms)</div>
             </div>
           </div>
 
-          <div class="hud-persona-item" id="hud-persona-USER_ROHAN_02" onclick="handlePersonaChange('USER_ROHAN_02')">
-            <div class="hud-persona-avatar rohan">RV</div>
+          <div class="hud-persona-item" id="hud-persona-USER_COLD_02" onclick="handlePersonaChange('USER_COLD_02')">
+            <div class="hud-persona-avatar rohan">RK</div>
             <div class="hud-persona-details">
-              <div class="hud-p-name">Rohan Verma <span class="hud-p-tag orange">Cold-Start New User</span></div>
-              <div class="hud-p-sub">5'11" • 75kg • 0 Orders • No Closet History</div>
+              <div class="hud-p-name">RK Verma <span class="hud-p-tag orange">Cohort 2: Cold-Start</span></div>
+              <div class="hud-p-sub">5'11" • 74kg • 0 Prior Orders • No Closet History</div>
               <div class="hud-p-status">⚡ Adaptive Neutral Staples Lookbook Fallback</div>
             </div>
           </div>
 
-          <div class="hud-persona-item" id="hud-persona-USER_PRIYA_03" onclick="handlePersonaChange('USER_PRIYA_03')">
-            <div class="hud-persona-avatar priya">PN</div>
+          <div class="hud-persona-item" id="hud-persona-USER_SUPPRESSED_03" onclick="handlePersonaChange('USER_SUPPRESSED_03')">
+            <div class="hud-persona-avatar priya">KR</div>
             <div class="hud-persona-details">
-              <div class="hud-p-name">Priya Nair <span class="hud-p-tag muted">Passive Moodboarder</span></div>
-              <div class="hud-p-sub">5'6" • 54kg • Low Dwell (&lt;5s) • 0 Intent Triggers</div>
-              <div class="hud-p-status">✕ Catalog Remains Non-Intrusive &amp; Silent</div>
+              <div class="hud-p-name">Keerthi Reddy <span class="hud-p-tag muted">Cohort 3: Suppressed</span></div>
+              <div class="hud-p-sub">5'5" • 54kg • Low Dwell (&lt;5s) • Commodity SKU</div>
+              <div class="hud-p-status">✕ Silence Engine Active (100% Native Clean UI)</div>
             </div>
           </div>
         </div>

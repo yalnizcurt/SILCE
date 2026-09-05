@@ -4,7 +4,8 @@
 
 let appState = {
   currentView: "wishlist", // "wishlist" | "cart" | "success"
-  currentUserId: "USER_ARJUN_01",
+  currentUserId: "USER_POWER_01",
+  currentModalView: "lookbook", // "lookbook" (Slide 8.2) | "calibration" (Slide 8.3) | "all"
   personas: [],
   user: null,
   catalog: [],
@@ -12,12 +13,12 @@ let appState = {
   gating: {},
   decisionsCache: {},
   telemetryLogs: [],
-  isInspectorMode: true,
+  isInspectorMode: false,
   cartItems: [],
   hasShownCartPopupForSession: false,
   currentModalSku: null,
   currentDecision: null,
-  selectedSize: "M",
+  selectedSize: "S",
   gmvGenerated: 0,
   ordersPlaced: 0
 };
@@ -121,7 +122,7 @@ async function loadWishlistData(userId) {
     const eligibleCount = Object.values(appState.gating).filter(g => g.is_eligible).length;
     const prewarmedCount = Object.keys(appState.decisionsCache).length;
     logTelemetry("EDGE_CACHE", `Pre-warmed ${prewarmedCount} lookbook decisions in ${elapsed}ms (P95 SLA <120ms ✓)`, "success");
-    logTelemetry("WISH_LOAD", `Active Persona: ${data.user.name} (${eligibleCount} FitTwin Active, ${appState.wishlist.length} Items)`, "info");
+    logTelemetry("WISH_LOAD", `Active Persona: ${data.user.name} (${eligibleCount} StyleProof™ Active, ${appState.wishlist.length} Items)`, "info");
   } catch (err) {
     console.error("Error loading wishlist:", err);
     showToast("⚠️ Could not load online data, using local fallback");
@@ -140,7 +141,12 @@ function updateHudPersonaActiveState(userId) {
   document.querySelectorAll(".hud-persona-item").forEach(item => {
     item.classList.remove("active");
   });
-  const activeItem = document.getElementById(`hud-persona-${userId}`);
+  let activeId = userId;
+  if (userId === "USER_ARJUN_01") activeId = "USER_POWER_01";
+  else if (userId === "USER_ROHAN_02") activeId = "USER_COLD_02";
+  else if (userId === "USER_PRIYA_03" || userId === "USER_KEERTHI_03") activeId = "USER_SUPPRESSED_03";
+
+  const activeItem = document.getElementById(`hud-persona-${activeId}`) || document.getElementById(`hud-persona-${userId}`);
   if (activeItem) activeItem.classList.add("active");
 }
 
@@ -177,7 +183,7 @@ function toggleInspectorMode(enabled) {
     banner.style.display = enabled ? "block" : "none";
   }
   renderWishlistGrid();
-  showToast(enabled ? "🔬 PM Inspector Diagnostics: ON" : "PM Inspector: OFF");
+  showToast(enabled ? "🔬 PM Inspector Diagnostics: ON" : "PM Inspector: OFF (Consumer Clean Mode)");
   logTelemetry("INSPECTOR", `PM Diagnostics toggled: ${enabled ? "ON" : "OFF"}`, "gate");
 }
 
@@ -191,28 +197,30 @@ function updatePersonaContextUI(user) {
   const closetCount = document.getElementById("persona-closet-count");
   const dropdown = document.getElementById("persona-select");
 
-  if (dropdown && dropdown.value !== user.user_id) {
-    dropdown.value = user.user_id;
+  if (dropdown) {
+    let selectVal = user.user_id;
+    if (selectVal === "USER_ARJUN_01") selectVal = "USER_POWER_01";
+    dropdown.value = selectVal;
   }
 
   const initials = user.name.split(" ").map(n => n[0]).join("").toUpperCase();
   if (avatar) avatar.innerText = initials;
   if (nameText) nameText.innerText = user.name;
-  if (badge) badge.innerText = user.badge || "Active User";
+  if (badge) badge.innerText = user.badge || "Returning Customer";
 
   const bp = user.body_profile || {};
   const benchmarks = bp.benchmark_sizes || {};
   const benchStr = Object.entries(benchmarks).map(([k, v]) => `${k}: ${v}`).join(" | ");
   
   if (biometrics) {
-    biometrics.innerHTML = `<span>📏 ${bp.height || "5'9\""}</span> • <span>⚖️ ${bp.weight || "68kg"}</span> • <span>🏷️ ${benchStr}</span>`;
+    biometrics.innerHTML = `<span>📏 ${bp.height || "5'9\""}</span> • <span>⚖️ ${bp.weight || "68kg"}</span> • <span>🏷️ ${benchStr || "Zara: M | Levi's: 32"}</span>`;
   }
 
   const owned = user.owned_closet || user.past_purchases_closet || [];
   const ordersCount = owned.length;
   if (closetCount) {
     if (user.user_id === "USER_POWER_01" || user.user_id === "USER_ARJUN_01" || (user.name && user.name.includes("Arjun"))) {
-      closetCount.innerText = "Returning Customer (3 Orders/Quarter)";
+      closetCount.innerText = "3 Orders/Quarter";
     } else {
       closetCount.innerText = ordersCount === 0 ? "0 Orders (Cold Start)" : `${ordersCount} Owned Orders`;
     }
@@ -321,18 +329,15 @@ function renderWishlistGrid() {
     
     if (gate.is_eligible || item.brand_calibration_delta) {
       styleProofBadgeHTML = `
-        <div class="styleproof-badge" onclick="openLookbook('${item.id}')">
-          <span>✨ Pairs with ${closetCount} closet items • Brand Size Delta: Size ${recSize}</span>
+        <div class="styleproof-badge" onclick="openStyleProofModal('${item.id}', 'lookbook')">
+          <span>✨ StyleProof™ Active • Calibrated Size ${recSize} • Outfit Harmony: 94%</span>
         </div>
       `;
     }
 
-    const actionBtnClass = isInCart ? "card-action-btn added-btn" : "card-action-btn";
-    const actionBtnText = isInCart ? "Added to Bag ✓" : "Move to Bag";
-
     return `
       <div class="wishlist-card" id="card-${item.id}">
-        <div class="card-img-container" onclick="openLookbook('${item.id}')">
+        <div class="card-img-container" onclick="openStyleProofModal('${item.id}', 'lookbook')">
           <img src="${item.image_url}" alt="${item.title}" class="card-img" loading="lazy">
           <button class="card-close-btn" onclick="removeItem('${item.id}', event)">✕</button>
           <div class="card-rating-badge">
@@ -349,18 +354,56 @@ function renderWishlistGrid() {
           <div class="card-title">${item.title}</div>
           <div class="card-price-row">
             <span class="card-price">₹${item.price}</span>
-            <span class="card-price-badge" style="font-size:10px; color:#0f766e; font-weight:700; background:#f0fdfa; border:1px solid #ccfbf1; padding:2px 5px; border-radius:3px;">Full Catalog Price • ₹0 Discount Spend</span>
+            <span class="card-price-badge" style="font-size:9.5px; color:#0f766e; background:#f0fdfa; border:1px solid #ccfbf1; padding:1px 5px; border-radius:3px; font-weight:700;">Full Catalog Price</span>
+          </div>
+
+          <div class="card-size-row" onclick="openStyleProofModal('${item.id}', 'calibration')">
+            <span>Size: <strong>Select Size ▾</strong></span>
+            <span class="size-chart-link">Size Chart</span>
           </div>
 
           ${styleProofBadgeHTML}
 
-          <button class="${actionBtnClass}" onclick="openLookbook('${item.id}')">
-            ${actionBtnText}
+          <button class="card-move-bag-btn ${isInCart ? 'added-btn' : ''}" onclick="openStyleProofModal('${item.id}', 'lookbook')">
+            ${isInCart ? 'Added to Bag ✓' : 'MOVE TO BAG'}
           </button>
         </div>
       </div>
     `;
   }).join("");
+}
+
+// --------------------------------------------------------------------------
+// Modal View Mode Switcher (Slide 8.2 Lookbook vs Slide 8.3 Calibration/Dedup vs All)
+// --------------------------------------------------------------------------
+function switchModalView(mode) {
+  appState.currentModalView = mode;
+  const tabLookbook = document.getElementById("tab-btn-lookbook");
+  const tabCalibration = document.getElementById("tab-btn-calibration");
+  const tabAll = document.getElementById("tab-btn-all");
+
+  const lookbookSec = document.querySelector(".lookbook-section");
+  const calibSec = document.querySelector(".brand-calibration-section");
+  const dedupSec = document.getElementById("deduplication-section");
+
+  [tabLookbook, tabCalibration, tabAll].forEach(t => t && t.classList.remove("active"));
+
+  if (mode === "lookbook") {
+    if (tabLookbook) tabLookbook.classList.add("active");
+    if (lookbookSec) lookbookSec.style.display = "block";
+    if (calibSec) calibSec.style.display = "none";
+    if (dedupSec) dedupSec.style.display = "none";
+  } else if (mode === "calibration") {
+    if (tabCalibration) tabCalibration.classList.add("active");
+    if (lookbookSec) lookbookSec.style.display = "none";
+    if (calibSec) calibSec.style.display = "block";
+    if (dedupSec) dedupSec.style.display = (appState.currentDecision && appState.currentDecision.comparison_item) ? "block" : "none";
+  } else {
+    if (tabAll) tabAll.classList.add("active");
+    if (lookbookSec) lookbookSec.style.display = "block";
+    if (calibSec) calibSec.style.display = "block";
+    if (dedupSec) dedupSec.style.display = (appState.currentDecision && appState.currentDecision.comparison_item) ? "block" : "none";
+  }
 }
 
 // --------------------------------------------------------------------------
@@ -396,6 +439,33 @@ function populateModalWithDecision(sku, decision) {
 
   const rationale = document.getElementById("styling-rationale-text");
   if (rationale) rationale.innerText = decision.styling_verdict || "The caramel brown suede creates a rich texture contrast with your Levi's dark indigo jeans, grounded by HRX off-white sneakers for a crisp smart-casual silhouette.";
+
+  // 1b. Wardrobe Color Palette Harmony Card (Exact Slide 8.2 Match)
+  const paletteRow = document.getElementById("palette-harmony-row");
+  const paletteGrid = document.getElementById("palette-swatches-grid");
+  const affinityBadge = document.getElementById("palette-affinity-badge");
+  const occasionText = document.getElementById("palette-occasion-subtext");
+
+  if (paletteRow && paletteGrid) {
+    paletteRow.style.display = "block";
+    const swatches = decision.palette_swatches || [
+      { name: "Caramel Suede", bg: "#8B5A2B", color: "#ffffff" },
+      { name: "Dark Indigo", bg: "#1C2333", color: "#ffffff" },
+      { name: "Off-White Lows", bg: "#F4F4F5", color: "#18181b", border: "#d4d4d8" }
+    ];
+    paletteGrid.innerHTML = swatches.map(s => `
+      <div class="palette-swatch" style="background:${s.bg}; color:${s.color}; ${s.border ? 'border:1px solid ' + s.border + ';' : ''}">
+        ${s.name}
+      </div>
+    `).join("");
+
+    if (affinityBadge) {
+      affinityBadge.innerText = `High Affinity (${(decision.fit_confidence_score ? (decision.fit_confidence_score / 100).toFixed(2) : '0.94')})`;
+    }
+    if (occasionText) {
+      occasionText.innerHTML = `<strong>Occasion Versatility:</strong> ${decision.occasion_versatility || 'Smart Casual • Evening Dinners • Weekend Travel (₹0 Added Cart Spend)'}`;
+    }
+  }
 
   // 2. Brand Size Calibration Delta
   const userRefSize = appState.user?.reference_sizes?.Zara || "M";
@@ -453,7 +523,7 @@ function populateModalWithDecision(sku, decision) {
   if (cta) cta.innerText = `Select Calibrated Size ${appState.selectedSize} & Move to Bag`;
 }
 
-async function openStyleProofModal(skuId, explicitOverride = false) {
+async function openStyleProofModal(skuId, initialTab = 'lookbook', explicitOverride = false) {
   const overlay = document.getElementById("styleproof-modal-overlay");
   const loading = document.getElementById("modal-loading");
   const content = document.getElementById("styleproof-content");
@@ -469,6 +539,7 @@ async function openStyleProofModal(skuId, explicitOverride = false) {
     loading.style.display = "none";
     content.style.display = "block";
     populateModalWithDecision(targetSku, cachedDecision);
+    switchModalView(initialTab || 'lookbook');
     logTelemetry("EDGE_CACHE_HIT", `Instant modal render in 14ms (P95 SLA <120ms ✓ • SKU: ${skuId})`, "success");
     return;
   }
@@ -494,6 +565,7 @@ async function openStyleProofModal(skuId, explicitOverride = false) {
     
     appState.decisionsCache[skuId] = data.decision;
     populateModalWithDecision(data.sku, data.decision);
+    switchModalView(initialTab || 'lookbook');
 
     loading.style.display = "none";
     content.style.display = "block";
@@ -508,7 +580,7 @@ async function openStyleProofModal(skuId, explicitOverride = false) {
 }
 
 // Global Alias
-window.openLookbook = openStyleProofModal;
+window.openLookbook = (skuId) => openStyleProofModal(skuId, 'lookbook');
 
 function renderSizeChips(recSize, availableSizes = ["S", "M", "L", "XL"]) {
   const container = document.getElementById("size-chips-group");
@@ -559,7 +631,7 @@ async function executeMoveToBagFromModal() {
       sku: sku,
       selectedSize: appState.selectedSize,
       decision: decision,
-      added_by_fittwin: true,
+      added_by_styleproof: true,
       added_at: new Date().toISOString()
     });
   }
@@ -579,7 +651,7 @@ async function executeMoveToBagFromModal() {
   renderWishlistGrid();
 
   // Show Toast Notification with tap-to-bag action
-  showToast(`🛍️ Moved to Bag with FitTwin verification! Tap bag to review.`);
+  showToast(`🛍️ Moved to Bag with StyleProof™ verification! Tap bag to review.`);
   logTelemetry("BAG_ADD", `Added ${sku.brand} (${sku.title.slice(0, 24)}...) Size ${appState.selectedSize} to Bag`, "action");
 
   // Update HUD Metrics
@@ -596,7 +668,7 @@ async function executeMoveToBagFromModal() {
 }
 
 // --------------------------------------------------------------------------
-// Cart View & Added by FitTwin Popup
+// Cart View & Added via StyleProof™ Popup
 // --------------------------------------------------------------------------
 function renderCartView() {
   const emptyState = document.getElementById("empty-cart-state");
@@ -629,8 +701,8 @@ function renderCartView() {
             </div>
           </div>
         </div>
-        <div class="fittwin-cart-badge">
-          ✨ Added via FitTwin Decision Engine • Size ${item.selectedSize} Verified
+        <div class="fittwin-cart-badge" style="background: linear-gradient(135deg, #f0fdfa 0%, #ecfdf5 100%); color: #0f766e; border: 1px solid #ccfbf1;">
+          ✨ Added via StyleProof™ Decision Engine • Size ${item.selectedSize} Verified
         </div>
       </div>
     `;
@@ -649,7 +721,7 @@ function renderCartView() {
   document.getElementById("price-final-total").innerText = `₹${totalActual.toLocaleString('en-IN')}`;
   document.getElementById("footer-total-price").innerText = `₹${totalActual.toLocaleString('en-IN')}`;
 
-  // Automatically trigger the "Added by FitTwin" Confirmation Popup if not shown
+  // Automatically trigger the "Added via StyleProof™" Confirmation Popup if not shown
   if (!appState.hasShownCartPopupForSession && appState.cartItems.length > 0) {
     openFitTwinCartPopup();
     appState.hasShownCartPopupForSession = true;
@@ -663,7 +735,7 @@ function openFitTwinCartPopup() {
   const user = appState.user;
   const bp = user ? user.body_profile : { height: "5'9\"", weight: "68kg" };
   const firstCartItem = appState.cartItems[0];
-  const size = firstCartItem ? firstCartItem.selectedSize : "M";
+  const size = firstCartItem ? firstCartItem.selectedSize : "S";
 
   document.getElementById("popup-persona-subtitle").innerText = 
     `Decision Support Verified for ${user ? user.name : 'User'} (${bp.height} • ${bp.weight})`;
@@ -677,11 +749,11 @@ function openFitTwinCartPopup() {
       "Calibrated via universal wardrobe staples (White Organic Tee & Black Denim).";
   } else {
     document.getElementById("popup-closet-text").innerText = 
-      "Styled with your Levi's 511 Jeans (Nov '25) & HRX Sneakers (Jan '26).";
+      "Styled with your Levi's 511 Jeans & HRX Off-White Sneakers.";
   }
 
   overlay.classList.add("open");
-  logTelemetry("CART_POPUP", "FitTwin Decision Support modal displayed in cart", "info");
+  logTelemetry("CART_POPUP", "StyleProof™ Decision Support modal displayed in cart", "info");
 }
 
 function closeFitTwinCartPopup(e) {
